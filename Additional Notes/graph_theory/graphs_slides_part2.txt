@@ -1,0 +1,488 @@
+Cycles
+
+The only node of in-degree 0 is v4 . So for t = 1 we have
+
+After removing v4 there are two nodes of in-degree 0, v1 and v3 .
+If we pick v3 then we have for t = 2
+
+Further reductions yield the final order {v4 , v3 , v1 , v2 , v5 , v6 }.
+What is the complexity of this algorithm ?
+
+Isomorphism
+
+Isomorphic graphs
+
+Two graphs G1 and G2 are isomorphic iff there is a bijection
+between their respective nodes which make each edge of G1
+correspond to exactly one edge of G2 , and vice versa.
+
+One must find a label numbering that makes the graphs identical
+This problem is still believed to be NP hard
+
+Isomorphism
+
+Counting graphs
+How many different simple graphs are there with n nodes ?
+A graph with n nodes can have B(n, 2) := n(n − 1)/2 different
+edges and each of them can be present or not.
+
+Hence there can be at most 2n(n−1)/2 graphs with n nodes.
+For n = 3 only 4 of the graphs are different
+(omitting the isomorphic ones)
+
+With n = 4 one finds eventually 11
+different graphs after collapsing the
+isomorphic ones
+
+Isomorphism
+
+Let there be Tn non-isomorphic (simple) graphs with n nodes.
+Then
+2n(n−1)/2
+≤ Tn ≤ 2n(n−1)/2
+n!
+Exercise Explain the lower bound
+Ln :=
+
+Taking logarithms and using n! < nn yields the bounds
+B(n, 2) − n log n ≤ log Tn ≤ B(n, 2)
+which gives an idea of the growth of Tn
+n
+Tn
+dLn e
+
+2 3
+2 4
+2 2
+
+4
+11
+3
+
+5
+34
+9
+
+6
+156
+46
+
+7
+1044
+417
+
+8
+12346
+6658
+
+Isomorphism
+
+Bipartite revisited
+Let us look again at bipartite graphs
+Proposition A graph is bipartite iff it has no cycles of odd length
+Necessity Trivial : color the nodes of the cycle black and white.
+Sufficiency Pick u ∈ V and let f (v ) be the length of a shortest
+path from u to v (∞ if there is no such path)
+A = {v ∈ V |f (v ) = odd}
+
+B = {v ∈ V |f (v ) = even}
+
+Then A and B form a partition of the nodes of V connected to u.
+One then needs to show that there
+can be no links between any two
+nodes of A or any two nodes of B.
+If this would be the case, one could
+construct a cycle of odd length.
+Repeat on each subgraph.
+
+Representing
+graphs
+
+Representing graphs
+A graph G = (V , E) is often represented by its adjacency matrix.
+It is an n × n matrix A with A(i, j) = 1 iff (i, j) ∈ E. For the graphs
+
+the adjacency matrices are
+
+
+0
+ 0
+
+A1 = 
+ 0
+ 1
+0
+
+0
+0
+1
+0
+1
+
+0
+1
+0
+1
+1
+
+1
+0
+1
+0
+1
+
+
+0
+1 
+
+1 
+
+1 
+0
+
+
+
+0
+ 1
+A2 = 
+ 0
+0
+
+0
+0
+1
+1
+
+1
+0
+0
+1
+
+
+0
+0 
+
+0 
+0
+
+Representing
+graphs
+
+A graph can also be represented by its n × m incidence matrix T .
+For an undirected graph T (i, k ) = T (j, k ) = 1 iff ek = (vi , vj ).
+For a directed graph T (i, k ) = −1; T (j, k ) = 1 iff ek = (vi , vj ).
+For the graphs
+
+the incidence matrices are
+
+
+
+1 0 0 0 0 0
+−1
+ 0 1 1 0 0 0 
+
+
+ 0
+
+
+T1 = 
+ 0 0 1 1 1 0  T2 =  1
+ 1 0 0 0 1 1 
+0
+0 1 0 1 0 1
+
+
+0
+0
+0
+1
+1
+0
+1 −1 
+
+0
+1 −1
+0 
+−1 −1
+0
+0
+
+Representing
+graphs
+
+One can also use a sparse matrix representation of A and T .
+This is in fact nothing but a list of edges, organized e.g. by nodes.
+
+Notice that the size of the representation of a graph is thus linear
+in the number of edges in the graph (i.e. in m = |E|).
+To be more precise, one should count the number of bits needed
+to represent all entries :
+L = (n + m) log n
+since one needs log n bits to represent the vertex pointers.
+
+Representing
+graphs
+
+Counting degrees
+Let 1 be the vector of all ones, then din = AT 1 and dout = A1
+are the vectors of in-degrees and out-degrees of the nodes of A
+and dout = din = d for undirected graphs.
+How should we then take self-loops into account ?
+In an adjacency matrix of an undirected graph A(i, i) = 2
+In an adjacency matrix of a directed graph A(i, i) = 1
+For an undirected graph, we have d = T 1.
+For a directed graph one can define Tt and Ts as the matrices
+containing the terminal and source nodes : T = Tt − Ts with
+
+
+
+
+0 0 0 0 1
+1 0 0 0 0
+ 0 1 0 1 0 
+ 0 0 0 0 1 
+
+
+
+Tt := 
+ 1 0 1 0 0  , Ts :=  0 0 0 1 0 
+0 0 0 0 0
+0 1 1 0 0
+Then also we have din = Tt 1 and dout = Ts 1.
+
+Representing
+graphs
+
+Powers of A
+
+Proposition (Ak )ij is the number of walks of length k from i to j
+Proof Trivial for k =1; by induction for larger k .
+The element (i, j) of Ak +1 = Ak · A is the sum of the walks of length
+k to nodes that are linked to node j via the adjacency matrix A.
+One verifies this in the following little example
+
+
+
+0 1 0
+0
+A =  0 0 1  , A2 =  1
+1 1 0
+0
+
+0
+1
+1
+
+
+1
+0 
+1
+
+Corollary In a simple undirected graph one has the identities
+tr (A) = 0, tr (A2 )/2 = |E| and
+tr (A3 )/6 equals the number of triangles in G.
+
+Connectivity
+
+Connected components
+
+In a directed graph G = (V , E), u and v are strongly connected
+if there exists a walk from u to v and from v to u.
+This is an equivalence relation and hence leads to equivalence
+classes, which are called th connected components of the graph
+G.
+
+The graph reduced to its connected components is acyclic (why ?)
+This shows up in many applications, e.g. in the dictionary graph.
+The connected components are the groups of words that use each
+other in their definition (see later).
+
+Connectivity
+
+After the reduction one has an acyclic graph, which can be
+ordered topologically.
+What do you obtain then ? Class orderings
+
+An initial class has din (c) = 0. A final class has dout (c) = 0.
+The other ones are intermediate.
+
+Connectivity
+
+Verify (strong) connectivity of a graph based on its adjacency list
+Idea : start from node s, explore the graph, mark what you visit
+
+Algorithm GenericSearch(G,s)
+mark(s); L := {s}
+while L 6= ∅ do
+choose u ∈ L;
+if ∃(u, v ) such that v is unmarked then
+mark(v ); L := L ∪ {v };
+else
+L := L\{u};
+end if
+end while
+
+Connectivity
+
+Below we marked the chosen nodes and the discovered nodes
+L
+{2}
+{2, 1}
+{2, 1, 5}
+{2, 1, 5, 6}
+{1, 5, 6}
+{1, 5, 6, 4}
+{5, 6, 4}
+{5, 4}
+{5, 4, 3}
+{5, 3}
+{5, 3, 7}
+{5, 3}
+{3}
+{3, 8}
+{3}
+{}
+
+mark
+2
+1
+5
+6
+4
+
+3
+7
+
+8
+
+This algorithm has 2n steps : each node is added once and
+removed once. Its complexity is therefore linear in n.
+
+Connectivity
+
+Because of the choices, this algorithm allows for different versions
+Let us use a LIFO list for L (Last In First Out) and choose for u the
+last element added to L. This is a depth first search (DFS).
+Algorithm DeptFirstSearch(G,s)
+mark(s); L := {s};
+while L 6= ∅ do
+u := last(L)
+if ∃(u, v ) such that v is unmarked then
+choose (u, v ) with v of smallest index;
+mark(v ); L := L ∪ {v };
+else
+L := L\{u}
+end if
+end while
+
+Connectivity
+
+Below we marked the chosen nodes and the discovered nodes
+L
+{2}
+{2, 1}
+{2, 1, 4}
+{2, 1, 4, 3}
+{2, 1, 4, 3, 7}
+{2, 1, 4, 3}
+{2, 1, 4, 3, 8}
+{2, 1, 4, 3}
+{2, 1, 4}
+{2, 1, 4, 6}
+{2, 1, 4, 6, 5}
+{2, 1, 4, 6}
+{2, 1, 4}
+{2, 1}
+{2}
+{}
+
+mark
+2
+1
+4
+3
+7
+8
+
+6
+5
+
+This algorithm builds longer paths than the generic one (depth
+first).
+
+Connectivity
+
+We now use a FIFO list for L (First In First Out) and choose for u
+the first element added to L. This is a breadth first search (BFS).
+Algorithm BreadthFirstSearch(G,s)
+mark(s); L := {s};
+while L 6= ∅ do
+u := first(L)
+if ∃(u, v ) such that v is unmarked then
+choose (u, v ) with v of smallest index;
+mark(v ); L := L ∪ {v };
+else
+L := L\{u}
+end if
+end while
+
+Connectivity
+
+Below we marked the chosen nodes and the discovered nodes
+L
+{2}
+{2, 1}
+{2, 1, 5}
+{1, 5}
+{1, 5, 4}
+{1, 5, 4, 6}
+{5, 4, 6}
+{4, 6}
+{4, 6, 3}
+{6, 3}
+{3}
+{3, 7}
+{3, 7, 8}
+{7, 8}
+{8}
+{}
+
+mark
+2
+1
+5
+4
+6
+
+3
+
+8
+
+This algorithm builds a wider tree (breadth first).
+
+Connectivity
+
+Testing connectivity
+
+The exploration algorithm finds the set of all nodes that can be
+reached by a path from a given node u ∈ V .
+If the graph is undirected, each node in that set can follow a path
+back to u. They thus form the connected component C(u) of u.
+
+To find all connected components, repeat this exploration on a
+node of V \C(u), etc.
+
+Connectivity
+
+Testing strong connectivity
+Proposition Let G = (V , E) be a digraph and let u ∈ V .
+If ∀v ∈ V there exists a path from u to v and a path from v to u,
+then G is strongly connected.
+The exploration algorithm finds the set of all nodes that can be
+reached by a path from a given node u ∈ V .
+How can one find the nodes from which u can be reached ?
+Construct for that the inverse graph by reversing all arrows
+
+Show that the adjacency matrix of this graph is just AT .
+
+

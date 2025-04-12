@@ -1,0 +1,4655 @@
+8.4 Generating Functions 577
+
+30. Use generating functions (and a computer algebra package, if available) to ﬁnd the number of ways to make
+change for $1 using pennies, nickels, dimes, and quarters
+with
+a) no more than 10 pennies.
+b) no more than 10 pennies and no more than 10 nickels.
+∗ c) no more than 10 coins.
+31. Use generating functions to ﬁnd the number of ways to
+make change for $100 using
+a) $10, $20, and $50 bills.
+b) $5, $10, $20, and $50 bills.
+c) $5, $10, $20, and $50 bills if at least one bill of each
+denomination is used.
+d) $5, $10, and $20 bills if at least one and no more than
+four of each denomination is used.
+32. If G(x) is the generating function for the sequence {ak },
+what is the generating function for each of these sequences?
+a) 2a0 , 2a1 , 2a2 , 2a3 , …
+b) 0, a0 , a1 , a2 , a3 , … (assuming that terms follow the
+pattern of all but the ﬁrst term)
+c) 0, 0, 0, 0, a2 , a3 , … (assuming that terms follow the
+pattern of all but the ﬁrst four terms)
+d) a2 , a3 , a4 , …
+e) a1 , 2a2 , 3a3 , 4a4 , … [Hint: Calculus required here.]
+f ) a20 , 2a0 a1 , a21 + 2a0 a2 , 2a0 a3 + 2a1 a2 , 2a0 a4 +
+2a1 a3 + a22 , …
+33. If G(x) is the generating function for the sequence {ak },
+what is the generating function for each of these sequences?
+a) 0, 0, 0, a3 , a4 , a5 , … (assuming that terms follow the
+pattern of all but the ﬁrst three terms)
+b) a0 , 0, a1 , 0, a2 , 0, …
+c) 0, 0, 0, 0, a0 , a1 , a2 , … (assuming that terms follow
+the pattern of all but the ﬁrst four terms)
+d) a0 , 2a1 , 4a2 , 8a3 , 16a4 , …
+e) 0, a0 , a1 ∕2, a2 ∕3, a3 ∕4, … [Hint: Calculus required
+here.]
+f ) a0 , a 0 + a 1 , a 0 + a 1 + a 2 , a 0 + a 1 + a 2 + a 3 , …
+34. Use generating functions to solve the recurrence relation
+ak = 7ak−1 with the initial condition a0 = 5.
+35. Use generating functions to solve the recurrence relation
+ak = 3ak−1 + 2 with the initial condition a0 = 1.
+36. Use generating functions to solve the recurrence relation
+ak = 3ak−1 + 4k−1 with the initial condition a0 = 1.
+37. Use generating functions to solve the recurrence relation ak = 5ak−1 − 6ak−2 with initial conditions a0 = 6
+and a1 = 30.
+38. Use generating functions to solve the recurrence relation
+ak = ak−1 + 2ak−2 + 2k with initial conditions a0 = 4 and
+a1 = 12.
+39. Use generating functions to solve the recurrence relation ak = 4ak−1 − 4ak−2 + k2 with initial conditions a0 =
+2 and a1 = 5.
+40. Use generating functions to solve the recurrence relation ak = 2ak−1 + 3ak−2 + 4k + 6 with initial conditions
+a0 = 20, a1 = 60.
+
+41. Use generating functions to ﬁnd an explicit formula for
+the Fibonacci numbers.
+∗ 42. a) Show that if n is a positive integer, then
+(
+) ( )/
+−1∕2
+2n
+=
+(−4)n .
+n
+n
+b) Use the extended binomial theorem and part (a) to
+show that the (coeﬃcient
+of xn in the expansion of
+2n)
+−1∕2
+(1 − 4x)
+is n for all nonnegative integers n.
+∗ 43. (Calculus required ) Let {Cn } be the sequence of Catalan
+numbers,
+∑ that is, the solution to the recurrence relation
+Cn = n−1
+CC
+with C0 = C1 = 1 (see Example 5
+k = 0 k n−k−1
+in Section 8.1).
+a) Show that if G(x) is the generating function for the
+sequence of Catalan numbers, then xG(x)2 − G(x) +
+1 = 0. Conclude
+√ (using the initial conditions) that
+G(x) = (1 − 1 − 4x)∕(2x).
+b) Use Exercise 42 to conclude that
+G(x) =
+
+∞
+∑
+
+1
+n
++
+1
+n=0
+
+so that
+Cn =
+
+1
+n+1
+
+(
+
+(
+
+)
+2n n
+x ,
+n
+
+)
+2n
+.
+n
+
+c) Show that Cn ≥ 2n−1 for all positive integers n.
+44. Use generating functions to prove Pascal’s identity:
+C(n, r) = C(n − 1, r) + C(n − 1, r − 1) when n and r are
+positive integers with r < n. [Hint: Use the identity (1 +
+x)n = (1 + x)n−1 + x(1 + x)n−1 .]
+45. Use generating functions
+∑r to prove Vandermonde’s identity: C(m + n, r) = k = 0 C(m, r − k)C(n, k), whenever
+m, n, and r are nonnegative integers with r not exceeding either m or n. [Hint: Look at the coeﬃcient of xr in
+both sides of (1 + x)m+n = (1 + x)m (1 + x)n .]
+46. This exercise shows how to use generating functions to
+derive a formula for the sum of the ﬁrst n squares.
+a) Show that (x2 + x)∕(1 − x)4 is the generating function for the sequence {an }, where
+a n = 1 2 + 2 2 + ⋯ + n2 .
+b) Use part (a) to ﬁnd an explicit formula for the sum
+12 + 2 2 + ⋯ + n2 .
+The exponential generating function for the sequence {an }
+is the series
+∞
+∑
+an
+
+n!
+n=0
+
+xn .
+
+For example, the exponential generating ∑
+function for the
+∞
+n
+x
+sequence 1, 1, 1, … is the function
+n = 0 x ∕n! = e .
+(You will ﬁnd this particular series useful in these exercises.)
+Note that ex is the (ordinary) generating function for the
+sequence 1, 1, 1∕2!, 1∕3!, 1∕4!, … .
+
+578
+
+8 / Advanced Counting Techniques
+
+Generating functions are useful in studying the number of
+47. Find a closed form for the exponential generating funcdiﬀerent types of partitions of an integer n. A partition of
+tion for the sequence {an }, where
+a positive integer is a way to write this integer as the sum
+a) an = 2.
+b) an = (−1)n .
+of positive integers where repetition is allowed and the orc) an = 3n .
+d) an = n + 1.
+der of the integers in the sum does not matter. For exame) an = 1∕(n + 1).
+ple, the partitions of 5 (with no restrictions) are 1 + 1 + 1 +
+48. Find a closed form for the exponential generating func1 + 1, 1 + 1 + 1 + 2, 1 + 1 + 3, 1 + 2 + 2, 1 + 4, 2 + 3, and 5.
+tion for the sequence {an }, where
+Exercises 53–58 illustrate some of these uses.
+a) an = (−2)n .
+b) an = −1.
+53. Show that the coeﬃcient p(n) of xn in the formal
+c) an = n.
+d) an = n(n − 1).
+power series expansion of 1∕((1−x)(1−x2 )(1−x3 ) ⋯)
+e) an = 1∕((n + 1)(n + 2)).
+equals the number of partitions of n.
+49. Find the sequence with each of these functions as its ex54. Show that the coeﬃcient po (n) of xn in the formal
+ponential generating function.
+power series expansion of 1∕((1−x)(1−x3 )(1−x5 ) ⋯)
+a) f (x) = e−x
+b) f (x) = 3x2x
+equals the number of partitions of n into odd integers, that
+c) f (x) = e3x − 3e2x
+d) f (x) = (1 − x) + e−2x
+is, the number of ways to write n as the sum of odd posi−2x
+tive integers, where the order does not matter and repetie) f (x) = e − (1∕(1 − x))
+tions are allowed.
+f ) f (x) = e−3x − (1 + x) + (1∕(1 − 2x))
+2
+55. Show that the coeﬃcient pd (n) of xn in the formal power
+g) f (x) = ex
+series expansion of (1 + x)(1 + x2 )(1 + x3 ) ⋯ equals the
+50. Find the sequence with each of these functions as its exnumber of partitions of n into distinct parts, that is, the
+ponential generating function.
+number
+of ways to write n as the sum of positive inte3x
+−3x+1
+a) f (x) = e
+b) f (x) = 2e
+gers, where the order does not matter but no repetitions
+4x
+−4x
+3x
+c) f (x) = e + e
+d) f (x) = (1 + 2x) + e
+are allowed.
+e) f (x) = ex − (1∕(1 + x))
+56. Find po (n), the number of partitions of n into odd parts
+x
+x3
+f ) f (x) = xe
+g) f (x) = e
+with repetitions allowed, and pd (n), the number of par51. A coding system encodes messages using strings of octitions of n into distinct parts, for 1 ≤ n ≤ 8, by writing
+tal (base 8) digits. A codeword is considered valid if and
+each partition of each type for each integer.
+only if it contains an even number of 7s.
+57. Show that if n is a positive integer, then the number of
+a) Find a linear nonhomogeneous recurrence relation for
+partitions of n into distinct parts equals the number
+the number of valid codewords of length n. What are
+of partitions of n into odd parts with repetitions allowed;
+the initial conditions?
+that is, po (n) = pd (n). [Hint: Show that the generating
+b) Solve this recurrence relation using Theorem 6 in
+functions for po (n) and pd (n) are equal.]
+Section 8.2.
+∗∗ 58. (Requires calculus) Use the generating function of p(n)
+√
+c) Solve this recurrence relation using generating functo show that p(n) ≤ eC n for some constant
+C. [Hardy
+√
+√
+√
+tions.
+𝜋
+2∕3
+n
+and
+Ramanujan
+showed
+that
+p(n)
+∼
+e
+∕(4
+3n),
+∗ 52. A coding system encodes messages using strings of
+which means that the ratio of p(n) and the right-hand side
+base 4 digits (that is, digits from the set {0, 1, 2, 3}). A
+approaches 1 as n approaches inﬁnity.]
+codeword is valid if and only if it contains an even numSuppose that X is a random variable on a sample space S such
+ber of 0s and an even number of 1s. Let an equal the
+that X(s) is a nonnegative integer for all s ∈ S. The probabilnumber of valid codewords of length n. Furthermore,
+ity generating function for X is
+let bn , cn , and dn equal the number of strings of base 4 dig∞
+∑
+its of length n with an even number of 0s and an odd numLinks
+G
+(x)
+=
+p(X(s) = k)xk .
+X
+ber of 1s, with an odd number of 0s and an even number
+k=0
+of 1s, and with an odd number of 0s and an odd number
+59. (Requires calculus) Show that if GX is the probability
+of 1s, respectively.
+generating function for a random variable X such that
+a) Show that dn = 4n − an − bn − cn . Use this to show
+n
+X(s) is a nonnegative integer for all s ∈ S, then
+that an+1 = 2an + bn + cn , bn+1 = bn − cn + 4 , and
+n
+a) GX (1) = 1.
+b) E(X) = GX′ (1).
+cn+1 = cn − bn + 4 .
+′′
+′
+c) V(X) = GX (1) + GX (1) − GX′ (1)2 .
+b) What are a1 , b1 , c1 , and d1 ?
+c) Use parts (a) and (b) to ﬁnd a3 , b3 , c3 , and d3 .
+60. Let X be the random variable whose value is n if the
+ﬁrst success occurs on the nth trial when independent
+d) Use the recurrence relations in part (a), together with
+Bernoulli trials are performed, each with probability of
+the initial conditions in part (b), to set up three equasuccess p.
+tions relating the generating functions A(x), B(x), and
+C(x) for the sequences {an }, {bn }, and {cn }, respeca) Find a closed formula for the probability generating
+tively.
+function GX .
+b) Find the expected value and the variance of X using
+e) Solve the system of equations from part (d) to get exExercise 59 and the closed form for the probability
+plicit formulae for A(x), B(x), and C(x) and use these
+generating function found in part (a).
+to get explicit formulae for an , bn , cn , and dn .
+
+8.5 Inclusion–Exclusion 579
+
+61. Let m be a positive integer. Let Xm be the random variable whose value is n if the mth success occurs on the
+(n + m)th trial when independent Bernoulli trials are performed, each with probability of success p.
+a) Using Exercise 32 in the Supplementary Exercises of
+Chapter 7, show that the probability generating function GXm is given by GXm (x) = pm ∕(1 − qx)m , where
+q = 1 − p.
+
+8.5
+
+b) Find the expected value and the variance of Xm using
+Exercise 59 and the closed form for the probability
+generating function in part (a).
+62. Show that if X and Y are independent random variables
+on a sample space S such that X(s) and Y(s) are nonnegative integers for all s ∈ S, then GX+Y (x) = GX (x)GY (x).
+
+Inclusion–Exclusion
+8.5.1 Introduction
+A discrete mathematics class contains 30 women and 50 sophomores. How many students in
+the class are either women or sophomores? This question cannot be answered unless more information is provided. Adding the number of women in the class and the number of sophomores
+probably does not give the correct answer, because women sophomores are counted twice. This
+observation shows that the number of students in the class that are either sophomores or women
+is the sum of the number of women and the number of sophomores in the class minus the number of women sophomores. A technique for solving such counting problems was introduced
+in Section 6.1. In this section we will generalize the ideas introduced in that section to solve
+problems that require us to count the number of elements in the union of more than two sets.
+
+8.5.2 The Principle of Inclusion–Exclusion
+How many elements are in the union of two ﬁnite sets? In Section 2.2 we showed that the number
+of elements in the union of the two sets A and B is the sum of the numbers of elements in the
+sets minus the number of elements in their intersection. That is,
+|A ∪ B| = |A| + |B| − |A ∩ B|.
+As we showed in Section 6.1, the formula for the number of elements in the union of two sets
+is useful in counting problems. Examples 1–3 provide additional illustrations of the usefulness
+of this formula.
+
+EXAMPLE 1
+
+In a discrete mathematics class every student is a major in computer science or mathematics, or
+both. The number of students having computer science as a major (possibly along with mathematics) is 25; the number of students having mathematics as a major (possibly along with
+computer science) is 13; and the number of students majoring in both computer science and
+mathematics is 8. How many students are in this class?
+Solution: Let A be the set of students in the class majoring in computer science and B be the set
+of students in the class majoring in mathematics. Then A ∩ B is the set of students in the class
+who are joint mathematics and computer science majors. Because every student in the class
+is majoring in either computer science or mathematics (or both), it follows that the number of
+students in the class is |A ∪ B|. Therefore,
+|A ∪ B| = |A| + |B| − |A ∩ B|
+= 25 + 13 − 8 = 30.
+Therefore, there are 30 students in the class. This computation is illustrated in Figure 1.
+
+◂
+
+580
+
+8 / Advanced Counting Techniques
+
+∣A ∪ B∣ = ∣A∣ + ∣B∣ – ∣A ∩ B∣ = 25 + 13 – 8 = 30
+
+A
+
+∣A∣ = 25
+
+A>
+∩B
+
+∣A ∩ B∣ = 8
+
+A
+
+B
+
+∣B∣ = 13
+
+FIGURE 1 The set of students in a
+discrete mathematics class.
+
+EXAMPLE 2
+
+∣A ∪ B∣ = ∣A∣ + ∣B∣ – ∣A ∩ B∣ = 142 + 90 – 12 = 220
+
+∣A∣ = 142
+
+A>
+∩B
+
+B
+
+∣A ∩ B∣ = 12
+
+∣B∣ = 90
+
+FIGURE 2 The set of positive integers not
+exceeding 1000 divisible by either 7 or 11.
+
+How many positive integers not exceeding 1000 are divisible by 7 or 11?
+Solution: Let A be the set of positive integers not exceeding 1000 that are divisible by 7, and
+let B be the set of positive integers not exceeding 1000 that are divisible by 11. Then A ∪ B
+is the set of integers not exceeding 1000 that are divisible by either 7 or 11, and A ∩ B is the
+set of integers not exceeding 1000 that are divisible by both 7 and 11. From Example 2 of
+Section 4.1, we know that among the positive integers not exceeding 1000 there are ⌊1000∕7⌋
+integers divisible by 7 and ⌊1000∕11⌋ divisible by 11. Because 7 and 11 are relatively prime,
+the integers divisible by both 7 and 11 are those divisible by 7 ⋅ 11. Consequently, there are
+⌊1000∕(11 ⋅ 7)⌋ positive integers not exceeding 1000 that are divisible by both 7 and 11. It
+follows that there are
+|A ∪ B| = |A| + |B| − |A ∩ B|
+⌋ ⌊
+⌋ ⌊
+⌋
+⌊
+1000
+1000
+1000
++
+−
+=
+7
+11
+7 ⋅ 11
+= 142 + 90 − 12 = 220
+positive integers not exceeding 1000 that are divisible by either 7 or 11. This computation is
+◂
+illustrated in Figure 2.
+Example 3 shows how to ﬁnd the number of elements in a ﬁnite universal set that are outside
+the union of two sets.
+
+EXAMPLE 3
+
+Suppose that there are 1807 freshmen at your school. Of these, 453 are taking a course in
+computer science, 567 are taking a course in mathematics, and 299 are taking courses in both
+computer science and mathematics. How many are not taking a course either in computer science or in mathematics?
+Solution: To ﬁnd the number of freshmen who are not taking a course in either mathematics
+or computer science, subtract the number that are taking a course in either of these subjects
+from the total number of freshmen. Let A be the set of all freshmen taking a course in computer science, and let B be the set of all freshmen taking a course in mathematics. It follows
+that |A| = 453, |B| = 567, and |A ∩ B| = 299. The number of freshmen taking a course in either computer science or mathematics is
+|A ∪ B| = |A| + |B| − |A ∩ B| = 453 + 567 − 299 = 721.
+
+8.5 Inclusion–Exclusion 581
+
+1
+
+1
+
+1
+2
+
+A
+
+B
+
+1
+1
+
+A
+
+1
+
+2
+
+A
+
+B
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+C
+
+C
+
+C
+
+(a) Count of elements by
+∣A∣ + ∣B∣ + ∣C∣
+
+FIGURE 3
+
+1
+1
+
+0
+
+3
+2
+
+1
+B
+
+(b) Count of elements by
+
+(c) Count of elements by
+
+∣A∣ + ∣B∣ + ∣C∣ – ∣A ∩ B∣ –
+∣A ∩ C∣ – ∣B ∩ C∣
+
+∣A∣ + ∣B∣ + ∣C∣ – ∣A ∩ B∣ –
+∣A ∩ C∣ – ∣B ∩ C∣ + ∣A ∩ B ∩ C∣
+
+Finding a formula for the number of elements in the union of three sets.
+Consequently, there are 1807 − 721 = 1086 freshmen who are not taking a course in computer
+science or mathematics.
+◂
+
+We will now begin our development of a formula for the number of elements in the union
+of a ﬁnite number of sets. The formula we will develop is called the principle of inclusion–
+exclusion. For concreteness, before we consider unions of n sets, where n is any positive integer,
+we will derive a formula for the number of elements in the union of three sets A, B, and C. To
+construct this formula, we note that |A| + |B| + |C| counts each element that is in exactly one
+of the three sets once, elements that are in exactly two of the sets twice, and elements in all three
+sets three times. This is illustrated in the ﬁrst panel in Figure 3.
+To remove the overcount of elements in more than one of the sets, we subtract the number
+of elements in the intersections of all pairs of the three sets. We obtain
+|A| + |B| + |C| − |A ∩ B| − |A ∩ C| − |B ∩ C|.
+This expression still counts elements that occur in exactly one of the sets once. An element
+that occurs in exactly two of the sets is also counted exactly once, because this element will
+occur in one of the three intersections of sets taken two at a time. However, those elements
+that occur in all three sets will be counted zero times by this expression, because they occur
+in all three intersections of sets taken two at a time. This is illustrated in the second panel in
+Figure 3.
+To remedy this undercount, we add the number of elements in the intersection of all three
+sets. This ﬁnal expression counts each element once, whether it is in one, two, or three of the
+sets. Thus,
+|A ∪ B ∪ C| = |A| + |B| + |C| − |A ∩ B| − |A ∩ C| − |B ∩ C| + |A ∩ B ∩ C|.
+This formula is illustrated in the third panel of Figure 3.
+Example 4 illustrates how this formula can be used.
+
+EXAMPLE 4
+
+A total of 1232 students have taken a course in Spanish, 879 have taken a course in French,
+and 114 have taken a course in Russian. Further, 103 have taken courses in both Spanish and
+French, 23 have taken courses in both Spanish and Russian, and 14 have taken courses in both
+
+582
+
+8 / Advanced Counting Techniques
+
+∣S ∩ F∣ = 103
+
+∣S ∩ F ∩ R∣ = ?
+
+S∩F
+
+S
+
+F
+
+S∩F∩R
+
+F∩R
+
+S∩R
+
+∣S∣ = 1232
+
+∣F∣ = 879
+R
+
+∣S ∩ R∣ = 23
+
+∣F ∩ R∣ = 14
+∣R∣ = 114
+∣S ∪ F ∪ R∣ = 2092
+
+FIGURE 4 The set of students who have taken courses
+in Spanish, French, and Russian.
+French and Russian. If 2092 students have taken at least one of Spanish, French, and Russian,
+how many students have taken a course in all three languages?
+Solution: Let S be the set of students who have taken a course in Spanish, F the set of students
+who have taken a course in French, and R the set of students who have taken a course in Russian.
+Then
+|S| = 1232,
+
+|F| = 879,
+
+|R| = 114,
+
+|S ∩ F| = 103, |S ∩ R| = 23, |F ∩ R| = 14,
+and
+|S ∪ F ∪ R| = 2092.
+When we insert these quantities into the equation
+|S ∪ F ∪ R| = |S| + |F| + |R| − |S ∩ F| − |S ∩ R| − |F ∩ R| + |S ∩ F ∩ R|
+we obtain
+2092 = 1232 + 879 + 114 − 103 − 23 − 14 + |S ∩ F ∩ R|.
+We now solve for |S ∩ F ∩ R|. We ﬁnd that |S ∩ F ∩ R| = 7. Therefore, there are seven
+students who have taken courses in Spanish, French, and Russian. This is illustrated in
+◂
+Figure 4.
+We will now state and prove the inclusion–exclusion principle for n sets, where n is a
+positive integer. This priniciple tells us that we can count the elements in a union of n sets by
+adding the number of elements in the sets, then subtracting the sum of the number of elements
+in all intersections of two of these sets, then adding the number of elements in all intersections
+
+8.5 Inclusion–Exclusion 583
+
+of three of these sets, and so on, until we reach the number of elements in the intersection of
+all the sets. It is added when there is an odd number of sets and added when there is an even
+number of sets.
+
+THEOREM 1
+
+THE PRINCIPLE OF INCLUSION–EXCLUSION
+Then
+∑
+∑
+|Ai | −
+|Ai ∩ Aj |
+|A1 ∪ A2 ∪ ⋯ ∪ An | =
+1≤i≤n
+
++
+
+∑
+
+Let A1 , A2 , … , An be ﬁnite sets.
+
+1≤i<j≤n
+
+|Ai ∩ Aj ∩ Ak | − ⋯ + (−1)n+1 |A1 ∩ A2 ∩ ⋯ ∩ An |.
+
+1≤i<j<k≤n
+
+Proof: We will prove the formula by showing that an element in the union is counted exactly
+once by the right-hand side of the equation. Suppose that a is a member of exactly r of the sets
+A1 , A2 , … , An where 1 ≤ r ≤ n. This element is counted C(r, 1) times by Σ|Ai |. It is counted
+C(r, 2) times by Σ|Ai ∩ Aj |. In general, it is counted C(r, m) times by the summation involving
+m of the sets Ai . Thus, this element is counted exactly
+C(r, 1) − C(r, 2) + C(r, 3) − ⋯ + (−1)r+1 C(r, r)
+times by the expression on the right-hand side of this equation. Our goal is to evaluate this
+quantity. By Corollary 2 of Section 6.4, we have
+C(r, 0) − C(r, 1) + C(r, 2) − ⋯ + (−1)r C(r, r) = 0.
+Hence,
+1 = C(r, 0) = C(r, 1) − C(r, 2) + ⋯ + (−1)r+1 C(r, r).
+Therefore, each element in the union is counted exactly once by the expression on the right-hand
+side of the equation. This proves the principle of inclusion–exclusion.
+The inclusion–exclusion principle gives a formula for the number of elements in the union
+of n sets for every positive integer n. There are terms in this formula for the number of elements in the intersection of every nonempty subset of the collection of the n sets. Hence, there
+are 2n − 1 terms in this formula.
+
+EXAMPLE 5
+Extra
+Examples
+
+Give a formula for the number of elements in the union of four sets.
+Solution: The inclusion–exclusion principle shows that
+|A1 ∪ A2 ∪ A3 ∪ A4 | = |A1 | + |A2 | + |A3 | + |A4 |
+− |A1 ∩ A2 | − |A1 ∩ A3 | − |A1 ∩ A4 | − |A2 ∩ A3 | − |A2 ∩ A4 |
+− |A3 ∩ A4 | + |A1 ∩ A2 ∩ A3 | + |A1 ∩ A2 ∩ A4 | + |A1 ∩ A3 ∩ A4 |
++ |A2 ∩ A3 ∩ A4 | − |A1 ∩ A2 ∩ A3 ∩ A4 |.
+Note that this formula contains 15 diﬀerent terms, one for each nonempty subset of
+◂
+{A1 , A2 , A3 , A4 }.
+
+584
+
+8 / Advanced Counting Techniques
+
+Exercises
+1. How many elements are in A1 ∪ A2 if there are 12 elements in A1 , 18 elements in A2 , and
+a) A1 ∩ A2 = ∅?
+b) |A1 ∩ A2 | = 1?
+d) A1 ⊆ A2 ?
+c) |A1 ∩ A2 | = 6?
+2. There are 345 students at a college who have taken a
+course in calculus, 212 who have taken a course in discrete mathematics, and 188 who have taken courses in
+both calculus and discrete mathematics. How many students have taken a course in either calculus or discrete
+mathematics?
+3. A survey of households in the United States reveals that
+96% have at least one television set, 98% have telephone
+service, and 95% have telephone service and at least
+one television set. What percentage of households in the
+United States have neither telephone service nor a television set?
+4. A marketing report concerning personal computers states
+that 650,000 owners will buy a printer for their machines
+next year and 1,250,000 will buy at least one software
+package. If the report states that 1,450,000 owners will
+buy either a printer or at least one software package, how
+many will buy both a printer and at least one software
+package?
+5. Find the number of elements in A1 ∪ A2 ∪ A3 if there
+are 100 elements in each set and if
+a) the sets are pairwise disjoint.
+b) there are 50 common elements in each pair of sets and
+no elements in all three sets.
+c) there are 50 common elements in each pair of sets and
+25 elements in all three sets.
+d) the sets are equal.
+6. Find the number of elements in A1 ∪ A2 ∪ A3 if there are
+100 elements in A1 , 1000 in A2 , and 10,000 in A3 if
+a) A1 ⊆ A2 and A2 ⊆ A3 .
+b) the sets are pairwise disjoint.
+c) there are two elements common to each pair of sets
+and one element in all three sets.
+7. There are 2504 computer science students at a school. Of
+these, 1876 have taken a course in Java, 999 have taken a
+course in Linux, and 345 have taken a course in C. Further, 876 have taken courses in both Java and Linux, 231
+have taken courses in both Linux and C, and 290 have
+taken courses in both Java and C. If 189 of these students have taken courses in Linux, Java, and C, how many
+of these 2504 students have not taken a course in any of
+these three programming languages?
+8. In a survey of 270 college students, it is found that 64 like
+Brussels sprouts, 94 like broccoli, 58 like cauliﬂower,
+26 like both Brussels sprouts and broccoli, 28 like both
+Brussels sprouts and cauliﬂower, 22 like both broccoli
+
+and cauliﬂower, and 14 like all three vegetables. How
+many of the 270 students do not like any of these
+vegetables?
+9. How many students are enrolled in a course either in calculus, discrete mathematics, data structures, or programming languages at a school if there are 507, 292, 312,
+and 344 students in these courses, respectively; 14 in
+both calculus and data structures; 213 in both calculus
+and programming languages; 211 in both discrete mathematics and data structures; 43 in both discrete mathematics and programming languages; and no student may
+take calculus and discrete mathematics, or data structures
+and programming languages, concurrently?
+10. Find the number of positive integers not exceeding 100
+that are not divisible by 5 or by 7.
+11. Find the number of positive integers not exceeding 1000
+that are not divisible by 3, 17, or 35.
+12. Find the number of positive integers not exceeding
+10,000 that are not divisible by 3, 4, 7, or 11.
+13. Find the number of positive integers not exceeding 100
+that are either odd or the square of an integer.
+14. Find the number of positive integers not exceeding 1000
+that are either the square or the cube of an integer.
+15. How many bit strings of length eight do not contain six
+consecutive 0s?
+∗ 16. How many permutations of the 26 letters of the English
+alphabet do not contain any of the strings ﬁsh, rat or bird?
+17. How many permutations of the 10 digits either begin with
+the 3 digits 987, contain the digits 45 in the ﬁfth and sixth
+positions, or end with the 3 digits 123?
+18. How many elements are in the union of four sets if
+each of the sets has 100 elements, each pair of the sets
+shares 50 elements, each three of the sets share 25 elements, and there are 5 elements in all four sets?
+19. How many elements are in the union of four sets if the
+sets have 50, 60, 70, and 80 elements, respectively, each
+pair of the sets has 5 elements in common, each triple of
+the sets has 1 common element, and no element is in all
+four sets?
+20. How many terms are there in the formula for the number
+of elements in the union of 10 sets given by the principle
+of inclusion–exclusion?
+21. Write out the explicit formula given by the principle of
+inclusion–exclusion for the number of elements in the
+union of ﬁve sets.
+22. How many elements are in the union of ﬁve sets if the
+sets contain 10,000 elements each, each pair of sets has
+1000 common elements, each triple of sets has 100 common elements, every four of the sets have 10 common
+elements, and there is 1 element in all ﬁve sets?
+23. Write out the explicit formula given by the principle of
+inclusion–exclusion for the number of elements in the
+union of six sets when it is known that no three of these
+sets have a common intersection.
+
+8.6 Applications of Inclusion–Exclusion
+
+∗ 24. Prove the principle of inclusion–exclusion using mathematical induction.
+25. Let E1 , E2 , and E3 be three events from a sample space S.
+Find a formula for the probability of E1 ∪ E2 ∪ E3 .
+26. Find the probability that when a fair coin is ﬂipped ﬁve
+times tails comes up exactly three times, the ﬁrst and last
+ﬂips come up tails, or the second and fourth ﬂips come
+up heads.
+27. Find the probability that when four numbers from 1 to
+100, inclusive, are picked at random with no repetitions
+allowed, either all are odd, all are divisible by 3, or all are
+divisible by 5.
+
+8.6
+
+585
+
+28. Find a formula for the probability of the union of four
+events in a sample space if no three of them can occur at
+the same time.
+29. Find a formula for the probability of the union of ﬁve
+events in a sample space if no four of them can occur at
+the same time.
+30. Find a formula for the probability of the union of n events
+in a sample space when no two of these events can occur
+at the same time.
+31. Find a formula for the probability of the union of n events
+in a sample space.
+
+Applications of Inclusion–Exclusion
+8.6.1 Introduction
+Many counting problems can be solved using the principle of inclusion–exclusion. For instance,
+we can use this principle to ﬁnd the number of primes less than a positive integer. Many problems can be solved by counting the number of onto functions from one ﬁnite set to another. The
+inclusion–exclusion principle can be used to ﬁnd the number of such functions. The well-known
+hatcheck problem can be solved using the principle of inclusion–exclusion. This problem asks
+for the probability that no person is given the correct hat back by a hatcheck person who gives
+the hats back randomly.
+
+8.6.2 An Alternative Form of Inclusion–Exclusion
+There is an alternative form of the principle of inclusion–exclusion that is useful in counting
+problems. In particular, this form can be used to solve problems that ask for the number of
+elements in a set that have none of n properties P1 , P2 , … , Pn .
+Let Ai be the subset containing the elements that have property Pi . The number
+of elements with all the properties Pi1 , Pi2 , … , Pik will be denoted by N(Pi1 Pi2 … Pik ).
+Writing these quantities in terms of sets, we have
+|Ai1 ∩ Ai2 ∩ ⋯ ∩ Aik | = N(Pi1 Pi2 … Pik ).
+If the number of elements with none of the properties P1 , P2 , … , Pn is denoted by N(P′1 P′2 … P′n )
+and the number of elements in the set is denoted by N, it follows that
+N(P′1 P′2 … P′n ) = N − |A1 ∪ A2 ∪ ⋯ ∪ An |.
+From the inclusion–exclusion principle, we see that
+N(P′1 P′2 … P′n ) = N −
+
+∑
+1≤i≤n
+
+−
+
+N(Pi ) +
+∑
+
+1≤i<j<k≤n
+
+∑
+
+N(Pi Pj )
+
+1≤i<j≤n
+
+N(Pi Pj Pk ) + ⋯ + (−1)n N(P1 P2 … Pn ).
+
+586
+
+8 / Advanced Counting Techniques
+
+Example 1 shows how the principle of inclusion–exclusion can be used to determine the
+number of solutions in integers of an equation with constraints.
+
+EXAMPLE 1
+
+How many solutions does
+x1 + x2 + x3 = 11
+have, where x1 , x2 , and x3 are nonnegative integers with x1 ≤ 3, x2 ≤ 4, and x3 ≤ 6?
+Solution: To apply the principle of inclusion–exclusion, let a solution have property P1
+if x1 > 3, property P2 if x2 > 4, and property P3 if x3 > 6. The number of solutions satisfying the inequalities x1 ≤ 3, x2 ≤ 4, and x3 ≤ 6 is
+N(P′1 P′2 P′3 ) = N − N(P1 ) − N(P2 ) − N(P3 ) + N(P1 P2 )
++ N(P1 P3 ) + N(P2 P3 ) − N(P1 P2 P3 ).
+Using the same techniques as in Example 5 of Section 6.5, it follows that
+▶
+
+N = total number of solutions = C(3 + 11 − 1, 11) = 78,
+N(P1 ) = (number of solutions with x1 ≥ 4) = C(3 + 7 − 1, 7) = C(9, 7) = 36,
+▶ N(P ) = (number of solutions with x ≥ 5) = C(3 + 6 − 1, 6) = C(8, 6) = 28,
+2
+2
+▶ N(P ) = (number of solutions with x ≥ 7) = C(3 + 4 − 1, 4) = C(6, 4) = 15,
+3
+3
+▶ N(P P ) = (number of solutions with x ≥ 4 and x ≥ 5) = C(3 + 2 − 1, 2) =
+1 2
+1
+2
+C(4, 2) = 6,
+▶ N(P P ) = (number of solutions with x ≥ 4 and x ≥ 7) = C(3 + 0 − 1, 0) = 1,
+1 3
+1
+3
+▶ N(P P ) = (number of solutions with x ≥ 5 and x ≥ 7) = 0,
+2 3
+2
+3
+▶ N(P P P ) = (number of solutions with x ≥ 4, x ≥ 5, and x ≥ 7) = 0.
+1 2 3
+1
+2
+3
+▶
+
+Inserting these quantities into the formula for N(P′1 P′2 P′3 ) shows that the number of solutions
+with x1 ≤ 3, x2 ≤ 4, and x3 ≤ 6 equals
+N(P′1 P′2 P′3 ) = 78 − 36 − 28 − 15 + 6 + 1 + 0 − 0 = 6.
+
+◂
+
+8.6.3 The Sieve of Eratosthenes
+In Section 4.3 we showed how to use the sieve of Eratosthenes to ﬁnd all primes less than a
+speciﬁed positive integer n. Using the principle of inclusion–exclusion, we can ﬁnd the number of primes not exceeding a speciﬁed positive integer with the same reasoning as is used in
+the sieve of Eratosthenes. Recall that a composite integer is divisible by a prime not exceeding
+its square root. So, to ﬁnd the number of primes not exceeding 100, ﬁrst note that composite integers not exceeding 100 must have a prime factor not exceeding 10. Because the only
+primes not exceeding 10 are 2, 3, 5, and 7, the primes not exceeding 100 are these four primes
+and those positive integers greater than 1 and not exceeding 100 that are divisible by none
+of 2, 3, 5, or 7. To apply the principle of inclusion–exclusion, let P1 be the property that an
+integer is divisible by 2, let P2 be the property that an integer is divisible by 3, let P3 be the
+property that an integer is divisible by 5, and let P4 be the property that an integer is divisible
+by 7. Thus, the number of primes not exceeding 100 is
+4 + N(P′1 P′2 P′3 P′4 ).
+
+8.6 Applications of Inclusion–Exclusion
+
+587
+
+Because there are 99 positive integers greater than 1 and not exceeding 100, the principle of
+inclusion–exclusion shows that
+N(P′1 P′2 P′3 P′4 ) = 99 − N(P1 ) − N(P2 ) − N(P3 ) − N(P4 )
++ N(P1 P2 ) + N(P1 P3 ) + N(P1 P4 ) + N(P2 P3 ) + N(P2 P4 ) + N(P3 P4 )
+− N(P1 P2 P3 ) − N(P1 P2 P4 ) − N(P1 P3 P4 ) − N(P2 P3 P4 )
++ N(P1 P2 P3 P4 ).
+The number of integers not exceeding 100 (and greater than 1) that are divisible by all the primes
+in a subset of {2, 3, 5, 7} is ⌊100∕N⌋, where N is the product of the primes in this subset. (This
+follows because any two of these primes have no common factor.) Consequently,
+⌊
+
+⌋ ⌊
+⌋ ⌊
+⌋ ⌊
+⌋
+100
+100
+100
+100
+−
+−
+−
+2
+3
+5
+7
+⌋ ⌊
+⌋ ⌊
+⌋ ⌊
+⌋ ⌊
+⌋ ⌊
+⌋
+⌊
+100
+100
+100
+100
+100
+100
++
++
++
++
++
++
+2⋅3
+2⋅5
+2⋅7
+3⋅5
+3⋅7
+5⋅7
+⌋ ⌊
+⌋ ⌊
+⌋ ⌊
+⌋ ⌊
+⌋
+⌊
+100
+100
+100
+100
+100
+−
+−
+−
++
+−
+2⋅3⋅5
+2⋅3⋅7
+2⋅5⋅7
+3⋅5⋅7
+2⋅3⋅5⋅7
+
+N(P′1 P′2 P′3 P′4 ) = 99 −
+
+= 99 − 50 − 33 − 20 − 14 + 16 + 10 + 7 + 6 + 4 + 2 − 3 − 2 − 1 − 0 + 0
+= 21.
+Hence, there are 4 + 21 = 25 primes not exceeding 100.
+
+8.6.4 The Number of Onto Functions
+The principle of inclusion–exclusion can also be used to determine the number of onto functions
+from a set with m elements to a set with n elements. First consider Example 2.
+
+EXAMPLE 2
+
+How many onto functions are there from a set with six elements to a set with three elements?
+Solution: Suppose that the elements in the codomain are b1 , b2 , and b3 . Let P1 , P2 , and P3 be
+the properties that b1 , b2 , and b3 are not in the range of the function, respectively. Note that
+a function is onto if and only if it has none of the properties P1 , P2 , or P3 . By the inclusion–
+exclusion principle it follows that the number of onto functions from a set with six elements to
+a set with three elements is
+N(P′1 P′2 P′3 ) = N − [N(P1 ) + N(P2 ) + N(P3 )]
++ [N(P1 P2 ) + N(P1 P3 ) + N(P2 P3 )] − N(P1 P2 P3 ),
+where N is the total number of functions from a set with six elements to one with three elements.
+We will evaluate each of the terms on the right-hand side of this equation.
+From Example 6 of Section 6.1, it follows that N = 36 . Note that N(Pi ) is the number of
+functions that do not have bi in their range. Hence, there are two choices for the value of the
+function at each element of the domain. Therefore, N(Pi ) = 26 . Furthermore, there are C(3, 1)
+terms of this kind. Note that N(Pi Pj ) is the number of functions that do not have bi and bj in
+their range. Hence, there is only one choice for the value of the function at each element of
+the domain. Therefore, N(Pi Pj ) = 16 = 1. Furthermore, there are C(3, 2) terms of this kind.
+Also, note that N(P1 P2 P3 ) = 0, because this term is the number of functions that have none
+
+588
+
+8 / Advanced Counting Techniques
+
+of b1 , b2 , and b3 in their range. Clearly, there are no such functions, so the number of onto
+functions from a set with six elements to one with three elements is
+36 − C(3, 1)26 + C(3, 2)16 = 729 − 192 + 3 = 540.
+
+◂
+
+The general result that tells us how many onto functions there are from a set with m elements
+to one with n elements will now be stated. The proof of this result is left as an exercise for the
+reader.
+
+THEOREM 1
+
+Let m and n be positive integers with m ≥ n. Then, there are
+nm − C(n, 1)(n − 1)m + C(n, 2)(n − 2)m − ⋯ + (−1)n−1 C(n, n − 1) ⋅ 1m
+onto functions from a set with m elements to a set with n elements.
+
+Counting onto functions
+is much harder than
+counting one-to-one
+functions!
+
+EXAMPLE 3
+
+An onto function from a set with m elements to a set with n elements corresponds to a way
+to distribute the m elements in the domain to n indistinguishable boxes so that no box is empty,
+and then to associate each of the n elements of the codomain to a box. This means that the
+number of onto functions from a set with m elements to a set with n elements is the number
+of ways to distribute m distinguishable objects to n indistinguishable boxes so that no box is
+empty multiplied by the number of permutations of a set with n elements. Consequently, the
+number of onto functions from a set with m elements to a set with n elements equals n!S(m, n),
+where S(m, n) is a Stirling number of the second kind deﬁned in Section 6.5. This means that
+we can use Theorem 1 to deduce the formula given in Section 6.5 for S(m, n). (See Chapter 6 of
+[MiRo91] for more details about Stirling numbers of the second kind.)
+One of the many diﬀerent applications of Theorem 1 will now be described.
+How many ways are there to assign ﬁve diﬀerent jobs to four diﬀerent employees if every employee is assigned at least one job?
+Solution: Consider the assignment of jobs as a function from the set of ﬁve jobs to the set of
+four employees. An assignment where every employee gets at least one job is the same as an
+onto function from the set of jobs to the set of employees. Hence, by Theorem 1 it follows that
+there are
+45 − C(4, 1)35 + C(4, 2)25 − C(4, 3)15 = 1024 − 972 + 192 − 4 = 240
+ways to assign the jobs so that each employee is assigned at least one job.
+
+◂
+
+8.6.5 Derangements
+The principle of inclusion–exclusion will be used to count the permutations of n objects that
+leave no objects in their original positions. Consider Example 4.
+
+EXAMPLE 4
+
+The Hatcheck Problem A new employee checks the hats of n people at a restaurant, forgetting
+to put claim check numbers on the hats. When customers return for their hats, the checker gives
+them back hats chosen at random from the remaining hats. What is the probability that no one
+◂
+receives the correct hat?
+
+8.6 Applications of Inclusion–Exclusion
+
+589
+
+Remark: The answer is the number of ways the hats can be arranged so that there is no hat in
+its original position divided by n!, the number of permutations of n hats. We will return to this
+example after we ﬁnd the number of permutations of n objects that leave no objects in their
+original position.
+Links
+
+EXAMPLE 5
+
+A derangement is a permutation of objects that leaves no object in its original position. To
+solve the problem posed in Example 4 we will need to determine the number of derangements
+of a set of n objects.
+The permutation 21453 is a derangement of 12345 because no number is left in its original
+position. However, 21543 is not a derangement of 12345, because this permutation leaves 4
+◂
+ﬁxed.
+Let Dn denote the number of derangements of n objects. For instance, D3 = 2, because the
+derangements of 123 are 231 and 312. We will evaluate Dn , for all positive integers n, using the
+principle of inclusion–exclusion.
+
+THEOREM 2
+
+The number of derangements of a set with n elements is
+[
+]
+1
+1
+1
+1
++
+−
++ ⋯ + (−1)n
+Dn = n! 1 −
+.
+1! 2! 3!
+n!
+Proof: Let a permutation have property Pi if it ﬁxes element i. The number of derangements is
+the number of permutations having none of the properties Pi for i = 1, 2, … , n. This means that
+Dn = N(P′1 P′2 … P′n ).
+Using the principle of inclusion–exclusion, it follows that
+∑
+∑
+∑
+N(Pi ) +
+N(Pi Pj ) −
+N(Pi Pj Pk ) + ⋯ + (−1)n N(P1 P2 … Pn ),
+Dn = N −
+i
+
+i<j
+
+i<j<k
+
+where N is the number of permutations of n elements. This equation states that the number of
+permutations that ﬁx no elements equals the total number of permutations, less the number that
+ﬁx at least one element, plus the number that ﬁx at least two elements, less the number that ﬁx
+at least three elements, and so on. All the quantities that occur on the right-hand side of this
+equation will now be found.
+First, note that N = n!, because N is simply the total number of permutations of n elements.
+Also, N(Pi ) = (n − 1)!. This follows from the product rule, because N(Pi ) is the number of
+permutations that ﬁx element i, so the ith position of the permutation is determined, but each
+of the remaining positions can be ﬁlled arbitrarily. Similarly,
+N(Pi Pj ) = (n − 2)!,
+Links
+HISTORICAL NOTE In rencontres (matches), an old French card game, the 52 cards in a deck are laid out
+in a row. The cards of a second deck are laid out with one card of the second deck on top of each card of
+the ﬁrst deck. The score is determined by counting the number of matching cards in the two decks. In 1708
+Pierre Raymond de Montmort (1678–1719) posed le problème de rencontres: What is the probability that no
+matches take place in the game of rencontres? The solution to Montmort’s problem is the probability that a
+randomly selected permutation of 52 objects is a derangement, namely, D52 ∕52!, which, as we will see, is
+approximately 1∕e.
+
+590
+
+8 / Advanced Counting Techniques
+
+because this is the number of permutations that ﬁx elements i and j, but where the
+other n − 2 elements can be arranged arbitrarily. In general, note that
+N(Pi1 Pi2 … Pim ) = (n − m)!,
+because this is the number of permutations that ﬁx elements i1 , i2 , … , im , but where the
+other n − m elements can be arranged arbitrarily. Because there are C(n, m) ways to choose
+m elements from n, it follows that
+∑
+N(Pi ) = C(n, 1)(n − 1)!,
+1≤i≤n
+
+∑
+
+N(Pi Pj ) = C(n, 2)(n − 2)!,
+
+1≤i<j≤n
+
+and in general,
+∑
+1≤i1 <i2 <⋯<im ≤n
+
+N(Pi1 Pi2 … Pim ) = C(n, m)(n − m)!.
+
+Consequently, inserting these quantities into our formula for Dn gives
+Dn = n! − C(n, 1)(n − 1)! + C(n, 2)(n − 2)! − ⋯ + (−1)n C(n, n)(n − n)!
+= n! −
+
+n!
+n!
+n!
+(n − 1)! +
+(n − 2)! − ⋯ + (−1)n
+0!.
+1!(n − 1)!
+2!(n − 2)!
+n! 0!
+
+Simplifying this expression gives
+[
+]
+1
+1
+1
+Dn = n! 1 −
++
+− ⋯ + (−1)n
+.
+1! 2!
+n!
+It is now straightforward to ﬁnd Dn for a given positive integer n. For instance, using
+Theorem 2, it follows that
+[
+]
+(
+)
+1
+1
+1
+1 1
++
+−
+=6 1−1+ −
+= 2,
+D3 = 3! 1 −
+1! 2! 3!
+2 6
+as we have previously remarked.
+The solution of the problem in Example 4 can now be given.
+Solution: The probability that no one receives the correct hat is Dn ∕n!. By Theorem 2, this
+probability is
+Dn
+1
+1
+1
+=1−
++
+− ⋯ + (−1)n .
+n!
+1! 2!
+n!
+The values of this probability for 2 ≤ n ≤ 7 are displayed in Table 1.
+
+TABLE 1 The Probability of a Derangement.
+n
+Dn ∕n!
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+0.50000
+
+0.33333
+
+0.37500
+
+0.36667
+
+0.36806
+
+0.36786
+
+8.6 Applications of Inclusion–Exclusion
+
+By the identity ex =
+e−1 = 1 −
+
+591
+
+∑∞
+
+j
+j=0 x ∕j! for all real numbers x (from calculus), we know that
+
+1
+1
+1
++
+− ⋯ + (−1)n + ⋯ ≈ 0.368.
+1! 2!
+n!
+
+Because this is an alternating series with terms tending to zero, it follows that as n grows without
+bound, the probability that no one receives the correct hat converges to e−1 ≈ 0.368. In fact, this
+probability can be shown to be within 1∕(n + 1)! of e−1 .
+◂
+
+Exercises
+1. Suppose that in a bushel of 100 apples there are 20 that
+have worms in them and 15 that have bruises. Only those
+apples with neither worms nor bruises can be sold. If
+there are 10 bruised apples that have worms in them, how
+many of the 100 apples can be sold?
+2. Of 1000 applicants for a mountain-climbing trip in the
+Himalayas, 450 get altitude sickness, 622 are not in good
+enough shape, and 30 have allergies. An applicant qualiﬁes if and only if this applicant does not get altitude sickness, is in good shape, and does not have allergies. If there
+are 111 applicants who get altitude sickness and are not
+in good enough shape, 14 who get altitude sickness and
+have allergies, 18 who are not in good enough shape and
+have allergies, and 9 who get altitude sickness, are not in
+good enough shape, and have allergies, how many applicants qualify?
+3. How many solutions does the equation x1 + x2 + x3 = 13
+have where x1 , x2 , and x3 are nonnegative integers less
+than 6?
+4. Find the number of solutions of the equation x1 + x2 +
+x3 + x4 = 17, where xi , i = 1, 2, 3, 4, are nonnegative integers such that x1 ≤ 3, x2 ≤ 4, x3 ≤ 5, and x4 ≤ 8.
+5. Find the number of primes less than 200 using the principle of inclusion–exclusion.
+6. An integer is called squarefree if it is not divisible by
+the square of a positive integer greater than 1. Find the
+number of squarefree positive integers less than 100.
+7. How many positive integers less than 10,000 are not the
+second or higher power of an integer?
+8. How many onto functions are there from a set with seven
+elements to one with ﬁve elements?
+9. How many ways are there to distribute six diﬀerent toys
+to three diﬀerent children such that each child gets at least
+one toy?
+10. In how many ways can eight distinct balls be distributed
+into three distinct urns if each urn must contain at least
+one ball?
+11. In how many ways can seven diﬀerent jobs be assigned
+to four diﬀerent employees so that each employee is assigned at least one job and the most diﬃcult job is assigned to the best employee?
+12. List all the derangements of {1, 2, 3, 4}.
+
+13. How many derangements are there of a set with seven
+elements?
+14. What is the probability that none of 10 people receives
+the correct hat if a hatcheck person hands their hats back
+randomly?
+15. A machine that inserts letters into envelopes goes haywire and inserts letters randomly into envelopes. What is
+the probability that in a group of 100 letters
+a) no letter is put into the correct envelope?
+b) exactly one letter is put into the correct envelope?
+c) exactly 98 letters are put into the correct envelopes?
+d) exactly 99 letters are put into the correct envelopes?
+e) all letters are put into the correct envelopes?
+16. A group of n students is assigned seats for each of two
+classes in the same classroom. How many ways can these
+seats be assigned if no student is assigned the same seat
+for both classes?
+∗ 17. How many ways can the digits 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 be
+arranged so that no even digit is in its original position?
+∗ 18. Use a combinatorial argument to show that the sequence
+{Dn }, where Dn denotes the number of derangements
+of n objects, satisﬁes the recurrence relation
+Dn = (n − 1)(Dn−1 + Dn−2 )
+for n ≥ 2. [Hint: Note that there are n − 1 choices for the
+ﬁrst element k of a derangement. Consider separately the
+derangements that start with k that do and do not have 1
+in the kth position.]
+∗ 19. Use Exercise 18 to show that
+Dn = nDn−1 + (−1)n
+for n ≥ 1.
+20. Use Exercise 19 to ﬁnd an explicit formula for Dn .
+21. For which positive integers n is Dn , the number of derangements of n objects, even?
+22. Suppose that p and q are distinct primes. Use the principle of inclusion–exclusion to ﬁnd 𝜙(pq), the number
+of positive integers not exceeding pq that are relatively
+prime to pq.
+∗ 23. Use the principle of inclusion–exclusion to derive a formula for 𝜙(n) when the prime factorization of n is
+a
+
+a
+
+a
+
+n = p11 p22 ⋯ pmm .
+
+592
+
+8 / Advanced Counting Techniques
+
+∗ 24. Show that if n is a positive integer, then
+n! = C(n, 0)Dn + C(n, 1)Dn−1
++ ⋯ + C(n, n − 1)D1 + C(n, n)D0 ,
+where Dk is the number of derangements of k objects.
+
+25. How many derangements of {1, 2, 3, 4, 5, 6} begin with
+the integers 1, 2, and 3, in some order?
+26. How many derangements of {1, 2, 3, 4, 5, 6} end with the
+integers 1, 2, and 3, in some order?
+27. Prove Theorem 1.
+
+Key Terms and Results
+TERMS
+recurrence relation: a formula expressing terms of a sequence, except for some initial terms, as a function of one
+or more previous terms of the sequence
+initial conditions for a recurrence relation: the values of the
+terms of a sequence satisfying the recurrence relation before this relation takes eﬀect
+dynamic programming: an algorithmic paradigm that ﬁnds
+the solution to an optimization problem by recursively
+breaking down the problem into overlapping subproblems
+and combining their solutions with the help of a recurrence
+relation
+linear homogeneous recurrence relation with constant coeﬃcients: a recurrence relation that expresses the terms of
+a sequence, except initial terms, as a linear combination of
+previous terms
+characteristic roots of a linear homogeneous recurrence relation with constant coeﬃcients: the roots of the polynomial associated with a linear homogeneous recurrence
+relation with constant coeﬃcients
+linear nonhomogeneous recurrence relation with constant
+coeﬃcients: a recurrence relation that expresses the terms
+of a sequence, except for initial terms, as a linear combination of previous terms plus a function that is not identically
+zero that depends only on the index
+divide-and-conquer algorithm: an algorithm that solves a
+problem recursively by splitting it into a ﬁxed number of
+smaller nonoverlapping subproblems of the same type
+generating function of a sequence: the formal series that has
+the nth term of the sequence as the coeﬃcient of xn
+sieve of Eratosthenes: a procedure for ﬁnding the primes less
+than a speciﬁed positive integer
+
+derangement: a permutation of objects such that no object is
+in its original place
+
+RESULTS
+the formula for the number of elements in the union of two
+ﬁnite sets:
+|A ∪ B| = |A| + |B| − |A ∩ B|
+the formula for the number of elements in the union of
+three ﬁnite sets:
+|A ∪ B ∪ C| = |A| + |B| + |C| − |A ∩ B| − |A ∩ C|
+− |B ∩ C| + |A ∩ B ∩ C|
+the principle of inclusion–exclusion:
+|A1 ∪ A2 ∪ ⋯ ∪ An | =
+
+∑
+
+|Ai | −
+
+1≤i≤n
+
++
+
+∑
+
+∑
+
+|Ai ∩ Aj |
+
+1≤i<j≤n
+
+|Ai ∩ Aj ∩ Ak |
+
+1≤i<j<k≤n
+
+− ⋯ + (−1)n+1 |A1 ∩ A2 ∩ ⋯ ∩ An |
+the number of onto functions from a set with m elements
+to a set with n elements:
+nm − C(n, 1)(n − 1)m + C(n, 2)(n − 2)m
+− ⋯ + (−1)n−1 C(n, n − 1) ⋅ 1m
+the number of derangements of n objects:
+]
+[
+1
+1
+1
+Dn = n! 1 −
++
+− ⋯ + (−1)n
+1! 2!
+n!
+
+Review Questions
+1. a) What is a recurrence relation?
+b) Find a recurrence relation for the amount of money
+that will be in an account after n years if $1,000,000
+is deposited in an account yielding 9% annually.
+2. Explain how the Fibonacci numbers are used to solve
+Fibonacci’s problem about rabbits.
+3. a) Find a recurrence relation for the number of steps
+needed to solve the Tower of Hanoi puzzle.
+
+b) Show how this recurrence relation can be solved using
+iteration.
+4. a) Explain how to ﬁnd a recurrence relation for the number of bit strings of length n not containing two consecutive 1s.
+b) Describe another counting problem that has a solution
+satisfying the same recurrence relation.
+
+Supplementary Exercises
+
+5. a) What is dynamic programming and how are recurrence relations used in algorithms that follow this
+paradigm?
+b) Explain how dynamic programming can be used to
+schedule talks in a lecture hall from a set of possible
+talks to maximize overall attendance.
+6. Deﬁne a linear homogeneous recurrence relation of degree k.
+7. a) Explain how to solve linear homogeneous recurrence
+relations of degree 2.
+b) Solve the recurrence relation an = 13an−1 − 22an−2
+for n ≥ 2 if a0 = 3 and a1 = 15.
+c) Solve the recurrence relation an = 14an−1 − 49an−2
+for n ≥ 2 if a0 = 3 and a1 = 35.
+8. a) Explain how to ﬁnd f (bk ) where k is a positive integer
+if f (n) satisﬁes the divide-and-conquer recurrence relation f (n) = af (n ∕ b) + g(n) whenever b divides the
+positive integer n.
+b) Find f (256) if f (n) = 3f (n∕4) + 5n∕4 and f (1) = 7.
+9. a) Derive a divide-and-conquer recurrence relation for
+the number of comparisons used to ﬁnd a number in
+a list using a binary search.
+b) Give a big-O estimate for the number of comparisons
+used by a binary search from the divide-and-conquer
+recurrence relation you gave in (a) using Theorem 1
+in Section 8.3.
+10. a) Give a formula for the number of elements in the
+union of three sets.
+b) Explain why this formula is valid.
+c) Explain how to use the formula from (a) to ﬁnd the
+number of integers not exceeding 1000 that are divisible by 6, 10, or 15.
+
+593
+
+d) Explain how to use the formula from (a) to ﬁnd the
+number of solutions in nonnegative integers to the
+equation x1 + x2 + x3 + x4 = 22 with x1 < 8, x2 < 6,
+and x3 < 5.
+11. a) Give a formula for the number of elements in the
+union of four sets and explain why it is valid.
+b) Suppose the sets A1 , A2 , A3 , and A4 each contain 25
+elements, the intersection of any two of these sets contains 5 elements, the intersection of any three of these
+sets contains 2 elements, and 1 element is in all four
+of the sets. How many elements are in the union of the
+four sets?
+12. a) State the principle of inclusion–exclusion.
+b) Outline a proof of this principle.
+13. Explain how the principle of inclusion–exclusion can be
+used to count the number of onto functions from a set
+with m elements to a set with n elements.
+14. a) How can you count the number of ways to assign m
+jobs to n employees so that each employee is assigned
+at least one job?
+b) How many ways are there to assign seven jobs to three
+employees so that each employee is assigned at least
+one job?
+15. Explain how the inclusion–exclusion principle can be
+used to count the number of primes not exceeding the
+positive integer n.
+16. a) Deﬁne a derangement.
+b) Why is counting the number of ways a hatcheck person can return hats to n people, so that no one receives
+the correct hat, the same as counting the number of
+derangements of n objects?
+c) Explain how to count the number of derangements of
+n objects.
+
+Supplementary Exercises
+1. A group of 10 people begin a chain letter, with each person sending the letter to four other people. Each of these
+people sends the letter to four additional people.
+a) Find a recurrence relation for the number of letters
+sent at the nth stage of this chain letter, if no person
+ever receives more than one letter.
+b) What are the initial conditions for the recurrence relation in part (a)?
+c) How many letters are sent at the nth stage of the chain
+letter?
+2. A nuclear reactor has created 18 grams of a particular radioactive isotope. Every hour 1% of this radioactive isotope decays.
+a) Set up a recurrence relation for the amount of this isotope left n hours after its creation.
+b) What are the initial conditions for the recurrence relation in part (a)?
+c) Solve this recurrence relation.
+
+3. Every hour the U.S. government prints 10,000 more $1
+bills, 4000 more $5 bills, 3000 more $10 bills, 2500 more
+$20 bills, 1000 more $50 bills, and the same number of
+$100 bills as it did the previous hour. In the initial hour
+1000 of each bill were produced.
+a) Set up a recurrence relation for the amount of money
+produced in the nth hour.
+b) What are the initial conditions for the recurrence relation in part (a)?
+c) Solve the recurrence relation for the amount of money
+produced in the nth hour.
+d) Set up a recurrence relation for the total amount of
+money produced in the ﬁrst n hours.
+e) Solve the recurrence relation for the total amount of
+money produced in the ﬁrst n hours.
+4. Suppose that every hour there are two new bacteria in a
+colony for each bacterium that was present the previous
+hour, and that all bacteria 2 hours old die. The colony
+starts with 100 new bacteria.
+
+594
+
+8 / Advanced Counting Techniques
+
+a) Set up a recurrence relation for the number of bacteria
+present after n hours.
+b) What is the solution of this recurrence relation?
+c) When will the colony contain more than 1 million
+bacteria?
+5. Messages are sent over a communications channel using
+two diﬀerent signals. One signal requires 2 microseconds
+for transmittal, and the other signal requires 3 microseconds for transmittal. Each signal of a message is followed
+immediately by the next signal.
+a) Find a recurrence relation for the number of diﬀerent
+signals that can be sent in n microseconds.
+b) What are the initial conditions of the recurrence relation in part (a)?
+c) How many diﬀerent messages can be sent in 12 microseconds?
+6. A small post oﬃce has only 4-cent stamps, 6-cent
+stamps, and 10-cent stamps. Find a recurrence relation
+for the number of ways to form postage of n cents with
+these stamps if the order that the stamps are used matters. What are the initial conditions for this recurrence
+relation?
+7. How many ways are there to form these postages using
+the rules described in Exercise 6?
+a) 12 cents
+b) 14 cents
+c) 18 cents
+d) 22 cents
+8. Find the solutions of the simultaneous system of recurrence relations
+an = an−1 + bn−1
+bn = an−1 − bn−1
+with a0 = 1 and b0 = 2.
+9. Solve the recurrence relation an = a2n−1 ∕an−2 if a0 = 1
+and a1 = 2. [Hint: Take logarithms of both sides to
+obtain a recurrence relation for the sequence log an ,
+n = 0, 1, 2, . … ]
+∗ 10. Solve the recurrence relation an = a3 a2 if a0 = 2 and
+n−1 n−2
+a1 = 2. (See the hint for Exercise 9.)
+11. Find the solution of the recurrence relation an =
+3an−1 − 3an−2 + an−3 + 1 if a0 = 2, a1 = 4, and a2 = 8.
+12. Find the solution of the recurrence relation an
+= 3an−1 − 3an−2 + an−3 if a0 = 2, a1 = 2, and a2 = 4.
+∗ 13. Suppose that in Example 1 of Section 8.1 a pair of rabbits leaves the island after reproducing twice. Find a recurrence relation for the number of rabbits on the island
+in the middle of the nth month.
+∗ 14. In this exercise we construct a dynamic programming algorithm for solving the problem of ﬁnding a subset S
+of items chosen from a set of n items where item i has
+a weight wi , which is a positive integer, so that the total weight of the items in S is a maximum but does not
+exceed a ﬁxed weight limit W. Let M( j, w) denote the
+maximum total weight of the items in a subset of the
+ﬁrst j items such that this total weight does not exceed
+w. This problem is known as the knapsack problem.
+a) Show that if wj > w, then M( j, w) = M( j − 1, w).
+
+b) Show
+that
+if
+wj ≤ w,
+then
+M( j, w) =
+max(M( j − 1, w), wj + M( j − 1, w − wj )).
+c) Use (a) and (b) to construct a dynamic programming
+algorithm for determining the maximum total weight
+of items so that this total weight does not exceed W.
+In your algorithm store the values M( j, w) as they are
+found.
+d) Explain how you can use the values M( j, w) computed
+by the algorithm in part (c) to ﬁnd a subset of items
+with maximum total weight not exceeding W.
+In Exercises 15–18 we develop a dynamic programming algorithm for ﬁnding a longest common subsequence of two
+sequences a1 , a2 , … , am and b1 , b2 , … , bn , an important problem in the comparison of DNA of diﬀerent organisms.
+15. Suppose that c1 , c2 , … , cp is a longest common
+subsequence of the sequences a1 , a2 , … , am and
+b1 , b2 , … , bn .
+a) Show that if am = bn , then cp = am = bn and
+c1 , c2 , … , cp−1 is a longest common subsequence of
+a1 , a2 , … , am−1 and b1 , b2 , … , bn−1 when p > 1.
+b) Suppose that am ≠ bn . Show that if cp ≠ am , then
+c1 , c2 , … , cp is a longest common subsequence of
+a1 , a2 , … , am−1 and b1 , b2 , … , bn and also show that if
+cp ≠ bn , then c1 , c2 , … , cp is a longest common subsequence of a1 , a2 , … , am and b1 , b2 , … , bn−1 .
+16. Let L(i, j) denote the length of a longest common subsequence of a1 , a2 , … , ai and b1 , b2 , … , bj ,
+where 0 ≤ i ≤ m and 0 ≤ j ≤ n. Use parts (a) and (b)
+of Exercise 15 to show that L(i, j) satisﬁes the recurrence relation L(i, j) = L(i − 1, j − 1) + 1 if both i
+and j are nonzero and ai = bi , and L(i, j) = max(L(i, j −
+1), L(i − 1, j)) if both i and j are nonzero and ai ≠ bi , and
+the initial condition L(i, j) = 0 if i = 0 or j = 0.
+17. Use Exercise 16 to construct a dynamic programming
+algorithm for computing the length of a longest common subsequence of two sequences a1 , a2 , … , am and
+b1 , b2 , … , bn , storing the values of L(i, j) as they are
+found.
+18. Develop an algorithm for ﬁnding a longest common subsequence of two sequences a1 , a2 , … , am and
+b1 , b2 , … , bn using the values L(i, j) found by the algorithm in Exercise 17.
+19. Find the solution to the recurrence relation f (n) =
+f (n∕2) + n2 for n = 2k where k is a positive integer and
+f (1) = 1.
+20. Find the solution to the recurrence relation f (n) =
+3f (n∕5) + 2n4 , when n is divisible by 5, for n = 5k , where
+k is a positive integer and f (1) = 1.
+21. Give a big-O estimate for the size of f in Exercise 20
+if f is an increasing function.
+
+Supplementary Exercises
+
+22. Find a recurrence relation that describes the number of
+comparisons used by the following algorithm: Find the
+largest and second largest elements of a sequence of n
+numbers recursively by splitting the sequence into two
+subsequences with an equal number of terms, or where
+there is one more term in one subsequence than in the
+other, at each stage. Stop when subsequences with two
+terms are reached.
+23. Give a big-O estimate for the number of comparisons
+used by the algorithm described in Exercise 22.
+24. A sequence a1 , a2 , … , an is unimodal if and only if
+there is an index m, 1 ≤ m ≤ n, such that ai < ai+1
+when 1 ≤ i < m and ai > ai+1 when m ≤ i < n. That is,
+the terms of the sequence strictly increase until the mth
+term and they strictly decrease after it, which implies
+that am is the largest term. In this exercise, am will always denote the largest term of the unimodal sequence
+a1 , a2 , … , an .
+a) Show that am is the unique term of the sequence that
+is greater than both the term immediately preceding it
+and the term immediately following it.
+b) Show that if ai < ai+1 where 1 ≤ i < n,
+then i + 1 ≤ m ≤ n.
+c) Show that if ai > ai+1 where 1 ≤ i < n,
+then 1 ≤ m ≤ i.
+d) Develop a divide-and-conquer algorithm for locating the index m. [Hint: Suppose that i < m < j.
+Use parts (a), (b), and (c) to determine whether
+⌊(i+j)∕2⌋ + 1 ≤ m ≤ n, 1 ≤ m ≤ ⌊(i+j)∕2⌋ − 1, or
+m = ⌊(i + j)∕2⌋.]
+25. Show that the algorithm from Exercise 24 has worst-case
+time complexity O(log n) in terms of the number of comparisons.
+Let {an } be a sequence of real numbers. The forward differences of this sequence are deﬁned recursively as follows: The ﬁrst forward diﬀerence is Δan = an+1 − an ; the
+(k + 1)st forward diﬀerence Δk+1 an is obtained from Δk an
+by Δk+1 an = Δk an+1 − Δk an .
+26. Find Δan , where
+a) an = 3.
+b) an = 4n+7. c) an = n2 +n+1.
+3
+27. Let an = 3n + n + 2. Find Δk an , where k equals
+a) 2.
+b) 3.
+c) 4.
+∗ 28. Suppose that an = P(n), where P is a polynomial of
+degree d. Prove that Δd+1 an = 0 for all nonnegative integers n.
+29. Let {an } and {bn } be sequences of real numbers. Show
+that
+Δ(an bn ) = an+1 (Δbn ) + bn (Δan ).
+30. Show that if F(x) and G(x) are the generating functions for the sequences {ak } and {bk }, respectively,
+and c and d are real numbers, then (cF + dG )(x) is the
+generating function for {cak + dbk }.
+31. (Requires calculus) This exercise shows how generating
+functions can be used to solve the recurrence relation
+
+595
+
+(n + 1)an+1 = an + (1∕n!) for n ≥ 0 with initial condition
+a0 = 1.
+a) Let G(x) be the generating function for {an }. Show
+that G′ (x) = G(x) + ex and G(0) = 1.
+b) Show from part (a) that (e−x G(x))′ = 1, and conclude
+that G(x) = xex + ex .
+c) Use part (b) to ﬁnd a closed form for an .
+32. Suppose that 14 students receive an A on the ﬁrst exam
+in a discrete mathematics class, and 18 receive an A on
+the second exam. If 22 students received an A on either
+the ﬁrst exam or the second exam, how many students
+received an A on both exams?
+33. There are 323 farms in Monmouth County that have at
+least one of horses, cows, and sheep. If 224 have horses,
+85 have cows, 57 have sheep, and 18 farms have all three
+types of animals, how many farms have exactly two of
+these three types of animals?
+34. Queries to a database of student records at a college produced the following data: There are 2175 students at the
+college, 1675 of these are not freshmen, 1074 students
+have taken a course in calculus, 444 students have taken
+a course in discrete mathematics, 607 students are not
+freshmen and have taken calculus, 350 students have
+taken calculus and discrete mathematics, 201 students are
+not freshmen and have taken discrete mathematics, and
+143 students are not freshmen and have taken both calculus and discrete mathematics. Can all the responses to
+the queries be correct?
+35. Students in the school of mathematics at a university major in one or more of the following four areas: applied
+mathematics (AM), pure mathematics (PM), operations
+research (OR), and computer science (CS). How many
+students are in this school if (including joint majors) there
+are 23 students majoring in AM; 17 in PM; 44 in OR; 63
+in CS; 5 in AM and PM; 8 in AM and CS; 4 in AM and
+OR; 6 in PM and CS; 5 in PM and OR; 14 in OR and CS; 2
+in PM, OR, and CS; 2 in AM, OR, and CS; 1 in PM, AM,
+and OR; 1 in PM, AM, and CS; and 1 in all four ﬁelds.
+36. How many terms are needed when the inclusion–
+exclusion principle is used to express the number of
+elements in the union of seven sets if no more than ﬁve
+of these sets have a common element?
+37. How many solutions in positive integers are there
+to the equation x1 + x2 + x3 = 20 with 2 < x1 < 6,
+6 < x2 < 10, and 0 < x3 < 5?
+38. How many positive integers less than 1,000,000 are
+a) divisible by 2, 3, or 5?
+b) not divisible by 7, 11, or 13?
+c) divisible by 3 but not by 7?
+39. How many positive integers less than 200 are
+a) second or higher powers of integers?
+b) either primes or second or higher powers of integers?
+c) not divisible by the square of an integer greater
+than 1?
+d) not divisible by the cube of an integer greater than 1?
+e) not divisible by three or more primes?
+
+596
+
+8 / Advanced Counting Techniques
+
+∗ 40. How many ways are there to assign six diﬀerent jobs to
+three diﬀerent employees if the hardest job is assigned
+to the most experienced employee and the easiest job is
+assigned to the least experienced employee?
+41. What is the probability that exactly one person is given
+back the correct hat by a hatcheck person who gives n
+people their hats back at random?
+
+42. How many bit strings of length six do not contain four
+consecutive 1s?
+43. What is the probability that a bit string of length six
+chosen at random contains at least four 1s?
+
+Computer Projects
+Write programs with these input and output.
+1. Given a positive integer n, list all the moves required in
+the Tower of Hanoi puzzle to move n disks from one peg
+to another according to the rules of the puzzle.
+2. Given a positive integer n and an integer k with 1 ≤ k ≤ n,
+list all the moves used by the Frame–Stewart algorithm
+(described in the preamble to Exercise 38 of Section 8.1)
+to move n disks from one peg to another using four pegs
+according to the rules of the puzzle.
+3. Given a positive integer n, list all the bit sequences of
+length n that do not have a pair of consecutive 0s.
+4. Given an integer n greater than 1, write out all ways to
+parenthesize the product of n + 1 variables.
+5. Given a set of n talks, their start and end times, and the
+number of attendees at each talk, use dynamic programming to schedule a subset of these talks in a single lecture
+hall to maximize total attendance.
+6. Given matrices A1 , A2 , … , An , with dimensions m1 ×
+m2 , m2 × m3 , … , mn × mn+1 , respectively, each with integer entries, use dynamic programming, as outlined
+in Exercise 57 in Section 8.1, to ﬁnd the minimum number of multiplications of integers needed to
+compute A1 A2 ⋯ An .
+
+7. Given a recurrence relation an = c1 an−1 + c2 an−2 , where
+c1 and c2 are real numbers, initial conditions a0 = C0 and
+a1 = C1 , and a positive integer k, ﬁnd ak using iteration.
+8. Given a recurrence relation an = c1 an−1 + c2 an−2 and
+initial conditions a0 = C0 and a1 = C1 , determine the
+unique solution.
+9. Given a recurrence relation of the form f (n) = af (n∕b) +
+c, where a is a real number, b is a positive integer, and c
+is a real number, and a positive integer k, ﬁnd f (bk ) using
+iteration.
+10. Given the number of elements in the intersection of three
+sets, the number of elements in each pairwise intersection
+of these sets, and the number of elements in each set, ﬁnd
+the number of elements in their union.
+11. Given a positive integer n, produce the formula for the
+number of elements in the union of n sets.
+12. Given positive integers m and n, ﬁnd the number of onto
+functions from a set with m elements to a set with n elements.
+13. Given a positive integer n, list all the derangements of the
+set {1, 2, 3, … , n}.
+
+Computations and Explorations
+Use a computational program or programs you have written to do these exercises.
+1. Find the exact value of f100 , f500 , and f1000 , where fn is the
+nth Fibonacci number.
+2. Find the smallest Fibonacci number greater than
+1,000,000, greater than 1,000,000,000, and greater than
+1,000,000,000,000.
+3. Find as many prime Fibonacci numbers as you can. It is
+unknown whether there are inﬁnitely many of these.
+4. Write out all the moves required to solve the Tower of
+Hanoi puzzle with 10 disks.
+5. Write out all the moves required to use the Frame–Stewart
+algorithm to move 20 disks from one peg to another
+peg using four pegs according to the rules of the Reve’s
+puzzle.
+
+6. Verify the Frame conjecture for solving the Reve’s puzzle
+for n disks for as many integers n as possible by showing
+that the puzzle cannot be solved using fewer moves than
+are made by the Frame–Stewart algorithm with the optimal choice of k.
+7. Compute the number of operations required to multiply two integers with n bits for various integers n including 16, 64, 256, and 1024 using the fast multiplication described in Example 4 of Section 8.3 and the standard algorithm for multiplying integers (Algorithm 3 in
+Section 4.2).
+8. Compute the number of operations required to multiply
+two n × n matrices for various integers n including 4, 16,
+64, and 128 using the fast matrix multiplication described
+
+Writing Projects
+
+in Example 5 of Section 8.3 and the standard algorithm
+for multiplying matrices (Algorithm 1 in Section 3.3).
+9. Find the number of primes not exceeding 10,000 using
+the method described in Section 8.6 to ﬁnd the number
+of primes not exceeding 100.
+
+597
+
+10. List all the derangements of {1, 2, 3, 4, 5, 6, 7, 8}.
+11. Compute the probability that a permutation of n objects
+is a derangement for all positive integers not exceeding 20 and determine how quickly these probabilities
+approach the number 1∕e.
+
+Writing Projects
+Respond to these with essays using outside sources.
+1. Find the original source where Fibonacci presented his
+puzzle about modeling rabbit populations. Discuss this
+problem and other problems posed by Fibonacci and give
+some information about Fibonacci himself.
+2. Explain how the Fibonacci numbers arise in a variety of
+applications, such as in phyllotaxis, the study of arrangement of leaves in plants, in the study of reﬂections by
+mirrors, and so on.
+3. Describe diﬀerent variations of the Tower of Hanoi
+puzzle, including those with more than three pegs (including the Reve’s puzzle discussed in the text and
+exercises), those where disk moves are restricted, and
+those where disks may have the same size. Include what
+is known about the number of moves required to solve
+each variation.
+4. Discuss as many diﬀerent problems as possible where the
+Catalan numbers arise.
+5. Discuss some of the problems in which Richard Bellman
+ﬁrst used dynamic programming.
+6. Describe the role dynamic programming algorithms play
+in bioinformatics including for DNA sequence comparison, gene comparison, and RNA structure prediction.
+7. Describe the use of dynamic programming in economics
+including its use to study optimal consumption and
+saving.
+8. Explain how dynamic programming can be used to solve
+the egg-dropping puzzle which determines which ﬂoors
+of a multistory building it is safe to drop eggs from without breaking.
+
+9. Describe the solution of Ulam’s problem (see Exercise 28
+in Section 8.3) involving searching with one lie found by
+Andrzej Pelc.
+10. Discuss variations of Ulam’s problem (see Exercise 28 in
+Section 8.3) involving searching with more than one lie
+and what is known about this problem.
+11. Deﬁne the convex hull of a set of points in the plane and
+describe three diﬀerent algorithms, including a divideand-conquer algorithm, for ﬁnding the convex hull of a
+set of points in the plane.
+12. Describe how sieve methods are used in number theory.
+What kind of results have been established using such
+methods?
+13. Look up the rules of the old French card game of rencontres. Describe these rules and describe the work of Pierre
+Raymond de Montmort on le problème de rencontres.
+14. Describe how exponential generating functions can be
+used to solve a variety of counting problems.
+15. Describe the Polyá theory of counting and the kind of
+counting problems that can be solved using this theory.
+16. The problème des ménages (the problem of the households) asks for the number of ways to arrange n couples
+around a table so that the sexes alternate and no husband
+and wife are seated together. Explain the method used by
+E. Lucas to solve this problem.
+17. Explain how rook polynomials can be used to solve counting problems.
+
+C H A P T E R
+
+9
+9.1 Relations and
+Their
+Properties
+9.2 n-ary Relations
+and Their
+Applications
+9.3 Representing
+Relations
+9.4 Closures of
+Relations
+9.5 Equivalence
+Relations
+9.6 Partial
+Orderings
+
+9.1
+
+Relations
+
+R
+
+elationships between elements of sets occur in many contexts. Every day we deal with
+relationships such as those between a business and its telephone number, an employee
+and his or her salary, a person and a relative, and so on. In mathematics we study relationships
+such as those between a positive integer and one that it divides, an integer and one that it is
+congruent to modulo 5, a real number and one that is larger than it, a real number x and the
+value f (x) where f is a function, and so on. Relationships such as that between a program and a
+variable it uses, and that between a computer language and a valid statement in this language,
+often arise in computer science. Relationships between elements of two sets are represented
+using the structure called a binary relation, which is just a subset of the Cartesian product of the
+sets. Relations can be used to solve problems such as determining which pairs of cities are linked
+by airline ﬂights in a network, or ﬁnding a viable order for the diﬀerent phases of a complicated
+project. We will introduce a number of diﬀerent properties binary relations may enjoy.
+Relationships between elements of more than two sets arise in many contexts. These relationships can be represented by n-ary relations, which are collections of n-tuples. Such relations
+are the basis of the relational data model, the most common way to store information in computer databases. We will introduce the terminology used to study relational databases, deﬁne
+some important operations on them, and introduce the database query language SQL. We will
+conclude our brief study of n-ary relations and databases with an important application from
+data mining. In particular, we will show how databases of transactions, represented by n-ary relations, are used to measure the likelihood that someone buys a particular product from a store
+when they buy one or more other products.
+Two methods for representing relations, using square matrices and using directed graphs,
+consisting of vertices and directed edges, will be introduced and used in later sections of the
+chapter. We will also study relationships that have certain collections of properties that relations may enjoy. For example, in some computer languages, only the ﬁrst 31 characters of the
+name of a variable matter. The relation consisting of ordered pairs of strings in which the ﬁrst
+string has the same initial 31 characters as the second string is an example of a special type of
+relation, known as an equivalence relation. Equivalence relations arise throughout mathematics
+and computer science. Finally, we will study relations called partial orderings, which generalize the notion of the less than or equal to relation. For example, the set of all pairs of strings of
+English letters in which the second string is the same as the ﬁrst string or comes after the ﬁrst
+in dictionary order is a partial ordering.
+
+Relations and Their Properties
+9.1.1 Introduction
+
+Links
+
+Deﬁnition 1
+
+The most direct way to express a relationship between elements of two sets is to use ordered pairs
+made up of two related elements. For this reason, sets of ordered pairs are called binary relations.
+In this section we introduce the basic terminology used to describe binary relations. Later in
+this chapter we will use relations to solve problems involving communications networks, project
+scheduling, and identifying elements in sets with common properties.
+
+Let A and B be sets. A binary relation from A to B is a subset of A × B.
+599
+
+600
+
+9 / Relations
+
+In other words, a binary relation from A to B is a set R of ordered pairs, where the ﬁrst element
+of each ordered pair comes from A and the second element comes from B. We use the notation
+a R b to denote that (a, b) ∈ R and a ̸R b to denote that (a, b) ∉ R. Moreover, when (a, b) belongs
+to R, a is said to be related to b by R.
+Binary relations represent relationships between the elements of two sets. We will introduce
+n-ary relations, which express relationships among elements of more than two sets, later in this
+chapter. We will omit the word binary when there is no danger of confusion.
+Examples 1–3 illustrate the notion of a relation.
+
+EXAMPLE 1
+
+Let A be the set of students in your school, and let B be the set of courses. Let R be
+the relation that consists of those pairs (a, b), where a is a student enrolled in course b.
+For instance, if Jason Goodfriend and Deborah Sherman are enrolled in CS518, the pairs
+(Jason Goodfriend, CS518) and (Deborah Sherman, CS518) belong to R. If Jason Goodfriend
+is also enrolled in CS510, then the pair (Jason Goodfriend, CS510) is also in R. However, if
+Deborah Sherman is not enrolled in CS510, then the pair (Deborah Sherman, CS510) is not in R.
+Note that if a student is not currently enrolled in any courses there will be no pairs in R that
+have this student as the ﬁrst element. Similarly, if a course is not currently being oﬀered there
+◂
+will be no pairs in R that have this course as their second element.
+
+EXAMPLE 2
+
+Let A be the set of cities in the U.S.A., and let B be the set of the 50 states in the U.S.A.
+Deﬁne the relation R by specifying that (a, b) belongs to R if a city with name a is in
+the state b. For instance, (Boulder, Colorado), (Bangor, Maine), (Ann Arbor, Michigan),
+(Middletown, New Jersey), (Middletown, New York), (Cupertino, California), and
+◂
+(Red Bank, New Jersey) are in R.
+
+EXAMPLE 3
+
+Let A = {0, 1, 2} and B = {a, b}. Then {(0, a), (0, b), (1, a), (2, b)} is a relation from A to B. This
+means, for instance, that 0 R a, but that 1 ̸R b. Relations can be represented graphically, as shown
+in Figure 1, using arrows to represent ordered pairs. Another way to represent this relation is to
+use a table, which is also done in Figure 1. We will discuss representations of relations in more
+◂
+detail in Section 9.3.
+
+0
+R
+
+a
+
+b
+
+a
+0
+1
+
+1
+
+2
+b
+2
+
+FIGURE 1
+
+Displaying the ordered pairs in the relation R from Example 3.
+
+9.1.2 Functions as Relations
+Recall that a function f from a set A to a set B (as deﬁned in Section 2.3) assigns exactly
+one element of B to each element of A. The graph of f is the set of ordered pairs (a, b) such
+
+9.1 Relations and Their Properties
+
+601
+
+that b = f (a). Because the graph of f is a subset of A × B, it is a relation from A to B. Moreover,
+the graph of a function has the property that every element of A is the ﬁrst element of exactly
+one ordered pair of the graph.
+Conversely, if R is a relation from A to B such that every element in A is the ﬁrst element
+of exactly one ordered pair of R, then a function can be deﬁned with R as its graph. This can
+be done by assigning to an element a of A the unique element b ∈ B such that (a, b) ∈ R. (Note
+that the relation R in Example 2 is not the graph of a function because Middletown occurs more
+than once as the ﬁrst element of an ordered pair in R.)
+A relation can be used to express a one-to-many relationship between the elements of the
+sets A and B (as in Example 2), where an element of A may be related to more than one element
+of B. A function represents a relation where exactly one element of B is related to each element
+of A.
+Relations are a generalization of graphs of functions; they can be used to express a much
+wider class of relationships between sets. (Recall that the graph of the function f from A to B is
+the set of ordered pairs (a, f (a)) for a ∈ A.)
+
+9.1.3 Relations on a Set
+Relations from a set A to itself are of special interest.
+
+Deﬁnition 2
+
+A relation on a set A is a relation from A to A.
+
+In other words, a relation on a set A is a subset of A × A.
+
+EXAMPLE 4
+
+Let A be the set {1, 2, 3, 4}. Which ordered pairs are in the relation R = {(a, b) ∣ a divides b}?
+Solution: Because (a, b) is in R if and only if a and b are positive integers not exceeding 4 such
+that a divides b, we see that
+R = {(1, 1), (1, 2), (1, 3), (1, 4), (2, 2), (2, 4), (3, 3), (4, 4)}.
+The pairs in this relation are displayed both graphically and in tabular form in Figure 2.
+
+1
+
+1
+
+2
+
+2
+
+3
+
+3
+
+4
+
+4
+
+R
+
+1
+
+2
+
+3
+
+4
+
+1
+2
+3
+4
+
+FIGURE 2 Displaying the ordered pairs in
+the relation R from Example 4.
+
+◂
+
+602
+
+9 / Relations
+
+Next, some examples of relations on the set of integers will be given in Example 5.
+
+EXAMPLE 5
+
+Consider these relations on the set of integers:
+R1 = {(a, b) ∣ a ≤ b},
+R2 = {(a, b) ∣ a > b},
+R3 = {(a, b) ∣ a = b or a = −b},
+R4 = {(a, b) ∣ a = b},
+R5 = {(a, b) ∣ a = b + 1},
+R6 = {(a, b) ∣ a + b ≤ 3}.
+Which of these relations contain each of the pairs (1, 1), (1, 2), (2, 1), (1, −1), and (2, 2)?
+Remark: Unlike the relations in Examples 1–4, these are relations on an inﬁnite set.
+Solution: The pair (1, 1) is in R1 , R3 , R4 , and R6 ; (1, 2) is in R1 and R6 ; (2, 1) is in R2 , R5 , and
+◂
+R6 ; (1, −1) is in R2 , R3 , and R6 ; and ﬁnally, (2, 2) is in R1 , R3 , and R4 .
+
+It is not hard to determine the number of relations on a ﬁnite set, because a relation on a
+set A is simply a subset of A × A.
+
+EXAMPLE 6
+
+How many relations are there on a set with n elements?
+Solution: A relation on a set A is a subset of A × A. Because A × A has n2 elements when A has
+2
+n elements, and a set with m elements has 2m subsets, there are 2n subsets of A × A. Thus, there
+2
+2
+are 2n relations on a set with n elements. For example, there are 23 = 29 = 512 relations on
+the set {a, b, c}.
+◂
+
+9.1.4 Properties of Relations
+There are several properties that are used to classify relations on a set. We will introduce the
+most important of these here. (You may ﬁnd it instructive to study this material with the contents
+of Section 9.3. In that section, several methods for representing relations will be introduced that
+can help you understand each of the properties that we introduce here.)
+In some relations an element is always related to itself. For instance, let R be the relation on
+the set of all people consisting of pairs (x, y) where x and y have the same mother and the same
+father. Then xRx for every person x.
+
+Deﬁnition 3
+
+A relation R on a set A is called reﬂexive if (a, a) ∈ R for every element a ∈ A.
+
+Remark: Using quantiﬁers we see that the relation R on the set A is reﬂexive if ∀a((a, a) ∈ R),
+where the universe of discourse is the set of all elements in A.
+We see that a relation on A is reﬂexive if every element of A is related to itself.
+Examples 7–9 illustrate the concept of a reﬂexive relation.
+
+9.1 Relations and Their Properties
+
+EXAMPLE 7
+
+603
+
+Consider the following relations on {1, 2, 3, 4}:
+R1 = {(1, 1), (1, 2), (2, 1), (2, 2), (3, 4), (4, 1), (4, 4)},
+R2 = {(1, 1), (1, 2), (2, 1)},
+R3 = {(1, 1), (1, 2), (1, 4), (2, 1), (2, 2), (3, 3), (4, 1), (4, 4)},
+R4 = {(2, 1), (3, 1), (3, 2), (4, 1), (4, 2), (4, 3)},
+R5 = {(1, 1), (1, 2), (1, 3), (1, 4), (2, 2), (2, 3), (2, 4), (3, 3), (3, 4), (4, 4)},
+R6 = {(3, 4)}.
+Which of these relations are reﬂexive?
+Solution: The relations R3 and R5 are reﬂexive because they both contain all pairs of the form
+(a, a), namely, (1, 1), (2, 2), (3, 3), and (4, 4). The other relations are not reﬂexive because they do
+not contain all of these ordered pairs. In particular, R1 , R2 , R4 , and R6 are not reﬂexive because
+(3, 3) is not in any of these relations.
+◂
+
+EXAMPLE 8
+
+Which of the relations from Example 5 are reﬂexive?
+Solution: The reﬂexive relations from Example 5 are R1 (because a ≤ a for every integer a),
+R3 , and R4 . For each of the other relations in this example it is easy to ﬁnd a pair of the
+form (a, a) that is not in the relation. (This is left as an exercise for the reader.)
+◂
+
+EXAMPLE 9
+
+Is the “divides” relation on the set of positive integers reﬂexive?
+Solution: Because a | a whenever a is a positive integer, the “divides” relation is reﬂexive. (Note
+that if we replace the set of positive integers with the set of all integers the relation is not reﬂexive
+◂
+because by deﬁnition 0 does not divide 0.)
+In some relations an element is related to a second element if and only if the second element
+is also related to the ﬁrst element. The relation consisting of pairs (x, y), where x and y are
+students at your school with at least one common class has this property. Other relations have
+the property that if an element is related to a second element, then this second element is not
+related to the ﬁrst. The relation consisting of the pairs (x, y), where x and y are students at your
+school, where x has a higher grade point average than y has this property.
+
+Deﬁnition 4
+
+A relation R on a set A is called symmetric if (b, a) ∈ R whenever (a, b) ∈ R, for all a, b ∈ A.
+A relation R on a set A such that for all a, b ∈ A, if (a, b) ∈ R and (b, a) ∈ R, then a = b is
+called antisymmetric.
+
+Remark: Using quantiﬁers, we see that the relation R on the set A is symmetric if
+∀a∀b((a, b) ∈ R → (b, a) ∈ R). Similarly, the relation R on the set A is antisymmetric if
+∀a∀b(((a, b) ∈ R ∧ (b, a) ∈ R) → (a = b)).
+In other words, a relation is symmetric if and only if a is related to b always implies that
+b is related to a. For instance, the equality relation is symmetric because a = b if and only if
+b = a. A relation is antisymmetric if and only if there are no pairs of distinct elements a and b
+with a related to b and b related to a. That is, the only way to have a related to b and b related
+to a is for a and b to be the same element. For instance, the less than or equal to relation is
+
+604
+
+9 / Relations
+
+antisymmetric. To see this, note that a ≤ b and b ≤ a implies that a = b. The terms symmetric
+and antisymmetric are not opposites, because a relation can have both of these properties or may
+lack both of them (see Exercise 10). A relation cannot be both symmetric and antisymmetric if
+it contains some pair of the form (a, b) in which a ≠ b.
+2
+
+Remark: Although relatively few of the 2n relations on a set with n elements are symmetric
+or antisymmetric, as counting arguments can show, many important relations have one of these
+properties. (See Exercise 49.)
+
+EXAMPLE 10
+Extra
+Examples
+
+EXAMPLE 11
+
+Which of the relations from Example 7 are symmetric and which are antisymmetric?
+Solution: The relations R2 and R3 are symmetric, because in each case (b, a) belongs to the relation whenever (a, b) does. For R2 , the only thing to check is that both (2, 1) and (1, 2) are in
+the relation. For R3 , it is necessary to check that both (1, 2) and (2, 1) belong to the relation,
+and (1, 4) and (4, 1) belong to the relation. The reader should verify that none of the other
+relations is symmetric. This is done by ﬁnding a pair (a, b) such that it is in the relation
+but (b, a) is not.
+R4 , R5 , and R6 are all antisymmetric. For each of these relations there is no pair of elements
+a and b with a ≠ b such that both (a, b) and (b, a) belong to the relation. The reader should
+verify that none of the other relations is antisymmetric. This is done by ﬁnding a pair (a, b) with
+◂
+a ≠ b such that (a, b) and (b, a) are both in the relation.
+
+Which of the relations from Example 5 are symmetric and which are antisymmetric?
+Solution: The relations R3 , R4 , and R6 are symmetric. R3 is symmetric, for if a = b or a = −b,
+then b = a or b = −a. R4 is symmetric because a = b implies that b = a. R6 is symmetric because a + b ≤ 3 implies that b + a ≤ 3. The reader should verify that none of the other relations
+is symmetric.
+The relations R1 , R2 , R4 , and R5 are antisymmetric. R1 is antisymmetric because the inequalities a ≤ b and b ≤ a imply that a = b. R2 is antisymmetric because it is impossible
+that a > b and b > a. R4 is antisymmetric, because two elements are related with respect to
+R4 if and only if they are equal. R5 is antisymmetric because it is impossible that a = b + 1
+and b = a + 1. The reader should verify that none of the other relations is antisymmetric. ◂
+
+EXAMPLE 12
+
+Is the “divides” relation on the set of positive integers symmetric? Is it antisymmetric?
+Solution: This relation is not symmetric because 1 ∣ 2, but 2 ̸ ∣ 1. However, it is antisymmetric. To
+see this, note that if a and b are positive integers with a ∣ b and b ∣ a, then a = b (the veriﬁcation
+◂
+of this is left as an exercise for the reader).
+Let R be the relation consisting of all pairs (x, y) of students at your school, where x has
+taken more credits than y. Suppose that x is related to y and y is related to z. This means
+that x has taken more credits than y and y has taken more credits than z. We can conclude
+that x has taken more credits than z, so that x is related to z. What we have shown is that R has
+the transitive property, which is deﬁned as follows.
+
+Deﬁnition 5
+
+A relation R on a set A is called transitive if whenever (a, b) ∈ R and (b, c) ∈ R,
+then (a, c) ∈ R, for all a, b, c ∈ A.
+
+9.1 Relations and Their Properties
+
+605
+
+Remark: Using quantiﬁers we see that the relation R on a set A is transitive if we have
+∀a∀b∀c(((a, b) ∈ R ∧ (b, c) ∈ R) → (a, c) ∈ R).
+
+EXAMPLE 13
+Extra
+Examples
+
+EXAMPLE 14
+
+Which of the relations in Example 7 are transitive?
+Solution: R4 , R5 , and R6 are transitive. For each of these relations, we can show that it is transitive
+by verifying that if (a, b) and (b, c) belong to this relation, then (a, c) also does. For instance, R4
+is transitive, because (3, 2) and (2, 1), (4, 2) and (2, 1), (4, 3) and (3, 1), and (4, 3) and (3, 2) are
+the only such sets of pairs, and (3, 1), (4, 1), and (4, 2) belong to R4 . The reader should verify
+that R5 and R6 are transitive.
+R1 is not transitive because (3, 4) and (4, 1) belong to R1 , but (3, 1) does not. R2 is
+not transitive because (2, 1) and (1, 2) belong to R2 , but (2, 2) does not. R3 is not transitive
+◂
+because (4, 1) and (1, 2) belong to R3 , but (4, 2) does not.
+
+Which of the relations in Example 5 are transitive?
+Solution: The relations R1 , R2 , R3 , and R4 are transitive. R1 is transitive because a ≤ b and b ≤ c
+imply that a ≤ c. R2 is transitive because a > b and b > c imply that a > c. R3 is transitive
+because a = ±b and b = ±c imply that a = ±c. R4 is clearly transitive, as the reader should
+verify. R5 is not transitive because (2, 1) and (1, 0) belong to R5 , but (2, 0) does not. R6 is not
+transitive because (2, 1) and (1, 2) belong to R6 , but (2, 2) does not.
+◂
+
+EXAMPLE 15
+
+Is the “divides” relation on the set of positive integers transitive?
+Solution: Suppose that a divides b and b divides c. Then there are positive integers k and l
+such that b = ak and c = bl. Hence, c = a(kl), so a divides c. It follows that this relation is
+transitive.
+◂
+
+We can use counting techniques to determine the number of relations with speciﬁc properties. Finding the number of relations with a particular property provides information about how
+common this property is in the set of all relations on a set with n elements.
+
+EXAMPLE 16
+
+How many reﬂexive relations are there on a set with n elements?
+Solution: A relation R on a set A is a subset of A × A. Consequently, a relation is determined by
+specifying whether each of the n2 ordered pairs in A × A is in R. However, if R is reﬂexive, each
+of the n ordered pairs (a, a) for a ∈ A must be in R. Each of the other n(n − 1) ordered pairs of
+the form (a, b), where a ≠ b, may or may not be in R. Hence, by the product rule for counting,
+there are 2n (n−1) reﬂexive relations [this is the number of ways to choose whether each element
+◂
+(a, b), with a ≠ b, belongs to R].
+
+Formulas for the number of symmetric relations and the number of antisymmetric relations on a set with n elements can be found using reasoning similar to that in Example 16
+(see Exercise 49). However, no general formula is known that counts the transitive relations on a
+set with n elements. Currently, T(n), the number of transitive relations on a set with n elements, is
+known only for 0 ≤ n ≤ 18. For example, T(4) = 3,994, T(5) = 154,303, and T(6) = 9,415,189.
+(The values of T(n) for n = 0, 1, 2, … , 18, are the terms of the sequence A006905 in the OEIS,
+which is discussed in Section 2.4.)
+
+606
+
+9 / Relations
+
+9.1.5 Combining Relations
+Because relations from A to B are subsets of A × B, two relations from A to B can be combined
+in any way two sets can be combined. Consider Examples 17–19.
+
+EXAMPLE 17
+
+Let A = {1, 2, 3} and B = {1, 2, 3, 4}. The relations R1 = {(1, 1), (2, 2), (3, 3)} and
+R2 = {(1, 1), (1, 2), (1, 3), (1, 4)} can be combined to obtain
+R1 ∪ R2 = {(1, 1), (1, 2), (1, 3), (1, 4), (2, 2), (3, 3)},
+R1 ∩ R2 = {(1, 1)},
+R1 − R2 = {(2, 2), (3, 3)},
+R2 − R1 = {(1, 2), (1, 3), (1, 4)}.
+
+EXAMPLE 18
+
+◂
+
+Let A and B be the set of all students and the set of all courses at a school, respectively. Suppose that R1 consists of all ordered pairs (a, b), where a is a student who has taken course b,
+and R2 consists of all ordered pairs (a, b), where a is a student who requires course b to graduate.
+What are the relations R1 ∪ R2 , R1 ∩ R2 , R1 ⊕ R2 , R1 − R2 , and R2 − R1 ?
+Solution: The relation R1 ∪ R2 consists of all ordered pairs (a, b), where a is a student who either
+has taken course b or needs course b to graduate, and R1 ∩ R2 is the set of all ordered pairs (a, b),
+where a is a student who has taken course b and needs this course to graduate. Also, R1 ⊕ R2
+consists of all ordered pairs (a, b), where student a has taken course b but does not need it to
+graduate or needs course b to graduate but has not taken it. R1 − R2 is the set of ordered pairs
+(a, b), where a has taken course b but does not need it to graduate; that is, b is an elective course
+that a has taken. R2 − R1 is the set of all ordered pairs (a, b), where b is a course that a needs to
+◂
+graduate but has not taken.
+
+EXAMPLE 19
+
+Let R1 be the less than relation on the set of real numbers and let R2 be the greater than relation on
+the set of real numbers, that is, R1 = {(x, y) ∣ x < y} and R2 = {(x, y) ∣ x > y}. What are R1 ∪ R2 ,
+R1 ∩ R2 , R1 − R2 , R2 − R1 , and R1 ⊕ R2 ?
+Solution: We note that (x, y) ∈ R1 ∪ R2 if and only if (x, y) ∈ R1 or (x, y) ∈ R2 . Hence, (x, y) ∈
+R1 ∪ R2 if and only if x < y or x > y. Because the condition x < y or x > y is the same as the
+condition x ≠ y, it follows that R1 ∪ R2 = {(x, y) ∣ x ≠ y}. In other words, the union of the less
+than relation and the greater than relation is the not equals relation.
+Next, note that it is impossible for a pair (x, y) to belong to both R1 and R2 because it is
+impossible that x < y and x > y. It follows that R1 ∩ R2 = ∅. We also see that R1 − R2 = R1 ,
+◂
+R2 − R1 = R2 , and R1 ⊕ R2 = R1 ∪ R2 − R1 ∩ R2 = {(x, y) ∣ x ≠ y}.
+There is another way that relations are combined that is analogous to the composition of
+functions.
+
+Deﬁnition 6
+
+Let R be a relation from a set A to a set B and S a relation from B to a set C. The composite
+of R and S is the relation consisting of ordered pairs (a, c), where a ∈ A, c ∈ C, and for which
+there exists an element b ∈ B such that (a, b) ∈ R and (b, c) ∈ S. We denote the composite
+of R and S by S ◦ R.
+
+9.1 Relations and Their Properties
+
+607
+
+Computing the composite of two relations requires that we ﬁnd elements that are the second
+element of ordered pairs in the ﬁrst relation and the ﬁrst element of ordered pairs in the second
+relation, as Examples 20 and 21 illustrate.
+
+EXAMPLE 20
+
+What is the composite of the relations R and S, where R is the relation from {1, 2, 3} to
+{1, 2, 3, 4} with R = {(1, 1), (1, 4), (2, 3), (3, 1), (3, 4)} and S is the relation from {1, 2, 3, 4} to
+{0, 1, 2} with S = {(1, 0), (2, 0), (3, 1), (3, 2), (4, 1)}?
+Solution: S ◦ R is constructed using all ordered pairs in R and ordered pairs in S, where the
+second element of the ordered pair in R agrees with the ﬁrst element of the ordered pair
+in S. For example, the ordered pairs (2, 3) in R and (3, 1) in S produce the ordered pair (2, 1)
+in S ◦ R. Computing all the ordered pairs in the composite, we ﬁnd
+S ◦ R = {(1, 0), (1, 1), (2, 1), (2, 2), (3, 0), (3, 1)}.
+Figure 3 illustrates how this composition is found. In the ﬁgure, we examine all paths that travel
+via two directed edges from the leftmost elements to the rightmost elements via an element in
+the middle.
+R
+
+1
+
+S
+
+1
+
+0
+2
+3
+
+2
+
+1
+2
+
+3
+
+1→1→0
+1→4→1
+2→3→1
+2→3→2
+3→1→0
+3→4→1
+
+(1, 0)
+(1, 1)
+(2, 1)
+(2, 2)
+(3, 0)
+(3, 1)
+
+4
+
+FIGURE 3
+
+EXAMPLE 21
+
+Constructing S ◦ R.
+
+◂
+
+Composing the Parent Relation with Itself Let R be the relation on the set of all people
+such that (a, b) ∈ R if person a is a parent of person b. Then (a, c) ∈ R ◦ R if and only if there
+is a person b such that (a, b) ∈ R and (b, c) ∈ R, that is, if and only if there is a person b such
+that a is a parent of b and b is a parent of c. In other words, (a, c) ∈ R ◦ R if and only if a is a
+◂
+grandparent of c.
+The powers of a relation R can be recursively deﬁned from the deﬁnition of a composite of
+two relations.
+
+Deﬁnition 7
+
+Let R be a relation on the set A. The powers Rn , n = 1, 2, 3, … , are deﬁned recursively by
+R1 = R
+
+and
+
+Rn+1 = Rn ◦ R.
+
+The deﬁnition shows that R2 = R ◦ R, R3 = R2 ◦ R = (R ◦ R) ◦ R, and so on.
+
+EXAMPLE 22
+
+Let R = {(1, 1), (2, 1), (3, 2), (4, 3)}. Find the powers Rn , n = 2, 3, 4, … .
+Solution: Because R2 = R ◦ R, we ﬁnd that R2 = {(1, 1), (2, 1), (3, 1), (4, 2)}. Furthermore, because R3 = R2 ◦ R, R3 = {(1, 1), (2, 1), (3, 1), (4, 1)}. Additional computation shows that R4
+
+608
+
+9 / Relations
+
+is the same as R3 , so R4 = {(1, 1), (2, 1), (3, 1), (4, 1)}. It also follows that Rn = R3 for n =
+5, 6, 7, … . The reader should verify this.
+◂
+The following theorem shows that the powers of a transitive relation are subsets of this
+relation. It will be used in Section 9.4.
+
+THEOREM 1
+
+The relation R on a set A is transitive if and only if Rn ⊆ R for n = 1, 2, 3, … .
+Proof: We ﬁrst prove the “if” part of the theorem. We suppose that Rn ⊆ R for n = 1,
+2, 3, … . In particular, R2 ⊆ R. To see that this implies R is transitive, note that if (a, b) ∈ R
+and (b, c) ∈ R, then by the deﬁnition of composition, (a, c) ∈ R2 . Because R2 ⊆ R, this means
+that (a, c) ∈ R. Hence, R is transitive.
+We will use mathematical induction to prove the only if part of the theorem. Note that this
+part of the theorem is trivially true for n = 1.
+Assume that Rn ⊆ R, where n is a positive integer. This is the inductive hypothesis. To
+complete the inductive step we must show that this implies that Rn+1 is also a subset of R.
+To show this, assume that (a, b) ∈ Rn+1 . Then, because Rn+1 = Rn ◦ R, there is an element x
+with x ∈ A such that (a, x) ∈ R and (x, b) ∈ Rn . The inductive hypothesis, namely, that Rn ⊆ R,
+implies that (x, b) ∈ R. Furthermore, because R is transitive, and (a, x) ∈ R and (x, b) ∈ R, it
+follows that (a, b) ∈ R. This shows that Rn+1 ⊆ R, completing the proof.
+
+Exercises
+1. List the ordered pairs in the relation R from
+A = {0, 1, 2, 3, 4} to B = {0, 1, 2, 3}, where (a, b) ∈ R
+if and only if
+a) a = b.
+b) a + b = 4.
+c) a > b.
+d) a ∣ b.
+e) gcd(a, b) = 1.
+f ) lcm(a, b) = 2.
+2. a) List all the ordered pairs in the relation
+R = {(a, b) ∣ a divides b} on the set {1, 2, 3, 4, 5, 6}.
+b) Display this relation graphically, as was done in
+Example 4.
+c) Display this relation in tabular form, as was done in
+Example 4.
+3. For each of these relations on the set {1, 2, 3, 4}, decide
+whether it is reﬂexive, whether it is symmetric, whether
+it is antisymmetric, and whether it is transitive.
+a) {(2, 2), (2, 3), (2, 4), (3, 2), (3, 3), (3, 4)}
+b) {(1, 1), (1, 2), (2, 1), (2, 2), (3, 3), (4, 4)}
+c) {(2, 4), (4, 2)}
+d) {(1, 2), (2, 3), (3, 4)}
+e) {(1, 1), (2, 2), (3, 3), (4, 4)}
+f ) {(1, 3), (1, 4), (2, 3), (2, 4), (3, 1), (3, 4)}
+4. Determine whether the relation R on the set of all people
+is reﬂexive, symmetric, antisymmetric, and/or transitive,
+where (a, b) ∈ R if and only if
+a) a is taller than b.
+b) a and b were born on the same day.
+c) a has the same ﬁrst name as b.
+d) a and b have a common grandparent.
+
+5. Determine whether the relation R on the set of all
+Web pages is reﬂexive, symmetric, antisymmetric, and/or
+transitive, where (a, b) ∈ R if and only if
+a) everyone who has visited Web page a has also visited
+Web page b.
+b) there are no common links found on both Web
+page a and Web page b.
+c) there is at least one common link on Web page a and
+Web page b.
+d) there is a Web page that includes links to both Web
+page a and Web page b.
+6. Determine whether the relation R on the set of all real
+numbers is reﬂexive, symmetric, antisymmetric, and/or
+transitive, where (x, y) ∈ R if and only if
+a) x + y = 0.
+b) x = ±y.
+c) x − y is a rational number.
+d) x = 2y.
+e) xy ≥ 0.
+f ) xy = 0.
+g) x = 1.
+h) x = 1 or y = 1.
+7. Determine whether the relation R on the set of all integers
+is reﬂexive, symmetric, antisymmetric, and/or transitive,
+where (x, y) ∈ R if and only if
+a) x ≠ y.
+b) xy ≥ 1.
+c) x = y + 1 or x = y − 1.
+d) x ≡ y (mod 7).
+e) x is a multiple of y.
+f ) x and y are both negative or both nonnegative.
+g) x = y2 .
+h) x ≥ y2 .
+8. Show that the relation R = ∅ on a nonempty set S is symmetric and transitive, but not reﬂexive.
+9. Show that the relation R = ∅ on the empty set S = ∅ is
+reﬂexive, symmetric, and transitive.
+
+9.1 Relations and Their Properties
+
+10. Give an example of a relation on a set that is
+a) both symmetric and antisymmetric.
+b) neither symmetric nor antisymmetric.
+A relation R on the set A is irreﬂexive if for every
+a ∈ A, (a, a) ∉ R. That is, R is irreﬂexive if no element
+in A is related to itself.
+11. Which relations in Exercise 3 are irreﬂexive?
+12. Which relations in Exercise 4 are irreﬂexive?
+13. Which relations in Exercise 5 are irreﬂexive?
+14. Which relations in Exercise 6 are irreﬂexive?
+15. Can a relation on a set be neither reﬂexive nor irreﬂexive?
+16. Use quantiﬁers to express what it means for a relation to
+be irreﬂexive.
+17. Give an example of an irreﬂexive relation on the set of
+all people.
+A relation R is called asymmetric if (a, b) ∈ R implies that
+(b, a) ∉ R. Exercises 18–24 explore the notion of an asymmetric relation. Exercise 22 focuses on the diﬀerence between
+asymmetry and antisymmetry.
+18. Which relations in Exercise 3 are asymmetric?
+19. Which relations in Exercise 4 are asymmetric?
+20. Which relations in Exercise 5 are asymmetric?
+21. Which relations in Exercise 6 are asymmetric?
+22. Must an asymmetric relation also be antisymmetric?
+Must an antisymmetric relation be asymmetric? Give reasons for your answers.
+23. Use quantiﬁers to express what it means for a relation to
+be asymmetric.
+24. Give an example of an asymmetric relation on the set of
+all people.
+25. How many diﬀerent relations are there from a set with m
+elements to a set with n elements?
+Let R be a relation from a set A to a set B. The inverse relation from B to A, denoted by R−1 , is the set of ordered pairs
+{(b, a) ∣ (a, b) ∈ R}. The complementary relation R is the
+set of ordered pairs {(a, b) ∣ (a, b) ∉ R}.
+26. Let R be the relation R = {(a, b) ∣ a < b} on the set of
+integers. Find
+b) R.
+a) R−1 .
+27. Let R be the relation R = {(a, b) ∣ a divides b} on the set
+of positive integers. Find
+a) R−1 .
+b) R.
+28. Let R be the relation on the set of all states in the United
+States consisting of pairs (a, b) where state a borders state
+b. Find
+a) R−1 .
+b) R.
+29. Suppose that the function f from A to B is a one-toone correspondence. Let R be the relation that equals the
+graph of f . That is, R = {(a, f (a)) ∣ a ∈ A}. What is the
+inverse relation R−1 ?
+30. Let R1 = {(1, 2), (2, 3), (3, 4)} and R2 = {(1, 1), (1, 2),
+(2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3), (3, 4)} be relations
+from {1, 2, 3} to {1, 2, 3, 4}. Find
+
+609
+
+a) R1 ∪ R2 .
+b) R1 ∩ R2 .
+c) R1 − R2 .
+d) R2 − R1 .
+31. Let A be the set of students at your school and B the set
+of books in the school library. Let R1 and R2 be the relations consisting of all ordered pairs (a, b), where student
+a is required to read book b in a course, and where student a has read book b, respectively. Describe the ordered
+pairs in each of these relations.
+a) R1 ∪ R2
+b) R1 ∩ R2
+c) R1 ⊕ R2
+d) R1 − R2
+e) R2 − R1
+32. Let R be the relation {(1, 2), (1, 3), (2, 3), (2, 4), (3, 1)},
+and let S be the relation {(2, 1), (3, 1), (3, 2), (4, 2)}. Find
+S ◦ R.
+33. Let R be the relation on the set of people consisting of
+pairs (a, b), where a is a parent of b. Let S be the relation on the set of people consisting of pairs (a, b), where
+a and b are siblings (brothers or sisters). What are S ◦ R
+and R ◦ S?
+Exercises 34–38 deal with these relations on the set of real
+numbers:
+R1 = {(a, b) ∈ R2 ∣ a > b}, the greater than relation,
+R2 = {(a, b) ∈ R2 ∣ a ≥ b}, the greater than or equal to
+relation,
+R3 = {(a, b) ∈ R2 ∣ a < b}, the less than relation,
+R4 = {(a, b) ∈ R2 ∣ a ≤ b}, the less than or equal to
+relation,
+R5 = {(a, b) ∈ R2 ∣ a = b}, the equal to relation,
+R6 = {(a, b) ∈ R2 ∣ a ≠ b}, the unequal to relation.
+34. Find
+a) R1 ∪ R3 .
+c) R2 ∩ R4 .
+e) R1 − R2 .
+g) R1 ⊕ R3 .
+35. Find
+a) R2 ∪ R4 .
+c) R3 ∩ R6 .
+e) R3 − R6 .
+g) R2 ⊕ R6 .
+36. Find
+a) R1 ◦ R1 .
+c) R1 ◦ R3 .
+e) R1 ◦ R5 .
+g) R2 ◦ R3 .
+37. Find
+a) R2 ◦ R1 .
+c) R3 ◦ R5 .
+e) R5 ◦ R3 .
+g) R4 ◦ R6 .
+
+b) R1 ∪ R5 .
+d) R3 ∩ R5 .
+f ) R2 − R 1 .
+h) R2 ⊕ R4 .
+b) R3 ∪ R6 .
+d) R4 ∩ R6 .
+f ) R6 − R 3 .
+h) R3 ⊕ R5 .
+b) R1 ◦ R2 .
+d) R1 ◦ R4 .
+f ) R1 ◦ R 6 .
+h) R3 ◦ R3 .
+b) R2 ◦ R2 .
+d) R4 ◦ R1 .
+f ) R3 ◦ R 6 .
+h) R6 ◦ R6 .
+
+610
+
+9 / Relations
+
+38. Find the relations R2i for i = 1, 2, 3, 4, 5, 6.
+39. Find the relations Si2 for i = 1, 2, 3, 4, 5, 6 where
+S1 = {(a, b) ∈ Z2 ∣ a > b}, the greater than relation,
+S2 = {(a, b) ∈ Z2 ∣ a ≥ b}, the greater than or equal to
+relation,
+S3 = {(a, b) ∈ Z2 ∣ a < b}, the less than relation,
+S4 = {(a, b) ∈ Z2 ∣ a ≤ b}, the less than or equal to
+relation,
+S5 = {(a, b) ∈ Z2 ∣ a = b}, the equal to relation,
+S6 = {(a, b) ∈ Z2 ∣ a ≠ b}, the unequal to relation.
+40. Let R be the parent relation on the set of all people (see
+Example 21). When is an ordered pair in the relation R3 ?
+41. Let R be the relation on the set of people with doctorates
+such that (a, b) ∈ R if and only if a was the thesis advisor of b. When is an ordered pair (a, b) in R2 ? When is
+an ordered pair (a, b) in Rn , when n is a positive integer?
+(Assume that every person with a doctorate has a thesis
+advisor.)
+42. Let R1 and R2 be the “divides” and “is a multiple of”
+relations on the set of all positive integers, respectively.
+That is, R1 = {(a, b) ∣ a divides b} and R2 = {(a, b) ∣ a
+is a multiple of b}. Find
+a) R1 ∪ R2 .
+b) R1 ∩ R2 .
+d) R2 − R1 .
+c) R1 − R2 .
+e) R1 ⊕ R2 .
+43. Let R1 and R2 be the “congruent modulo 3” and the “congruent modulo 4” relations, respectively, on the set of integers. That is, R1 = {(a, b) ∣ a ≡ b (mod 3)} and R2 =
+{(a, b) ∣ a ≡ b (mod 4)}. Find
+a) R1 ∪ R2 .
+b) R1 ∩ R2 .
+d) R2 − R1 .
+c) R1 − R2 .
+e) R1 ⊕ R2 .
+44. List the 16 diﬀerent relations on the set {0, 1}.
+45. How many of the 16 diﬀerent relations on {0, 1} contain
+the pair (0, 1)?
+46. Which of the 16 relations on {0, 1}, which you listed in
+Exercise 44, are
+a) reﬂexive?
+b) irreﬂexive?
+c) symmetric?
+d) antisymmetric?
+e) asymmetric?
+f ) transitive?
+47. a) How many relations are there on the set {a, b, c, d}?
+b) How many relations are there on the set {a, b, c, d}
+that contain the pair (a, a)?
+48. Let S be a set with n elements and let a and b be distinct elements of S. How many relations R are there on S
+such that
+a) (a, b) ∈ R?
+b) (a, b) ∉ R?
+c) no ordered pair in R has a as its ﬁrst element?
+d) at least one ordered pair in R has a as its ﬁrst element?
+e) no ordered pair in R has a as its ﬁrst element or b as
+its second element?
+
+f ) at least one ordered pair in R either has a as its ﬁrst
+element or has b as its second element?
+∗ 49. How many relations are there on a set with n elements
+that are
+a) symmetric?
+b) antisymmetric?
+c) asymmetric?
+d) irreﬂexive?
+e) reﬂexive and symmetric?
+f ) neither reﬂexive nor irreﬂexive?
+∗ 50. How many transitive relations are there on a set with n
+elements if
+a) n = 1?
+b) n = 2?
+c) n = 3?
+51. Find the error in the “proof” of the following “theorem.”
+“Theorem”: Let R be a relation on a set A that is symmetric and transitive. Then R is reﬂexive.
+“Proof ”: Let a ∈ A. Take an element b ∈ A such that
+(a, b) ∈ R. Because R is symmetric, we also have (b, a) ∈
+R. Now using the transitive property, we can conclude
+that (a, a) ∈ R because (a, b) ∈ R and (b, a) ∈ R.
+52. Suppose that R and S are reﬂexive relations on a set A.
+Prove or disprove each of these statements.
+a) R ∪ S is reﬂexive.
+b) R ∩ S is reﬂexive.
+c) R ⊕ S is irreﬂexive.
+d) R − S is irreﬂexive.
+e) S ◦ R is reﬂexive.
+53. Show that the relation R on a set A is symmetric if and
+only if R = R−1 , where R−1 is the inverse relation.
+54. Show that the relation R on a set A is antisymmetric if
+and only if R ∩ R−1 is a subset of the diagonal relation
+Δ = {(a, a) ∣ a ∈ A}.
+55. Show that the relation R on a set A is reﬂexive if and only
+if the inverse relation R−1 is reﬂexive.
+56. Show that the relation R on a set A is reﬂexive if and only
+if the complementary relation R is irreﬂexive.
+57. Let R be a relation that is reﬂexive and transitive. Prove
+that Rn = R for all positive integers n.
+58. Let R be the relation on the set {1, 2, 3, 4, 5} containing
+the ordered pairs (1, 1), (1, 2), (1, 3), (2, 3), (2, 4), (3, 1),
+(3, 4), (3, 5), (4, 2), (4, 5), (5, 1), (5, 2), and (5, 4). Find
+a) R2 .
+b) R3 .
+c) R4 .
+d) R5 .
+59. Let R be a reﬂexive relation on a set A. Show that Rn is
+reﬂexive for all positive integers n.
+∗ 60. Let R be a symmetric relation. Show that Rn is symmetric
+for all positive integers n.
+61. Suppose that the relation R is irreﬂexive. Is R2 necessarily irreﬂexive? Give a reason for your answer.
+62. Derive a big-O estimate for the number of integer comparisons needed to count all transitive relations on a set
+with n elements using the brute force approach of checking every relation of this set for transitivity.
+
+9.2 n-ary Relations and Their Applications
+
+9.2
+
+611
+
+n-ary Relations and Their Applications
+9.2.1 Introduction
+Relationships among elements of more than two sets often arise. For instance, there is a relationship involving the name of a student, the student’s major, and the student’s grade point average.
+Similarly, there is a relationship involving the airline, ﬂight number, starting point, destination,
+departure time, and arrival time of a ﬂight. An example of such a relationship in mathematics
+involves three integers, where the ﬁrst integer is larger than the second integer, which is larger
+than the third. Another example is the betweenness relationship involving points on a line, such
+that three points are related when the second point is between the ﬁrst and the third.
+We will study relationships among elements from more than two sets in this section.
+These relationships are called n-ary relations. These relations are used to represent computer databases. These representations help us answer queries about the information stored in
+databases, such as: Which ﬂights land at O’Hare Airport between 3 A .M . and 4 A .M .? Which
+students at your school are sophomores majoring in mathematics or computer science and have
+greater than a 3.0 average? Which employees of a company have worked for the company less
+than 5 years and make more than $50,000?
+
+9.2.2 n-ary Relations
+We begin with the basic deﬁnition on which the theory of relational databases rests.
+
+Deﬁnition 1
+
+Let A1 , A2 , … , An be sets. An n-ary relation on these sets is a subset of A1 × A2 × ⋯ × An .
+The sets A1 , A2 , … , An are called the domains of the relation, and n is called its degree.
+
+EXAMPLE 1
+
+Let R be the relation on N × N × N consisting of triples (a, b, c), where a, b, and c are integers
+with a < b < c. Then (1, 2, 3) ∈ R, but (2, 4, 3) ∉ R. The degree of this relation is 3. Its domains
+◂
+are all equal to the set of natural numbers.
+
+EXAMPLE 2
+
+Let R be the relation on Z × Z × Z consisting of all triples of integers (a, b, c) in which
+a, b, and c form an arithmetic progression. That is, (a, b, c) ∈ R if and only if there is
+an integer k such that b = a + k and c = a + 2k, or equivalently, such that b − a = k and
+c − b = k. Note that (1, 3, 5) ∈ R because 3 = 1 + 2 and 5 = 1 + 2 ⋅ 2, but (2, 5, 9) ∉ R because
+5 − 2 = 3 while 9 − 5 = 4. This relation has degree 3 and its domains are all equal to the set of
+◂
+integers.
+
+EXAMPLE 3
+
+Let R be the relation on Z × Z × Z+ consisting of triples (a, b, m), where a, b, and m are integers with m ≥ 1 and a ≡ b (mod m). Then (8, 2, 3), (−1, 9, 5), and (14, 0, 7) all belong to R, but
+(7, 2, 3), (−2, −8, 5), and (11, 0, 6) do not belong to R because 8 ≡ 2 (mod 3), −1 ≡ 9 (mod 5),
+and 14 ≡ 0 (mod 7), but 7 ≢ 2 (mod 3), −2 ≢ −8 (mod 5), and 11 ≢ 0 (mod 6). This relation has
+degree 3 and its ﬁrst two domains are the set of all integers and its third domain is the set of
+◂
+positive integers.
+
+EXAMPLE 4
+
+Let R be the relation consisting of 5-tuples (A, N, S, D, T) representing airplane ﬂights,
+where A is the airline, N is the ﬂight number, S is the starting point, D is the destination, and T is
+the departure time. For instance, if Nadir Express Airlines has ﬂight 963 from Newark to Bangor
+
+612
+
+9 / Relations
+
+at 15:00, then (Nadir, 963, Newark, Bangor, 15:00) belongs to R. The degree of this relation
+is 5, and its domains are the set of all airlines, the set of ﬂight numbers, the set of cities, the set
+◂
+of cities (again), and the set of times.
+
+9.2.3 Databases and Relations
+Links
+
+The time required to manipulate information in a database depends on how this information is
+stored. The operations of adding and deleting records, updating records, searching for records,
+and combining records from overlapping databases are performed millions of times each day in a
+large database. Because of the importance of these operations, various methods for representing
+databases have been developed. We will discuss one of these methods, called the relational data
+model, based on the concept of a relation.
+A database consists of records, which are n-tuples, made up of ﬁelds. The ﬁelds are the
+entries of the n-tuples. For instance, a database of student records may be made up of ﬁelds containing the name, student number, major, and grade point average of the student. The relational
+data model represents a database of records as an n-ary relation. Thus, student records are represented as 4-tuples of the form (Student name, ID number, Major, GPA). A sample database
+of six such records is
+(Ackermann, 231455, Computer Science, 3.88)
+(Adams, 888323, Physics, 3.45)
+(Chou, 102147, Computer Science, 3.49)
+(Goodfriend, 453876, Mathematics, 3.45)
+(Rao, 678543, Mathematics, 3.90)
+(Stevens, 786576, Psychology, 2.99).
+Relations used to represent databases are also called tables, because these relations are often
+displayed as tables. Each column of the table corresponds to an attribute of the database. For
+instance, the same database of students is displayed in Table 1. The attributes of this database
+are Student Name, ID Number, Major, and GPA.
+A domain of an n-ary relation is called a primary key when the value of the n-tuple from
+this domain determines the n-tuple. That is, a domain is a primary key when no two n-tuples in
+the relation have the same value from this domain.
+Records are often added to or deleted from databases. Because of this, the property that a
+domain is a primary key is time-dependent. Consequently, a primary key should be chosen that
+remains one whenever the database is changed. The current collection of n-tuples in a relation
+is called the extension of the relation. The more permanent part of a database, including the
+name and attributes of the database, is called its intension. When selecting a primary key, the
+goal should be to select a key that can serve as a primary key for all possible extensions of
+the database. To do this, it is necessary to examine the intension of the database to understand
+the set of possible n-tuples that can occur in an extension.
+TABLE 1 Students.
+Student name
+
+ID number
+
+Major
+
+GPA
+
+Ackermann
+Adams
+Chou
+Goodfriend
+Rao
+Stevens
+
+231455
+888323
+102147
+453876
+678543
+786576
+
+Computer Science
+Physics
+Computer Science
+Mathematics
+Mathematics
+Psychology
+
+3.88
+3.45
+3.49
+3.45
+3.90
+2.99
+
+9.2 n-ary Relations and Their Applications
+
+EXAMPLE 5
+Extra
+Examples
+
+613
+
+Which domains are primary keys for the n-ary relation displayed in Table 1, assuming that no
+n-tuples will be added in the future?
+Solution: Because there is only one 4-tuple in this table for each student name, the domain
+of student names is a primary key. Similarly, the ID numbers in this table are unique, so the
+domain of ID numbers is also a primary key. However, the domain of major ﬁelds of study
+is not a primary key, because more than one 4-tuple contains the same major ﬁeld of study.
+The domain of grade point averages is also not a primary key, because there are two 4-tuples
+◂
+containing the same GPA.
+Combinations of domains can also uniquely identify n-tuples in an n-ary relation. When
+the values of a set of domains determine an n-tuple in a relation, the Cartesian product of these
+domains is called a composite key.
+
+EXAMPLE 6
+
+Is the Cartesian product of the domain of major ﬁelds of study and the domain of GPAs a
+composite key for the n-ary relation from Table 1, assuming that no n-tuples are ever added?
+Solution: Because no two 4-tuples from this table have both the same major and the same GPA,
+this Cartesian product is a composite key.
+◂
+Because primary and composite keys are used to identify records uniquely in a database,
+it is important that keys remain valid when new records are added to the database. Hence,
+checks should be made to ensure that every new record has values that are diﬀerent in
+the appropriate ﬁeld, or ﬁelds, from all other records in this table. For instance, it makes
+sense to use the student identiﬁcation number as a key for student records if no two
+students ever have the same student identiﬁcation number. A university should not use the name
+ﬁeld as a key, because two students may have the same name (such as John Smith).
+
+9.2.4 Operations on n-ary Relations
+There are a variety of operations on n-ary relations that can be used to form new n-ary relations.
+Applied together, these operations can answer queries on databases that ask for all n-tuples that
+satisfy certain conditions.
+The most basic operation on an n-ary relation is determining all n-tuples in the n-ary relation
+that satisfy certain conditions. For example, we may want to ﬁnd all the records of all computer
+science majors in a database of student records. We may want to ﬁnd all students who have a
+grade point average above 3.5. We may want to ﬁnd the records of all computer science majors
+who have a grade point average above 3.5. To perform such tasks we use the selection operator.
+
+Deﬁnition 2
+
+Let R be an n-ary relation and C a condition that elements in R may satisfy. Then the selection
+operator sC maps the n-ary relation R to the n-ary relation of all n-tuples from R that satisfy
+the condition C.
+
+EXAMPLE 7
+
+To ﬁnd the records of computer science majors in the n-ary relation R shown in Table 1, we use
+the operator sC1 , where C1 is the condition Major = “Computer Science.” The result is the two 4tuples (Ackermann, 231455, Computer Science, 3.88) and (Chou, 102147, Computer Science,
+3.49). Similarly, to ﬁnd the records of students who have a grade point average above 3.5 in
+this database, we use the operator sC2 , where C2 is the condition GPA > 3.5. The result is the
+two 4-tuples (Ackermann, 231455, Computer Science, 3.88) and (Rao, 678543, Mathematics,
+
+Extra
+Examples
+
+614
+
+9 / Relations
+
+3.90). Finally, to ﬁnd the records of computer science majors who have a GPA above 3.5, we
+use the operator sC3 , where C3 is the condition (Major = “Computer Science” ∧ GPA > 3.5).
+◂
+The result consists of the single 4-tuple (Ackermann, 231455, Computer Science, 3.88).
+Projections are used to form new n-ary relations by deleting the same ﬁelds in every record
+of the relation.
+
+Deﬁnition 3
+
+The projection Pi1 i2 ,…,im where i1 < i2 < ⋯ < im , maps the n-tuple (a1 , a2 , … , an ) to the
+m-tuple (ai1 , ai2 , … , aim ), where m ≤ n.
+In other words, the projection Pi1 ,i2 ,…,im deletes n − m of the components of an n-tuple, leaving
+the i1 th, i2 th, … , and im th components.
+
+EXAMPLE 8
+
+What results when the projection P1,3 is applied to the 4-tuples (2, 3, 0, 4), (Jane
+Doe, 234111001, Geography, 3.14), and (a1 , a2 , a3 , a4 )?
+Solution: The projection P1,3 sends these 4-tuples to (2, 0), (Jane Doe, Geography), and (a1 , a3 ),
+respectively.
+◂
+Example 9 illustrates how new relations are produced using projections.
+
+EXAMPLE 9
+
+What relation results when the projection P1,4 is applied to the relation in Table 1?
+Solution: When the projection P1,4 is used, the second and third columns of the table are deleted,
+and pairs representing student names and grade point averages are obtained. Table 2 displays
+◂
+the results of this projection.
+Fewer rows may result when a projection is applied to the table for a relation. This happens
+when some of the n-tuples in the relation have identical values in each of the m components of
+the projection, and only disagree in components deleted by the projection. For instance, consider
+the following example.
+
+EXAMPLE 10
+
+What is the table obtained when the projection P1,2 is applied to the relation in Table 3?
+Solution: Table 4 displays the relation obtained when P1,2 is applied to Table 3. Note that there
+◂
+are fewer rows after this projection is applied.
+
+TABLE 2 GPAs.
+
+TABLE 3 Enrollments.
+
+TABLE 4 Majors.
+
+Student name
+
+GPA
+
+Student
+
+Major
+
+Course
+
+Student
+
+Major
+
+Ackermann
+Adams
+Chou
+Goodfriend
+Rao
+Stevens
+
+3.88
+3.45
+3.49
+3.45
+3.90
+2.99
+
+Glauser
+Glauser
+Glauser
+Marcus
+Marcus
+Marcus
+Miller
+Miller
+
+Biology
+Biology
+Biology
+Mathematics
+Mathematics
+Mathematics
+Computer Science
+Computer Science
+
+BI 290
+MS 475
+PY 410
+MS 511
+MS 603
+CS 322
+MS 575
+CS 455
+
+Glauser
+Marcus
+Miller
+
+Biology
+Mathematics
+Computer Science
+
+9.2 n-ary Relations and Their Applications
+
+TABLE 5 Teaching assignments.
+Professor
+
+Department
+
+Cruz
+Cruz
+Farber
+Farber
+Grammer
+Grammer
+Rosen
+Rosen
+
+Zoology
+Zoology
+Psychology
+Psychology
+Physics
+Physics
+Computer Science
+Mathematics
+
+615
+
+TABLE 6 Class schedule.
+Course
+number
+335
+412
+501
+617
+544
+551
+518
+575
+
+Department
+
+Course
+number
+
+Room
+
+Time
+
+518
+575
+611
+544
+501
+617
+335
+412
+
+N521
+N502
+N521
+B505
+A100
+A110
+A100
+A100
+
+2:00 P.M .
+3:00 P.M .
+4:00 P.M .
+4:00 P.M .
+3:00 P.M .
+11:00 A .M .
+9:00 A .M .
+8:00 A .M .
+
+Computer Science
+Mathematics
+Mathematics
+Physics
+Psychology
+Psychology
+Zoology
+Zoology
+
+The join operation is used to combine two tables into one when these tables share some
+identical ﬁelds. For instance, a table containing ﬁelds for airline, ﬂight number, and gate, and
+another table containing ﬁelds for ﬂight number, gate, and departure time can be combined into
+a table containing ﬁelds for airline, ﬂight number, gate, and departure time.
+
+Deﬁnition 4
+
+Let R be a relation of degree m and S a relation of degree n. The join Jp (R, S),
+where p ≤ m and p ≤ n, is a relation of degree m + n − p that consists of all
+(m + n − p)-tuples (a1 , a2 , … , am−p , c1 , c2 , … , cp , b1 , b2 , … , bn−p ), where the m-tuple
+(a1 , a2 , … , am−p , c1 , c2 , … , cp ) belongs to R and the n-tuple (c1 , c2 , … , cp , b1 , b2 , … , bn−p )
+belongs to S.
+In other words, the join operator Jp produces a new relation from two relations by combining all
+m-tuples of the ﬁrst relation with all n-tuples of the second relation, where the last p components
+of the m-tuples agree with the ﬁrst p components of the n-tuples.
+
+EXAMPLE 11
+
+What relation results when the join operator J2 is used to combine the relation displayed in
+Tables 5 and 6?
+
+◂
+
+Solution: The join J2 produces the relation shown in Table 7.
+
+There are other operators besides projections and joins that produce new relations from
+existing relations. A description of these operations can be found in books on database theory.
+
+TABLE 7 Teaching schedule.
+Professor
+
+Department
+
+Cruz
+Cruz
+Farber
+Farber
+Grammer
+Rosen
+Rosen
+
+Zoology
+Zoology
+Psychology
+Psychology
+Physics
+Computer Science
+Mathematics
+
+Course number
+
+Room
+
+Time
+
+335
+412
+501
+617
+544
+518
+575
+
+A100
+A100
+A100
+A110
+B505
+N521
+N502
+
+9:00 A .M .
+8:00 A .M .
+3:00 P.M .
+11:00 A .M .
+4:00 P.M .
+2:00 P.M .
+3:00 P.M .
+
+616
+
+9 / Relations
+
+TABLE 8 Flights.
+Airline
+
+Flight number
+
+Gate
+
+Destination
+
+Departure time
+
+Nadir
+Acme
+Acme
+Acme
+Nadir
+Acme
+Nadir
+
+122
+221
+122
+323
+199
+222
+322
+
+34
+22
+33
+34
+13
+22
+34
+
+Detroit
+Denver
+Anchorage
+Honolulu
+Detroit
+Denver
+Detroit
+
+08:10
+08:17
+08:22
+08:30
+08:47
+09:10
+09:44
+
+9.2.5 SQL
+Links
+
+EXAMPLE 12
+
+The database query language SQL (short for Structured Query Language) can be used to carry
+out the operations we have described in this section. Example 12 illustrates how SQL commands
+are related to operations on n-ary relations.
+We will illustrate how SQL is used to express queries by showing how SQL can be employed
+to make a query about airline ﬂights using Table 8. The SQL statement
+SELECT Departure_time
+FROM Flights
+WHERE Destination=’Detroit’
+
+is used to ﬁnd the projection P5 (on the Departure time attribute) of the selection of 5-tuples in
+the Flights database that satisfy the condition: Destination = ‘Detroit’. The output would be a
+list containing the times of ﬂights that have Detroit as their destination, namely, 08:10, 08:47,
+and 09:44. SQL uses the FROM clause to identify the n-ary relation the query is applied to, the
+WHERE clause to specify the condition of the selection operation, and the SELECT clause to
+specify the projection operation that is to be applied. (Beware: SQL uses SELECT to represent
+a projection, rather than a selection operation. This is an unfortunate example of conﬂicting
+◂
+terminology.)
+
+Example 13 shows how SQL queries can be made involving more than one table.
+
+EXAMPLE 13
+
+The SQL statement
+SELECT Professor, Time
+FROM Teaching_assignments, Class_schedule
+WHERE Department=’Mathematics’
+
+is used to ﬁnd the projection P1,5 of the 5-tuples in the database (shown in Table 7), which
+is the join J2 of the Teaching assignments and Class schedule databases in Tables 5 and 6,
+respectively, which satisfy the condition: Department = Mathematics. The output would consist
+of the single 2-tuple (Rosen, 3:00 P.M .). The SQL FROM clause is used here to ﬁnd the join of
+◂
+two diﬀerent databases.
+
+We have only touched on the basic concepts of relational databases in this section. More
+information can be found in [AhUl95].
+
+9.2 n-ary Relations and Their Applications
+
+617
+
+9.2.6 Association Rules from Data Mining
+Links
+
+Deﬁnition 5
+
+We will now introduce concepts from data mining, the discipline with the goal of gaining
+useful information from data. In particular, we will discuss information that can be gleaned
+from databases of transactions. We will focus on supermarket transactions, but the ideas we
+present are relevant in a wide range of applications.
+By a transaction we mean a set of items bought by a customer during a visit to the store,
+such as {milk, eggs, bread} or {orange juice, bananas, yogurt, cream}. Stores collect large
+databases of transactions that can be used to help them manage their businesses. We will discuss
+how these databases can be used to address the question: How likely is it that a customer buys
+a product given that they also buy a collection of one or more speciﬁed products?
+We call each product in the store an item. A collection of items is known as an itemset.
+A k-itemset is an itemset that contains exactly k items. The terms transaction and basket are
+used synonymously with the word itemset. When a store has n items, a1 , a2 , … , an , for sale,
+each transaction can be represented by an n-tuple b1 , b2 , … , bn , where bi is a binary variable
+that tells us whether ai occurs in this transaction. That is, bi = 1 if ai is in this transaction and
+bi = 0 otherwise. (Note that we only care whether an item occurs in a transaction and not how
+many times it occurs.) We can represent a transaction by an (n + 1)-tuple of the form (transaction number, b1 , b2 , … , bn ). The collection of all these (n + 1)-tuples forms a database of
+transactions.
+We now deﬁne additional terms used in the study of questions relating to the purchase of
+particular itemsets.
+
+The count of an itemset I, denoted by 𝜎(I), in a set of transactions T = {t1 , t2 , … , tk }, where
+k is a positive integer, is the number of transactions that contain this itemset. That is,
+𝜎(I) = |{ti ∈ T | I ⊆ ti }|.
+The support of an itemset I is the probability that I is included in a randomly selected transaction from T. That is,
+support(I) =
+
+𝜎(I)
+.
+|T|
+
+The support threshold s is speciﬁed for a particular application. Frequent itemset mining
+is the process of ﬁnding itemsets I with support greater than or equal to s. Such itemsets are
+said to be frequent.
+
+EXAMPLE 14
+Extra
+Examples
+
+The morning transactions at a market stand that sells apples, pears, cider, donuts, and mangos are
+shown in Table 9. In Table 10 we display the corresponding binary database, where each record
+is an (n + 1)-tuple consisting of the transaction number followed by binary entries that represent
+this itemset. Because apples occurs in ﬁve of the eight transactions, we see that 𝜎({apples}) = 5
+and support({apples}) = 5∕8. Similarly, because the itemset {apples, cider} is a subset of four
+of the eight transactions, we have 𝜎({apples, cider}) = 4 and support({cider}) = 4∕8 = 1∕2.
+If we set the support threshold to be 0.5, an item is frequent if it occurs in at least four
+of the eight transactions. Consequently, with this support threshold, apples, pears, donuts and
+cider are the frequent items. The itemset {apples, cider} is a frequent itemset, but the itemset
+◂
+{donuts pears} is not a frequent itemset.
+
+618
+
+9 / Relations
+
+TABLE 9 A Set of Transactions.
+Transaction Number
+
+Items
+{apples, pears, mangos}
+{pears, cider}
+{apples, cider, donuts, mangos}
+{apples, pears, cider, donuts}
+{apples, cider, donuts}
+{pears, cider, donuts}
+{pears, donuts}
+{apples, pears, cider}
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+TABLE 10 Binary Database for the Transactions in Table 9.
+Transaction Number
+
+Apples
+
+Pears
+
+Cider
+
+Donuts
+
+Mangos
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+1
+0
+1
+1
+1
+0
+0
+1
+
+1
+1
+0
+1
+0
+1
+1
+1
+
+0
+1
+1
+1
+1
+1
+0
+1
+
+0
+0
+1
+1
+1
+1
+1
+0
+
+1
+0
+1
+0
+0
+0
+0
+0
+
+We can use sets of transactions to help us predict whether a customer will buy a particular
+item given that they also buy all the items in an itemset (which might just be one item). Before
+we address a question of this type, we introduce some terminology. If S is a set of items and T is
+a set of transactions, an association rule is an implication of the form I → J, where I and J are
+disjoint subsets of S. Although this notation borrows the notation for logical implications, its
+meaning is not entirely analagous. The association rule I → J is not the statement that whenever
+I is a subset of a transaction, then J must also be one. Instead, the strength of an association rule
+is measured in terms of its support, the frequency of transactions that contain both I and J, and
+its conﬁdence, the frequency of transactions that contain J when they also contain I.
+
+Deﬁnition 6
+
+If I and J are subsets of a set T of transactions, then
+support(I → J) =
+
+𝜎(I ∪ J)
+|T|
+
+and
+conﬁdence(I → J) =
+
+𝜎(I ∪ J)
+.
+𝜎(I)
+
+The support of the association rule I → J, the fraction of transactions that contain both I and J,
+is a useful measure because a low support value tells us that the basket containing all items in
+
+9.2 n-ary Relations and Their Applications
+
+619
+
+I and all items in J is seldom purchased, whereas a high value tells us that they are purchased
+together in a large fraction of transactions. Note that the conﬁdence of the association rule I → J
+is the conditional probability that a transaction will contain all the items in I and in J given that
+it contains all the items in I. So, the larger the conﬁdence of I → J, the more likely it is for J to
+be a subset of a transaction that contains I.
+
+EXAMPLE 15
+Extra
+Examples
+
+What are the support and the conﬁdence of the association rule {cider, donuts} → {apples} for
+the set of transactions in Example 14?
+Solution: The support of this association rule is 𝜎({cider, donuts} ∪ {apples})∕|T|. Because
+𝜎({cider, donuts} ∪ {apples}) = 𝜎({cider, donuts, apples}) = 3 and |T| = 8, we see that the
+support of this rule is 3∕8 = 0.375.
+The conﬁdence of this rule is 𝜎({cider, donuts} ∪ {apples})∕𝜎({cider, donuts}) = 3∕4 =
+0.75.
+◂
+An important problem in data mining is to ﬁnd strong association rules, which have support greater than or equal to a minimum support level and conﬁdence greater than or equal to a
+minimum conﬁdence level. It is important to have eﬃcient algorithms to ﬁnd strong association
+rules because the number of available items can be extremely large. For instance, a supermarket
+may have tens of thousands, or even hundreds of thousands, of items in stock. The brute-force
+approach of ﬁnding association rules with suﬃciently large support and conﬁdence by computing the support and conﬁdence of all possible association rules is infeasible because there are
+an exponential number of such association rules (see Exercise 41). Several widely used algorithms have been developed to solve this problem much more eﬃciently than brute force. Such
+algorithms ﬁrst ﬁnd frequent itemsets and then turn their attention to ﬁnding all the association
+rules with high conﬁdence from the frequent itemsets that have been found. Consult data mining
+texts such as [Ag15] for details.
+Although we have presented association rules in the context of market baskets, they are
+useful in a surprisingly wide variety of applications. For instance, association rules can be used
+to improve medical diagnoses, in which itemsets are collections of test results or symptoms and
+transactions are the collections of test results and symptoms found on patient records. Association rules, in which itemsets are baskets of key words and transactions are the collections of
+words on web pages, are used by search engines. Cases of plagiarism can be found using association rules, in which itemsets are collections of sentences and transactions are the contents
+of documents. Association rules also play helpful roles in various aspects of computer security,
+including intrusion detection, in which the itemsets are collections of patterns and transactions
+are the strings transmitted during network attacks. The interested reader will be able to ﬁnd
+many more such applications by searching the web.
+
+Exercises
+1. List the triples in the relation {(a, b, c) ∣ a, b, and c are
+integers with 0 < a < b < c < 5}.
+2. Which 4-tuples are in the relation {(a, b, c, d) ∣ a, b, c, and
+d are positive integers with abcd = 6}?
+3. List the 5-tuples in the relation in Table 8.
+4. Assuming that no new n-tuples are added, ﬁnd all the primary keys for the relations displayed in
+a) Table 3.
+b) Table 5.
+c) Table 6.
+
+d) Table 8.
+
+5. Assuming that no new n-tuples are added, ﬁnd a composite key with two ﬁelds containing the Airline ﬁeld for the
+database in Table 8.
+6. Assuming that no new n-tuples are added, ﬁnd a composite key with two ﬁelds containing the Professor ﬁeld for
+the database in Table 7.
+7. The 3-tuples in a 3-ary relation represent the following attributes of a student database: student ID number, name,
+phone number.
+a) Is student ID number likely to be a primary key?
+b) Is name likely to be a primary key?
+c) Is phone number likely to be a primary key?
+
+620
+
+9 / Relations
+
+8. The 4-tuples in a 4-ary relation represent these attributes
+of published books: title, ISBN, publication date, number
+of pages.
+a) What is a likely primary key for this relation?
+b) Under what conditions would (title, publication date)
+be a composite key?
+c) Under what conditions would (title, number of pages)
+be a composite key?
+9. The 5-tuples in a 5-ary relation represent these attributes
+of all people in the United States: name, Social Security
+number, street address, city, state.
+a) Determine a primary key for this relation.
+b) Under what conditions would (name, street address)
+be a composite key?
+c) Under what conditions would (name, street address,
+city) be a composite key?
+10. What do you obtain when you apply the selection operator sC , where C is the condition Room = A100, to the
+database in Table 7?
+11. What do you obtain when you apply the selection operator sC , where C is the condition Destination = Detroit, to
+the database in Table 8?
+12. What do you obtain when you apply the selection
+operator sC , where C is the condition (Project = 2) ∧
+(Quantity ≥ 50), to the database in Table 10?
+13. What do you obtain when you apply the selection operator sC , where C is the condition (Airline = Nadir) ∨
+(Destination = Denver), to the database in Table 8?
+14. What do you obtain when you apply the projection P2,3,5
+to the 5-tuple (a, b, c, d, e)?
+15. Which projection mapping is used to delete the ﬁrst,
+second, and fourth components of a 6-tuple?
+16. Display the table produced by applying the projection
+P1,2,4 to Table 8.
+17. Display the table produced by applying the projection
+P1,4 to Table 8.
+18. How many components are there in the n-tuples in the
+table obtained by applying the join operator J3 to two
+tables with 5-tuples and 8-tuples, respectively?
+19. Construct the table obtained by applying the join
+operator J2 to the relations in Tables 11 and 12.
+20. Show that if C1 and C2 are conditions that elements of the
+n-ary relation R may satisfy, then sC1 ∧C2 (R) = sC1 (sC2 (R)).
+21. Show that if C1 and C2 are conditions that elements of the n-ary relation R may satisfy, then
+sC1 (sC2 (R)) = sC2 (sC1 (R)).
+22. Show that if C is a condition that elements of
+the n-ary relations R and S may satisfy, then
+sC (R ∪ S) = sC (R) ∪ sC (S).
+23. Show that if C is a condition that elements of
+the n-ary relations R and S may satisfy, then
+sC (R ∩ S) = sC (R) ∩ sC (S).
+24. Show that if C is a condition that elements of
+the n-ary relations R and S may satisfy, then
+sC (R − S) = sC (R) − sC (S).
+
+25. Show that if R and S are both n-ary relations, then
+Pi1 ,i2 ,…,im (R ∪ S) = Pi1 ,i2 ,…,im (R) ∪ Pi1 ,i2 ,…,im (S).
+26. Give an example to show that if R and S are both n-ary
+relations, then Pi1 ,i2 ,…,im (R ∩ S) may be diﬀerent from
+Pi1 ,i2 ,…,im (R) ∩ Pi1 ,i2 ,…,im (S).
+27. Give an example to show that if R and S are both n-ary
+relations, then Pi1 ,i2 ,…,im (R − S) may be diﬀerent from
+Pi1 ,i2 ,…,im (R) − Pi1 ,i2 ,…,im (S).
+28. a) What are the operations that correspond to the query
+expressed using this SQL statement?
+SELECT Supplier
+FROM Part_needs
+WHERE 1000 ≤ Part number ≤ 5000
+b) What is the output of this query given the database in
+Table 11 as input?
+29. a) What are the operations that correspond to the query
+expressed using this SQL statement?
+SELECT Supplier, Project
+FROM Part_needs, Parts_inventory
+WHERE Quantity ≤ 10
+b) What is the output of this query given the databases
+in Tables 11 and 12 as input?
+30. Determine whether there is a primary key for the relation
+in Example 2.
+31. Determine whether there is a primary key for the relation
+in Example 3.
+32. Show that an n-ary relation with a primary key can be
+thought of as the graph of a function that maps values of
+the primary key to (n − 1)-tuples formed from values of
+the other domains.
+33. Suppose that the transactions at a convenience store during an evening are {bread, milk, diapers, juice}, {bread,
+milk, diapers, eggs}, {milk, diapers, beer, eggs}, {bread,
+beer}, {milk, diapers, eggs, juice}, and {milk, diapers,
+beer}.
+a) Find the count and support of diapers.
+b) Find all frequent itemsets if the threshold level is 0.6.
+34. Suppose that the key words on eight diﬀerent web pages
+are {evolution, primate, Human, Neanderthal, DNA,
+fossil}, {evolution, Neanderthal, Denisovan, Human,
+DNA}, {cave, fossil, primate}, {Human, Neanderthal,
+Denisovan, evolution}, {DNA, genome, evolution, fossil}, {DNA, Human, Neanderthal, Denisovan, genome},
+{evolution, primate, cave, fossil}, and {Human, Neanderthal, genome}.
+a) Find the count and support of Neanderthal.
+b) Find all frequent itemsets if the threshold level is 0.6.
+35. Find the support and conﬁdence of the association rule
+{beer} → {diapers} for the set of transactions in Exercise
+33. (This association rule has played an important role in
+the development of the subject.)
+36. Find the support and conﬁdence of the association rule
+{human, DNA} → {Neanderthal} for the set of transactions in Exercise 34.
+
+9.3 Representing Relations 621
+
+TABLE 11 Part needs.
+
+TABLE 12 Parts inventory.
+
+Supplier
+
+Part number
+
+Project
+
+Part number
+
+Project
+
+Quantity
+
+Color code
+
+23
+23
+23
+31
+31
+32
+32
+33
+
+1092
+1101
+9048
+4975
+3477
+6984
+9191
+1001
+
+1
+3
+4
+3
+2
+4
+2
+1
+
+1001
+1092
+1101
+3477
+4975
+6984
+9048
+9191
+
+1
+1
+3
+2
+3
+4
+4
+2
+
+14
+2
+1
+25
+6
+10
+12
+80
+
+8
+2
+1
+2
+2
+1
+2
+4
+
+37. Suppose that I is an itemset with positive count in a set of
+transactions. Find the conﬁdence of the association rule
+I → ∅.
+38. Suppose that I, J, and K are itemsets. Show that the six
+association rules {I, J} → K, {J, K} → I, {I, K} → J,
+I → {J, K}, J → {I, K}, and K → {I, J} all have the same
+support.
+39. The lift of the association rule I → J, where I and J are
+itemsets with positive support in a set of transactions,
+equals support(I ∪ J)/(support(I)support(J)).
+a) Show that the lift of I → J, when support(I) and
+support(J) are both positive, equals 1 if and only if the
+occurrence of I in a transaction and the occurrence of
+J in a transaction are independent events.
+
+9.3
+
+b) Find the lift of the association rule {beer} →
+{diapers} for the set of transactions in Exercises 33.
+c) Find the lift of the association rule {evolution} →
+{Neanderthals, Denisovans} for the set of transactions in Exercise 34.
+40. Show that if an itemset is frequent in a set of transactions,
+then all its subsets are also frequent itemsets in this set
+of transactions.
+41. Given n unique items, show that there are 3n possible association rules of the form I → J, where I and
+J are disjoint subsets of the set of all items. Be sure to
+allow the association rules where I or J, or both, are
+empty.
+
+Representing Relations
+9.3.1 Introduction
+In this section, and in the remainder of this chapter, all relations we study will be binary relations.
+Because of this, in this section and in the rest of this chapter, the word relation will always refer
+to a binary relation. There are many ways to represent a relation between ﬁnite sets. As we have
+seen in Section 9.1, one way is to list its ordered pairs. Another way to represent a relation is to
+use a table, as we did in Example 3 in Section 9.1. In this section we will discuss two alternative
+methods for representing relations. One method uses zero–one matrices. The other method uses
+pictorial representations called directed graphs, which we will discuss later in this section.
+Generally, matrices are appropriate for the representation of relations in computer programs. On the other hand, people often ﬁnd the representation of relations using directed graphs
+useful for understanding the properties of these relations.
+
+9.3.2 Representing Relations Using Matrices
+A relation between ﬁnite sets can be represented using a zero–one matrix. Suppose that R is a
+relation from A = {a1 , a2 , … , am } to B = {b1 , b2 , … , bn }. (Here the elements of the sets A and
+B have been listed in a particular, but arbitrary, order. Furthermore, when A = B we use the
+same ordering for A and B.) The relation R can be represented by the matrix MR = [mij ], where
+{
+1 if (ai , bj ) ∈ R,
+mij =
+0 if (ai , bj ) ∉ R.
+
+9 / Relations
+
+622
+
+In other words, the zero–one matrix representing R has a 1 as its (i, j) entry when ai is related
+to bj , and a 0 in this position if ai is not related to bj . (Such a representation depends on the
+orderings used for A and B.)
+The use of matrices to represent relations is illustrated in Examples 1–6.
+
+EXAMPLE 1
+
+Suppose that A = {1, 2, 3} and B = {1, 2}. Let R be the relation from A to B containing (a, b) if
+a ∈ A, b ∈ B, and a > b. What is the matrix representing R if a1 = 1, a2 = 2, and a3 = 3, and
+b1 = 1 and b2 = 2?
+Solution: Because R = {(2, 1), (3, 1), (3, 2)}, the matrix for R is
+⎡0 0⎤
+MR = ⎢1 0⎥ .
+⎢1 1⎥
+⎦
+⎣
+The 1s in MR show that the pairs (2, 1), (3, 1), and (3, 2) belong to R. The 0s show that no other
+◂
+pairs belong to R.
+
+EXAMPLE 2
+
+Let A = {a1 , a2 , a3 } and B = {b1 , b2 , b3 , b4 , b5 }. Which ordered pairs are in the relation R represented by the matrix
+⎡0
+MR = ⎢1
+⎢1
+⎣
+
+1
+
+1
+
+1
+0
+0
+
+0
+1
+1
+
+0
+1
+0
+
+0⎤
+0⎥ ?
+1⎥⎦
+
+Solution: Because R consists of those ordered pairs (ai , bj ) with mij = 1, it follows that
+
+1
+
+R = {(a1 , b2 ), (a2 , b1 ), (a2 , b3 ), (a2 , b4 ), (a3 , b1 ), (a3 , b3 ), (a3 , b5 )}.
+1
+
+◂
+
+1
+
+FIGURE 1 The
+zero–one matrix
+for a reﬂexive
+relation. (Oﬀ
+diagonal elements can
+be 0 or 1.)
+
+The matrix of a relation on a set, which is a square matrix, can be used to determine whether
+the relation has certain properties. Recall that a relation R on A is reﬂexive if (a, a) ∈ R whenever
+a ∈ A. Thus, R is reﬂexive if and only if (ai , ai ) ∈ R for i = 1, 2, … , n. Hence, R is reﬂexive if
+and only if mii = 1, for i = 1, 2, … , n. In other words, R is reﬂexive if all the elements on the
+main diagonal of MR are equal to 1, as shown in Figure 1. Note that the elements oﬀ the main
+diagonal can be either 0 or 1.
+The relation R is symmetric if (a, b) ∈ R implies that (b, a) ∈ R. Consequently, the
+relation R on the set A = {a1 , a2 , … , an } is symmetric if and only if (aj , ai ) ∈ R whenever
+(ai , aj ) ∈ R. In terms of the entries of MR , R is symmetric if and only if mji = 1 whenever
+mij = 1. This also means mji = 0 whenever mij = 0. Consequently, R is symmetric if and only
+if mij = mji , for all pairs of integers i and j with i = 1, 2, … , n and j = 1, 2, … , n. Recalling the
+deﬁnition of the transpose of a matrix from Section 2.6, we see that R is symmetric if and only if
+MR = (MR )t ,
+that is, if MR is a symmetric matrix. The form of the matrix for a symmetric relation is
+illustrated in Figure 2(a).
+The relation R is antisymmetric if and only if (a, b) ∈ R and (b, a) ∈ R imply that a = b.
+Consequently, the matrix of an antisymmetric relation has the property that if mij = 1 with i ≠ j,
+then mji = 0. Or, in other words, either mij = 0 or mji = 0 when i ≠ j. The form of the matrix
+for an antisymmetric relation is illustrated in Figure 2(b).
+
+9.3 Representing Relations 623
+1
+
+1
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+0
+
+1
+
+(b) Antisymmetric
+
+(a) Symmetric
+
+FIGURE 2 The zero–one matrices for
+symmetric and antisymmetric relations.
+
+EXAMPLE 3
+
+Suppose that the relation R on a set is represented by the matrix
+⎡1
+MR = ⎢1
+⎢0
+⎣
+
+1
+1
+1
+
+0⎤
+1⎥ .
+1⎥⎦
+
+Is R reﬂexive, symmetric, and/or antisymmetric?
+Solution: Because all the diagonal elements of this matrix are equal to 1, R is reﬂexive. Moreover, because MR is symmetric, it follows that R is symmetric. It is also easy to see that R is not
+◂
+antisymmetric.
+The Boolean operations join and meet (discussed in Section 2.6) can be used to ﬁnd the matrices representing the union and the intersection of two relations. Suppose that R1 and R2 are
+relations on a set A represented by the matrices MR1 and MR2 , respectively. The matrix representing the union of these relations has a 1 in the positions where either MR1 or MR2 has a 1. The matrix representing the intersection of these relations has a 1 in the positions where both MR1 and
+MR2 have a 1. Thus, the matrices representing the union and intersection of these relations are
+MR1 ∪R2 = MR1 ∨ MR2
+
+EXAMPLE 4
+
+and
+
+MR1 ∩R2 = MR1 ∧ MR2 .
+
+Suppose that the relations R1 and R2 on a set A are represented by the matrices
+⎡1
+MR1 = ⎢1
+⎢0
+⎣
+
+0
+0
+1
+
+1⎤
+0⎥
+0⎥⎦
+
+⎡1
+MR2 = ⎢0
+⎢1
+⎣
+
+and
+
+0
+1
+0
+
+1⎤
+1⎥ .
+0⎥⎦
+
+What are the matrices representing R1 ∪ R2 and R1 ∩ R2 ?
+Solution: The matrices of these relations are
+⎡1
+MR1 ∪R2 = MR1 ∨ MR2 = ⎢1
+⎢1
+⎣
+
+0
+1
+1
+
+1⎤
+1⎥ ,
+0⎥⎦
+
+⎡1
+MR1 ∩R2 = MR1 ∧ MR2 = ⎢0
+⎢0
+⎣
+
+0
+0
+0
+
+1⎤
+0⎥ .
+0⎥⎦
+
+◂
+
+We now turn our attention to determining the matrix for the composite of relations. This
+matrix can be found using the Boolean product of the matrices (discussed in Section 2.6)
+
+624
+
+9 / Relations
+
+for these relations. In particular, suppose that R is a relation from A to B and S is a relation
+from B to C. Suppose that A, B, and C have m, n, and p elements, respectively. Let the zero–
+one matrices for S ◦ R, R, and S be MS ◦ R = [tij ], MR = [rij ], and MS = [sij ], respectively (these
+matrices have sizes m × p, m × n, and n × p, respectively). The ordered pair (ai , cj ) belongs to
+S ◦ R if and only if there is an element bk such that (ai , bk ) belongs to R and (bk , cj ) belongs to S.
+It follows that tij = 1 if and only if rik = skj = 1 for some k. From the deﬁnition of the Boolean
+product, this means that
+MS ◦R = MR ⊙ MS .
+
+EXAMPLE 5
+
+Find the matrix representing the relations S ◦ R, where the matrices representing R and S are
+⎡1
+MR = ⎢1
+⎢0
+⎣
+
+0
+1
+0
+
+1⎤
+0⎥
+0⎥⎦
+
+and
+
+⎡0
+MS = ⎢0
+⎢1
+⎣
+
+1
+0
+0
+
+0⎤
+1⎥ .
+1⎥⎦
+
+Solution: The matrix for S ◦R is
+⎡1
+MS ◦R = MR ⊙ MS = ⎢0
+⎢0
+⎣
+
+1
+1
+0
+
+1⎤
+1⎥ .
+0⎥⎦
+
+◂
+
+The matrix representing the composite of two relations can be used to ﬁnd the matrix
+for MRn . In particular,
+MRn = M[n]
+,
+R
+from the deﬁnition of Boolean powers. Exercise 35 asks for a proof of this formula.
+
+EXAMPLE 6
+
+Find the matrix representing the relation R2 , where the matrix representing R is
+⎡0
+MR = ⎢0
+⎢1
+⎣
+
+1
+1
+0
+
+0⎤
+1⎥ .
+0⎥⎦
+
+Solution: The matrix for R2 is
+⎡0
+⎢1
+=
+MR2 = M[2]
+R
+⎢0
+⎣
+
+1
+1
+1
+
+1⎤
+1⎥ .
+0⎥⎦
+
+◂
+
+9.3.3 Representing Relations Using Digraphs
+We have shown that a relation can be represented by listing all of its ordered pairs or by using
+a zero–one matrix. There is another important way of representing a relation using a pictorial
+representation. Each element of the set is represented by a point, and each ordered pair is represented using an arc with its direction indicated by an arrow. We use such pictorial representations
+when we think of relations on a ﬁnite set as directed graphs, or digraphs.
+
+9.3 Representing Relations 625
+
+Deﬁnition 1
+
+A directed graph, or digraph, consists of a set V of vertices (or nodes) together with a set
+E of ordered pairs of elements of V called edges (or arcs). The vertex a is called the initial
+vertex of the edge (a, b), and the vertex b is called the terminal vertex of this edge.
+An edge of the form (a, a) is represented using an arc from the vertex a back to itself. Such
+an edge is called a loop.
+
+EXAMPLE 7
+a
+
+d
+
+The directed graph with vertices a, b, c, and d, and edges (a, b), (a, d), (b, b), (b, d), (c, a), (c, b),
+◂
+and (d, b) is displayed in Figure 3.
+
+b
+
+c
+
+FIGURE 3
+A directed graph.
+
+EXAMPLE 8
+
+The relation R on a set A is represented by the directed graph that has the elements of A as its
+vertices and the ordered pairs (a, b), where (a, b) ∈ R, as edges. This assignment sets up a oneto-one correspondence between the relations on a set A and the directed graphs with A as their
+set of vertices. Thus, every statement about relations corresponds to a statement about directed
+graphs, and vice versa. Directed graphs give a visual display of information about relations. As
+such, they are often used to study relations and their properties. (Note that relations from a set
+A to a set B can be represented by a directed graph where there is a vertex for each element
+of A and a vertex for each element of B, as shown in Section 9.1. However, when A = B, such
+representation provides much less insight than the digraph representations described here.) The
+use of directed graphs to represent relations on a set is illustrated in Examples 8–10.
+The directed graph of the relation
+R1 = {(1, 1), (1, 3), (2, 1), (2, 3), (2, 4), (3, 1), (3, 2), (4, 1)}
+on the set {1, 2, 3, 4} is shown in Figure 4.
+
+EXAMPLE 9
+
+◂
+
+What are the ordered pairs in the relation R2 represented by the directed graph shown in
+Figure 5?
+Solution: The ordered pairs (x, y) in the relation are
+R2 = {(1, 3), (1, 4), (2, 1), (2, 2), (2, 3), (3, 1), (3, 3), (4, 1), (4, 3)}.
+Each of these pairs corresponds to an edge of the directed graph, with (2, 2) and (3, 3) corresponding to loops.
+◂
+
+We will study directed
+graphs extensively in
+Chapter 10.
+
+The directed graph representing a relation can be used to determine whether the relation
+has various properties. For instance, a relation is reﬂexive if and only if there is a loop at every vertex of the directed graph, so that every ordered pair of the form (x, x) occurs in the
+relation. A relation is symmetric if and only if for every edge between distinct vertices in its
+digraph there is an edge in the opposite direction, so that (y, x) is in the relation whenever
+(x, y) is in the relation. Similarly, a relation is antisymmetric if and only if there are never two
+edges in opposite directions between distinct vertices. Finally, a relation is transitive if and only
+if whenever there is an edge from a vertex x to a vertex y and an edge from a vertex y to a
+vertex z, there is an edge from x to z (completing a triangle where each side is a directed edge
+with the correct direction).
+Remark: Note that a symmetric relation can be represented by an undirected graph, which is a
+graph where edges do not have directions. We will study undirected graphs in Chapter 10.
+
+9 / Relations
+
+626
+
+2
+
+1
+
+1
+
+3
+
+FIGURE 4 The
+directed graph
+of the relation R1 .
+
+EXAMPLE 10
+
+4
+
+b
+
+2
+
+b
+4
+
+a
+
+a
+
+3
+
+FIGURE 5 The
+directed graph
+of the relation R2 .
+
+(a) Directed graph of S1
+
+d
+
+c
+
+c
+
+(b) Directed graph of S2
+
+FIGURE 6 The directed graphs of the
+relations S1 and S2 .
+
+Determine whether the relations for the directed graphs shown in Figure 6 are reﬂexive, symmetric, antisymmetric, and/or transitive.
+Solution: Because there are loops at every vertex of the directed graph of S1 , it is reﬂexive. The
+relation S1 is neither symmetric nor antisymmetric because there is an edge from a to b but not
+one from b to a, but there are edges in both directions connecting b and c. Finally, S1 is not
+transitive because there is an edge from a to b and an edge from b to c, but no edge from a to c.
+Because loops are not present at all the vertices of the directed graph of S2 , this relation
+is not reﬂexive. It is symmetric and not antisymmetric, because every edge between distinct
+vertices is accompanied by an edge in the opposite direction. It is also not hard to see from the
+directed graph that S2 is not transitive, because (c, a) and (a, b) belong to S2 , but (c, b) does not
+◂
+belong to S2 .
+
+Exercises
+1. Represent each of these relations on {1, 2, 3} with a matrix (with the elements of this set listed in increasing
+order).
+a) {(1, 1), (1, 2), (1, 3)}
+b) {(1, 2), (2, 1), (2, 2), (3, 3)}
+c) {(1, 1), (1, 2), (1, 3), (2, 2), (2, 3), (3, 3)}
+d) {(1, 3), (3, 1)}
+2. Represent each of these relations on {1, 2, 3, 4} with a
+matrix (with the elements of this set listed in increasing
+order).
+a) {(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)}
+b) {(1, 1), (1, 4), (2, 2), (3, 3), (4, 1)}
+c) {(1, 2), (1, 3), (1, 4), (2, 1), (2, 3), (2, 4), (3, 1), (3, 2),
+(3, 4), (4, 1), (4, 2), (4, 3)}
+d) {(2, 4), (3, 1), (3, 2), (3, 4)}
+3. List the ordered pairs in the relations on {1, 2, 3} corresponding to these matrices (where the rows and columns
+correspond to the integers listed in increasing order).
+⎡1
+a) ⎢0
+⎢1
+⎣
+
+0
+1
+0
+
+1⎤
+0⎥
+1⎥⎦
+
+⎡1
+c) ⎢1
+⎢1
+⎣
+
+1
+0
+1
+
+1⎤
+1⎥
+1⎥⎦
+
+⎡0 1 0⎤
+b) ⎢0 1 0⎥
+⎢0 1 0⎥
+⎦
+⎣
+
+4. List the ordered pairs in the relations on {1, 2, 3, 4} corresponding to these matrices (where the rows and columns
+correspond to the integers listed in increasing order).
+⎡1
+⎢
+a) ⎢1
+⎢0
+⎣1
+
+1
+0
+1
+0
+
+0
+1
+1
+1
+
+1⎤
+0⎥
+1⎥⎥
+1⎦
+
+⎡1
+⎢0
+b) ⎢
+⎢0
+⎣1
+
+1
+1
+0
+0
+
+1
+0
+1
+0
+
+0⎤
+0⎥
+1⎥⎥
+1⎦
+
+⎡ 0 1 0 1⎤
+⎢ 1 0 1 0⎥
+c) ⎢
+⎥
+⎢ 0 1 0 1⎥
+⎣ 1 0 1 0⎦
+5. How can the matrix representing a relation R on a set A
+be used to determine whether the relation is irreﬂexive?
+6. How can the matrix representing a relation R on a set A
+be used to determine whether the relation is asymmetric?
+7. Determine whether the relations represented by the matrices in Exercise 3 are reﬂexive, irreﬂexive, symmetric,
+antisymmetric, and/or transitive.
+8. Determine whether the relations represented by the matrices in Exercise 4 are reﬂexive, irreﬂexive, symmetric,
+antisymmetric, and/or transitive.
+
+9.3 Representing Relations 627
+
+9. How many nonzero entries does the matrix representing
+the relation R on A = {1, 2, 3, … , 100} consisting of the
+ﬁrst 100 positive integers have if R is
+a) {(a, b) ∣ a > b}?
+b) {(a, b) ∣ a ≠ b}?
+c) {(a, b) ∣ a = b + 1}?
+d) {(a, b) ∣ a = 1}?
+e) {(a, b) ∣ ab = 1}?
+10. How many nonzero entries does the matrix representing
+the relation R on A = {1, 2, 3, … , 1000} consisting of the
+ﬁrst 1000 positive integers have if R is
+a) {(a, b) ∣ a ≤ b}?
+b) {(a, b) ∣ a = b ± 1}?
+c) {(a, b) ∣ a + b = 1000}?
+d) {(a, b) ∣ a + b ≤ 1001}?
+e) {(a, b) ∣ a ≠ 0}?
+11. How can the matrix for R, the complement of the
+relation R, be found from the matrix representing R,
+when R is a relation on a ﬁnite set A?
+12. How can the matrix for R−1 , the inverse of the
+relation R, be found from the matrix representing R,
+when R is a relation on a ﬁnite set A?
+13. Let R be the relation represented by the matrix
+⎡0
+MR = ⎢1
+⎢1
+⎣
+
+1
+1
+0
+
+1⎤
+0⎥ .
+1⎥⎦
+
+19. Draw the directed graphs representing each of the relations from Exercise 2.
+20. Draw the directed graph representing each of the relations from Exercise 3.
+21. Draw the directed graph representing each of the relations from Exercise 4.
+22. Draw the directed graph that represents the relation
+{(a, a), (a, b), (b, c), (c, b), (c, d), (d, a), (d, b)}.
+In Exercises 23–28 list the ordered pairs in the relations represented by the directed graphs.
+23.
+24.
+a
+
+a
+
+c
+
+b
+
+b
+
+25.
+a
+
+b
+
+c
+
+d
+
+27.
+
+a
+
+b
+
+c
+
+d
+
+28.
+a
+
+b
+
+Find the matrix representing
+R−1 .
+
+c
+
+26.
+
+a
+
+b
+
+c
+
+d
+
+R2 .
+
+a)
+b) R.
+c)
+14. Let R1 and R2 be relations on a set A represented by the
+matrices
+⎡0 1 0⎤
+MR1 = ⎢1 1 1⎥
+⎢1 0 0⎥
+⎦
+⎣
+
+⎡0
+and MR2 = ⎢0
+⎢1
+⎣
+
+1
+1
+1
+
+0⎤
+1⎥ .
+1⎥⎦
+
+Find the matrices that represent
+a) R1 ∪ R2 .
+b) R1 ∩ R2 .
+c) R2 ◦ R1 .
+d) R1 ◦ R1 .
+e) R1 ⊕ R2 .
+15. Let R be the relation represented by the matrix
+⎡0
+MR = ⎢0
+⎢1
+⎣
+
+1
+0
+1
+
+0⎤
+1⎥ .
+0⎥⎦
+
+Find the matrices that represent
+a) R2 .
+b) R3 .
+c) R4 .
+16. Let R be a relation on a set A with n elements. If there
+are k nonzero entries in MR , the matrix representing R,
+how many nonzero entries are there in MR−1 , the matrix
+representing R−1 , the inverse of R?
+17. Let R be a relation on a set A with n elements. If there
+are k nonzero entries in MR , the matrix representing R,
+how many nonzero entries are there in MR , the matrix
+representing R, the complement of R?
+18. Draw the directed graphs representing each of the relations from Exercise 1.
+
+c
+
+d
+
+29. How can the directed graph of a relation R on a ﬁnite
+set A be used to determine whether a relation is asymmetric?
+30. How can the directed graph of a relation R on a ﬁnite
+set A be used to determine whether a relation is irreﬂexive?
+31. Determine whether the relations represented by the directed graphs shown in Exercises 23–25 are reﬂexive, irreﬂexive, symmetric, antisymmetric, and/or transitive.
+32. Determine whether the relations represented by the directed graphs shown in Exercises 26–28 are reﬂexive, irreﬂexive, symmetric, antisymmetric, asymmetric, and/or
+transitive.
+33. Let R be a relation on a set A. Explain how to use the directed graph representing R to obtain the directed graph
+representing the inverse relation R−1 .
+34. Let R be a relation on a set A. Explain how to use the directed graph representing R to obtain the directed graph
+representing the complementary relation R.
+35. Show that if MR is the matrix representing the relation R,
+then M[n]
+is the matrix representing the relation Rn .
+R
+36. Given the directed graphs representing two relations,
+how can the directed graph of the union, intersection,
+symmetric diﬀerence, diﬀerence, and composition of
+these relations be found?
+
+

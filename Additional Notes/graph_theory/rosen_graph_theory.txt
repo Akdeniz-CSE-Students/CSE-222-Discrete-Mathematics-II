@@ -1,0 +1,4214 @@
+5.3 Recursive Deﬁnitions and Structural Induction
+
+377
+
+If we let n(T) denote the number of vertices in a full binary tree, we observe that n(T) satisﬁes
+the following recursive formula:
+BASIS STEP: The number of vertices n(T) of the full binary tree T consisting of only a root r
+is n(T) = 1.
+RECURSIVE STEP: If T1 and T2 are full binary trees, then the number of vertices of the full
+binary tree T = T1 ⋅ T2 is n(T) = 1 + n(T1 ) + n(T2 ).
+We now show how structural induction can be used to prove a result about full binary trees.
+
+THEOREM 2
+
+If T is a full binary tree T, then n(T) ≤ 2h(T)+1 − 1.
+
+Proof: We prove this inequality using structural induction.
+BASIS STEP: For the full binary tree consisting of just the root r the result is true because
+n(T) = 1 and h(T) = 0, so that n(T) = 1 ≤ 20+1 − 1 = 1.
+RECURSIVE STEP: For the inductive hypothesis we assume that n(T1 ) ≤ 2h(T1 )+1 − 1 and
+n(T2 ) ≤ 2h(T2 )+1 − 1 whenever T1 and T2 are full binary trees. By the recursive formulae for
+n(T) and h(T) we have n(T) = 1 + n(T1 ) + n(T2 ) and h(T) = 1 + max(h(T1 ), h(T2 )).
+We ﬁnd that
+n(T) = 1 + n(T1 ) + n(T2 )
+
+by the recursive formula for n(T)
+
+IH
+
+≤ 1 + (2h(T1 )+1 − 1) + (2h(T2 )+1 − 1)
+
+by the inductive hypothesis
+
+≤ 2 ⋅ max(2
+
+= 2 ⋅ 2max(h(T1 ),h(T2 ))+1 − 1
+
+because the sum of two terms is at most 2
+times the larger
+because max(2x , 2y ) = 2max(x,y)
+
+= 2 ⋅ 2h(T) − 1
+
+by the recursive deﬁnition of h(T)
+
+h(T1 )+1
+
+,2
+
+h(T2 )+1
+
+)−1
+
+= 2h(T)+1 − 1.
+This completes the recursive step.
+
+5.3.5 Generalized Induction
+We can extend mathematical induction to prove results about other sets that have the wellordering property besides the set of integers. Although we will discuss this concept in detail in
+Section 9.6, we provide an example here to illustrate the usefulness of such an approach.
+As an example, note that we can deﬁne an ordering on N × N, the ordered pairs of nonnegative integers, by specifying that (x1 , y1 ) is less than or equal to (x2 , y2 ) if either x1 < x2 ,
+or x1 = x2 and y1 < y2 ; this is called the lexicographic ordering. The set N × N with this
+ordering has the property that every subset of N × N has a least element (see Exercise 53
+in Section 9.6). This implies that we can recursively deﬁne the terms am,n , with m ∈ N and
+n ∈ N, and prove results about them using a variant of mathematical induction, as illustrated in
+Example 13.
+
+378
+
+5 / Induction and Recursion
+
+EXAMPLE 13
+
+Suppose that am,n is deﬁned recursively for (m, n) ∈ N × N by a0,0 = 0 and
+{
+am−1,n + 1 if n = 0 and m > 0
+am,n =
+am,n−1 + n if n > 0.
+Show that am,n = m + n(n + 1)∕2 for all (m, n) ∈ N × N, that is, for all pairs of nonnegative
+integers.
+Solution: We can prove that am,n = m + n(n + 1)∕2 using a generalized version of mathematical
+induction. The basis step requires that we show that this formula is valid when (m, n) = (0, 0).
+The induction step requires that we show that if the formula holds for all pairs smaller than
+(m, n) in the lexicographic ordering of N × N, then it also holds for (m, n).
+BASIS STEP: Let (m, n) = (0, 0). Then by the basis case of the recursive deﬁnition of am,n we
+have a0,0 = 0. Furthermore, when m = n = 0, m + n(n + 1)∕2 = 0 + (0 ⋅ 1)∕2 = 0. This completes the basis step.
+INDUCTIVE STEP: Suppose that am′ ,n′ = m′ + n′ (n′ + 1)∕2 whenever (m′, n′ ) is less than
+(m, n) in the lexicographic ordering of N × N. By the recursive deﬁnition, if n = 0,
+then am,n = am−1,n + 1. Because (m − 1, n) is smaller than (m, n), the inductive hypothesis tells us that am−1,n = m − 1 + n(n + 1)∕2, so that am,n = m − 1 + n(n + 1)∕2 + 1 = m +
+n(n + 1)∕2, giving us the desired equality. Now suppose that n > 0, so am,n = am,n−1 + n.
+Because (m, n − 1) is smaller than (m, n), the inductive hypothesis tells us that am,n−1 = m +
+(n − 1)n∕2, so am,n = m + (n − 1)n∕2 + n = m + (n2 − n + 2n)∕2 = m + n(n + 1)∕2. This ﬁn◂
+ishes the inductive step.
+As mentioned, we will justify this proof technique in Section 9.6.
+
+Exercises
+1. Find f (1), f (2), f (3), and f (4) if f (n) is deﬁned recursively
+by f (0) = 1 and for n = 0, 1, 2, …
+a) f (n + 1) = f (n) + 2.
+b) f (n + 1) = 3f (n).
+c) f (n + 1) = 2f (n) .
+d) f (n + 1) = f (n)2 + f (n) + 1.
+2. Find f (1), f (2), f (3), f (4), and f (5) if f (n) is deﬁned recursively by f (0) = 3 and for n = 0, 1, 2, …
+a) f (n + 1) = −2f (n).
+b) f (n + 1) = 3f (n) + 7.
+c) f (n + 1) = f (n)2 − 2f (n) − 2.
+d) f (n + 1) = 3f (n)∕3 .
+3. Find f (2), f (3), f (4), and f (5) if f is deﬁned recursively
+by f (0) = −1, f (1) = 2, and for n = 1, 2, …
+a) f (n + 1) = f (n) + 3f (n − 1).
+b) f (n + 1) = f (n)2 f (n − 1).
+c) f (n + 1) = 3f (n)2 − 4f (n − 1)2 .
+d) f (n + 1) = f (n − 1)∕f (n).
+4. Find f (2), f (3), f (4), and f (5) if f is deﬁned recursively
+by f (0) = f (1) = 1 and for n = 1, 2, …
+a) f (n + 1) = f (n) − f (n − 1).
+b) f (n + 1) = f (n)f (n − 1).
+c) f (n + 1) = f (n)2 + f (n − 1)3 .
+d) f (n + 1) = f (n)∕f (n − 1).
+
+5. Determine whether each of these proposed deﬁnitions is
+a valid recursive deﬁnition of a function f from the set
+of nonnegative integers to the set of integers. If f is well
+deﬁned, ﬁnd a formula for f (n) when n is a nonnegative
+integer and prove that your formula is valid.
+a) f (0) = 0, f (n) = 2f (n − 2) for n ≥ 1
+b) f (0) = 1, f (n) = f (n − 1) − 1 for n ≥ 1
+c) f (0) = 2, f (1) = 3, f (n) = f (n − 1) − 1 for n ≥ 2
+d) f (0) = 1, f (1) = 2, f (n) = 2f (n − 2) for n ≥ 2
+e) f (0) = 1, f (n) = 3f (n − 1) if n is odd and n ≥ 1 and
+f (n) = 9f (n − 2) if n is even and n ≥ 2
+6. Determine whether each of these proposed deﬁnitions is
+a valid recursive deﬁnition of a function f from the set
+of nonnegative integers to the set of integers. If f is well
+deﬁned, ﬁnd a formula for f (n) when n is a nonnegative
+integer and prove that your formula is valid.
+a) f (0) = 1, f (n) = −f (n − 1) for n ≥ 1
+b) f (0) = 1, f (1) = 0, f (2) = 2, f (n) = 2f (n − 3)
+for n ≥ 3
+c) f (0) = 0, f (1) = 1, f (n) = 2f (n + 1) for n ≥ 2
+d) f (0) = 0, f (1) = 1, f (n) = 2f (n − 1) for n ≥ 1
+e) f (0) = 2, f (n) = f (n − 1) if n is odd and n ≥ 1 and
+f (n) = 2f (n − 2) if n ≥ 2
+
+5.3 Recursive Deﬁnitions and Structural Induction
+
+7. Give a recursive deﬁnition of the sequence {an }, n =
+1, 2, 3, … if
+a) an = 6n.
+b) an = 2n + 1.
+d) an = 5.
+c) an = 10n .
+8. Give a recursive deﬁnition of the sequence {an }, n =
+1, 2, 3, … if
+a) an = 4n − 2.
+b) an = 1 + (−1)n .
+d) an = n2 .
+c) an = n(n + 1).
+9. Let F be the function such that F(n) is the sum of the ﬁrst
+n positive integers. Give a recursive deﬁnition of F(n).
+10. Give a recursive deﬁnition of Sm (n), the sum of the integer m and the nonnegative integer n.
+11. Give a recursive deﬁnition of Pm (n), the product of the
+integer m and the nonnegative integer n.
+In Exercises 12–19 fn is the nth Fibonacci number.
+12. Prove that f 12 + f 22 + ⋯ + f n2 = fn fn+1 when n is a positive
+integer.
+13. Prove that f1 + f3 + ⋯ + f2n−1 = f2n when n is a positive
+integer.
+∗ 14. Show that fn+1 fn−1 − f 2 = (−1)n when n is a positive inn
+teger.
+∗ 15. Show that f0 f1 + f1 f2 + ⋯ + f2n−1 f2n = f 2 when n is a
+2n
+positive integer.
+∗ 16. Show that f0 − f1 + f2 − ⋯ − f2n−1 + f2n = f2n−1 − 1
+when n is a positive integer.
+17. Determine the number of divisions used by the Euclidean
+algorithm to ﬁnd the greatest common divisor of the Fibonacci numbers fn and fn+1 , where n is a nonnegative integer. Verify your answer using mathematical induction.
+18. Let
+[
+]
+1 1
+A=
+.
+1 0
+Show that
+n =
+
+A
+
+[
+
+fn+1
+fn
+
+fn
+
+]
+
+fn−1
+
+when n is a positive integer.
+19. By taking determinants of both sides of the equation in
+Exercise 18, prove the identity given in Exercise 14. (Re|a b|
+| is ad − bc.)
+call that the determinant of the matrix ||
+|
+|c d|
+∗ 20. Give a recursive deﬁnition of the functions max and min
+so that max(a1 , a2 , … , an ) and min(a1 , a2 , … , an ) are the
+maximum and minimum of the n numbers a1 , a2 , … , an ,
+respectively.
+∗ 21. Let a1 , a2 , … , an , and b1 , b2 , … , bn be real numbers. Use
+the recursive deﬁnitions that you gave in Exercise 20 to
+prove these.
+a) max(−a1 , −a2 , … , −an ) = − min(a1 , a2 , … , an )
+b) max(a1 + b1 , a2 + b2 , … , an + bn )
+≤ max(a1 , a2 , … , an ) + max(b1 , b2 , … , bn )
+c) min(a1 + b1 , a2 + b2 , … , an + bn )
+≥ min(a1 , a2 , … , an ) + min(b1 , b2 , … , bn )
+22. Show that the set S deﬁned by 1 ∈ S and s + t ∈ S whenever s ∈ S and t ∈ S is the set of positive integers.
+
+379
+
+23. Give a recursive deﬁnition of the set of positive integers
+that are multiples of 5.
+24. Give a recursive deﬁnition of
+a) the set of odd positive integers.
+b) the set of positive integer powers of 3.
+c) the set of polynomials with integer coeﬃcients.
+25. Give a recursive deﬁnition of
+a) the set of even integers.
+b) the set of positive integers congruent to 2 modulo 3.
+c) the set of positive integers not divisible by 5.
+26. Let S be the set of positive integers deﬁned by
+Basis step: 1 ∈ S.
+Recursive step: If n ∈ S, then 3n + 2 ∈ S and n2 ∈ S.
+a) Show that if n ∈ S, then n ≡ 1 (mod 4).
+b) Show that there exists an integer m ≡ 1 (mod 4) that
+does not belong to S.
+27. Let S be the set of positive integers deﬁned by
+Basis step: 5 ∈ S.
+Recursive step: If n ∈ S, then 3n ∈ S and n2 ∈ S.
+a) Show that if n ∈ S, then n ≡ 5 (mod 10).
+b) Show that there exists an integer m ≡ 5 (mod 10) that
+does not belong to S.
+28. Let S be the subset of the set of ordered pairs of integers
+deﬁned recursively by
+Basis step: (0, 0) ∈ S.
+Recursive step: If (a, b) ∈ S, then (a + 2, b + 3) ∈ S and
+(a + 3, b + 2) ∈ S.
+a) List the elements of S produced by the ﬁrst ﬁve applications of the recursive deﬁnition.
+b) Use strong induction on the number of applications
+of the recursive step of the deﬁnition to show that
+5 | a + b when (a, b) ∈ S.
+c) Use structural induction to show that 5 | a + b when
+(a, b) ∈ S.
+29. Let S be the subset of the set of ordered pairs of integers
+deﬁned recursively by
+Basis step: (0, 0) ∈ S.
+Recursive step:
+If (a, b) ∈ S, then (a, b + 1) ∈ S,
+(a + 1, b + 1) ∈ S, and (a + 2, b + 1) ∈ S.
+a) List the elements of S produced by the ﬁrst four applications of the recursive deﬁnition.
+b) Use strong induction on the number of applications of
+the recursive step of the deﬁnition to show that a ≤ 2b
+whenever (a, b) ∈ S.
+c) Use structural induction to show that a ≤ 2b whenever (a, b) ∈ S.
+30. Give a recursive definition of each of these sets of ordered
+pairs of positive integers. [Hint: Plot the points in the set in
+the plane and look for lines containing points in the set.]
+a) S = {(a, b) | a ∈ Z+ , b ∈ Z+ , and a + b is odd}
+b) S = {(a, b) | a ∈ Z+ , b ∈ Z+ , and a | b}
+c) S = {(a, b) | a ∈ Z+ , b ∈ Z+ , and 3 | a + b}
+31. Give a recursive deﬁnition of each of these sets of ordered pairs of positive integers. Use structural induction
+
+380
+
+5 / Induction and Recursion
+
+The set of leaves and the set of internal vertices of a full binary tree can be deﬁned recursively.
+
+to prove that the recursive deﬁnition you found is correct.
+[Hint: To ﬁnd a recursive deﬁnition, plot the points in the
+set in the plane and look for patterns.]
+a) S = {(a, b) | a ∈ Z+ , b ∈ Z+ , and a + b is even}
+b) S = {(a, b) | a ∈ Z+ , b ∈ Z+ , and a or b is odd}
+c) S = {(a, b) | a ∈ Z+ , b ∈ Z+ , a + b is odd, and 3 | b}
+32. Prove that in a bit string, the string 01 occurs at most one
+more time than the string 10.
+
+Basis step: The root r is a leaf of the full binary tree with
+exactly one vertex r. This tree has no internal vertices.
+Recursive step: The set of leaves of the tree T = T1 ⋅ T2 is
+the union of the sets of leaves of T1 and of T2 . The internal vertices of T are the root r of T and the union of the
+set of internal vertices of T1 and the set of internal vertices
+of T2 .
+46. Use structural induction to show that l(T), the number
+of leaves of a full binary tree T, is 1 more than i(T), the
+number of internal vertices of T.
+47. Use generalized induction as was done in Example 13 to
+show that if am,n is deﬁned recursively by a0,0 = 0 and
+{
+am−1,n + 1 if n = 0 and m > 0
+am,n =
+am,n−1 + 1 if n > 0,
+
+33. Deﬁne well-formed formulae of sets, variables representing sets, and operators from { , ∪, ∩, −}.
+34. a) Give a recursive deﬁnition of the function ones(s),
+which counts the number of ones in a bit string s.
+b) Use structural induction to prove that ones(st) =
+ones(s) + ones(t).
+35. a) Give a recursive deﬁnition of the function m(s), which
+equals the smallest digit in a nonempty string of decimal digits.
+b) Use structural induction to prove that m(st) =
+min(m(s), m(t)).
+The reversal of a string is the string consisting of the symbols
+of the string in reverse order. The reversal of the string w is
+denoted by wR .
+
+then am,n = m + n for all (m, n) ∈ N × N.
+48. Use generalized induction as was done in Example 13 to
+show that if am,n is deﬁned recursively by a1,1 = 5 and
+{
+am−1,n + 2 if n = 1 and m > 1
+am,n =
+am,n−1 + 2 if n > 1,
+then am,n = 2(m + n) + 1 for all (m, n) ∈ Z+ × Z+ .
+∗ 49. A partition of a positive integer n is a way to write n as
+a sum of positive integers where the order of terms in the
+sum does not matter. For instance, 7 = 3 + 2 + 1 + 1 is a
+partition of 7. Let Pm equal the number of diﬀerent partitions of m, and let Pm,n be the number of diﬀerent ways to
+express m as the sum of positive integers not exceeding n.
+a) Show that Pm,m = Pm .
+b) Show that the following recursive deﬁnition for Pm,n
+is correct:
+if m = 1
+⎧1
+⎪1
+if n = 1
+⎪
+Pm,n = ⎨Pm,m
+if m < n
+⎪1 + P
+if m = n > 1
+m,m−1
+⎪
+⎩Pm,n−1 + Pm−n,n if m > n > 1.
+
+36. Find the reversal of the following bit strings.
+a) 0101
+b) 1 1011
+c) 1000 1001 0111
+37. Give a recursive deﬁnition of the reversal of a string.
+[Hint: First deﬁne the reversal of the empty string. Then
+write a string w of length n + 1 as xy, where x is a string
+of length n, and express the reversal of w in terms of xR
+and y.]
+∗ 38. Use structural induction to prove that (w1 w2 )R = wR wR .
+2
+
+1
+
+39. Give a recursive deﬁnition of wi , where w is a string and i
+is a nonnegative integer. (Here wi represents the concatenation of i copies of the string w.)
+∗ 40. Give a recursive deﬁnition of the set of bit strings that are
+palindromes.
+41. When does a string belong to the set A of bit strings deﬁned recursively by
+𝜆∈A
+0x1 ∈ A if x ∈ A,
+where 𝜆 is the empty string?
+∗ 42. Recursively deﬁne the set of bit strings that have more
+zeros than ones.
+43. Use Exercise 39 and mathematical induction to show that
+l(wi ) = i ⋅ l(w), where w is a string and i is a nonnegative
+integer.
+∗ 44. Show that (wR )i = (wi )R whenever w is a string and i is
+a nonnegative integer; that is, show that the ith power of
+the reversal of a string is the reversal of the ith power of
+the string.
+45. Use structural induction to show that n(T) ≥ 2h(T) + 1,
+where T is a full binary tree, n(T) equals the number of
+vertices of T, and h(T) is the height of T.
+
+Links
+
+c) Find the number of partitions of 5 and of 6 using this
+recursive deﬁnition.
+Consider the following inductive deﬁnition of a version
+of Ackermann’s function. This function was named after
+Wilhelm Ackermann, a German mathematician who was a
+student of the great mathematician David Hilbert. Ackermann’s function plays an important role in the theory of recursive functions and in the study of the complexity of certain
+algorithms involving set unions. (There are several diﬀerent
+variants of this function. All are called Ackermann’s function
+and have similar properties even though their values do not
+always agree.)
+if m = 0
+⎧2n
+⎪
+if m ≥ 1 and n = 0
+⎪0
+A(m, n) = ⎨
+if m ≥ 1 and n = 1
+⎪2
+⎪A(m − 1, A(m, n − 1)) if m ≥ 1 and n ≥ 2
+⎩
+
+5.4 Recursive Algorithms 381
+
+Exercises 50–57 involve this version of Ackermann’s function.
+50. Find these values of Ackermann’s function.
+a) A(1, 0)
+b) A(0, 1)
+c) A(1, 1)
+d) A(2, 2)
+51. Show that A(m, 2) = 4 whenever m ≥ 1.
+52. Show that A(1, n) = 2n whenever n ≥ 1.
+53. Find these values of Ackermann’s function.
+a) A(2, 3)
+*b) A(3, 3)
+∗ 54. Find A(3, 4).
+∗∗ 55. Prove that A(m, n + 1) > A(m, n) whenever m and n are
+nonnegative integers.
+∗ 56. Prove that A(m + 1, n) ≥ A(m, n) whenever m and n are
+nonnegative integers.
+57. Prove that A(i, j) ≥ j whenever i and j are nonnegative integers.
+58. Use mathematical induction to prove that a function F deﬁned by specifying F(0) and a rule for obtaining F(n + 1)
+from F(n) is well deﬁned.
+59. Use strong induction to prove that a function F deﬁned by
+specifying F(0) and a rule for obtaining F(n + 1) from
+the values F(k) for k = 0, 1, 2, … , n is well deﬁned.
+60. Show that each of these proposed recursive deﬁnitions of
+a function on the set of positive integers does not produce
+a well-deﬁned function.
+a) F(n) = 1 + F(⌊n∕2⌋) for n ≥ 1 and F(1) = 1.
+b) F(n) = 1 + F(n − 3) for n ≥ 2, F(1) = 2, and
+F(2) = 3.
+c) F(n) = 1 + F(n∕2) for n ≥ 2, F(1) = 1, and F(2) = 2.
+d) F(n) = 1 + F(n∕2) if n is even and n ≥ 2, F(n) = 1 −
+F(n − 1) if n is odd, and F(1) = 1.
+e) F(n) = 1 + F(n∕2) if n is even and n ≥ 2, F(n) =
+F(3n − 1) if n is odd and n ≥ 3, and F(1) = 1.
+61. Show that each of these proposed recursive deﬁnitions of
+a function on the set of positive integers does not produce
+a well-deﬁned function.
+a) F(n) = 1 + F(⌊(n + 1)∕2⌋)
+for
+n≥1
+and
+F(1) = 1.
+b) F(n) = 1 + F(n − 2) for n ≥ 2 and F(1) = 0.
+c) F(n) = 1 + F(n∕3) for n ≥ 3, F(1) = 1, F(2) = 2, and
+F(3) = 3.
+d) F(n) = 1 + F(n∕2) if n is even and n ≥ 2, F(n) = 1 +
+F(n − 2) if n is odd, and F(1) = 1.
+e) F(n) = 1 + F(F(n − 1)) if n ≥ 2 and F(1) = 2.
+
+5.4
+
+Exercises 62–64 deal with iterations of the logarithm function. Let log n denote the logarithm of n to the base 2, as usual.
+The function log(k) n is deﬁned recursively by
+⎧n
+if k = 0
+⎪
+(k−1)
+⎪
+log(log
+n)
+if log(k−1) n is deﬁned
+log(k) n = ⎨
+and positive
+⎪
+⎪undeﬁned
+otherwise.
+⎩
+The iterated logarithm is the function log∗ n whose value at n
+is the smallest nonnegative integer k such that log(k) n ≤ 1.
+62. Find these values.
+a) log(2) 16
+
+b) log(3) 256
+65536
+
+c) log(3) 265536
+d) log(4) 22
+∗
+63. Find the value of log n for these values of n.
+a) 2
+b) 4
+c) 8
+d) 16
+e) 256
+f) 65536
+g) 22048
+64. Find the largest integer n such that log∗ n = 5. Determine
+the number of decimal digits in this number.
+Exercises 65–67 deal with values of iterated functions. Suppose that f (n) is a function from the set of real numbers, or
+positive real numbers, or some other set of real numbers, to
+the set of real numbers such that f (n) is monotonically increasing [that is, f (n) < f (m) when n < m) and f (n) < n for all n in
+the domain of f .] The function f (k) (n) is deﬁned recursively by
+{
+n
+if k = 0
+(k)
+f (n) =
+(k−1) (n)) if k > 0.
+f(f
+Furthermore, let c be a positive real number. The iterated
+function f c∗ is the number of iterations of f required to reduce
+its argument to c or less, so f c∗ (n) is the smallest nonnegative
+integer k such that f k (n) ≤ c.
+65. Let f (n) = n − a, where a is a positive integer. Find a formula for f (k) (n). What is the value of f 0∗ (n) when n is a
+positive integer?
+66. Let f (n) = n∕2. Find a formula for f (k) (n). What is the
+value of f 1∗ (n) when n is a positive integer?
+√
+67. Let f (n) = n. Find a formula for f (k) (n). What is the
+value of f 2∗ (n) when n is a positive integer?
+
+Recursive Algorithms
+5.4.1 Introduction
+
+Here’s a famous
+humorous quote: “To
+understand recursion,
+you must ﬁrst
+understand recursion.”
+
+Sometimes we can reduce the solution to a problem with a particular set of input values to the
+solution of the same problem with smaller input values. For instance, the problem of ﬁnding
+the greatest common divisor of two positive integers a and b, where b > a, can be reduced
+to ﬁnding the greatest common divisor of a pair of smaller integers, namely, b mod a and a,
+because gcd(b mod a, a) = gcd(a, b).
+When such a reduction can be done, the solution to the original problem can be found with
+a sequence of reductions, until the problem has been reduced to some initial case for which the
+
+382
+
+5 / Induction and Recursion
+
+solution is known. For instance, for ﬁnding the greatest common divisor, the reduction continues
+until the smaller of the two numbers is zero, because gcd(a, 0) = a when a > 0.
+We will see that algorithms that successively reduce a problem to the same problem with
+smaller input are used to solve a wide variety of problems.
+
+Deﬁnition 1
+Links
+
+EXAMPLE 1
+Extra
+Examples
+
+An algorithm is called recursive if it solves a problem by reducing it to an instance of the
+same problem with smaller input.
+We will describe a variety of diﬀerent recursive algorithms in this section.
+Give a recursive algorithm for computing n!, where n is a nonnegative integer.
+Solution: We can build a recursive algorithm that ﬁnds n!, where n is a nonnegative integer,
+based on the recursive deﬁnition of n!, which speciﬁes that n! = n ⋅ (n − 1)! when n is a positive
+integer, and that 0! = 1. To ﬁnd n! for a particular integer n, we use the recursive step n times,
+each time replacing a value of the factorial function with the value of the factorial function at
+the next smaller integer. At this last step, we insert the value of 0!. The recursive algorithm we
+obtain is displayed as Algorithm 1.
+To help understand how this algorithm works, we trace the steps used by the algorithm
+to compute 4!. First, we use the recursive step to write 4! = 4 ⋅ 3!. We then use the recursive
+step repeatedly to write 3! = 3 ⋅ 2!, 2! = 2 ⋅ 1!, and 1! = 1 ⋅ 0!. Inserting the value of 0! = 1,
+and working back through the steps, we see that 1! = 1 ⋅ 1 = 1, 2! = 2 ⋅ 1! = 2, 3! = 3 ⋅ 2! =
+◂
+3 ⋅ 2 = 6, and 4! = 4 ⋅ 3! = 4 ⋅ 6 = 24.
+
+ALGORITHM 1 A Recursive Algorithm for Computing n!.
+
+procedure factorial(n: nonnegative integer)
+if n = 0 then return 1
+else return n ⋅ factorial(n − 1)
+{output is n!}
+
+Example 2 shows how a recursive algorithm can be constructed to evaluate a function from its
+recursive deﬁnition.
+
+EXAMPLE 2
+
+Give a recursive algorithm for computing an , where a is a nonzero real number and n is a
+nonnegative integer.
+Solution: We can base a recursive algorithm on the recursive deﬁnition of an . This deﬁnition
+states that an+1 = a ⋅ an for n > 0 and the initial condition a0 = 1. To ﬁnd an , successively use
+the recursive step to reduce the exponent until it becomes zero. We give this procedure in
+◂
+Algorithm 2.
+
+ALGORITHM 2 A Recursive Algorithm for Computing an .
+
+procedure power(a: nonzero real number, n: nonnegative integer)
+if n = 0 then return 1
+else return a ⋅ power(a, n − 1)
+{output is an }
+
+5.4 Recursive Algorithms 383
+
+Next we give a recursive algorithm for ﬁnding greatest common divisors.
+
+EXAMPLE 3
+
+Give a recursive algorithm for computing the greatest common divisor of two nonnegative integers a and b with a < b.
+Solution: We can base a recursive algorithm on the reduction gcd(a, b) = gcd(b mod a, a) and
+the condition gcd(0, b) = b when b > 0. This produces the procedure in Algorithm 3, which is
+a recursive version of the Euclidean algorithm.
+We illustrate the workings of Algorithm 3 with a trace when the input is a = 5, b = 8.
+With this input, the algorithm uses the “else” clause to ﬁnd that gcd(5, 8) = gcd(8 mod 5, 5) =
+gcd(3, 5). It uses this clause again to ﬁnd that gcd(3, 5) = gcd(5 mod 3, 3) = gcd(2, 3), then
+to get gcd(2, 3) = gcd(3 mod 2, 2) = gcd(1, 2), then to get gcd(1, 2) = gcd(2 mod 1, 1) =
+gcd(0, 1). Finally, to ﬁnd gcd(0, 1) it uses the ﬁrst step with a = 0 to ﬁnd that gcd(0, 1) = 1.
+◂
+Consequently, the algorithm ﬁnds that gcd(5, 8) = 1.
+
+ALGORITHM 3 A Recursive Algorithm for Computing 𝐠𝐜𝐝(a, b).
+
+procedure gcd(a, b: nonnegative integers with a < b)
+if a = 0 then return b
+else return gcd(b mod a, a)
+{output is gcd(a, b)}
+
+EXAMPLE 4
+
+Devise a recursive algorithm for computing bn mod m, where b, n, and m are integers with
+m ≥ 2, n ≥ 0, and 1 ≤ b < m.
+Solution: We can base a recursive algorithm on the fact that
+bn mod m = (b ⋅ (bn−1 mod m)) mod m,
+which follows by Corollary 2 in Section 4.1, and the initial condition b0 mod m = 1. We leave
+this as Exercise 12 for the reader.
+However, we can devise a much more eﬃcient recursive algorithm based on the observation
+that
+bn mod m = (bn∕2 mod m)2 mod m
+when n is even and
+(
+)
+bn mod m = (b⌊n∕2⌋ mod m)2 mod m ⋅ b mod m mod m
+when n is odd, which we describe in pseudocode as Algorithm 4.
+We trace the execution of Algorithm 4 with input b = 2, n = 5, and m = 3 to illustrate how
+it works. First, because n = 5 is odd we use the “else” clause to see that mpower(2, 5, 3) =
+(mpower(2, 2, 3)2 mod 3 ⋅ 2 mod 3) mod 3. We next use the “else if” clause to see that
+mpower(2, 2, 3) = mpower(2, 1, 3)2 mod 3. Using the “else” clause again, we see that
+mpower(2, 1, 3) = (mpower(2, 0, 3)2 mod 3 ⋅ 2 mod 3) mod 3. Finally, using the “if” clause,
+we see that mpower(2, 0, 3) = 1. Working backwards, it follows that mpower(2, 1, 3) =
+(12 mod 3 ⋅ 2 mod 3) mod 3 = 2, so mpower(2, 2, 3) = 22 mod 3 = 1, and ﬁnally
+◂
+mpower(2, 5, 3) = (12 mod 3 ⋅ 2 mod 3) mod 3 = 2.
+
+384
+
+5 / Induction and Recursion
+
+ALGORITHM 4 Recursive Modular Exponentiation.
+
+procedure mpower(b, n, m: integers with b > 0 and m ≥ 2, n ≥ 0)
+if n = 0 then
+return 1
+else if n is even then
+return mpower(b, n∕2, m)2 mod m
+else
+return (mpower(b, ⌊n∕2⌋, m)2 mod m ⋅ b mod m) mod m
+{output is bn mod m}
+
+We will now give recursive versions of searching algorithms that were introduced in Section 3.1.
+
+EXAMPLE 5
+
+Express the linear search algorithm as a recursive procedure.
+Solution: To search for the ﬁrst occurrence of x in the sequence a1 , a2 , … , an , at the ith step of
+the algorithm, x and ai are compared. If x equals ai , then the algorithm returns i, the location of
+x in the sequence. Otherwise, the search for the ﬁrst occurrence of x is reduced to a search in
+a sequence with one fewer element, namely, the sequence ai+1 , … , an . The algorithm returns 0
+when x is never found in the sequence after all terms have been examined. We can now give a
+recursive procedure, which is displayed as pseudocode in Algorithm 5.
+Let search (i, j, x) be the procedure that searches for the ﬁrst occurrence of x in the sequence
+ai , ai+1 , … , aj . The input to the procedure consists of the triple (1, n, x). The algorithm terminates
+at a step if the ﬁrst term of the remaining sequence is x or if there is only one term of the sequence
+and this is not x. If x is not the ﬁrst term and there are additional terms, the same procedure is
+carried out but with a search sequence of one fewer term, obtained by deleting the ﬁrst term
+of the search sequence. If the algorithm terminates without x having been found, the algorithm
+◂
+returns the value 0.
+
+ALGORITHM 5 A Recursive Linear Search Algorithm.
+
+procedure search(i, j, x: integers, 1 ≤ i ≤ j ≤ n)
+if ai = x then
+return i
+else if i = j then
+return 0
+else
+return search(i + 1, j, x)
+{output is the location of x in a1 , a2 , … , an if it appears; otherwise it is 0}
+
+EXAMPLE 6
+
+Construct a recursive version of a binary search algorithm.
+Solution: Suppose we want to locate x in the sequence a1 , a2 , … , an of integers in increasing
+order. To perform a binary search, we begin by comparing x with the middle term, a⌊(n+1)∕2⌋ .
+Our algorithm will terminate if x equals this term and return the location of this term in the
+sequence. Otherwise, we reduce the search to a smaller search sequence, namely, the ﬁrst half
+of the sequence if x is smaller than the middle term of the original sequence, and the second
+
+5.4 Recursive Algorithms 385
+
+half otherwise. We have reduced the solution of the search problem to the solution of the same
+problem with a sequence at most half as long. If we have never encountered the search term x,
+our algorithm returns the value 0. We express this recursive version of a binary search algorithm
+◂
+as Algorithm 6.
+
+ALGORITHM 6 A Recursive Binary Search Algorithm.
+
+procedure binary search(i, j, x: integers, 1 ≤ i ≤ j ≤ n)
+m := ⌊(i + j)∕2⌋
+if x = am then
+return m
+else if (x < am and i < m) then
+return binary search(i, m − 1, x)
+else if (x > am and j > m) then
+return binary search(m + 1, j, x)
+else return 0
+{output is location of x in a1 , a2 , … , an if it appears; otherwise it is 0}
+
+5.4.2 Proving Recursive Algorithms Correct
+Mathematical induction, and its variant strong induction, can be used to prove that a recursive
+algorithm is correct, that is, that it produces the desired output for all possible input values.
+Examples 7 and 8 illustrate how mathematical induction or strong induction can be used to
+prove that recursive algorithms are correct. First, we will show that Algorithm 2 is correct.
+
+EXAMPLE 7
+
+Prove that Algorithm 2, which computes powers of real numbers, is correct.
+Solution: We use mathematical induction on the exponent n.
+BASIS STEP: If n = 0, the ﬁrst step of the algorithm tells us that power (a, 0) = 1. This is correct
+because a0 = 1 for every nonzero real number a. This completes the basis step.
+INDUCTIVE STEP: The inductive hypothesis is the statement that power (a, k) = ak for all
+a ≠ 0 for an arbitrary nonnegative integer k. That is, the inductive hypothesis is the statement
+that the algorithm correctly computes ak . To complete the inductive step, we show that if the
+inductive hypothesis is true, then the algorithm correctly computes ak+1 . Because k + 1 is a
+positive integer, when the algorithm computes ak+1 , the algorithm sets power (a, k + 1) =
+a⋅ power (a, k). By the inductive hypothesis, we have power (a, k) = ak , so power (a, k + 1) =
+a ⋅ power (a, k) = a ⋅ ak = ak+1 . This completes the inductive step.
+We have completed the basis step and the inductive step, so we can conclude that Algorithm
+◂
+2 always computes an correctly when a ≠ 0 and n is a nonnegative integer.
+Generally, we need to use strong induction to prove that recursive algorithms are correct,
+rather than just mathematical induction. Example 8 illustrates this; it shows how strong induction can be used to prove that Algorithm 4 is correct.
+
+EXAMPLE 8
+
+Prove that Algorithm 4, which computes modular powers, is correct.
+Solution: We use strong induction on the exponent n.
+
+386
+
+5 / Induction and Recursion
+
+BASIS STEP: Let b be an integer and m an integer with m ≥ 2. When n = 0, the algorithm sets
+mpower(b, n, m) equal to 1. This is correct because b0 mod m = 1. The basis step is complete.
+INDUCTIVE STEP: For the inductive hypothesis we assume that mpower(b, j, m) = bj mod m
+for all integers 0 ≤ j < k whenever b is a positive integer and m is an integer with m ≥ 2.
+To complete the inductive step, we show that if the inductive hypothesis is correct, then
+mpower(b, k, m) = bk mod m. Because the recursive algorithm handles odd and even values
+of k diﬀerently, we split the inductive step into two cases.
+When k is even, we have
+mpower(b, k, m) = (mpower(b, k∕2, m))2 mod m = (bk∕2 mod m)2 mod m = bk mod m,
+where we have used the inductive hypothesis to replace mpower(b, k∕2, m) by bk∕2 mod m.
+When k is odd, we have
+mpower(b, k, m) = ((mpower(b, ⌊k∕2⌋, m))2 mod m ⋅ b mod m) mod m
+= ((b⌊k∕2⌋ mod m)2 mod m ⋅ b mod m) mod m
+= b2⌊k∕2⌋+1 mod m = bk mod m,
+using Corollary 2 in Section 4.1, because 2⌊k∕2⌋ + 1 = 2(k − 1)∕2 + 1 = k when k is odd. Here
+we have used the inductive hypothesis to replace mpower(b, ⌊k∕2⌋, m) by b⌊k∕2⌋ mod m. This
+completes the inductive step.
+We have completed the basis step and the inductive step, so by strong induction we know
+◂
+that Algorithm 4 is correct.
+
+5.4.3 Recursion and Iteration
+A recursive deﬁnition expresses the value of a function at a positive integer in terms of the values of the function at smaller integers. This means that we can devise a recursive algorithm to
+evaluate a recursively deﬁned function at a positive integer. Instead of successively reducing
+the computation to the evaluation of the function at smaller integers, we can start with the value
+of the function at one or more integers, the base cases, and successively apply the recursive
+deﬁnition to ﬁnd the values of the function at successive larger integers. Such a procedure is
+called iterative. Often an iterative approach for the evaluation of a recursively deﬁned sequence
+requires much less computation than a procedure using recursion (unless special-purpose recursive machines are used). This is illustrated by the iterative and recursive procedures for ﬁnding
+the nth Fibonacci number. The recursive procedure is given ﬁrst.
+
+ALGORITHM 7 A Recursive Algorithm for Fibonacci Numbers.
+
+procedure ﬁbonacci(n: nonnegative integer)
+if n = 0 then return 0
+else if n = 1 then return 1
+else return ﬁbonacci(n − 1) + ﬁbonacci(n − 2)
+{output is ﬁbonacci(n)}
+
+When we use a recursive procedure to ﬁnd fn , we ﬁrst express fn as fn−1 + fn−2 . Then we replace
+both of these Fibonacci numbers by the sum of two previous Fibonacci numbers, and so on.
+When f1 or f0 arises, it is replaced by its value.
+
+5.4 Recursive Algorithms 387
+
+f4
+
+f3
+
+f2
+f1
+
+f2
+
+f1
+
+f1
+
+f0
+
+f0
+
+FIGURE 1
+
+Evaluating f4 recursively.
+
+Note that at each stage of the recursion, until f1 or f0 is obtained, the number of Fibonacci
+numbers to be evaluated has doubled. For instance, when we ﬁnd f4 using this recursive algorithm, we must carry out all the computations illustrated in the tree diagram in Figure 1. This
+tree consists of a root labeled with f4 , and branches from the root to vertices labeled with the
+two Fibonacci numbers f3 and f2 that occur in the reduction of the computation of f4 . Each subsequent reduction produces two branches in the tree. This branching ends when f0 and f1 are
+reached. The reader can verify that this algorithm requires fn+1 − 1 additions to ﬁnd fn .
+Now consider the amount of computation required to ﬁnd fn using the iterative approach in
+Algorithm 8.
+
+ALGORITHM 8 An Iterative Algorithm for Computing Fibonacci Numbers.
+
+procedure iterative ﬁbonacci(n: nonnegative integer)
+if n = 0 then return 0
+else
+x := 0
+y := 1
+for i := 1 to n − 1
+z := x + y
+x := y
+y := z
+return y
+{output is the nth Fibonacci number}
+
+This procedure initializes x as f0 = 0 and y as f1 = 1. When the loop is traversed, the sum of x
+and y is assigned to the auxiliary variable z. Then x is assigned the value of y and y is assigned
+the value of the auxiliary variable z. Therefore, after going through the loop the ﬁrst time, it
+follows that x equals f1 and y equals f0 + f1 = f2 . Furthermore, after going through the loop
+n − 1 times, x equals fn−1 and y equals fn (the reader should verify this statement). Only n − 1
+additions have been used to ﬁnd fn with this iterative approach when n > 1. Consequently, this
+algorithm requires far less computation than does the recursive algorithm.
+We have shown that a recursive algorithm may require far more computation than an iterative one when a recursively deﬁned function is evaluated. It is sometimes preferable to use a
+recursive procedure even if it is less eﬃcient than the iterative procedure. In particular, this is
+true when the recursive approach is easily implemented and the iterative approach is not. (Also,
+machines designed to handle recursion may be available that eliminate the advantage of using
+iteration.)
+
+388
+
+5 / Induction and Recursion
+8 2 4 6 9 7 10 1 5 3
+
+8 2 4 6 9
+
+8 2 4
+
+8 2
+
+7 10 1 5 3
+
+6 9
+
+4
+
+7 10 1
+
+9
+
+6
+
+7 10
+
+8
+
+2
+
+7
+
+10
+
+8
+
+2
+
+7
+
+10
+
+2 8
+
+4
+
+6
+
+9
+
+2 4 8
+
+6 9
+
+2 4 6 8 9
+
+7 10
+
+5 3
+
+1
+
+5
+
+3
+
+1
+
+5
+
+3
+
+1 7 10
+
+3 5
+
+1 3 5 7 10
+
+1 2 3 4 5 6 7 8 9 10
+
+FIGURE 2
+
+The merge sort of 8, 2, 4, 6, 9, 7, 10, 1, 5, 3.
+
+5.4.4 The Merge Sort
+Links
+
+EXAMPLE 9
+
+We now describe a recursive sorting algorithm called the merge sort algorithm. We will demonstrate how the merge sort algorithm works with an example before describing it in generality.
+Use the merge sort to put the terms of the list 8, 2, 4, 6, 9, 7, 10, 1, 5, 3 in increasing order.
+Solution: A merge sort begins by splitting the list into individual elements by successively splitting lists in two. The progression of sublists for this example is represented with the balanced
+binary tree of height 4 shown in the upper half of Figure 2.
+Sorting is done by successively merging pairs of lists. At the ﬁrst stage, pairs of individual
+elements are merged into lists of length two in increasing order. Then successive merges of
+pairs of lists are performed until the entire list is put into increasing order. The succession of
+merged lists in increasing order is represented by the balanced binary tree of height 4 shown in
+◂
+the lower half of Figure 2 (note that this tree is displayed “upside down”).
+
+Demo
+
+In general, a merge sort proceeds by iteratively splitting lists into two sublists of equal
+length (or where one sublist has one more element than the other) until each sublist contains one
+element. This succession of sublists can be represented by a balanced binary tree. The procedure
+continues by successively merging pairs of lists, where both lists are in increasing order, into a
+larger list with elements in increasing order, until the original list is put into increasing order.
+The succession of merged lists can be represented by a balanced binary tree.
+We can also describe the merge sort recursively. To do a merge sort, we split a list into
+two sublists of equal, or approximately equal, size, sorting each sublist using the merge sort
+
+5.4 Recursive Algorithms 389
+
+algorithm, and then merging the two lists. The recursive version of the merge sort is given in
+Algorithm 9. This algorithm uses the subroutine merge, which is described in Algorithm 10.
+
+ALGORITHM 9 A Recursive Merge Sort.
+
+procedure mergesort(L = a1 , … , an )
+if n > 1 then
+m := ⌊n∕2⌋
+L1 := a1 , a2 , … , am
+L2 := am+1 , am+2 , … , an
+L := merge(mergesort(L1 ), mergesort(L2 ))
+{L is now sorted into elements in nondecreasing order}
+
+An eﬃcient algorithm for merging two ordered lists into a larger ordered list is needed to
+implement the merge sort. We will now describe such a procedure.
+
+EXAMPLE 10
+
+Merge the two lists 2, 3, 5, 6 and 1, 4.
+Solution: Table 1 illustrates the steps we use. First, compare the smallest elements in the two
+lists, 2 and 1, respectively. Because 1 is the smaller, put it at the beginning of the merged list
+and remove it from the second list. At this stage, the ﬁrst list is 2, 3, 5, 6, the second is 4, and
+the combined list is 1.
+Next, compare 2 and 4, the smallest elements of the two lists. Because 2 is the smaller, add
+it to the combined list and remove it from the ﬁrst list. At this stage the ﬁrst list is 3, 5, 6, the
+second is 4, and the combined list is 1, 2.
+Continue by comparing 3 and 4, the smallest elements of their respective lists. Because 3
+is the smaller of these two elements, add it to the combined list and remove it from the ﬁrst list.
+At this stage the ﬁrst list is 5, 6, and the second is 4. The combined list is 1, 2, 3.
+Then compare 5 and 4, the smallest elements in the two lists. Because 4 is the smaller of
+these two elements, add it to the combined list and remove it from the second list. At this stage
+the ﬁrst list is 5, 6, the second list is empty, and the combined list is 1, 2, 3, 4.
+Finally, because the second list is empty, all elements of the ﬁrst list can be appended to
+the end of the combined list in the order they occur in the ﬁrst list. This produces the ordered
+◂
+list 1, 2, 3, 4, 5, 6.
+We will now consider the general problem of merging two ordered lists L1 and L2 into an
+ordered list L. We will describe an algorithm for solving this problem. Start with an empty
+list L. Compare the smallest elements of the two lists. Put the smaller of these two elements
+
+TABLE 1 Merging the Two Sorted Lists 2, 3, 5, 6 and 1, 4.
+First List
+
+Second List
+
+2356
+2356
+356
+56
+56
+
+14
+4
+4
+4
+
+Merged List
+
+1
+12
+123
+1234
+123456
+
+Comparison
+1<2
+2<4
+3<4
+4<5
+
+390
+
+5 / Induction and Recursion
+
+at the right end of L, and remove it from the list it was in. Next, if one of L1 and L2 is empty,
+append the other (nonempty) list to L, which completes the merging. If neither L1 nor L2 is
+empty, repeat this process. Algorithm 10 gives a pseudocode description of this procedure.
+We will need estimates for the number of comparisons used to merge two ordered lists in
+the analysis of the merge sort. We can easily obtain such an estimate for Algorithm 10. Each
+time a comparison of an element from L1 and an element from L2 is made, an additional element
+is added to the merged list L. However, when either L1 or L2 is empty, no more comparisons
+are needed. Hence, Algorithm 10 is least eﬃcient when m + n − 2 comparisons are carried out,
+where m and n are the number of elements in L1 and L2 , respectively, leaving one element in
+each of L1 and L2 . The next comparison will be the last one needed, because it will make one
+of these lists empty. Hence, Algorithm 10 uses no more than m + n − 1 comparisons. Lemma 1
+summarizes this estimate.
+
+ALGORITHM 10 Merging Two Lists.
+
+procedure merge(L1 , L2 : sorted lists)
+L := empty list
+while L1 and L2 are both nonempty
+remove smaller of ﬁrst elements of L1 and L2 from its list; put it at the right end of L
+if this removal makes one list empty then remove all elements from the other list and
+append them to L
+return L{L is the merged list with elements in increasing order}
+
+LEMMA 1
+
+Two sorted lists with m elements and n elements can be merged into a sorted list using no
+more than m + n − 1 comparisons.
+Sometimes two sorted lists of length m and n can be merged using far fewer than m +
+n − 1 comparisons. For instance, when m = 1, a binary search procedure can be applied to put
+the one element in the ﬁrst list into the second list. This requires only ⌈log n⌉ comparisons,
+which is much smaller than m + n − 1 = n, for m = 1. On the other hand, for some values of m
+and n, Lemma 1 gives the best possible bound. That is, there are lists with m and n elements
+that cannot be merged using fewer than m + n − 1 comparisons. (See Exercise 47.)
+We can now analyze the complexity of the merge sort. Instead of studying the general
+problem, we will assume that n, the number of elements in the list, is a power of 2, say 2m . This
+will make the analysis less complicated, but when this is not the case, various modiﬁcations can
+be applied that will yield the same estimate.
+At the ﬁrst stage of the splitting procedure, the list is split into two sublists, of 2m−1 elements
+each, at level 1 of the tree generated by the splitting. This process continues, splitting the two
+sublists with 2m−1 elements into four sublists of 2m−2 elements each at level 2, and so on. In
+general, there are 2k−1 lists at level k − 1, each with 2m−k+1 elements. These lists at level k − 1
+are split into 2k lists at level k, each with 2m−k elements. At the end of this process, we have 2m
+lists each with one element at level m.
+We start merging by combining pairs of the 2m lists of one element into 2m−1 lists, at level
+m − 1, each with two elements. To do this, 2m−1 pairs of lists with one element each are merged.
+The merger of each pair requires exactly one comparison.
+The procedure continues, so that at level k (k = m, m − 1, m − 2, … , 3, 2, 1), 2k lists each
+with 2m−k elements are merged into 2k−1 lists, each with 2m−k+1 elements, at level k − 1. To do
+this a total of 2k−1 mergers of two lists, each with 2m−k elements, are needed. But, by Lemma 1,
+
+5.4 Recursive Algorithms 391
+
+each of these mergers can be carried out using at most 2m−k + 2m−k − 1 = 2m−k+1 − 1 comparisons. Hence, going from level k to k − 1 can be accomplished using at most 2k−1 (2m−k+1 − 1)
+comparisons.
+Summing all these estimates shows that the number of comparisons required for the merge
+sort is at most
+m
+∑
+k=1
+
+2k−1 (2m−k+1 − 1) =
+
+m
+∑
+
+2m −
+
+k=1
+
+m
+∑
+
+2k−1 = m2m − (2m − 1) = n log n − n + 1,
+
+k=1
+
+∑
+m
+because m = log n and n = 2m . (We evaluated m
+k = 1 2 by noting that it is the sum of m identical
+∑
+m
+m
+k−1
+terms, each equal to 2 . We evaluated k = 1 2 using the formula for the sum of the terms of
+a geometric progression from Theorem 1 of Section 2.4.)
+Theorem 1 summarizes what we have discovered about the worst-case complexity of the
+merge sort algorithm.
+
+THEOREM 1
+
+The number of comparisons needed to merge sort a list with n elements is O(n log n).
+
+In Chapter 11 we will show that the fastest comparison-based sorting algorithm have
+O(n log n) time complexity. (A comparison-based sorting algorithm has the comparison of two
+elements as its basic operation.) Theorem 1 tells us that the merge sort achieves this best possible big-O estimate for the complexity of a sorting algorithm. We describe another eﬃcient
+algorithm, the quick sort, in the preamble to Exercise 50.
+
+Exercises
+1. Trace Algorithm 1 when it is given n = 5 as input. That
+is, show all steps used by Algorithm 1 to ﬁnd 5!, as is
+done in Example 1 to ﬁnd 4!.
+2. Trace Algorithm 1 when it is given n = 6 as input. That
+is, show all steps used by Algorithm 1 to ﬁnd 6!, as is
+done in Example 1 to ﬁnd 4!.
+3. Trace Algorithm 3 when it ﬁnds gcd(8, 13). That is, show
+all the steps used by Algorithm 3 to ﬁnd gcd(8, 13).
+4. Trace Algorithm 3 when it ﬁnds gcd(12, 17). That
+is, show all the steps used by Algorithm 3 to ﬁnd
+gcd(12, 17).
+5. Trace Algorithm 4 when it is given m = 5, n = 11, and
+b = 3 as input. That is, show all the steps Algorithm 4
+uses to ﬁnd 311 mod 5.
+6. Trace Algorithm 4 when it is given m = 7, n = 10, and
+b = 2 as input. That is, show all the steps Algorithm 4
+uses to ﬁnd 210 mod 7.
+7. Give a recursive algorithm for computing nx whenever n
+is a positive integer and x is an integer, using just addition.
+8. Give a recursive algorithm for ﬁnding the sum of the
+ﬁrst n positive integers.
+9. Give a recursive algorithm for ﬁnding the sum of the
+ﬁrst n odd positive integers.
+
+10. Give a recursive algorithm for ﬁnding the maximum of a
+ﬁnite set of integers, making use of the fact that the maximum of n integers is the larger of the last integer in the
+list and the maximum of the ﬁrst n − 1 integers in the list.
+11. Give a recursive algorithm for ﬁnding the minimum of a
+ﬁnite set of integers, making use of the fact that the minimum of n integers is the smaller of the last integer in the
+list and the minimum of the ﬁrst n − 1 integers in the list.
+12. Devise a recursive algorithm for ﬁnding xn mod m whenever n, x, and m are positive integers based on the fact that
+xn mod m = (xn−1 mod m ⋅ x mod m) mod m.
+13. Give a recursive algorithm for ﬁnding n! mod m whenever n and m are positive integers.
+14. Give a recursive algorithm for ﬁnding a mode of a list of
+integers. (A mode is an element in the list that occurs at
+least as often as every other element.)
+15. Devise a recursive algorithm for computing the greatest
+common divisor of two nonnegative integers a and b with
+a < b using the fact that gcd(a, b) = gcd(a, b − a).
+16. Prove that the recursive algorithm for ﬁnding the sum of
+the ﬁrst n positive integers you found in Exercise 8 is
+correct.
+
+392
+
+5 / Induction and Recursion
+
+38. Give a recursive algorithm for ﬁnding the string wi , the
+17. Describe a recursive algorithm for multiplying two nonnegative integers x and y based on the fact that xy = 2(x ⋅
+concatenation of i copies of w, when w is a bit string.
+(y∕2)) when y is even and xy = 2(x ⋅ ⌊y∕2⌋) + x when y
+39. Prove that the recursive algorithm for ﬁnding the reversal
+is odd, together with the initial condition xy = 0 when
+of a bit string that you gave in Exercise 37 is correct.
+y = 0.
+40. Prove that the recursive algorithm for ﬁnding the concate18. Prove that Algorithm 1 for computing n! when n is a nonnation of i copies of a bit string that you gave in Exercise
+negative integer is correct.
+38 is correct.
+19. Prove that Algorithm 3 for computing gcd(a, b) when a
+∗ 41. Give a recursive algorithm for tiling a 2n × 2n checkerand b are positive integers with a < b is correct.
+board with one square missing using right triominoes.
+20. Prove that the algorithm you devised in Exercise 17 is
+42. Give a recursive algorithm for triangulating a simple
+correct.
+polygon with n sides, using Lemma 1 in Section 5.2.
+21. Prove that the recursive algorithm that you found in Ex43.
+Give a recursive algorithm for computing values of the
+ercise 7 is correct.
+Ackermann function. [Hint: See the preamble to Exer22. Prove that the recursive algorithm that you found in Excise 48 in Section 5.3.]
+ercise 10 is correct.
+44.
+Use a merge sort to sort 4, 3, 2, 5, 1, 8, 7, 6 into increasing
+23. Devise a recursive algorithm for computing n2 where n
+order. Show all the steps used by the algorithm.
+2
+is a nonnegative integer, using the fact that (n + 1) =
+2
+45.
+Use a merge sort to sort b, d, a, f, g, h, z, p, o, k into aln + 2n + 1. Then prove that this algorithm is correct.
+phabetic
+order. Show all the steps used by the algorithm.
+2n , where a is a real
+24. Devise a recursive algorithm to ﬁnd a
+46.
+How
+many
+comparisons are required to merge these pairs
+number and n is a positive integer. [Hint: Use the equaln+1
+n 2
+2
+2
+of
+lists
+using
+Algorithm 10?
+ity a
+= (a ) .]
+a)
+1,
+3,
+5,
+7,
+9; 2, 4, 6, 8, 10
+25. How does the number of multiplications used by the alb) 1, 2, 3, 4, 5; 6, 7, 8, 9, 10
+gorithm in Exercise 24 compare to the number of multin
+plications used by Algorithm 2 to evaluate a2 ?
+c) 1, 5, 6, 7, 8; 2, 3, 4, 9, 10
+∗ 26. Use the algorithm in Exercise 24 to devise an algo47. Show that for all positive integers m and n there are sorted
+rithm for evaluating an when n is a nonnegative integer.
+lists with m elements and n elements, respectively, such
+[Hint: Use the binary expansion of n.]
+that Algorithm 10 uses m + n − 1 comparisons to merge
+∗ 27. How does the number of multiplications used by the althem into one sorted list.
+∗ 48. What is the least number of comparisons needed to merge
+gorithm in Exercise 26 compare to the number of multiplications used by Algorithm 2 to evaluate an ?
+any two lists in increasing order into one list in increasing
+order when the number of elements in the two lists are
+28. How many additions are used by the recursive and iterative algorithms given in Algorithms 7 and 8, respectively,
+a) 1, 4?
+b) 2, 4?
+c) 3, 4?
+d) 4, 4?
+to ﬁnd the Fibonacci number f7 ?
+∗ 49. Prove that the merge sort algorithm is correct.
+29. Devise a recursive algorithm to ﬁnd the nth term of the
+The quick sort
+is an eﬃcient algorithm. To sort
+sequence deﬁned by a0 = 1, a1 = 2, and an = an−1 ⋅ an−2 ,
+Links
+a
+,
+a
+,
+…
+,
+a
+,
+this
+algorithm
+begins by taking the ﬁrst ele1
+2
+n
+for n = 2, 3, 4, … .
+ment
+a
+and
+forming
+two
+sublists,
+the ﬁrst containing those
+1
+30. Devise an iterative algorithm to ﬁnd the nth term of the
+elements that are less than a1 , in the order they arise, and the
+sequence deﬁned in Exercise 29.
+second containing those elements greater than a1 , in the or31. Is the recursive or the iterative algorithm for ﬁnding the
+der they arise. Then a1 is put at the end of the ﬁrst sublist.
+sequence in Exercise 29 more eﬃcient?
+This procedure is repeated recursively for each sublist, until
+32. Devise a recursive algorithm to ﬁnd the nth term of the
+all sublists contain one item. The ordered list of n items is
+sequence deﬁned by a0 = 1, a1 = 2, a2 = 3, and an =
+obtained by combining the sublists of one item in the order
+an−1 + an−2 + an−3 , for n = 3, 4, 5, … .
+they occur.
+33. Devise an iterative algorithm to ﬁnd the nth term of the
+50. Sort 3, 5, 7, 8, 1, 9, 2, 4, 6 using the quick sort.
+sequence deﬁned in Exercise 32.
+51. Let a1 , a2 , … , an be a list of n distinct real numbers. How
+34. Is the recursive or the iterative algorithm for ﬁnding the
+many comparisons are needed to form two sublists from
+sequence in Exercise 32 more eﬃcient?
+this list, the ﬁrst containing elements less than a1 and the
+35. Give iterative and recursive algorithms for ﬁnding the nth
+second containing elements greater than a1 ?
+term of the sequence deﬁned by a0 = 1, a1 = 3, a2 = 5,
+52. Describe the quick sort algorithm using pseudocode.
+and an = an−1 ⋅ a2n−2 ⋅ a3n−3 . Which is more eﬃcient?
+53. What is the largest number of comparisons needed to or36. Give a recursive algorithm to ﬁnd the number of partider a list of four elements using the quick sort algorithm?
+tions of a positive integer based on the recursive deﬁni54. What is the least number of comparisons needed to order
+tion given in Exercise 49 in Section 5.3.
+a list of four elements using the quick sort algorithm?
+37. Give a recursive algorithm for ﬁnding the reversal of a bit
+55. Determine the worst-case complexity of the quick sort
+string. (See the deﬁnition of the reversal of a bit string in
+algorithm in terms of the number of comparisons used.
+the preamble of Exercise 36 in Section 5.3.)
+
+5.5 Program Correctness 393
+
+5.5
+
+Program Correctness
+5.5.1 Introduction
+Suppose that we have designed an algorithm to solve a problem and have written a program
+to implement it. How can we be sure that the program always produces the correct answer?
+After all the bugs have been removed so that the syntax is correct, we can test the program with
+sample input. It is not correct if an incorrect result is produced for any sample input. But even if
+the program gives the correct answer for all sample input, it may not always produce the correct
+answer (unless all possible input has been tested). We need a proof to show that the program
+always gives the correct output.
+Program veriﬁcation, the proof of correctness of programs, uses the rules of inference and
+proof techniques described in this chapter, including mathematical induction. Because an incorrect program can lead to disastrous results, a large amount of methodology has been constructed
+for verifying programs. Eﬀorts have been devoted to automating program veriﬁcation so that it
+can be carried out using a computer. However, only limited progress has been made toward this
+goal. Indeed, some mathematicians and theoretical computer scientists argue that it will never
+be realistic to mechanize the proof of correctness of complex programs.
+Some of the concepts and methods used to prove that programs are correct will be introduced in this section. Many diﬀerent methods have been devised for proving that programs are
+correct. We will discuss a widely used method for program veriﬁcation introduced by Tony
+Hoare in this section; several other methods are also commonly used. Furthermore, we will not
+develop a complete methodology for program veriﬁcation in this book. This section is meant to
+be a brief introduction to the area of program veriﬁcation, which ties together the rules of logic,
+proof techniques, and the concept of an algorithm.
+
+5.5.2 Program Veriﬁcation
+A program is said to be correct if it produces the correct output for every possible input. A
+proof that a program is correct consists of two parts. The ﬁrst part shows that the correct answer
+is obtained if the program terminates. This part of the proof establishes the partial correctness
+of the program. The second part of the proof shows that the program always terminates.
+To specify what it means for a program to produce the correct output, two propositions
+are used. The ﬁrst is the initial assertion, which gives the properties that the input values must
+have. The second is the ﬁnal assertion, which gives the properties that the output of the program
+should have, if the program did what was intended. The appropriate initial and ﬁnal assertions
+must be provided when a program is checked.
+
+Deﬁnition 1
+
+Links
+
+A program, or program segment, S is said to be partially correct with respect to the
+initial assertion p and the ﬁnal assertion q if whenever p is true for the input values
+of S and S terminates, then q is true for the output values of S. The notation p{S}q indicates that the program, or program segment, S is partially correct with respect to the initial
+assertion p and the ﬁnal assertion q.
+Note: The notation p{S}q is known as a Hoare triple. Tony Hoare introduced the concept of
+partial correctness.
+Note that the notion of partial correctness has nothing to do with whether a program terminates; it focuses only on whether the program does what it is expected to do if it terminates.
+A simple example illustrates the concepts of initial and ﬁnal assertions.
+
+394
+
+5 / Induction and Recursion
+
+EXAMPLE 1
+
+Extra
+Examples
+
+Show that the program segment
+y := 2
+z := x + y
+is correct with respect to the initial assertion p: x = 1 and the ﬁnal assertion q: z = 3.
+Solution: Suppose that p is true, so that x = 1 as the program begins. Then y is assigned the
+value 2, and z is assigned the sum of the values of x and y, which is 3. Hence, S is correct with
+◂
+respect to the initial assertion p and the ﬁnal assertion q. Thus, p{S}q is true.
+
+5.5.3 Rules of Inference
+A useful rule of inference proves that a program is correct by splitting the program into a sequence of subprograms and then showing that each subprogram is correct.
+Suppose that the program S is split into subprograms S1 and S2 . Write S = S1 ; S2 to indicate
+that S is made up of S1 followed by S2 . Suppose that the correctness of S1 with respect to the
+initial assertion p and ﬁnal assertion q, and the correctness of S2 with respect to the initial
+assertion q and the ﬁnal assertion r, have been established. It follows that if p is true and S1 is
+executed and terminates, then q is true; and if q is true, and S2 executes and terminates, then r
+is true. Thus, if p is true and S = S1 ; S2 is executed and terminates, then r is true. This rule of
+inference, called the composition rule, can be stated as
+p{S1 }q
+q{S2 }r
+∴ p{S1 ; S2 }r.
+This rule of inference will be used later in this section.
+Next, some rules of inference for program segments involving conditional statements and
+loops will be given. Because programs can be split into segments for proofs of correctness, this
+will let us verify many diﬀerent programs.
+
+5.5.4 Conditional Statements
+First, rules of inference for conditional statements will be given. Suppose that a program
+segment has the form
+if condition then
+S
+where S is a block of statements. Then S is executed if condition is true, and it is not executed
+when condition is false. To verify that this segment is correct with respect to the initial assertion p and ﬁnal assertion q, two things must be done. First, it must be shown that when p is true
+and condition is also true, then q is true after S terminates. Second, it must be shown that when
+p is true and condition is false, then q is true (because in this case S does not execute).
+This leads to the following rule of inference:
+(p ∧ condition){S}q
+(p ∧ ¬condition) → q
+∴ p{if condition then S}q.
+
+5.5 Program Correctness 395
+
+Example 2 illustrates how this rule of inference is used.
+
+EXAMPLE 2
+
+Verify that the program segment
+
+if x > y then
+y := x
+is correct with respect to the initial assertion T and the ﬁnal assertion y ≥ x.
+Solution: When the initial assertion is true and x > y, the assignment y := x is carried out.
+Hence, the ﬁnal assertion, which asserts that y ≥ x, is true in this case. Moreover, when the
+initial assertion is true and x > y is false, so that x ≤ y, the ﬁnal assertion is again true. Hence,
+using the rule of inference for program segments of this type, this program is correct with respect
+◂
+to the given initial and ﬁnal assertions.
+Similarly, suppose that a program has a statement of the form
+
+if condition then
+S1
+else
+S2
+If condition is true, then S1 executes; if condition is false, then S2 executes. To verify that this
+program segment is correct with respect to the initial assertion p and the ﬁnal assertion q, two
+things must be done. First, it must be shown that when p is true and condition is true, then q
+is true after S1 terminates. Second, it must be shown that when p is true and condition is false,
+then q is true after S2 terminates. This leads to the following rule of inference:
+(p ∧ condition){S1 }q
+(p ∧ ¬condition){S2 }q
+∴ p{if condition then S1 else S2 }q.
+Links
+C. ANTHONY R. HOARE (BORN 1934) Tony Hoare was born in Colombo, Ceylon (now known as Sri
+Lanka), where his father was a civil servant of the British Empire and his mother’s father owned a plantation.
+He spent his early childhood in Ceylon, moving to England in 1945. Hoare studied philosophy, together with
+the classics, at the University of Oxford, where he became interested in computing as a result of his fascination
+with the power of mathematical logic and the certainty of mathematical truth. He received his bachelors degree
+from Oxford in 1956.
+Hoare learned Russian during his service in the Royal Navy, and later studied the computer translation of natural languages at Moscow State University. He returned to England in 1960, taking a job at a
+small computer manufacturer, where he wrote a compiler for the programming language Algol. In 1968,
+Courtesy of Tony Hoare
+he became Professor of Computing Science at the Queen’s University, Belfast; in 1977, he moved to the
+University of Oxford as Professor of Computing; he is now Professor Emeritus. He is a Fellow of the Royal Society and also holds a
+position at Microsoft Research in Cambridge.
+Hoare has made many contributions to the theory of programming languages and to programming methodology. He was ﬁrst
+to deﬁne a programming language based on how programs could be proved correct with respect to their speciﬁcations. Hoare also
+invented quick sort, one of the most commonly used sorting algorithms (see the preamble to Exercise 50 in Section 5.4). He received
+the ACM Turing Award in 1980 and in 2000 he was knighted for services to education and computer science. Hoare is a noted writer
+in the technical and social aspects of computer science.
+
+396
+
+5 / Induction and Recursion
+
+Example 3 illustrates how this rule of inference is used.
+
+EXAMPLE 3
+
+Verify that the program segment
+if x < 0 then
+abs := −x
+else
+abs := x
+is correct with respect to the initial assertion T and the ﬁnal assertion abs = |x|.
+Solution: Two things must be demonstrated. First, it must be shown that if the initial assertion
+is true and x < 0, then abs = |x|. This is correct, because when x < 0 the assignment statement
+abs := −x sets abs = −x, which is |x| by deﬁnition when x < 0. Second, it must be shown that
+if the initial assertion is true and x < 0 is false, so that x ≥ 0, then abs = |x|. This is also correct, because in this case the program uses the assignment statement abs := x, and x is |x| by
+deﬁnition when x ≥ 0, so abs := x. Hence, using the rule of inference for program segments of
+◂
+this type, this segment is correct with respect to the given initial and ﬁnal assertions.
+
+5.5.5 Loop Invariants
+Links
+
+Next, proofs of correctness of while loops will be described. To develop a rule of inference for
+program segments of the type
+while condition
+S
+
+note that S is repeatedly executed until condition becomes false. An assertion that remains true
+each time S is executed must be chosen. Such an assertion is called a loop invariant. In other
+words, p is a loop invariant if (p ∧ condition){S}p is true.
+Suppose that p is a loop invariant. It follows that if p is true before the program segment is
+executed, p and ¬condition are true after termination, if it occurs. This rule of inference is
+(p ∧ condition){S}p
+∴ p{while condition S}(¬ condition ∧ p).
+The use of a loop invariant is illustrated in Example 4.
+
+EXAMPLE 4
+Extra
+Examples
+
+A loop invariant is needed to verify that the program segment
+i := 1
+factorial := 1
+while i < n
+i := i + 1
+factorial := factorial ⋅ i
+terminates with factorial = n! when n is a positive integer.
+
+5.5 Program Correctness 397
+
+Let p be the assertion “factorial = i! and i ≤ n.” We ﬁrst prove that p is a loop invariant.
+Suppose that, at the beginning of one execution of the while loop, p is true and the condition of
+the while loop holds; in other words, assume that factorial = i! and that i < n. The new values
+inew and factorialnew of i and factorial are inew = i + 1 and factorialnew = factorial ⋅ (i + 1) =
+(i + 1)! = inew !. Because i < n, we also have inew = i + 1 ≤ n. Thus, p is true at the end of the
+execution of the loop. This shows that p is a loop invariant.
+Now we consider the program segment. Just before entering the loop, i = 1 ≤ n and
+factorial = 1 = 1! = i! both hold, so p is true. Because p is a loop invariant, the rule of inference just introduced implied that if the while loop terminates, it terminates with p true and
+with i < n false. In this case, at the end, factorial = i! and i ≤ n are true, but i < n is false; in
+other words, i = n and factorial = i! = n!, as desired.
+Finally, we need to check that the while loop actually terminates. At the beginning of the
+program i is assigned the value 1, so after n − 1 traversals of the loop, the new value of i will
+◂
+be n, and the loop terminates at that point.
+
+A ﬁnal example will be given to show how the various rules of inference can be used to
+verify the correctness of a longer program.
+
+EXAMPLE 5
+
+We will outline how to verify the correctness of the program S for computing the product of
+two integers.
+procedure multiply(m, n: integers)
+{
+S1
+{
+S2
+
+if n < 0 then a := −n
+else a := n
+k := 0
+x := 0
+
+⎧while k < a
+⎪
+S3 ⎨ x := x + m
+⎪ k := k + 1
+⎩
+{
+if n < 0 then product := −x
+S4
+else product := x
+return product
+{product equals mn}
+
+The goal is to prove that after S is executed, product has the value mn. The proof of correctness
+can be carried out by splitting S into four segments, with S = S1 ; S2 ; S3 ; S4 , as shown in the
+listing of S. The rule of composition can be used to build the correctness proof. Here is how the
+argument proceeds. The details will be left as an exercise for the reader.
+Let p be the initial assertion “m and n are integers.” Then, it can be shown that p{S1 }q is true,
+when q is the proposition p ∧ (a = |n|). Next, let r be the proposition q ∧ (k = 0) ∧ (x = 0). It is
+easily veriﬁed that q{S2 }r is true. It can be shown that “x = mk and k ≤ a” is an invariant for the
+loop in S3 . Furthermore, it is easy to see that the loop terminates after a iterations, with k = a,
+so x = ma at this point. Because r implies that x = m ⋅ 0 and 0 ≤ a, the loop invariant is true
+before the loop is entered. Because the loop terminates with k = a, it follows that r{S3 }s is true,
+where s is the proposition “x = ma and a = |n|.” Finally, it can be shown that S4 is correct with
+respect to the initial assertion s and ﬁnal assertion t, where t is the proposition “product = mn.”
+
+398
+
+5 / Induction and Recursion
+
+Putting all this together, because p{S1 }q, q{S2 }r, r{S3 }s, and s{S4 }t are all true, it follows from the rule of composition that p{S}t is true. Furthermore, because all four segments
+◂
+terminate, S does terminate. This veriﬁes the correctness of the program.
+
+Exercises
+1. Prove that the program segment
+y := 1
+z := x + y
+is correct with respect to the initial assertion x = 0 and
+the ﬁnal assertion z = 1.
+2. Verify that the program segment
+if x < 0 then x := 0
+is correct with respect to the initial assertion T and the
+ﬁnal assertion x ≥ 0.
+3. Verify that the program segment
+x := 2
+z := x + y
+if y > 0 then
+z := z + 1
+else
+z := 0
+is correct with respect to the initial assertion y = 3 and
+the ﬁnal assertion z = 6.
+4. Verify that the program segment
+if x < y then
+min := x
+else
+min := y
+is correct with respect to the initial assertion T and the
+ﬁnal assertion (x ≤ y ∧ min = x) ∨ (x > y ∧ min = y).
+∗ 5. Devise a rule of inference for veriﬁcation of partial correctness of statements of the form
+if condition 1 then
+S1
+else if condition 2 then
+S2
+⋮
+else
+Sn
+where S1 , S2 , … , Sn are blocks.
+6. Use the rule of inference developed in Exercise 5 to verify that the program
+
+if x < 0 then
+y := −2|x|∕x
+else if x > 0 then
+y := 2|x|∕x
+else if x = 0 then
+y := 2
+is correct with respect to the initial assertion T and the
+ﬁnal assertion y = 2.
+7. Use a loop invariant to prove that the following program
+segment for computing the nth power, where n is a positive integer, of a real number x is correct.
+power := 1
+i := 1
+while i ≤ n
+power := power ∗ x
+i := i + 1
+∗ 8. Prove that the iterative program for ﬁnding fn given in
+Section 5.4 is correct.
+9. Provide all the details in the proof of correctness given in
+Example 5.
+10. Suppose that both the conditional statement p0 → p1 and
+the program assertion p1 {S}q are true. Show that p0 {S}q
+also must be true.
+11. Suppose that both the program assertion p{S}q0 and the
+conditional statement q0 → q1 are true. Show that p{S}q1
+also must be true.
+12. This program computes quotients and remainders.
+r := a
+q := 0
+while r ≥ d
+r := r − d
+q := q + 1
+Verify that it is partially correct with respect to the initial assertion “a and d are positive integers” and the ﬁnal
+assertion “q and r are integers such that a = dq + r and
+0 ≤ r < d.”
+13. Use a loop invariant to verify that the Euclidean algorithm (Algorithm 1 in Section 4.3) is partially correct
+with respect to the initial assertion “a and b are positive
+integers” and the ﬁnal assertion “x = gcd(a, b).”
+
+Key Terms and Results
+TERMS
+sequence: a function with domain that is a subset of the set of
+integers
+geometric progression: a sequence of the form a, ar, ar2 , … ,
+where a and r are real numbers
+
+arithmetic progression: a sequence of the form a, a + d,
+a + 2d, … , where a and d are real numbers
+the principle of mathematical induction: The statement
+∀n P(n) is true if P(1) is true and ∀k[P(k) → P(k + 1)] is
+true.
+
+Review Questions 399
+
+basis step: the proof of P(1) in a proof by mathematical induction of ∀nP(n)
+inductive step: the proof of P(k) → P(k + 1) for all positive integers k in a proof by mathematical induction of
+∀nP(n)
+strong induction: The statement ∀nP(n) is true if P(1) is true
+and ∀k[(P(1) ∧ ⋯ ∧ P(k)) → P(k + 1)] is true.
+well-ordering property: Every nonempty set of nonnegative
+integers has a least element.
+recursive deﬁnition of a function: a deﬁnition of a function
+that speciﬁes an initial set of values and a rule for obtaining
+values of this function at integers from its values at smaller
+integers
+recursive deﬁnition of a set: a deﬁnition of a set that speciﬁes
+an initial set of elements in the set and a rule for obtaining
+other elements from those in the set
+
+structural induction: a technique for proving results about recursively deﬁned sets
+recursive algorithm: an algorithm that proceeds by reducing
+a problem to the same problem with smaller input
+merge sort: a sorting algorithm that sorts a list by splitting it
+in two, sorting each of the two resulting lists, and merging
+the results into a sorted list
+iteration: a procedure based on the repeated use of operations
+in a loop
+program correctness: veriﬁcation that a procedure always
+produces the correct result
+loop invariant: a property that remains true during every
+traversal of a loop
+initial assertion: the statement specifying the properties of the
+input values of a program
+ﬁnal assertion: the statement specifying the properties the
+output values should have if the program worked correctly
+
+Review Questions
+1. a) Can you use the principle of mathematical induction
+to ﬁnd a formula for the sum of the ﬁrst n terms of a
+sequence?
+b) Can you use the principle of mathematical induction
+to determine whether a given formula for the sum of
+the ﬁrst n terms of a sequence is correct?
+c) Find a formula for the sum of the ﬁrst n even positive
+integers, and prove it using mathematical induction.
+2. a) For which positive integers n is 11n + 17 ≤ 2n ?
+b) Prove the conjecture you made in part (a) using mathematical induction.
+3. a) Which amounts of postage can be formed using only
+5-cent and 9-cent stamps?
+b) Prove the conjecture you made using mathematical induction.
+c) Prove the conjecture you made using strong induction.
+d) Find a proof of your conjecture diﬀerent from the ones
+you gave in (b) and (c).
+4. Give two diﬀerent examples of proofs that use strong induction.
+5. a) State the well-ordering property for the set of positive
+integers.
+b) Use this property to show that every positive integer greater than one can be written as the product of
+primes.
+6. a) Explain why a function f from the set of positive integers to the set of real numbers is well deﬁned if it is
+deﬁned recursively by specifying f (1) and a rule for
+ﬁnding f (n) from f (n − 1).
+b) Provide a recursive deﬁnition of the function f (n) =
+(n + 1)!.
+7. a) Give a recursive deﬁnition of the Fibonacci numbers.
+b) Show that fn > 𝛼 n−2 whenever n ≥ 3, where fn is the
+nth
+√ term of the Fibonacci sequence and 𝛼 = (1 +
+5)∕2.
+
+8. a) Explain why a sequence an is well deﬁned if it is deﬁned recursively by specifying a1 and a2 and a rule
+for ﬁnding an from a1 , a2 , … , an−1 for n = 3, 4, 5, … .
+b) Find the value of an if a1 = 1, a2 = 2, and an = an−1 +
+an−2 + ⋯ + a1 , for n = 3, 4, 5, … .
+9. Give two examples of how well-formed formulae are
+deﬁned recursively for diﬀerent sets of elements and
+operators.
+10. a) Give a recursive deﬁnition of the length of a string.
+b) Use the recursive deﬁnition from part (a) and structural induction to prove that l(xy) = l(x) + l(y).
+11. a) What is a recursive algorithm?
+b) Describe a recursive algorithm for computing the sum
+of n numbers in a sequence.
+12. Describe a recursive algorithm for computing the greatest
+common divisor of two positive integers.
+13. a) Describe the merge sort algorithm.
+b) Use the merge sort algorithm to put the list 4, 10, 1,
+5, 3, 8, 7, 2, 6, 9 in increasing order.
+c) Give a big-O estimate for the number of comparisons
+used by the merge sort.
+14. a) Does testing a computer program to see whether it
+produces the correct output for certain input values
+verify that the program always produces the correct
+output?
+b) Does showing that a computer program is partially
+correct with respect to an initial assertion and a ﬁnal
+assertion verify that the program always produces the
+correct output? If not, what else is needed?
+15. What techniques can you use to show that a long computer program is partially correct with respect to an initial
+assertion and a ﬁnal assertion?
+16. What is a loop invariant? How is a loop invariant used?
+
+400
+
+5 / Induction and Recursion
+
+Supplementary Exercises
+2
+1. Use mathematical induction to show that 23 + 29 + 27
++
+⋯ + 32n = 1 − 31n whenever n is a positive integer.
+
+2. Use mathematical induction to show that 13 + 33 + 53 +
+⋯ + (2n + 1)3 = (n + 1)2 (2n2 + 4n + 1) whenever n is a
+positive integer.
+3. Use mathematical induction to show that 1 ⋅ 20 + 2 ⋅ 21 +
+3 ⋅ 22 + ⋯ + n ⋅ 2n−1 = (n − 1) ⋅ 2n + 1 whenever n is a
+positive integer.
+4. Use mathematical induction to show that
+1
+1
+1
+n
++
++⋯+
+=
+1⋅3 3⋅5
+(2n − 1)(2n + 1) 2n + 1
+whenever n is a positive integer.
+5. Show that
+1
+1
+1
+n
++
++⋯+
+=
+1⋅4 4⋅7
+(3n − 2)(3n + 1) 3n + 1
+whenever n is a positive integer.
+6. Use mathematical induction to show that 2n > n2 + n
+whenever n is an integer greater than 4.
+7. Use mathematical induction to show that 2n > n3 whenever n is an integer greater than 9.
+8. Find an integer N such that 2n > n4 whenever n is an integer greater than N. Prove that your result is correct using
+mathematical induction.
+9. Use mathematical induction to prove that a − b is a factor
+of an − bn whenever n is a positive integer.
+10. Use mathematical induction to prove that 9 divides n3 +
+(n + 1)3 + (n + 2)3 whenever n is a nonnegative integer.
+11. Use mathematical induction to prove that 43 divides
+6n+1 + 72n−1 for every positive integer n.
+12. Use mathematical induction to prove that 64 divides
+32n+2 + 56n + 55 for every positive integer n.
+13. Use mathematical induction to prove this formula for the
+sum of the terms of an arithmetic progression.
+a + (a + d) + ⋯ + (a + nd) = (n + 1)(2a + nd)∕2
+14. Suppose that aj ≡ bj (mod m) for j = 1, 2, … , n. Use
+mathematical induction to prove that
+n
+n
+∑
+∑
+a)
+aj ≡
+bj (mod m).
+j=1
+n
+
+b)
+
+∏
+
+aj ≡
+
+j=1
+
+j=1
+n
+
+∏
+
+bj (mod m).
+
+j=1
+
+15. Show that if n is a positive integer, then
+n
+∑
+
+n(3n + 7)
+k+4
+=
+.
+k(k + 1)(k + 2) 2(n + 1)(n + 2)
+k=1
+16. For which positive integers n is n + 6 < (n2 − 8n)∕16?
+Prove your answer using mathematical induction.
+
+17. (Requires calculus) Suppose that f (x) = ex and g(x) =
+xex . Use mathematical induction together with the product rule and the fact that f ′ (x) = ex to prove that g(n) (x) =
+(x + n)ex whenever n is a positive integer.
+18. (Requires calculus) Suppose that f (x) = ex and g(x) =
+ecx , where c is a constant. Use mathematical induction
+together with the chain rule and the fact that f ′ (x) = ex to
+prove that g(n) = cn ecx whenever n is a positive integer.
+∗ 19. Formulate a conjecture about which Fibonacci numbers
+are even, and use a form of mathematical induction to
+prove your conjecture.
+∗ 20. Determine which Fibonacci numbers are divisible by 3.
+Use a form of mathematical induction to prove your conjecture.
+∗ 21. Prove that fk fn + fk+1 fn+1 = fn+k+1 for all nonnegative integers n and k, where fi denotes the ith Fibonacci number.
+Recall from Example 15 of Section 2.4 that the sequence of
+Lucas numbers is deﬁned by l0 = 2, l1 = 1, and ln = ln−1 +
+ln−2 for n = 2, 3, 4, … .
+22. Show that fn + fn+2 = ln+1 whenever n is a positive integer, where fi and li are the ith Fibonacci number and ith
+Lucas number, respectively.
+23. Show that l02 + l12 + ⋯ + ln2 = ln ln+1 + 2 whenever n is a
+nonnegative integer and li is the ith Lucas number.
+∗ 24. Use mathematical induction to show that the product of
+any n consecutive positive integers is divisible by n!.
+[Hint: Use the identity m(m + 1) ⋯ (m + n − 1)∕n! =
+(m − 1)m(m + 1) ⋯ (m + n − 2)∕n! + m(m+ 1) ⋯ (m +
+n − 2)∕(n − 1)!.]
+25. Use mathematical induction to show that (cos x +
+i sin x)n = cos nx + i sin nx whenever n is a positive integer. (Here i is the square root of −1.) [Hint: Use
+the identities cos(a + b) = cos a cos b − sin a sin b and
+sin(a + b) = sin a cos b + cos a sin b.]
+∗ 26. Use mathematical induction to show that ∑n cos jx =
+j=1
+cos[(n + 1)x∕2] sin(nx∕2)∕ sin(x∕2) whenever n is a positive integer and sin(x∕2) ≠ 0.
+∑
+27. Use mathematical induction to prove that nj=1 j2 2j =
+n2 2n+1 − n2n+2 + 3 ⋅ 2n+1 − 6 for every positive integer n.
+28. (Requires calculus) Suppose that the sequence
+x1 , x2 , …
+√, xn , … is recursively deﬁned by x1 = 0 and
+xn+1 = xn + 6.
+a) Use mathematical induction to show that x1 < x2 <
+⋯ < xn < ⋯, that is, the sequence {xn } is monotonically increasing.
+b) Use mathematical induction to prove that xn < 3 for
+n = 1, 2, … .
+c) Show that limn→∞ xn = 3.
+29. Show if n is a positive integer with n ≥ 2, then
+n
+∑
+
+(n − 1)(3n + 2)
+1
+.
+=
+2−1
+4n(n + 1)
+j
+j=2
+
+Supplementary Exercises
+
+30. Use mathematical induction to prove Theorem 1 in Section 4.2, that is, show if b is an integer, where b > 1, and
+n is a positive integer, then n can be expressed uniquely
+in the form n = ak bk + ak−1 bk−1 + ⋯ + a1 b + a0 .
+∗ 31. A lattice point in the plane is a point (x, y) where both x
+and y are integers. Use mathematical induction to show
+that at least n + 1 straight lines are needed to ensure that
+every lattice point (x, y) with x ≥ 0, y ≥ 0, and x + y ≤ n
+lies on one of these lines.
+32. (Requires calculus) Use mathematical induction and the
+product rule to show that if n is a positive integer and
+f1 (x), f2 (x), … , fn (x), are all diﬀerentiable functions, then
+(f1 (x)f2 (x) ⋯ fn (x))′
+f1 (x)f2 (x) ⋯ fn (x)
+f ′ (x) f2′ (x)
+f ′ (x)
++
++⋯+ n .
+= 1
+f1 (x) f2 (x)
+fn (x)
+33. (Requires material in Section 2.6) Suppose that B =
+MAM−1 , where A and B are n × n matrices and M is
+invertible. Show that Bk = MAk M−1 for all positive integers k. (Consult both the text of Section 2.6 and the
+preamble to Exercise 18 of Section 2.6.)
+34. Use mathematical induction to show that if you draw lines
+in the plane you only need two colors to color the regions
+formed so that no two regions that have an edge in common have a common color.
+35. Show that n! can be represented as the sum of n of its
+distinct positive divisors whenever n ≥ 3. [Hint: Use inductive loading. First try to prove this result using mathematical induction. By examining where your proof fails,
+ﬁnd a stronger statement that you can easily prove using
+mathematical induction.]
+∗ 36. Use mathematical induction to prove that if x1 , x2 , … , xn
+are positive real numbers with n ≥ 2, then
+(
+)(
+) (
+)
+1
+1
+1
+x1 +
+x2 +
+⋯ xn +
+≥
+)( x2
+) ( xn
+)(
+)
+( x1
+1
+1
+1
+1
+x2 +
+⋯ xn−1 +
+xn +
+x1 +
+x2
+x3
+xn
+x1
+37. Use mathematical induction to prove that if n people
+stand in a line, where n is a positive integer, and if the
+ﬁrst person in the line is a woman and the last person in
+line is a man, then somewhere in the line there is a woman
+directly in front of a man.
+∗ 38. Suppose that for every pair of cities in a country there is a
+direct one-way road connecting them in one direction or
+the other. Use mathematical induction to show that there
+is a city that can be reached from every other city either
+directly or via exactly one other city.
+39. Use mathematical induction to show that when n circles
+divide the plane into regions, these regions can be colored with two diﬀerent colors such that no regions with a
+common boundary are colored the same.
+∗ 40. Suppose that among a group of cars on a circular track
+there is enough fuel for one car to complete a lap. Use
+mathematical induction to show that there is a car in the
+
+401
+
+group that can complete a lap by obtaining gas from other
+cars as it travels around the track.
+41. Show that if n is a positive integer, then
+( n
+)
+n
+∑
+∑
+(2j − 1)
+1∕k = n(n + 1)∕2.
+j=1
+
+k=j
+
+42. Use mathematical induction to show that if a, b, and c
+are the lengths of the sides of a right triangle, where c
+is the length of the hypotenuse, then an + bn < cn for all
+integers n with n ≥ 3.
+∗ 43. Use mathematical induction to show that if n is a posi2
+tive integers, the sequence 2 mod n, 22 mod n, 22 mod n,
+22
+2
+2 mod n, … is eventually constant (that is, all terms
+after a ﬁnite number of terms are all the same).
+44. A unit or Egyptian fraction is a fraction of the form
+1∕n, where n is a positive integer. In this exercise, we
+will use strong induction to show that a greedy algorithm
+can be used to express every rational number p∕q with
+0 < p∕q < 1 as the sum of distinct unit fractions. At each
+step of the algorithm, we ﬁnd the smallest positive integer
+n such that 1∕n can be added to the sum without exceeding p∕q. For example, to express 5∕7 we ﬁrst start the
+sum with 1∕2. Because 5∕7 − 1∕2 = 3∕14 we add 1∕5 to
+the sum because 5 is the smallest positive integer k such
+that 1∕k < 3∕14. Because 3∕14 − 1∕5 = 1∕70, the algorithm terminates, showing that 5∕7 = 1∕2 + 1∕5 + 1∕70.
+Let T(p) be the statement that this algorithm terminates
+for all rational numbers p∕q with 0 < p∕q < 1. We will
+prove that the algorithm always terminates by showing
+that T(p) holds for all positive integers p.
+a) Show that the basis step T(1) holds.
+b) Suppose that T(k) holds for positive integers k with
+k < p. That is, assume that the algorithm terminates
+for all rational numbers k∕r, where 1 ≤ k < p. Show
+that if we start with p∕q and the fraction 1∕n is selected in the ﬁrst step of the algorithm, then p∕q =
+p′ ∕q′ + 1∕n, where p′ = np − q and q′ = nq. After
+considering the case where p∕q = 1∕n, use the inductive hypothesis to show that the greedy algorithm terminates when it begins with p′ ∕q′ and complete the
+inductive step.
+The McCarthy 91 function (deﬁned by John McCarthy, one
+of the founders of artiﬁcial intelligence) is deﬁned using the
+rule
+{
+n − 10
+if n > 100
+M(n) =
+M(M(n + 11))
+if n ≤ 100
+for all positive integers n.
+45. By successively using the deﬁning rule for M(n), ﬁnd
+a) M(102).
+b) M(101).
+c) M(99).
+d) M(97).
+e) M(87).
+f ) M(76).
+∗∗ 46. Show that the function M(n) is a well-deﬁned function
+from the set of positive integers to the set of positive integers. [Hint: Prove that M(n) = 91 for all positive integers
+n with n ≤ 101.]
+
+402
+
+5 / Induction and Recursion
+
+47. Is this proof that
+1
+1
+1
+3 1
++
++⋯+
+= − ,
+1⋅2 2⋅3
+(n − 1)n 2 n
+whenever n is a positive integer, correct? Justify your
+answer.
+Basis step: The result is true when n = 1 because
+1
+3 1
+= − .
+1⋅2 2 1
+Inductive step: Assume that the result is true for n. Then
+1
+1
+1
+1
++
++⋯+
++
+1⋅2
+2⋅3
+(n − 1)n n(n + 1)
+(
+)
+3 1
+1
+1
+= − +
+−
+2 n
+n n+1
+3
+1
+= −
+.
+2 n+1
+Hence, the result is true for n + 1 if it is true for n. This
+completes the proof.
+48. Suppose that A1 , A2 , … , An are a collection of sets. Suppose that R2 = A1 ⊕ A2 and Rk = Rk−1 ⊕ Ak for k =
+3, 4, … , n. Use mathematical induction to prove that x ∈
+Rn if and only if x belongs to an odd number of the sets
+A1 , A2 , … , An . (Recall that S ⊕ T is the symmetric difference of the sets S and T deﬁned in the preamble to
+Exercise 38 of Section 2.2.)
+∗ 49. Show that n circles divide the plane into n2 − n + 2 regions if every two circles intersect in exactly two points
+and no three circles contain a common point.
+∗ 50. Show that n planes divide three-dimensional space into
+(n3 + 5n + 6)∕6 regions if any three of these planes have
+exactly one point in common and no four contain a common point.
+√
+∗ 51. Use the well-ordering property to show that 2 is ir√
+rational. [Hint: Assume that 2 is rational.
+√ Show that
+the set of positive integers of the form b 2 has a least
+
+√
+element a. Then show that a 2 − a is a smaller positive
+integer of this form.]
+52. A set is well ordered if every nonempty subset of this
+set has a least element. Determine whether each of the
+following sets is well ordered.
+a) the set of integers
+b) the set of integers greater than −100
+c) the set of positive rationals
+d) the set of positive rationals with denominator less than
+100
+53. a) Show that if a1 , a2 , … , an are positive integers, then
+gcd(a1 , a2 , … , an−1 , an ) = gcd(a1 , a2 , … , an−2 ,
+gcd(an−1 , an )).
+b) Use part (a), together with the Euclidean algorithm,
+to develop a recursive algorithm for computing the
+greatest common divisor of a set of n positive integers.
+∗ 54. Describe a recursive algorithm for writing the greatest
+common divisor of n positive integers as a linear combination of these integers.
+55. Find an explicit formula for f (n) if f (1) = 1 and f (n) =
+f (n − 1) + 2n − 1 for n ≥ 2. Prove your result using
+mathematical induction.
+∗∗ 56. Give a recursive deﬁnition of the set of bit strings that
+contain twice as many 0s as 1s.
+57. Let S be the set of bit strings deﬁned recursively by 𝜆 ∈ S
+and 0x ∈ S, x1 ∈ S if x ∈ S, where 𝜆 is the empty string.
+a) Find all strings in S of length not exceeding ﬁve.
+b) Give an explicit description of the elements of S.
+58. Let S be the set of strings deﬁned recursively by abc ∈ S,
+bac ∈ S, and acb ∈ S, where a, b, and c are ﬁxed letters; and for all x ∈ S, abcx ∈ S; abxc ∈ S, axbc ∈ S, and
+xabc ∈ S, where x is a variable representing a string of
+letters.
+a) Find all elements of S of length eight or less.
+b) Show that every element of S has a length divisible by
+three.
+
+Links
+JOHN MCCARTHY (1927–2011) John McCarthy was born in Boston. He grew up in Boston and in Los Angeles. He studied mathematics as both an undergraduate and a graduate student, receiving his B.S. in 1948 from
+the California Institute of Technology and his Ph.D. in 1951 from Princeton. After graduating from Princeton,
+McCarthy held positions at Princeton, Stanford, Dartmouth, and M.I.T. He held a position at Stanford from 1962
+until 1994, and was an emeritus professor there. At Stanford, he was the director of the Artiﬁcial Intelligence
+Laboratory, held a named chair in the School of Engineering, and was a senior fellow at the Hoover Institution.
+McCarthy was a pioneer in the study of artiﬁcial intelligence, a term he coined in 1955. He worked
+on problems related to the reasoning and information needs required for intelligent computer behavior.
+c
+Matthew
+Naythons/The
+McCarthy was among the ﬁrst computer scientists to design time-sharing computer systems. He develLIFE Images Collection/
+oped LISP, a programming language for computing using symbolic expressions. He played an important
+Getty Images
+role in using logic to verify the correctness of computer programs. McCarthy has also worked on the social implications of computer technology. In his later years he worked on the problem of how people and
+computers make conjectures through assumptions that complications are absent from situations. McCarthy was an advocate of the
+sustainability of human progress and was optimistic about the future of humanity. In his later years he also wrote science ﬁction
+stories. Some of his last work explored the possibility that the world is a computer program written by some higher force.
+Among the awards McCarthy won are the Turing Award from the Association for Computing Machinery, the Research Excellence Award of the International Conference on Artiﬁcial Intelligence, the Kyoto Prize, and the National Medal of Science.
+
+Computer Projects
+
+The set B of all balanced strings of parentheses is deﬁned
+recursively by 𝜆 ∈ B, where 𝜆 is the empty string; (x) ∈ B,
+xy ∈ B if x, y ∈ B.
+59. Show that (( )( )) is a balanced string of parentheses and
+(( ))) is not a balanced string of parentheses.
+60. Find all balanced strings of parentheses with exactly six
+symbols.
+61. Find all balanced strings of parentheses with four or fewer
+symbols.
+62. Use induction to show that if x is a balanced string of
+parentheses, then the number of left parentheses equals
+the number of right parentheses in x.
+Deﬁne the function N on the set of strings of parentheses by
+N(𝜆) = 0, N(( ) = 1, N( )) = −1,
+N(uv) = N(u) + N(v),
+where 𝜆 is the empty string, and u and v are strings. It can be
+shown that N is well deﬁned.
+63. Find
+a) N(( )).
+b) N( )))( ))(( ).
+c) N((( )(( )).
+d) N( )((( )))(( ))).
+∗∗ 64. Show that a string w of parentheses is balanced if and
+only if N(w) = 0 and N(u) ≥ 0 whenever u is a preﬁx of
+w, that is, w = uv.
+∗ 65. Give a recursive algorithm for ﬁnding all balanced strings
+of parentheses containing n or fewer symbols.
+66. Give a recursive algorithm for ﬁnding gcd(a, b), where
+a and b are nonnegative integers not both zero,
+based on these facts: gcd(a, b) = gcd(b, a) if a > b,
+gcd(0, b) = b, gcd(a, b) = 2 gcd(a∕2, b∕2) if a and b are
+even, gcd(a, b) = gcd(a∕2, b) if a is even and b is odd,
+and gcd(a, b) = gcd(a, b − a).
+67. Verify the program segment
+if x > y then
+x := y
+with respect to the initial assertion T and the ﬁnal assertion x ≤ y.
+∗ 68. Develop a rule of inference for verifying recursive programs and use it to verify the recursive algorithm for computing factorials given as Algorithm 1 in Section 5.4.
+
+403
+
+69. Devise a recursive algorithm that counts the number of
+times the integer 0 occurs in a list of integers.
+Exercises 70–77 deal with some unusual sequences, informally called self-generating sequences, produced by
+simple recurrence relations or rules. In particular, Exercises 70–75 deal with the sequence {a(n)} deﬁned by
+a(n) = n − a(a(n − 1)) for n ≥ 1 and a(0) = 0. (This sequence, as well as those in Exercises 74 and 75, are deﬁned
+in Douglas Hofstader’s fascinating book Gödel, Escher, Bach
+([Ho99]).
+70. Find the ﬁrst 10 terms of the sequence {a(n)} deﬁned in
+the preamble to this exercise.
+∗ 71. Prove that this sequence is well deﬁned. That is, show that
+a(n) is uniquely deﬁned for all nonnegative integers n.
+√
+∗∗ 72. Prove that a(n) = ⌊(n + 1)𝜇⌋ where 𝜇 = (−1 + 5)∕2.
+[Hint: First show for all n > 0 that (𝜇n − ⌊𝜇n⌋) + (𝜇 2 n −
+⌊𝜇2 n⌋) = 1. Then show for all real numbers 𝛼 with 0 ≤
+𝛼 < 1 and 𝛼 ≠ 1 − 𝜇 that ⌊(1 + 𝜇)(1 − 𝛼)⌋ + ⌊𝛼 + 𝜇⌋ =
+1, considering the cases 0 ≤ 𝛼 < 1 − 𝜇 and 1 − 𝜇 < 𝛼 <
+1 separately.]
+∗ 73. Use the formula from Exercise 72 to show that
+a(n) = a(n − 1) if 𝜇n − ⌊𝜇n⌋ < 1 − 𝜇 and a(n) =
+a(n − 1) + 1 otherwise.
+74. Find the ﬁrst 10 terms of each of the following selfgenerating sequences:
+a) a(n) = n − a(a(a(n − 1))) for n ≥ 1, a(0) = 0
+b) a(n) = n − a(a(a(a(n − 1)))) for n ≥ 1, a(0) = 0
+c) a(n) = a(n − a(n − 1)) + a(n − a(n − 2)) for n ≥ 3,
+a(1) = 1 and a(2) = 1
+75. Find the ﬁrst 10 terms of both the sequences m(n) and f (n)
+deﬁned by the following pair of interwoven recurrence relations: m(n) = n − f (m(n − 1)), f (n) = n − m(f (n − 1))
+for n ≥ 1, f (0) = 1 and m(0) = 0.
+Golomb’s self-generating sequence is the unique nondecreasing sequence of positive integers a1 , a2 , a3 , … that has
+the property that it contains exactly ak occurrences of k for
+each positive integer k.
+76. Find the ﬁrst 20 terms of Golomb’s self-generating sequence.
+∗ 77. Show that if f (n) is the largest integer m such that am = n,
+where am is the mth term
+se∑ of Golomb’s self-generating
+∑
+quence, then f (n) = nk = 1 ak and f (f (n)) = nk = 1 kak .
+
+Computer Projects
+Write programs with these input and output.
+∗∗ 1. Given a 2n × 2n checkerboard with one square missing,
+construct a tiling of this checkerboard using right triominoes.
+∗∗ 2. Generate all well-formed formulae for expressions involving the variables x, y, and z and the operators {+, ∗,
+∕, −} with n or fewer symbols.
+∗∗ 3. Generate all well-formed formulae for propositions with
+n or fewer symbols where each symbol is T, F, one of
+
+the propositional variables p and q, or an operator from
+{¬, ∨, ∧, →, ↔}.
+4. Given a string, ﬁnd its reversal.
+5. Given a real number a and a nonnegative integer n, ﬁnd
+an using recursion.
+6. Given a real number a and a nonnegative integer n, ﬁnd
+n
+a2 using recursion.
+
+404
+
+5 / Induction and Recursion
+
+∗ 7. Given a real number a and a nonnegative integer n, ﬁnd an
+using the binary expansion of n and a recursive algorithm
+k
+for computing a2 .
+
+12. Given a nonnegative integer n, ﬁnd the nth Fibonacci
+number using recursion.
+
+8. Given two integers not both zero, ﬁnd their greatest common divisor using recursion.
+
+13. Given a positive integer, ﬁnd the number of partitions of
+this integer. (See Exercise 49 of Section 5.3.)
+
+9. Given a list of integers and an element x, locate x in this
+list using a recursive implementation of a linear search.
+10. Given a list of integers and an element x, locate x in this
+list using a recursive implementation of a binary search.
+11. Given a nonnegative integer n, ﬁnd the nth Fibonacci
+number using iteration.
+
+14. Given positive integers m and n, ﬁnd A(m, n), the value of
+Ackermann’s function at the pair (m, n). (See the preamble to Exercise 50 of Section 5.3.)
+15. Given a list of integers, sort these integers using the merge
+sort.
+
+Computations and Explorations
+Use a computational program or programs you have written to do these exercises.
+1. What are the largest values of n for which n! has fewer than
+100 decimal digits and fewer than 1000 decimal digits?
+2. Determine which Fibonacci numbers are divisible by 5,
+which are divisible by 7, and which are divisible by 11.
+Prove that your conjectures are correct.
+3. Construct tilings using right triominoes of various 16 ×
+16, 32 × 32, and 64 × 64 checkerboards with one square
+missing.
+4. Explore which m × n checkerboards can be completely
+covered by right triominoes. Can you make a conjecture
+that answers this question?
+
+∗∗ 5. Implement an algorithm for determining whether a point
+is in the interior or exterior of a simple polygon.
+∗∗ 6. Implement an algorithm for triangulating a simple
+polygon.
+7. Which values of Ackermann’s function are small enough
+that you are able to compute them?
+8. Compare either the number of operations or the time
+needed to compute Fibonacci numbers recursively versus
+that needed to compute them iteratively.
+
+Writing Projects
+Respond to these with essays using outside sources.
+1. Describe the origins of mathematical induction. Who were
+the ﬁrst people to use it and to which problems did they
+apply it?
+2. Explain how to prove the Jordan curve theorem for simple polygons and describe an algorithm for determining
+whether a point is in the interior or exterior of a simple
+polygon.
+3. Describe how the triangulation of simple polygons is used
+in some key algorithms in computational geometry.
+4. Describe a variety of diﬀerent applications of the Fibonacci numbers to the biological and the physical
+sciences.
+
+5. Discuss the uses of Ackermann’s function both in the theory of recursive deﬁnitions and in the analysis of the complexity of algorithms for set unions.
+6. Give the recursive deﬁnition of Knuth’s up-arrow notation
+and illustrate its use with a variety of examples, including how it can be used to express values of the Ackermann function (deﬁned in the preamble of Exercise 50 in
+Section 5.3).
+7. Discuss some of the various methodologies used to establish the correctness of programs and compare them to
+Hoare’s methods described in Section 5.5.
+8. Explain how the ideas and concepts of program correctness can be extended to prove that operating systems are
+secure.
+
+C H A P T E R
+
+6
+6.1 The Basics of
+Counting
+6.2 The Pigeonhole
+Principle
+6.3 Permutations
+and
+Combinations
+6.4 Binomial
+Coeﬃcients
+and Identities
+6.5 Generalized
+Permutations
+and
+Combinations
+6.6 Generating
+Permutations
+and
+Combinations
+
+6.1
+
+Counting
+
+C
+
+ombinatorics, the study of arrangements of objects, is an important part of discrete mathematics. This subject was studied as long ago as the seventeenth century, when combinatorial questions arose in the study of gambling games. Enumeration, the counting of objects with
+certain properties, is an important part of combinatorics. We must count objects to solve many
+diﬀerent types of problems. For instance, counting is used to determine the complexity of algorithms. Counting is also required to determine whether there are enough telephone numbers or
+Internet protocol addresses to meet demand. Recently, it has played a key role in mathematical
+biology, especially in sequencing DNA. Furthermore, counting techniques are used extensively
+when probabilities of events are computed.
+The basic rules of counting, which we will study in Section 6.1, can solve a tremendous
+variety of problems. For instance, we can use these rules to enumerate the diﬀerent telephone
+numbers possible in the United States, the allowable passwords on a computer system, and the
+diﬀerent orders in which the runners in a race can ﬁnish. Another important combinatorial tool
+is the pigeonhole principle, which we will study in Section 6.2. This states that when objects are
+placed in boxes and there are more objects than boxes, then there is a box containing at least two
+objects. For instance, we can use this principle to show that among a set of 15 or more students,
+at least 3 were born on the same day of the week.
+We can phrase many counting problems in terms of ordered or unordered arrangements of
+the objects of a set with or without repetitions. These arrangements, called permutations and
+combinations, are used in many counting problems. For instance, suppose the 100 top ﬁnishers
+on a competitive exam taken by 2000 students are invited to a banquet. We can count the possible
+sets of 100 students that will be invited, as well as the ways in which the top 10 prizes can be
+awarded.
+Another problem in combinatorics involves generating all the arrangements of a speciﬁed
+kind. This is often important in computer simulations. We will devise algorithms to generate
+arrangements of various types.
+
+The Basics of Counting
+6.1.1 Introduction
+Suppose that a password on a computer system consists of six, seven, or eight characters. Each
+of these characters must be a digit or a letter of the alphabet. Each password must contain at least
+one digit. How many such passwords are there? The techniques needed to answer this question
+and a wide variety of other counting problems will be introduced in this section.
+Counting problems arise throughout mathematics and computer science. For example, we
+must count the successful outcomes of experiments and all the possible outcomes of these experiments to determine probabilities of discrete events. We need to count the number of operations
+used by an algorithm to study its time complexity.
+We will introduce the basic techniques of counting in this section. These methods serve as
+the foundation for almost all counting techniques.
+405
+
+406
+
+6 / Counting
+
+6.1.2 Basic Counting Principles
+Assessment
+
+We ﬁrst present two basic counting principles, the product rule and the sum rule. Then we
+will show how they can be used to solve many diﬀerent counting problems.
+The product rule applies when a procedure is made up of separate tasks.
+
+THE PRODUCT RULE Suppose that a procedure can be broken down into a sequence of
+two tasks. If there are n1 ways to do the ﬁrst task and for each of these ways of doing the ﬁrst
+task, there are n2 ways to do the second task, then there are n1 n2 ways to do the procedure.
+Extra
+Examples
+
+EXAMPLE 1
+
+Examples 1–10 show how the product rule is used.
+A new company with just two employees, Sanchez and Patel, rents a ﬂoor of a building with
+12 oﬃces. How many ways are there to assign diﬀerent oﬃces to these two employees?
+Solution: The procedure of assigning oﬃces to these two employees consists of assigning an
+oﬃce to Sanchez, which can be done in 12 ways, then assigning an oﬃce to Patel diﬀerent from
+the oﬃce assigned to Sanchez, which can be done in 11 ways. By the product rule, there are
+◂
+12 ⋅ 11 = 132 ways to assign oﬃces to these two employees.
+
+EXAMPLE 2
+
+The chairs of an auditorium are to be labeled with an uppercase English letter followed by a
+positive integer not exceeding 100. What is the largest number of chairs that can be labeled
+diﬀerently?
+Solution: The procedure of labeling a chair consists of two tasks, namely, assigning to the seat
+one of the 26 uppercase English letters, and then assigning to it one of the 100 possible integers.
+The product rule shows that there are 26 ⋅ 100 = 2600 diﬀerent ways that a chair can be labeled.
+◂
+Therefore, the largest number of chairs that can be labeled diﬀerently is 2600.
+
+EXAMPLE 3
+
+There are 32 computers in a data center in the cloud. Each of these computers has 24 ports. How
+many diﬀerent computer ports are there in this data center?
+Solution: The procedure of choosing a port consists of two tasks, ﬁrst picking a computer and
+then picking a port on this computer. Because there are 32 ways to choose the computer and 24
+ways to choose the port no matter which computer has been selected, the product rule shows
+◂
+that there are 32 ⋅ 24 = 768 ports.
+An extended version of the product rule is often useful. Suppose that a procedure is carried
+out by performing the tasks T1 , T2 , … , Tm in sequence. If each task Ti , i = 1, 2, … , n, can be
+done in ni ways, regardless of how the previous tasks were done, then there are n1 ⋅ n2 ⋅ ⋯ ⋅ nm
+ways to carry out the procedure. This version of the product rule can be proved by mathematical
+induction from the product rule for two tasks (see Exercise 76).
+
+EXAMPLE 4
+
+How many diﬀerent bit strings of length seven are there?
+Solution: Each of the seven bits can be chosen in two ways, because each bit is either 0 or 1.
+Therefore, the product rule shows there are a total of 27 = 128 diﬀerent bit strings of length
+◂
+seven.
+
+6.1 The Basics of Counting
+
+EXAMPLE 5
+
+26 choices
+for each
+letter
+
+10 choices
+for each
+digit
+
+EXAMPLE 6
+
+407
+
+How many diﬀerent license plates can be made if each plate contains a sequence of three uppercase English letters followed by three digits (and no sequences of letters are prohibited, even
+if they are obscene)?
+Solution: There are 26 choices for each of the three uppercase English letters and 10 choices for
+each of the three digits. Hence, by the product rule there are a total of 26 ⋅ 26 ⋅ 26 ⋅ 10 ⋅ 10 ⋅ 10 =
+◂
+17,576,000 possible license plates.
+Counting Functions
+n elements?
+
+How many functions are there from a set with m elements to a set with
+
+Solution: A function corresponds to a choice of one of the n elements in the codomain for each of
+the m elements in the domain. Hence, by the product rule there are n ⋅ n ⋅ ⋯ ⋅ n = nm functions
+from a set with m elements to one with n elements. For example, there are 53 = 125 diﬀerent
+functions from a set with three elements to a set with ﬁve elements.
+◂
+
+EXAMPLE 7
+
+Counting the number of
+onto functions is harder.
+We’ll do this in
+Chapter 8.
+
+EXAMPLE 8
+
+Links
+
+Current projections are
+that by 2038, it will be
+necessary to add one or
+more digits to North
+American telephone
+numbers.
+
+Counting One-to-One Functions How many one-to-one functions are there from a set with
+m elements to one with n elements?
+Solution: First note that when m > n there are no one-to-one functions from a set with m elements to a set with n elements.
+Now let m ≤ n. Suppose the elements in the domain are a1 , a2 , … , am . There are n ways
+to choose the value of the function at a1 . Because the function is one-to-one, the value of the
+function at a2 can be picked in n − 1 ways (because the value used for a1 cannot be used again).
+In general, the value of the function at ak can be chosen in n − k + 1 ways. By the product rule,
+there are n(n − 1)(n − 2) ⋯ (n − m + 1) one-to-one functions from a set with m elements to one
+with n elements.
+For example, there are 5 ⋅ 4 ⋅ 3 = 60 one-to-one functions from a set with three elements to
+◂
+a set with ﬁve elements.
+
+The Telephone Numbering Plan The North American numbering plan (NANP) speciﬁes the
+format of telephone numbers in the U.S., Canada, and many other parts of North America. A
+telephone number in this plan consists of 10 digits, which are split into a three-digit area code, a
+three-digit oﬃce code, and a four-digit station code. Because of signaling considerations, there
+are certain restrictions on some of these digits. To specify the allowable format, let X denote
+a digit that can take any of the values 0 through 9, let N denote a digit that can take any of
+the values 2 through 9, and let Y denote a digit that must be a 0 or a 1. Two numbering plans,
+which will be called the old plan, and the new plan, will be discussed. (The old plan, in use in
+the 1960s, has been replaced by the new plan, but the recent rapid growth in demand for new
+numbers for mobile phones and devices will eventually make even this new plan obsolete. In
+this example, the letters used to represent digits follow the conventions of the North American
+Numbering Plan.) As will be shown, the new plan allows the use of more numbers.
+In the old plan, the formats of the area code, oﬃce code, and station code are NYX, NNX, and
+XXXX, respectively, so that telephone numbers had the form NYX-NNX-XXXX. In the new plan,
+the formats of these codes are NXX, NXX, and XXXX, respectively, so that telephone numbers
+have the form NXX-NXX-XXXX. How many diﬀerent North American telephone numbers are
+possible under the old plan and under the new plan?
+Solution: By the product rule, there are 8 ⋅ 2 ⋅ 10 = 160 area codes with format NYX and
+8 ⋅ 10 ⋅ 10 = 800 area codes with format NXX. Similarly, by the product rule, there are
+
+408
+
+6 / Counting
+
+Note that we have
+ignored restrictions that
+rule out N11 station
+codes for most area
+codes.
+
+8 ⋅ 8 ⋅ 10 = 640 oﬃce codes with format NNX. The product rule also shows that there are
+10 ⋅ 10 ⋅ 10 ⋅ 10 = 10,000 station codes with format XXXX.
+Consequently, applying the product rule again, it follows that under the old plan there are
+160 ⋅ 640 ⋅ 10,000 = 1,024,000,000
+diﬀerent numbers available in North America. Under the new plan, there are
+800 ⋅ 800 ⋅ 10,000 = 6,400,000,000
+
+◂
+
+diﬀerent numbers available.
+
+EXAMPLE 9
+
+What is the value of k after the following code, where n1 , n2 , … , nm are positive integers, has
+been executed?
+k := 0
+for i1 := 1 to n1
+for i2 := 1 to n2
+⋅
+⋅
+⋅
+for im := 1 to nm
+k := k + 1
+Solution: The initial value of k is zero. Each time the nested loop is traversed, 1 is added
+to k. Let Ti be the task of traversing the ith loop. Then the number of times the loop is traversed is the number of ways to do the tasks T1 , T2 , … , Tm . The number of ways to carry out
+the task Tj , j = 1, 2, … , m, is nj , because the jth loop is traversed once for each integer ij with
+1 ≤ ij ≤ nj . By the product rule, it follows that the nested loop is traversed n1 n2 ⋯ nm times.
+◂
+Hence, the ﬁnal value of k is n1 n2 ⋯ nm .
+
+EXAMPLE 10
+
+Counting Subsets of a Finite Set
+subsets of a ﬁnite set S is 2|S| .
+
+Use the product rule to show that the number of diﬀerent
+
+Solution: Let S be a ﬁnite set. List the elements of S in arbitrary order. Recall from
+Section 2.2 that there is a one-to-one correspondence between subsets of S and bit strings of
+length |S|. Namely, a subset of S is associated with the bit string with a 1 in the ith position if
+the ith element in the list is in the subset, and a 0 in this position otherwise. By the product rule,
+there are 2|S| bit strings of length |S|. Hence, |P(S)| = 2|S| . (Recall that we used mathematical
+◂
+induction to prove this fact in Example 10 of Section 5.1.)
+The product rule is often phrased in terms of sets in this way: If A1 , A2 , … , Am are ﬁnite
+sets, then the number of elements in the Cartesian product of these sets is the product of the
+number of elements in each set. To relate this to the product rule, note that the task of choosing an element in the Cartesian product A1 × A2 × ⋯ × Am is done by choosing an element
+in A1 , an element in A2 , … , and an element in Am . By the product rule it follows that
+|A1 × A2 × ⋯ × Am | = |A1 | ⋅ |A2 | ⋅ ⋯ ⋅ |Am |.
+
+6.1 The Basics of Counting
+
+EXAMPLE 11
+
+Soon it won’t be that
+costly to have your own
+genetic code found.
+
+409
+
+DNA and Genomes The hereditary information of a living organism is encoded using deoxyribonucleic acid (DNA), or in certain viruses, ribonucleic acid (RNA). DNA and RNA are
+extremely complex molecules, with diﬀerent molecules interacting in a vast variety of ways to
+enable living process. For our purposes, we give only the briefest description of how DNA and
+RNA encode genetic information.
+DNA molecules consist of two strands consisting of blocks known as nucleotides. Each
+nucleotide contains subcomponents called bases, each of which is adenine (A), cytosine (C),
+guanine (G), or thymine (T). The two strands of DNA are held together by hydrogen bonds connecting diﬀerent bases, with A bonding only with T, and C bonding only with G. Unlike DNA,
+RNA is single stranded, with uracil (U) replacing thymine as a base. So, in DNA the possible
+base pairs are A-T and C-G, while in RNA they are A-U, and C-G. The DNA of a living creature consists of multiple pieces of DNA forming separate chromosomes. A gene is a segment
+of a DNA molecule that encodes a particular protein. The entirety of genetic information of an
+organism is called its genome.
+Sequences of bases in DNA and RNA encode long chains of proteins called amino acids.
+There are 22 essential amino acids for human beings. We can quickly see that a sequence of
+at least three bases are needed to encode these 22 diﬀerent amino acid. First note, that because
+there are four possibilities for each base in DNA, A, C, G, and T, by the product rule there are
+42 = 16 < 22 diﬀerent sequences of two bases. However, there are 43 = 64 diﬀerent sequences
+of three bases, which provide enough diﬀerent sequences to encode the 22 diﬀerent amino acids
+(even after taking into account that several diﬀerent sequences of three bases encode the same
+amino acid).
+The DNA of simple living creatures such as algae and bacteria have between 105 and 107
+links, where each link is one of the four possible bases. More complex organisms, such as insects, birds, and mammals, have between 108 and 1010 links in their DNA. So, by the product
+5
+rule, there are at least 410 diﬀerent sequences of bases in the DNA of simple organisms and at
+108
+least 4 diﬀerent sequences of bases in the DNA of more complex organisms. These are both
+incredibly huge numbers, which helps explain why there is such tremendous variability among
+living organisms. In the past several decades techniques have been developed for determining
+the genome of diﬀerent organisms. The ﬁrst step is to locate each gene in the DNA of an organism. The next task, called gene sequencing, is the determination of the sequence of links on
+each gene. (The speciﬁc sequence of links on these genes depends on the particular individual
+representative of a species whose DNA is analyzed.) For example, the human genome includes
+approximately 23,000 genes, each with 1000 or more links. Gene sequencing techniques take
+advantage of many recently developed algorithms and are based on numerous new ideas in combinatorics. Many mathematicians and computer scientists work on problems involving genomes,
+◂
+taking part in the fast moving ﬁelds of bioinformatics and computational biology.
+We now introduce the sum rule.
+THE SUM RULE If a task can be done either in one of n1 ways or in one of n2 ways, where
+none of the set of n1 ways is the same as any of the set of n2 ways, then there are n1 + n2
+ways to do the task.
+Example 12 illustrates how the sum rule is used.
+
+EXAMPLE 12
+
+Suppose that either a member of the mathematics faculty or a student who is a mathematics major is chosen as a representative to a university committee. How many diﬀerent choices are there
+for this representative if there are 37 members of the mathematics faculty and 83 mathematics
+majors and no one is both a faculty member and a student?
+Solution: There are 37 ways to choose a member of the mathematics faculty and there are 83
+ways to choose a student who is a mathematics major. Choosing a member of the mathematics
+
+410
+
+6 / Counting
+
+faculty is never the same as choosing a student who is a mathematics major because no one is
+both a faculty member and a student. By the sum rule it follows that there are 37 + 83 = 120
+◂
+possible ways to pick this representative.
+We can extend the sum rule to more than two tasks. Suppose that a task can be done in one
+of n1 ways, in one of n2 ways, … , or in one of nm ways, where none of the set of ni ways of
+doing the task is the same as any of the set of nj ways, for all pairs i and j with 1 ≤ i < j ≤ m.
+Then the number of ways to do the task is n1 + n2 + ⋯ + nm . This extended version of the
+sum rule is often useful in counting problems, as Examples 13 and 14 show. This version of
+the sum rule can be proved using mathematical induction from the sum rule for two sets. (See
+Exercise 75.)
+
+EXAMPLE 13
+
+A student can choose a computer project from one of three lists. The three lists contain 23, 15,
+and 19 possible projects, respectively. No project is on more than one list. How many possible
+projects are there to choose from?
+Solution: The student can choose a project by selecting a project from the ﬁrst list, the second
+list, or the third list. Because no project is on more than one list, by the sum rule there are
+◂
+23 + 15 + 19 = 57 ways to choose a project.
+
+EXAMPLE 14
+
+What is the value of k after the following code, where n1 , n2 , … , nm are positive integers, has
+been executed?
+k := 0
+for i1 := 1 to n1
+k := k + 1
+for i2 := 1 to n2
+k := k + 1
+.
+.
+.
+for im := 1 to nm
+k := k + 1
+Solution: The initial value of k is zero. This block of code is made up of m diﬀerent loops.
+Each time a loop is traversed, 1 is added to k. To determine the value of k after this code has
+been executed, we need to determine how many times we traverse a loop. Note that there are
+ni ways to traverse the ith loop. Because we only traverse one loop at a time, the sum rule
+shows that the ﬁnal value of k, which is the number of ways to traverse one of the m loops is
+◂
+n1 + n2 + ⋯ + nm .
+The sum rule can be phrased in terms of sets as: If A1 , A2 , … , Am are pairwise disjoint
+ﬁnite sets, then the number of elements in the union of these sets is the sum of the numbers of
+elements in the sets. To relate this to our statement of the sum rule, note there are |Ai | ways to
+choose an element from Ai for i = 1, 2, … , m. Because the sets are pairwise disjoint, when we
+select an element from one of the sets Ai , we do not also select an element from a diﬀerent set
+Aj . Consequently, by the sum rule, because we cannot select an element from two of these sets
+at the same time, the number of ways to choose an element from one of the sets, which is the
+number of elements in the union, is
+|A1 ∪ A2 ∪ ⋯ ∪ Am | = |A1 | + |A2 | + ⋯ + |Am | when Ai ∩ Aj = for all i, j.
+
+6.1 The Basics of Counting
+
+411
+
+This equality applies only when the sets in question are pairwise disjoint. The situation is much
+more complicated when these sets have elements in common. That situation will be brieﬂy
+discussed later in this section and discussed in more depth in Chapter 8.
+
+6.1.3 More Complex Counting Problems
+Many counting problems cannot be solved using just the sum rule or just the product rule.
+However, many complicated counting problems can be solved using both of these rules in combination. We begin by counting the number of variable names in the programming language
+BASIC. (In the exercises, we consider the number of variable names in JAVA.) Then we will
+count the number of valid passwords subject to a particular set of restrictions.
+
+EXAMPLE 15
+Extra
+Examples
+
+In a version of the computer language BASIC, the name of a variable is a string of one or
+two alphanumeric characters, where uppercase and lowercase letters are not distinguished. (An
+alphanumeric character is either one of the 26 English letters or one of the 10 digits.) Moreover,
+a variable name must begin with a letter and must be diﬀerent from the ﬁve strings of two
+characters that are reserved for programming use. How many diﬀerent variable names are there
+in this version of BASIC?
+Solution: Let V equal the number of diﬀerent variable names in this version of BASIC. Let V1
+be the number of these that are one character long and V2 be the number of these that are two
+characters long. Then by the sum rule, V = V1 + V2 . Note that V1 = 26, because a one-character
+variable name must be a letter. Furthermore, by the product rule there are 26 ⋅ 36 strings of
+length two that begin with a letter and end with an alphanumeric character. However, ﬁve of
+these are excluded, so V2 = 26 ⋅ 36 − 5 = 931. Hence, there are V = V1 + V2 = 26 + 931 = 957
+diﬀerent names for variables in this version of BASIC.
+◂
+
+EXAMPLE 16
+
+Each user on a computer system has a password, which is six to eight characters long, where
+each character is an uppercase letter or a digit. Each password must contain at least one digit.
+How many possible passwords are there?
+Solution: Let P be the total number of possible passwords, and let P6 , P7 , and P8 denote the
+number of possible passwords of length 6, 7, and 8, respectively. By the sum rule, P = P6 +
+P7 + P8 . We will now ﬁnd P6 , P7 , and P8 . Finding P6 directly is diﬃcult. To ﬁnd P6 it is easier
+to ﬁnd the number of strings of uppercase letters and digits that are six characters long, including
+those with no digits, and subtract from this the number of strings with no digits. By the product
+rule, the number of strings of six characters is 366 , and the number of strings with no digits is
+266 . Hence,
+P6 = 366 − 266 = 2,176,782,336 − 308,915,776 = 1,867,866,560.
+Similarly, we have
+P7 = 367 − 267 = 78,364,164,096 − 8,031,810,176 = 70,332,353,920
+and
+P8 = 368 − 268 = 2,821,109,907,456 − 208,827,064,576
+= 2,612,282,842,880.
+Consequently,
+P = P6 + P7 + P8 = 2,684,483,063,360.
+
+◂
+
+412
+
+6 / Counting
+Bit Number
+
+0
+
+Class A
+
+0
+
+Class B
+
+1
+
+0
+
+Class C
+
+1
+
+1
+
+0
+
+Class D
+
+1
+
+1
+
+1
+
+0
+
+Class E
+
+1
+
+1
+
+1
+
+1
+
+FIGURE 1
+
+EXAMPLE 17
+Links
+
+The lack of available
+IPv4 address has
+become a crisis!
+
+1
+
+2
+
+3
+
+4
+
+8
+
+netid
+
+16
+
+24
+
+31
+
+hostid
+netid
+
+hostid
+netid
+
+hostid
+Multicast Address
+
+0
+
+Address
+
+Internet addresses (IPv4).
+
+Counting Internet Addresses In the Internet, which is made up of interconnected physical
+networks of computers, each computer (or more precisely, each network connection of a computer) is assigned an Internet address. In Version 4 of the Internet Protocol (IPv4), still in use
+today, an address is a string of 32 bits. It begins with a network number (netid ). The netid is
+followed by a host number (hostid ), which identiﬁes a computer as a member of a particular
+network.
+Three forms of addresses are used, with diﬀerent numbers of bits used for netids and hostids.
+Class A addresses, used for the largest networks, consist of 0, followed by a 7-bit netid and a
+24-bit hostid. Class B addresses, used for medium-sized networks, consist of 10, followed by
+a 14-bit netid and a 16-bit hostid. Class C addresses, used for the smallest networks, consist
+of 110, followed by a 21-bit netid and an 8-bit hostid. There are several restrictions on addresses because of special uses: 1111111 is not available as the netid of a Class A network,
+and the hostids consisting of all 0s and all 1s are not available for use in any network. A computer on the Internet has either a Class A, a Class B, or a Class C address. (Besides Class A,
+B, and C addresses, there are also Class D addresses, reserved for use in multicasting when
+multiple computers are addressed at a single time, consisting of 1110 followed by 28 bits, and
+Class E addresses, reserved for future use, consisting of 11110 followed by 27 bits. Neither
+Class D nor Class E addresses are assigned as the IPv4 address of a computer on the Internet.)
+Figure 1 illustrates IPv4 addressing. (Limitations on the number of Class A and Class B netids
+have made IPv4 addressing inadequate; IPv6, a new version of IP, uses 128-bit addresses to
+solve this problem.)
+How many diﬀerent IPv4 addresses are available for computers on the Internet?
+Solution: Let x be the number of available addresses for computers on the Internet, and let xA ,
+xB , and xC denote the number of Class A, Class B, and Class C addresses available, respectively.
+By the sum rule, x = xA + xB + xC .
+To ﬁnd xA , note that there are 27 − 1 = 127 Class A netids, recalling that the netid
+1111111 is unavailable. For each netid, there are 224 − 2 = 16,777,214 hostids, recalling that the
+hostids consisting of all 0s and all 1s are unavailable. Consequently, xA = 127 ⋅ 16,777,214 =
+2,130,706,178.
+To ﬁnd xB and xC , note that there are 214 = 16,384 Class B netids and 221 = 2,097,152
+Class C netids. For each Class B netid, there are 216 − 2 = 65,534 hostids, and for each
+Class C netid, there are 28 − 2 = 254 hostids, recalling that in each network the hostids
+consisting of all 0s and all 1s are unavailable. Consequently, xB = 1,073,709,056 and xC =
+532,676,608.
+We conclude that the total number of IPv4 addresses available is x = xA + xB + xC =
+◂
+2,130,706,178 + 1,073,709,056 + 532,676,608 = 3,737,091,842.
+
+6.1.4 The Subtraction Rule (Inclusion–Exclusion for Two Sets)
+Suppose that a task can be done in one of two ways, but some of the ways to do it are common
+to both ways. In this situation, we cannot use the sum rule to count the number of ways to do
+
+6.1 The Basics of Counting
+
+Overcounting is perhaps
+the most common
+enumeration error.
+
+413
+
+the task. If we add the number of ways to do the tasks in these two ways, we get an overcount
+of the total number of ways to do it, because the ways to do the task that are common to the two
+ways are counted twice.
+To correctly count the number of ways to do the two tasks, we must subtract the number of
+ways that are counted twice. This leads us to an important counting rule.
+THE SUBTRACTION RULE If a task can be done in either n1 ways or n2 ways, then the
+number of ways to do the task is n1 + n2 minus the number of ways to do the task that are
+common to the two diﬀerent ways.
+The subtraction rule is also known as the principle of inclusion–exclusion, especially when
+it is used to count the number of elements in the union of two sets. Suppose that A1 and A2 are
+sets. Then, there are |A1 | ways to select an element from A1 and |A2 | ways to select an element
+from A2 . The number of ways to select an element from A1 or from A2 , that is, the number of
+ways to select an element from their union, is the sum of the number of ways to select an element
+from A1 and the number of ways to select an element from A2 , minus the number of ways to
+select an element that is in both A1 and A2 . Because there are |A1 ∪ A2 | ways to select an element
+in either A1 or in A2 , and |A1 ∩ A2 | ways to select an element common to both sets, we have
+|A1 ∪ A2 | = |A1 | + |A2 | − |A1 ∩ A2 |.
+This is the formula given in Section 2.2 for the number of elements in the union of two sets.
+Example 18 illustrates how we can solve counting problems using the subtraction principle.
+
+EXAMPLE 18
+Extra
+Examples
+
+1
+27 = 128 ways
+0
+
+0
+
+0
+
+0
+
+26 = 64 ways
+1
+25 = 32 ways
+
+FIGURE 2 8-Bit
+strings starting
+with 1 or ending
+with 00.
+
+How many bit strings of length eight either start with a 1 bit or end with the two bits 00?
+Solution: Figure 2 illustrates the three counting problems we need to solve before we
+can apply the principle of inclusion–exclusion. We can construct a bit string of length
+eight that either starts with a 1 bit or ends with the two bits 00, by constructing a bit
+string of length eight beginning with a 1 bit or by constructing a bit string of length
+eight that ends with the two bits 00. We can construct a bit string of length eight that
+begins with a 1 in 27 = 128 ways. This follows by the product rule, because the ﬁrst
+bit can be chosen in only one way and each of the other seven bits can be chosen in
+two ways. Similarly, we can construct a bit string of length eight ending with the two
+bits 00, in 26 = 64 ways. This follows by the product rule, because each of the ﬁrst six bits
+can be chosen in two ways and the last two bits can be chosen in only one way.
+Some of the ways to construct a bit string of length eight starting with a 1 are the same
+as the ways to construct a bit string of length eight that ends with the two bits 00. There are
+25 = 32 ways to construct such a string. This follows by the product rule, because the ﬁrst
+bit can be chosen in only one way, each of the second through the sixth bits can be chosen
+in two ways, and the last two bits can be chosen in one way. Consequently, the number of
+bit strings of length eight that begin with a 1 or end with a 00, which equals the number
+of ways to construct a bit string of length eight that begins with a 1 or that ends with 00,
+◂
+equals 128 + 64 − 32 = 160.
+We present an example that illustrates how the formulation of the principle of inclusion–
+exclusion can be used to solve counting problems.
+
+EXAMPLE 19
+
+A computer company receives 350 applications from college graduates for a job planning a line
+of new web servers. Suppose that 220 of these applicants majored in computer science, 147
+
+414
+
+6 / Counting
+
+U
+A1
+
+∣A1∣ = 220
+
+A1 ∩ A2
+
+∣A1 ∩ A2∣ = 51
+
+FIGURE 3
+
+A2
+
+∣A1 ∪ A2∣ = ∣U∣ – ∣A1 ∪ A2∣
+= ∣U∣ – (∣A1∣ + ∣A2∣ – ∣A1 ∩ A2∣)
+= 350 – (220 + 147 – 51)
+= 350 – 316
+= 34
+
+∣A2∣ = 147
+
+Applicants who majored in neither computer science nor business.
+
+majored in business, and 51 majored both in computer science and in business. How many of
+these applicants majored neither in computer science nor in business?
+Solution: To ﬁnd the number of these applicants who majored neither in computer science nor
+in business, we can subtract the number of students who majored either in computer science
+or in business (or both) from the total number of applicants. Let A1 be the set of students who
+majored in computer science and A2 the set of students who majored in business. Then A1 ∪ A2
+is the set of students who majored in computer science or business (or both), and A1 ∩ A2 is the
+set of students who majored both in computer science and in business. By the subtraction rule
+the number of students who majored either in computer science or in business (or both) equals
+|A1 ∪ A2 | = |A1 | + |A2 | − |A1 ∩ A2 | = 220 + 147 − 51 = 316.
+We conclude that 350 − 316 = 34 of the applicants majored neither in computer science nor in
+business. A Venn diagram for this example is shown in Figure 3.
+◂
+The subtraction rule, or the principle of inclusion–exclusion, can be generalized to ﬁnd the
+number of ways to do one of n diﬀerent tasks or, equivalently, to ﬁnd the number of elements
+in the union of n sets, whenever n is a positive integer. We will study the inclusion–exclusion
+principle and some of its many applications in Chapter 8.
+
+6.1.5 The Division Rule
+We have introduced the product, sum, and subtraction rules for counting. You may wonder
+whether there is also a division rule for counting. In fact, there is such a rule, which can be
+useful when solving certain types of enumeration problems.
+THE DIVISION RULE There are n∕d ways to do a task if it can be done using a procedure
+that can be carried out in n ways, and for every way w, exactly d of the n ways correspond to
+way w.
+We can restate the division rule in terms of sets: “If the ﬁnite set A is the union of n pairwise
+disjoint subsets each with d elements, then n = |A|∕d.”
+We can also formulate the division rule in terms of functions: “If f is a function from A
+to B where A and B are ﬁnite sets, and that for every value y ∈ B there are exactly d values
+x ∈ A such that f (x) = y (in which case, we say that f is d-to-one), then |B| = |A|∕d.”
+Remark: The division rule comes in handy when it appears that a task can be done in n diﬀerent
+ways, but it turns out that for each way of doing the task, there are d equivalent ways of doing
+
+6.1 The Basics of Counting
+
+415
+
+it. Under these circumstances, we can conclude that there are n∕d inequivalent ways of doing
+the task.
+We illustrate the use of the division rule for counting with two examples.
+
+EXAMPLE 20
+
+Suppose that an automated system has been developed that counts the legs of cows in a pasture.
+Suppose that this system has determined that in a farmer’s pasture there are exactly 572 legs.
+How many cows are there is this pasture, assuming that each cow has four legs and that there
+are no other animals present?
+Solution: Let n be the number of cow legs counted in a pasture. Because each cow has four legs,
+by the division rule we know that the pasture contains n∕4 cows. Consequently, the pasture with
+◂
+572 cow legs has 572∕4 = 143 cows in it.
+
+EXAMPLE 21
+
+1st bit
+
+1
+
+2nd bit
+
+0
+
+3rd bit 1
+
+1
+0 1
+
+0
+0
+
+0 1 0 1 0 0 1 0
+1 010
+1 00 1
+1 000
+0101
+0100
+0010
+0001
+0000
+
+4th bit
+
+Solution: We arbitrarily select a seat at the table and label it seat 1. We number the rest of the
+seats in numerical order, proceeding clockwise around the table. Note that are four ways to select
+the person for seat 1, three ways to select the person for seat 2, two ways to select the person
+for seat 3, and one way to select the person for seat 4. Thus, there are 4! = 24 ways to order the
+given four people for these seats. However, each of the four choices for seat 1 leads to the same
+arrangement, as we distinguish two arrangements only when one of the people has a diﬀerent
+immediate left or immediate right neighbor. Because there are four ways to choose the person
+for seat 1, by the division rule there are 24∕4 = 6 diﬀerent seating arrangements of four people
+◂
+around the circular table.
+
+0
+
+0
+
+How many diﬀerent ways are there to seat four people around a circular table, where two seatings are considered the same when each person has the same left neighbor and the same right
+neighbor?
+
+FIGURE 4 Bit
+strings of length
+four without
+consecutive 1s.
+
+EXAMPLE 22
+
+6.1.6 Tree Diagrams
+Counting problems can be solved using tree diagrams. A tree consists of a root, a number
+of branches leaving the root, and possible additional branches leaving the endpoints of other
+branches. (We will study trees in detail in Chapter 11.) To use trees in counting, we use a branch
+to represent each possible choice. We represent the possible outcomes by the leaves, which are
+the endpoints of branches not having other branches starting at them.
+Note that when a tree diagram is used to solve a counting problem, the number of choices
+of which branch to follow to reach a leaf can vary as in Example 22.
+How many bit strings of length four do not have two consecutive 1s?
+Solution: The tree diagram in Figure 4 displays all bit strings of length four without two consecutive 1s. We see that there are eight bit strings of length four without two consecutive 1s. ◂
+
+EXAMPLE 23
+
+A playoﬀ between two teams consists of at most ﬁve games. The ﬁrst team that wins three games
+wins the playoﬀ. In how many diﬀerent ways can the playoﬀ occur?
+Solution: The tree diagram in Figure 5 displays all the ways the playoﬀ can proceed, with the
+winner of each game shown. We see that there are 20 diﬀerent ways for the playoﬀ to occur. ◂
+
+6 / Counting
+
+416
+
+Team 1
+
+Team 2
+
+Winning team
+shown in color
+
+Team 1
+
+Team 2
+
+Team 1
+
+Team 2
+
+Game 2
+
+Team 2
+
+Team 1
+
+Team 2
+
+Team 1
+
+Team 2
+
+Team 1
+
+Team 1
+
+Team 2
+
+Team 2
+
+Team 1
+
+Team 2
+
+Team 1
+
+Team 1
+
+Team 2
+
+Team 1
+
+Team 1
+
+Team 2
+
+Team 1
+
+Team 2
+
+Team 2
+
+Team 1
+
+Team 2
+
+Team 1
+
+Team 2
+
+Team 1
+
+Team 2
+
+Team 1
+
+Team 2
+
+Team 1
+
+Team 2
+
+Team 1
+
+Team 2
+
+FIGURE 5
+
+Game 1
+
+Game 3
+
+Game 4
+Game 5
+
+Best three games out of ﬁve playoﬀs.
+
+EXAMPLE 24
+
+Suppose that “I Love New Jersey” T-shirts come in ﬁve diﬀerent sizes: S, M, L, XL, and XXL.
+Further suppose that each size comes in four colors, white, red, green, and black, except for XL,
+which comes only in red, green, and black, and XXL, which comes only in green and black. How
+many diﬀerent shirts does a souvenir shop have to stock to have at least one of each available
+size and color of the T-shirt?
+Solution: The tree diagram in Figure 6 displays all possible size and color pairs. It follows that
+◂
+the souvenir shop owner needs to stock 17 diﬀerent T-shirts.
+
+W = white, R = red, G = green, B = black
+
+S
+
+M
+
+L
+
+W R G
+
+B W R G
+
+B W R G
+
+FIGURE 6
+
+XL
+
+B R G
+
+B G
+
+XXL
+
+B
+
+Counting varieties of T-shirts.
+
+Exercises
+1. There are 18 mathematics majors and 325 computer science majors at a college.
+a) In how many ways can two representatives be picked
+so that one is a mathematics major and the other is a
+computer science major?
+b) In how many ways can one representative be picked
+who is either a mathematics major or a computer science major?
+
+2. An oﬃce building contains 27 ﬂoors and has 37 oﬃces
+on each ﬂoor. How many oﬃces are in the building?
+3. A multiple-choice test contains 10 questions. There are
+four possible answers for each question.
+a) In how many ways can a student answer the questions
+on the test if the student answers every question?
+b) In how many ways can a student answer the questions
+on the test if the student can leave answers blank?
+
+6.1 The Basics of Counting
+
+4. A particular brand of shirt comes in 12 colors, has a male
+version and a female version, and comes in three sizes
+for each sex. How many diﬀerent types of this shirt are
+made?
+5. Six diﬀerent airlines ﬂy from New York to Denver and
+seven ﬂy from Denver to San Francisco. How many different pairs of airlines can you choose on which to book
+a trip from New York to San Francisco via Denver, when
+you pick an airline for the ﬂight to Denver and an airline
+for the continuation ﬂight to San Francisco?
+6. There are four major auto routes from Boston to Detroit
+and six from Detroit to Los Angeles. How many major
+auto routes are there from Boston to Los Angeles via
+Detroit?
+7. How many diﬀerent three-letter initials can people have?
+8. How many diﬀerent three-letter initials with none of the
+letters repeated can people have?
+9. How many diﬀerent three-letter initials are there that begin with an A?
+10. How many bit strings are there of length eight?
+11. How many bit strings of length ten both begin and end
+with a 1?
+12. How many bit strings are there of length six or less, not
+counting the empty string?
+13. How many bit strings with length not exceeding n, where
+n is a positive integer, consist entirely of 1s, not counting
+the empty string?
+14. How many bit strings of length n, where n is a positive
+integer, start and end with 1s?
+15. How many strings are there of lowercase letters of length
+four or less, not counting the empty string?
+16. How many strings are there of four lowercase letters that
+have the letter x in them?
+17. How many strings of ﬁve ASCII characters contain the
+character @ (“at” sign) at least once? [Note: There are
+128 diﬀerent ASCII characters.]
+18. How many 5-element DNA sequences
+a) end with A?
+b) start with T and end with G?
+c) contain only A and T?
+d) do not contain C?
+19. How many 6-element RNA sequences
+a) do not contain U?
+b) end with GU?
+c) start with C?
+d) contain only A or U?
+20. How many positive integers between 5 and 31
+a) are divisible by 3? Which integers are these?
+b) are divisible by 4? Which integers are these?
+c) are divisible by 3 and by 4? Which integers are these?
+21. How many positive integers between 50 and 100
+a) are divisible by 7? Which integers are these?
+b) are divisible by 11? Which integers are these?
+c) are divisible by both 7 and 11? Which integers are
+these?
+
+417
+
+22. How many positive integers less than 1000
+a) are divisible by 7?
+b) are divisible by 7 but not by 11?
+c) are divisible by both 7 and 11?
+d) are divisible by either 7 or 11?
+e) are divisible by exactly one of 7 and 11?
+f ) are divisible by neither 7 nor 11?
+g) have distinct digits?
+h) have distinct digits and are even?
+23. How many positive integers between 100 and 999 inclusive
+a) are divisible by 7?
+b) are odd?
+c) have the same three decimal digits?
+d) are not divisible by 4?
+e) are divisible by 3 or 4?
+f ) are not divisible by either 3 or 4?
+g) are divisible by 3 but not by 4?
+h) are divisible by 3 and 4?
+24. How many positive integers between 1000 and 9999 inclusive
+a) are divisible by 9?
+b) are even?
+c) have distinct digits?
+d) are not divisible by 3?
+e) are divisible by 5 or 7?
+f ) are not divisible by either 5 or 7?
+g) are divisible by 5 but not by 7?
+h) are divisible by 5 and 7?
+25. How many strings of three decimal digits
+a) do not contain the same digit three times?
+b) begin with an odd digit?
+c) have exactly two digits that are 4s?
+26. How many strings of four decimal digits
+a) do not contain the same digit twice?
+b) end with an even digit?
+c) have exactly three digits that are 9s?
+27. A committee is formed consisting of one representative
+from each of the 50 states in the United States, where the
+representative from a state is either the governor or one of
+the two senators from that state. How many ways are there
+to form this committee?
+28. How many license plates can be made using either three
+digits followed by three uppercase English letters or three
+uppercase English letters followed by three digits?
+29. How many license plates can be made using either two
+uppercase English letters followed by four digits or two
+digits followed by four uppercase English letters?
+30. How many license plates can be made using either three
+uppercase English letters followed by three digits or four
+uppercase English letters followed by two digits?
+31. How many license plates can be made using either two
+or three uppercase English letters followed by either two
+or three digits?
+
+418
+
+6 / Counting
+
+32. How many strings of eight uppercase English letters are
+there
+a) if letters can be repeated?
+b) if no letter can be repeated?
+c) that start with X, if letters can be repeated?
+d) that start with X, if no letter can be repeated?
+e) that start and end with X, if letters can be repeated?
+f ) that start with the letters BO (in that order), if letters
+can be repeated?
+g) that start and end with the letters BO (in that order),
+if letters can be repeated?
+h) that start or end with the letters BO (in that order), if
+letters can be repeated?
+33. How many strings of eight English letters are there
+a) that contain no vowels, if letters can be repeated?
+b) that contain no vowels, if letters cannot be repeated?
+c) that start with a vowel, if letters can be repeated?
+d) that start with a vowel, if letters cannot be repeated?
+e) that contain at least one vowel, if letters can be repeated?
+f ) that contain exactly one vowel, if letters can be repeated?
+g) that start with X and contain at least one vowel, if letters can be repeated?
+h) that start and end with X and contain at least one
+vowel, if letters can be repeated?
+34. How many different functions are there from a set with 10
+elements to sets with the following numbers of elements?
+a) 2
+b) 3
+c) 4
+d) 5
+35. How many one-to-one functions are there from a set with
+ﬁve elements to sets with the following number of elements?
+a) 4
+b) 5
+c) 6
+d) 7
+36. How many functions are there from the set {1, 2, … , n},
+where n is a positive integer, to the set {0, 1}?
+37. How many functions are there from the set {1, 2, … , n},
+where n is a positive integer, to the set {0, 1}
+a) that are one-to-one?
+b) that assign 0 to both 1 and n?
+c) that assign 1 to exactly one of the positive integers
+less than n?
+38. How many partial functions (see Section 2.3) are there
+from a set with ﬁve elements to sets with each of these
+number of elements?
+a) 1
+b) 2
+c) 5
+d) 9
+39. How many partial functions (see Deﬁnition 13 of Section
+2.3) are there from a set with m elements to a set with n
+elements, where m and n are positive integers?
+40. How many subsets of a set with 100 elements have more
+than one element?
+41. A palindrome is a string whose reversal is identical to
+the string. How many bit strings of length n are palindromes?
+42. How many 4-element DNA sequences
+a) do not contain the base T?
+b) contain the sequence ACG?
+
+c) contain all four bases A, T, C, and G?
+d) contain exactly three of the four bases A, T, C,
+and G?
+43. How many 4-element RNA sequences
+a) contain the base U?
+b) do not contain the sequence CUG?
+c) do not contain all four bases A, U, C, and G?
+d) contain exactly two of the four bases A, U, C, and G?
+44. On each of the 22 work days in a particular month, every
+employee of a start-up venture was sent a company communication. If a total of 4642 total company communications were sent, how many employees does the company
+have, assuming that no staﬃng changes were made that
+month?
+45. At a large university, 434 freshmen, 883 sophomores,
+and 43 juniors are enrolled in an introductory algorithms
+course. How many sections of this course need to be
+scheduled to accommodate all these students if each section contains 34 students?
+46. How many ways are there to seat four of a group of ten
+people around a circular table where two seatings are
+considered the same when everyone has the same immediate left and immediate right neighbor?
+47. How many ways are there to seat six people around a circular table where two seatings are considered the same
+when everyone has the same two neighbors without regard to whether they are right or left neighbors?
+48. In how many ways can a photographer at a wedding arrange 6 people in a row from a group of 10 people, where
+the bride and the groom are among these 10 people, if
+a) the bride must be in the picture?
+b) both the bride and groom must be in the picture?
+c) exactly one of the bride and the groom is in the picture?
+49. In how many ways can a photographer at a wedding arrange six people in a row, including the bride and groom,
+if
+a) the bride must be next to the groom?
+b) the bride is not next to the groom?
+c) the bride is positioned somewhere to the left of the
+groom?
+50. How many bit strings of length seven either begin with
+two 0s or end with three 1s?
+51. How many bit strings of length 10 either begin with three
+0s or end with two 0s?
+∗ 52. How many bit strings of length 10 contain either ﬁve consecutive 0s or ﬁve consecutive 1s?
+∗∗ 53. How many bit strings of length eight contain either three
+consecutive 0s or four consecutive 1s?
+54. Every student in a discrete mathematics class is either
+a computer science or a mathematics major or is a joint
+major in these two subjects. How many students are in
+the class if there are 38 computer science majors (including joint majors), 23 mathematics majors (including joint
+majors), and 7 joint majors?
+
+6.1 The Basics of Counting
+
+55. How many positive integers not exceeding 100 are divisible either by 4 or by 6?
+56. How many diﬀerent initials can someone have if a person
+has at least two, but no more than ﬁve, diﬀerent initials?
+Assume that each initial is one of the 26 uppercase letters
+of the English language.
+57. Suppose that a password for a computer system must have
+at least 8, but no more than 12, characters, where each
+character in the password is a lowercase English letter,
+an uppercase English letter, a digit, or one of the six special characters ∗, >, <, !, +, and =.
+a) How many diﬀerent passwords are available for this
+computer system?
+b) How many of these passwords contain at least one occurrence of at least one of the six special characters?
+c) Using your answer to part (a), determine how long it
+takes a hacker to try every possible password, assuming that it takes one nanosecond for a hacker to check
+each possible password.
+58. The name of a variable in the C programming language is
+a string that can contain uppercase letters, lowercase letters, digits, or underscores. Further, the ﬁrst character in
+the string must be a letter, either uppercase or lowercase,
+or an underscore. If the name of a variable is determined
+by its ﬁrst eight characters, how many diﬀerent variables
+can be named in C? (Note that the name of a variable may
+contain fewer than eight characters.)
+59. The name of a variable in the JAVA programming language is a string of between 1 and 65,535 characters, inclusive, where each character can be an uppercase or a
+lowercase letter, a dollar sign, an underscore, or a digit,
+except that the ﬁrst character must not be a digit. Determine the number of diﬀerent variable names in JAVA.
+60. The International Telecommunications Union (ITU)
+speciﬁes that a telephone number must consist of a country code with between 1 and 3 digits, except that the
+code 0 is not available for use as a country code, followed
+by a number with at most 15 digits. How many available
+possible telephone numbers are there that satisfy these
+restrictions?
+61. Suppose that at some future time every telephone in the
+world is assigned a number that contains a country code
+1 to 3 digits long, that is, of the form X, XX, or XXX,
+followed by a 10-digit telephone number of the form
+NXX-NXX-XXXX (as described in Example 8). How
+many diﬀerent telephone numbers would be available
+worldwide under this numbering plan?
+62. A key in the Vigenère cryptosystem is a string of English
+letters, where the case of the letters does not matter. How
+many diﬀerent keys for this cryptosystem are there with
+three, four, ﬁve, or six letters?
+63. A wired equivalent privacy (WEP) key for a wireless ﬁdelity (WiFi) network is a string of either 10, 26, or 58
+hexadecimal digits. How many diﬀerent WEP keys are
+there?
+
+419
+
+64. Suppose that p and q are prime numbers and that n = pq.
+Use the principle of inclusion–exclusion to ﬁnd the number of positive integers not exceeding n that are relatively
+prime to n.
+65. Use the principle of inclusion–exclusion to ﬁnd the number of positive integers less than 1,000,000 that are not
+divisible by either 4 or by 6.
+66. Use a tree diagram to ﬁnd the number of bit strings of
+length four with no three consecutive 0s.
+67. How many ways are there to arrange the letters a, b, c,
+and d such that a is not followed immediately by b?
+68. Use a tree diagram to ﬁnd the number of ways that the
+World Series can occur, where the ﬁrst team that wins
+four games out of seven wins the series.
+69. Use a tree diagram to determine the number of subsets
+of {3, 7, 9, 11, 24} with the property that the sum of the
+elements in the subset is less than 28.
+70. a) Suppose that a store sells six varieties of soft drinks:
+cola, ginger ale, orange, root beer, lemonade, and
+cream soda. Use a tree diagram to determine the number of diﬀerent types of bottles the store must stock to
+have all varieties available in all size bottles if all varieties are available in 12-ounce bottles, all but lemonade are available in 20-ounce bottles, only cola and
+ginger ale are available in 32-ounce bottles, and all
+but lemonade and cream soda are available in 64ounce bottles?
+b) Answer the question in part (a) using counting rules.
+71. a) Suppose that a popular style of running shoe is available for both men and women. The woman’s shoe
+comes in sizes 6, 7, 8, and 9, and the man’s shoe
+comes in sizes 8, 9, 10, 11, and 12. The man’s
+shoe comes in white and black, while the woman’s
+shoe comes in white, red, and black. Use a tree diagram to determine the number of diﬀerent shoes that
+a store has to stock to have at least one pair of this
+type of running shoe for all available sizes and colors
+for both men and women.
+b) Answer the question in part (a) using counting rules.
+72. Determine the number of matches played in a singleelimination tournament with n players, where for each
+game between two players the winner goes on, but the
+loser is eliminated.
+73. Determine the minimum and the maximum number of
+matches that can be played in a double-elimination tournament with n players, where after each game between
+two players, the winner goes on and the loser goes on if
+and only if this is not a second loss.
+∗ 74. Use the product rule to show that there are 22n diﬀerent
+truth tables for propositions in n variables.
+75. Use mathematical induction to prove the sum rule for m
+tasks from the sum rule for two tasks.
+76. Use mathematical induction to prove the product rule
+for m tasks from the product rule for two tasks.
+
+420
+
+6 / Counting
+
+77. How many diagonals does a convex polygon with n sides
+have? (Recall that a polygon is convex if every line segment connecting two points in the interior or boundary of
+the polygon lies entirely within this set and that a diagonal of a polygon is a line segment connecting two vertices
+that are not adjacent.)
+78. Data are transmitted over the Internet in datagrams,
+which are structured blocks of bits. Each datagram contains header information organized into a maximum of 14
+diﬀerent ﬁelds (specifying many things, including the
+source and destination addresses) and a data area that
+contains the actual data that are transmitted. One of the
+14 header ﬁelds is the header length ﬁeld (denoted by
+HLEN), which is speciﬁed by the protocol to be 4 bits
+long and that speciﬁes the header length in terms of 32bit blocks of bits. For example, if HLEN = 0110, the
+header is made up of six 32-bit blocks. Another of the 14
+header ﬁelds is the 16-bit-long total length ﬁeld (denoted
+
+6.2
+
+by TOTAL LENGTH), which speciﬁes the length in bits
+of the entire datagram, including both the header ﬁelds
+and the data area. The length of the data area is the total
+length of the datagram minus the length of the header.
+a) The largest possible value of TOTAL LENGTH
+(which is 16 bits long) determines the maximum
+total length in octets (blocks of 8 bits) of an Internet
+datagram. What is this value?
+b) The largest possible value of HLEN (which is 4 bits
+long) determines the maximum total header length in
+32-bit blocks. What is this value? What is the maximum total header length in octets?
+c) The minimum (and most common) header length is
+20 octets. What is the maximum total length in octets
+of the data area of an Internet datagram?
+d) How many diﬀerent strings of octets in the data area
+can be transmitted if the header length is 20 octets
+and the total length is as long as possible?
+
+The Pigeonhole Principle
+6.2.1 Introduction
+Links
+
+THEOREM 1
+
+(a)
+
+FIGURE 1
+
+Suppose that a ﬂock of 20 pigeons ﬂies into a set of 19 pigeonholes to roost. Because there are
+20 pigeons but only 19 pigeonholes, a least one of these 19 pigeonholes must have at least two
+pigeons in it. To see why this is true, note that if each pigeonhole had at most one pigeon in it,
+at most 19 pigeons, one per hole, could be accommodated. This illustrates a general principle
+called the pigeonhole principle, which states that if there are more pigeons than pigeonholes,
+then there must be at least one pigeonhole with at least two pigeons in it (see Figure 1). This
+principle is extremely useful; it applies to much more than pigeons and pigeonholes.
+THE PIGEONHOLE PRINCIPLE If k is a positive integer and k + 1 or more objects
+are placed into k boxes, then there is at least one box containing two or more of the objects.
+
+(b)
+
+There are more pigeons than pigeonholes.
+
+(c)
+
+6.2 The Pigeonhole Principle
+
+421
+
+Proof: We prove the pigeonhole principle using a proof by contraposition. Suppose that none of
+the k boxes contains more than one object. Then the total number of objects would be at most k.
+This is a contradiction, because there are at least k + 1 objects.
+The pigeonhole principle is also called the Dirichlet drawer principle, after the nineteenthcentury German mathematician G. Lejeune Dirichlet, who often used this principle in his work.
+(Dirichlet was not the ﬁrst person to use this principle; a demonstration that there were at least
+two Parisians with the same number of hairs on their heads dates back to the 17th century—
+see Exercise 35.) It is an important additional proof technique supplementing those we have
+developed in earlier chapters. We introduce it in this chapter because of its many important
+applications to combinatorics.
+We will illustrate the usefulness of the pigeonhole principle. We ﬁrst show that it can be
+used to prove a useful corollary about functions.
+
+COROLLARY 1
+
+A function f from a set with k + 1 or more elements to a set with k elements is not one-to-one.
+
+Proof: Suppose that for each element y in the codomain of f we have a box that contains all
+elements x of the domain of f such that f (x) = y. Because the domain contains k + 1 or more
+elements and the codomain contains only k elements, the pigeonhole principle tells us that one
+of these boxes contains two or more elements x of the domain. This means that f cannot be
+one-to-one.
+Examples 1–3 show how the pigeonhole principle is used.
+
+EXAMPLE 1
+
+Among any group of 367 people, there must be at least two with the same birthday, because
+there are only 366 possible birthdays.
+◂
+
+EXAMPLE 2
+
+In any group of 27 English words, there must be at least two that begin with the same letter,
+◂
+because there are 26 letters in the English alphabet.
+
+EXAMPLE 3
+
+How many students must be in a class to guarantee that at least two students receive the same
+score on the ﬁnal exam, if the exam is graded on a scale from 0 to 100 points?
+Solution: There are 101 possible scores on the ﬁnal. The pigeonhole principle shows that among
+◂
+any 102 students there must be at least 2 students with the same score.
+
+Links
+G. LEJEUNE DIRICHLET (1805–1859) G. Lejeune Dirichlet was born into a Belgian family living near
+Cologne, Germany. His father was a postmaster. He became passionate about mathematics at a young age.
+He was spending all his spare money on mathematics books by the time he entered secondary school in
+Bonn at the age of 12. At 14 he entered the Jesuit College in Cologne, and at 16 he began his studies at
+the University of Paris. In 1825 he returned to Germany and was appointed to a position at the University of Breslau. In 1828 he moved to the University of Berlin. In 1855 he was chosen to succeed Gauss at
+the University of Göttingen. Dirichlet is said to be the ﬁrst person to master Gauss’s Disquisitiones Arithmeticae, which appeared 20 years earlier. He is said to have kept a copy at his side even when he travc
+INTERFOTO/Alamy
+Stock eled. Dirichlet made many important discoveries in number theory, including the theorem that there are inPhoto
+ﬁnitely many primes in arithmetical progressions an + b when a and b are relatively prime. He proved the
+n = 5 case of Fermat’s last theorem, that there are no nontrivial solutions in integers to x5 + y5 = z5 . Dirichlet
+also made many contributions to analysis. Dirichlet was considered to be an excellent teacher who could explain ideas with great
+clarity. He was married to Rebecka Mendelssohn, one of the sisters of the composer Felix Mendelssohn.
+
+422
+
+6 / Counting
+
+The pigeonhole principle is a useful tool in many proofs, including proofs of surprising
+results, such as that given in Example 4.
+
+EXAMPLE 4
+Extra
+Examples
+
+Show that for every integer n there is a multiple of n that has only 0s and 1s in its decimal
+expansion.
+Solution: Let n be a positive integer. Consider the n + 1 integers 1, 11, 111, … , 11 … 1 (where
+the last integer in this list is the integer with n + 1 1s in its decimal expansion). Note that there
+are n possible remainders when an integer is divided by n. Because there are n + 1 integers in
+this list, by the pigeonhole principle there must be two with the same remainder when divided
+by n. The larger of these integers less the smaller one is a multiple of n, which has a decimal
+◂
+expansion consisting entirely of 0s and 1s.
+
+6.2.2 The Generalized Pigeonhole Principle
+The pigeonhole principle states that there must be at least two objects in the same box when
+there are more objects than boxes. However, even more can be said when the number of objects
+exceeds a multiple of the number of boxes. For instance, among any set of 21 decimal digits
+there must be 3 that are the same. This follows because when 21 objects are distributed into
+10 boxes, one box must have more than 2 objects.
+
+THEOREM 2
+
+THE GENERALIZED PIGEONHOLE PRINCIPLE If N objects are placed into k
+boxes, then there is at least one box containing at least ⌈N∕k⌉ objects.
+Proof: We will use a proof by contraposition. Suppose that none of the boxes contains more
+than ⌈N∕k⌉ − 1 objects. Then, the total number of objects is at most
+)
+((
+)
+)
+(⌈ ⌉
+N
+N
+−1 <k
++ 1 − 1 = N,
+k
+k
+k
+where the inequality ⌈N∕k⌉ < (N∕k) + 1 has been used. Thus, the total number of objects is
+less than N. This completes the proof by contraposition.
+A common type of problem asks for the minimum number of objects such that at least r
+of these objects must be in one of k boxes when these objects are distributed among the boxes.
+When we have N objects, the generalized pigeonhole principle tells us there must be at least
+r objects in one of the boxes as long as ⌈N∕k⌉ ≥ r. The smallest integer N with N∕k > r − 1,
+namely, N = k(r − 1) + 1, is the smallest integer satisfying the inequality ⌈N∕k⌉ ≥ r. Could a
+smaller value of N suﬃce? The answer is no, because if we had k(r − 1) objects, we could put
+r − 1 of them in each of the k boxes and no box would have at least r objects.
+When thinking about problems of this type, it is useful to consider how you can avoid having
+at least r objects in one of the boxes as you add successive objects. To avoid adding a rth object
+to any box, you eventually end up with r − 1 objects in each box. There is no way to add the
+next object without putting an rth object in that box.
+Examples 5–8 illustrate how the generalized pigeonhole principle is applied.
+
+◂
+
+EXAMPLE 5
+
+Among 100 people there are at least ⌈100∕12⌉ = 9 who were born in the same month.
+
+EXAMPLE 6
+
+What is the minimum number of students required in a discrete mathematics class to be sure
+that at least six will receive the same grade, if there are ﬁve possible grades, A, B, C, D, and F?
+
+6.2 The Pigeonhole Principle
+
+423
+
+Extra
+Examples
+
+Solution: The minimum number of students needed to ensure that at least six students receive
+the same grade is the smallest integer N such that ⌈N∕5⌉ = 6. The smallest such integer is
+N = 5 ⋅ 5 + 1 = 26. If you have only 25 students, it is possible for there to be ﬁve who have
+received each grade so that no six students have received the same grade. Thus, 26 is the
+minimum number of students needed to ensure that at least six students will receive the same
+◂
+grade.
+
+EXAMPLE 7
+
+a) How many cards must be selected from a standard deck of 52 cards to guarantee that at least
+three cards of the same suit are selected?
+b) How many must be selected from a standard deck of 52 cards to guarantee that at least three
+hearts are selected?
+
+A standard deck of 52
+cards has 13 kinds of
+cards, with four cards of
+each of kind, one in
+each of the four suits,
+hearts, diamonds,
+spades, and clubs.
+
+Solution: a) Suppose there are four boxes, one for each suit, and as cards are selected they are
+placed in the box reserved for cards of that suit. Using the generalized pigeonhole principle,
+we see that if N cards are selected, there is at least one box containing at least ⌈N∕4⌉ cards.
+Consequently, we know that at least three cards of one suit are selected if ⌈N∕4⌉ ≥ 3. The
+smallest integer N such that ⌈N∕4⌉ ≥ 3 is N = 2 ⋅ 4 + 1 = 9, so nine cards suﬃce. Note that if
+eight cards are selected, it is possible to have two cards of each suit, so more than eight cards are
+needed. Consequently, nine cards must be selected to guarantee that at least three cards of one
+suit are chosen. One good way to think about this is to note that after the eighth card is chosen,
+there is no way to avoid having a third card of some suit.
+b) We do not use the generalized pigeonhole principle to answer this question, because we want
+to make sure that there are three hearts, not just three cards of one suit. Note that in the worst
+case, we can select all the clubs, diamonds, and spades, 39 cards in all, before we select a single
+heart. The next three cards will be all hearts, so we may need to select 42 cards to get three
+◂
+hearts.
+
+EXAMPLE 8
+
+What is the least number of area codes needed to guarantee that the 25 million phones in a state
+can be assigned distinct 10-digit telephone numbers? (Assume that telephone numbers are of
+the form NXX-NXX-XXXX, where the ﬁrst three digits form the area code, N represents a digit
+from 2 to 9 inclusive, and X represents any digit.)
+Solution: There are eight million diﬀerent phone numbers of the form NXX-XXXX (as shown in
+Example 8 of Section 6.1). Hence, by the generalized pigeonhole principle, among 25 million
+telephones, at least ⌈25,000,000∕8,000,000⌉ = 4 of them must have identical phone numbers.
+Hence, at least four area codes are required to ensure that all 10-digit numbers are diﬀerent. ◂
+Example 9, although not an application of the generalized pigeonhole principle, makes use
+of similar principles.
+
+EXAMPLE 9
+
+Suppose that a computer science laboratory has 15 workstations and 10 servers. A cable can be
+used to directly connect a workstation to a server. For each server, only one direct connection to
+that server can be active at any time. We want to guarantee that at any time any set of 10 or fewer
+workstations can simultaneously access diﬀerent servers via direct connections. Although we
+could do this by connecting every workstation directly to every server (using 150 connections),
+what is the minimum number of direct connections needed to achieve this goal?
+Solution: Suppose that we label the workstations W1 , W2 , … , W15 and the servers S1 , S2 , … , S10 .
+First, we would like to ﬁnd a way for there to be far fewer than 150 direct connections between
+workstations and servers to achieve our goal. One promising approach is to directly connect
+Wk to Sk for k = 1, 2, … , 10 and then to connect each of W11 , W12 , W13 , W14 , and W15 to all
+
+424
+
+6 / Counting
+
+10 servers. This gives us a total of 10 + 5 ⋅ 10 = 60 direct connections. We need to determine
+whether with this conﬁguration any set of 10 or fewer workstations can simultaneously access
+diﬀerent servers. We note that if workstation Wj is included with 1 ≤ j ≤ 10, it can access server
+Sj , and for each workstation Wk with k ≥ 11 included, there must be a corresponding workstation
+Wj with 1 ≤ j ≤ 10 not included, so Wk can access server Sj . (This follows because there are at
+least as many available servers Sj as there are workstations Wj with 1 ≤ j ≤ 10 not included.) So,
+any set of 10 or fewer workstations are able to simultaneously access diﬀerent servers.
+But can we use fewer than 60 direct connections? Suppose there are fewer than 60 direct
+connections between workstations and servers. Then some server would be connected to at
+most ⌊59∕10⌋ = 5 workstations. (If all servers were connected to at least six workstations, there
+would be at least 6 ⋅ 10 = 60 direct connections.) This means that the remaining nine servers
+are not enough for the other 10 or more workstations to simultaneously access diﬀerent servers.
+◂
+Consequently, at least 60 direct connections are needed. It follows that 60 is the answer.
+
+6.2.3 Some Elegant Applications of the Pigeonhole Principle
+In many interesting applications of the pigeonhole principle, the objects to be placed in boxes
+must be chosen in a clever way. A few such applications will be described here.
+
+EXAMPLE 10
+
+During a month with 30 days, a baseball team plays at least one game a day, but no more
+than 45 games. Show that there must be a period of some number of consecutive days during
+which the team must play exactly 14 games.
+Solution: Let aj be the number of games played on or before the jth day of the month. Then
+a1 , a2 , … , a30 is an increasing sequence of distinct positive integers, with 1 ≤ aj ≤ 45. Moreover, a1 + 14, a2 + 14, … , a30 + 14 is also an increasing sequence of distinct positive integers,
+with 15 ≤ aj + 14 ≤ 59.
+The 60 positive integers a1 , a2 , … , a30 , a1 + 14, a2 + 14, … , a30 + 14 are all less than or
+equal to 59. Hence, by the pigeonhole principle two of these integers are equal. Because the
+integers aj , j = 1, 2, … , 30 are all distinct and the integers aj + 14, j = 1, 2, … , 30 are all distinct,
+there must be indices i and j with ai = aj + 14. This means that exactly 14 games were played
+◂
+from day j + 1 to day i.
+
+EXAMPLE 11
+
+Show that among any n + 1 positive integers not exceeding 2n there must be an integer that
+divides one of the other integers.
+Solution: Write each of the n + 1 integers a1 , a2 , … , an+1 as a power of 2 times an odd integer.
+In other words, let aj = 2kj qj for j = 1, 2, … , n + 1, where kj is a nonnegative integer and qj is
+odd. The integers q1 , q2 , … , qn+1 are all odd positive integers less than 2n. Because there are
+only n odd positive integers less than 2n, it follows from the pigeonhole principle that two of
+the integers q1 , q2 , … , qn+1 must be equal. Therefore, there are distinct integers i and j such that
+qi = qj . Let q be the common value of qi and qj . Then, ai = 2ki q and aj = 2kj q. It follows that if
+◂
+ki < kj , then ai divides aj ; while if ki > kj , then aj divides ai .
+A clever application of the pigeonhole principle shows the existence of an increasing or a
+decreasing subsequence of a certain length in a sequence of distinct integers. We review some
+deﬁnitions before this application is presented. Suppose that a1 , a2 , … , aN is a sequence of real
+numbers. A subsequence of this sequence is a sequence of the form ai1 , ai2 , … , aim , where 1 ≤
+i1 < i2 < ⋯ < im ≤ N. Hence, a subsequence is a sequence obtained from the original sequence
+by including some of the terms of the original sequence in their original order, and perhaps not
+including other terms. A sequence is called strictly increasing if each term is larger than the
+
+6.2 The Pigeonhole Principle
+
+425
+
+one that precedes it, and it is called strictly decreasing if each term is smaller than the one that
+precedes it.
+
+THEOREM 3
+
+Every sequence of n2 + 1 distinct real numbers contains a subsequence of length n + 1 that
+is either strictly increasing or strictly decreasing.
+
+We give an example before presenting the proof of Theorem 3.
+
+EXAMPLE 12
+
+The sequence 8, 11, 9, 1, 4, 6, 12, 10, 5, 7 contains 10 terms. Note that 10 = 32 + 1. There
+are four strictly increasing subsequences of length four, namely, 1, 4, 6, 12; 1, 4, 6, 7; 1,
+4, 6, 10; and 1, 4, 5, 7. There is also a strictly decreasing subsequence of length four,
+◂
+namely, 11, 9, 6, 5.
+The proof of the theorem will now be given.
+Proof: Let a1 , a2 , … , an2 +1 be a sequence of n2 + 1 distinct real numbers. Associate an ordered
+pair with each term of the sequence, namely, associate (ik , dk ) to the term ak , where ik is the
+length of the longest increasing subsequence starting at ak , and dk is the length of the longest
+decreasing subsequence starting at ak .
+Suppose that there are no increasing or decreasing subsequences of length n + 1. Then
+ik and dk are both positive integers less than or equal to n, for k = 1, 2, … , n2 + 1. Hence,
+by the product rule there are n2 possible ordered pairs for (ik , dk ). By the pigeonhole principle, two of these n2 + 1 ordered pairs are equal. In other words, there exist terms as and
+at , with s < t such that is = it and ds = dt . We will show that this is impossible. Because
+the terms of the sequence are distinct, either as < at or as > at . If as < at , then, because
+is = it , an increasing subsequence of length it + 1 can be built starting at as , by taking as
+followed by an increasing subsequence of length it beginning at at . This is a contradiction.
+Similarly, if as > at , the same reasoning shows that ds must be greater than dt , which is a
+contradiction.
+
+Links
+
+EXAMPLE 13
+
+The ﬁnal example shows how the generalized pigeonhole principle can be applied to an important part of combinatorics called Ramsey theory, after the English mathematician F. P. Ramsey. In general, Ramsey theory deals with the distribution of subsets of elements of sets.
+Assume that in a group of six people, each pair of individuals consists of two friends or two
+enemies. Show that there are either three mutual friends or three mutual enemies in the group.
+Solution: Let A be one of the six people. Of the ﬁve other people in the group, there are either
+three or more who are friends of A, or three or more who are enemies of A. This follows from
+
+Links
+
+Courtesy of Stephen Frank
+Burch
+
+FRANK PLUMPTON RAMSEY (1903–1930) Frank Plumpton Ramsey, son of the president of Magdalene
+College, Cambridge, was educated at Winchester and Trinity Colleges. After graduating in 1923, he was elected
+a fellow of King’s College, Cambridge, where he spent the remainder of his life. Ramsey made important
+contributions to mathematical logic. What we now call Ramsey theory began with his clever combinatorial
+arguments, published in the paper “On a Problem of Formal Logic.” Ramsey also made contributions to the
+mathematical theory of economics. He was noted as an excellent lecturer on the foundations of mathematics.
+According to one of his brothers, he was interested in almost everything, including English literature and politics.
+Ramsey was married and had two daughters. His death at the age of 26 resulting from chronic liver problems
+deprived the mathematical community and Cambridge University of a brilliant young scholar.
+
+426
+
+6 / Counting
+
+the generalized pigeonhole principle, because when ﬁve objects are divided into two sets, one
+of the sets has at least ⌈5∕2⌉ = 3 elements. In the former case, suppose that B, C, and D are
+friends of A. If any two of these three individuals are friends, then these two and A form a group
+of three mutual friends. Otherwise, B, C, and D form a set of three mutual enemies. The proof
+in the latter case, when there are three or more enemies of A, proceeds in a similar manner. ◂
+The Ramsey number R(m, n), where m and n are positive integers greater than or equal to 2,
+denotes the minimum number of people at a party such that there are either m mutual friends
+or n mutual enemies, assuming that every pair of people at the party are friends or enemies.
+Example 13 shows that R(3, 3) ≤ 6. We conclude that R(3, 3) = 6 because in a group of ﬁve
+people where every two people are friends or enemies, there may not be three mutual friends or
+three mutual enemies (see Exercise 28).
+It is possible to prove some useful properties about Ramsey numbers, but for the most
+part it is diﬃcult to ﬁnd their exact values. Note that by symmetry it can be shown that
+R(m, n) = R(n, m) (see Exercise 32). We also have R(2, n) = n for every positive integer n ≥ 2
+(see Exercise 31). The exact values of only nine Ramsey numbers R(m, n) with 3 ≤ m ≤ n are
+known, including R(4, 4) = 18. Only bounds are known for many other Ramsey numbers, including R(5, 5), which is known to satisfy 43 ≤ R(5, 5) ≤ 49. The reader interested in learning
+more about Ramsey numbers should consult [MiRo91] or [GrRoSp90].
+
+Exercises
+1. Show that in any set of six classes, each meeting regularly once a week on a particular day of the week, there
+must be two that meet on the same day, assuming that no
+classes are held on weekends.
+2. Show that if there are 30 students in a class, then at least
+two have last names that begin with the same letter.
+3. A drawer contains a dozen brown socks and a dozen black
+socks, all unmatched. A man takes socks out at random
+in the dark.
+a) How many socks must he take out to be sure that he
+has at least two socks of the same color?
+b) How many socks must he take out to be sure that he
+has at least two black socks?
+4. A bowl contains 10 red balls and 10 blue balls. A woman
+selects balls at random without looking at them.
+a) How many balls must she select to be sure of having
+at least three balls of the same color?
+b) How many balls must she select to be sure of having
+at least three blue balls?
+5. Undergraduate students at a college belong to one of four
+groups depending on the year in which they are expected
+to graduate. Each student must choose one of 21 diﬀerent majors. How many students are needed to assure that
+there are two students expected to graduate in the same
+year who have the same major?
+6. There are six professors teaching the introductory discrete mathematics class at a university. The same ﬁnal
+exam is given by all six professors. If the lowest possible score on the ﬁnal is 0 and the highest possible score
+is 100, how many students must there be to guarantee
+
+that there are two students with the same professor who
+earned the same ﬁnal examination score?
+7. Show that among any group of ﬁve (not necessarily consecutive) integers, there are two with the same remainder
+when divided by 4.
+8. Let d be a positive integer. Show that among any group of
+d + 1 (not necessarily consecutive) integers there are two
+with exactly the same remainder when they are divided
+by d.
+9. Let n be a positive integer. Show that in any set of n consecutive integers there is exactly one divisible by n.
+10. Show that if f is a function from S to T, where S and T
+are ﬁnite sets with |S| > |T|, then there are elements s1
+and s2 in S such that f (s1 ) = f (s2 ), or in other words, f is
+not one-to-one.
+11. What is the minimum number of students, each of whom
+comes from one of the 50 states, who must be enrolled in
+a university to guarantee that there are at least 100 who
+come from the same state?
+∗ 12. Let (xi , yi ), i = 1, 2, 3, 4, 5, be a set of ﬁve distinct points
+with integer coordinates in the xy plane. Show that the
+midpoint of the line joining at least one pair of these
+points has integer coordinates.
+∗ 13. Let (xi , yi , zi ), i = 1, 2, 3, 4, 5, 6, 7, 8, 9, be a set of nine
+distinct points with integer coordinates in xyz space.
+Show that the midpoint of at least one pair of these points
+has integer coordinates.
+14. How many ordered pairs of integers (a, b) are
+needed to guarantee that there are two ordered pairs
+(a1 , b1 ) and (a2 , b2 ) such that a1 mod 5 = a2 mod 5
+and b1 mod 5 = b2 mod 5?
+
+6.2 The Pigeonhole Principle
+
+15. a) Show that if ﬁve integers are selected from the ﬁrst
+eight positive integers, there must be a pair of these
+integers with a sum equal to 9.
+b) Is the conclusion in part (a) true if four integers are
+selected rather than ﬁve?
+16. a) Show that if seven integers are selected from the ﬁrst
+10 positive integers, there must be at least two pairs
+of these integers with the sum 11.
+b) Is the conclusion in part (a) true if six integers are
+selected rather than seven?
+17. How many numbers must be selected from the set
+{1, 2, 3, 4, 5, 6} to guarantee that at least one pair of these
+numbers add up to 7?
+18. How many numbers must be selected from the set
+{1, 3, 5, 7, 9, 11, 13, 15} to guarantee that at least one pair
+of these numbers add up to 16?
+19. A company stores products in a warehouse. Storage bins
+in this warehouse are speciﬁed by their aisle, location in
+the aisle, and shelf. There are 50 aisles, 85 horizontal locations in each aisle, and 5 shelves throughout the warehouse. What is the least number of products the company
+can have so that at least two products must be stored in
+the same bin?
+20. Suppose that there are nine students in a discrete mathematics class at a small college.
+a) Show that the class must have at least ﬁve male students or at least ﬁve female students.
+b) Show that the class must have at least three male students or at least seven female students.
+21. Suppose that every student in a discrete mathematics
+class of 25 students is a freshman, a sophomore, or a
+junior.
+a) Show that there are at least nine freshmen, at least
+nine sophomores, or at least nine juniors in the class.
+b) Show that there are either at least three freshmen, at
+least 19 sophomores, or at least ﬁve juniors in the
+class.
+22. Find an increasing subsequence of maximal length and
+a decreasing subsequence of maximal length in the sequence 22, 5, 7, 2, 23, 10, 15, 21, 3, 17.
+23. Construct a sequence of 16 positive integers that has no
+increasing or decreasing subsequence of ﬁve terms.
+24. Show that if there are 101 people of diﬀerent heights
+standing in a line, it is possible to ﬁnd 11 people in the
+order they are standing in the line with heights that are
+either increasing or decreasing.
+∗ 25. Show that whenever 25 girls and 25 boys are seated
+around a circular table there is always a person both of
+whose neighbors are boys.
+∗∗ 26. Suppose that 21 girls and 21 boys enter a mathematics competition. Furthermore, suppose that each entrant
+solves at most six questions, and for every boy-girl pair,
+there is at least one question that they both solved. Show
+that there is a question that was solved by at least three
+girls and at least three boys.
+
+427
+
+∗ 27. Describe an algorithm in pseudocode for producing the
+largest increasing or decreasing subsequence of a sequence of distinct integers.
+28. Show that in a group of ﬁve people (where any two people
+are either friends or enemies), there are not necessarily
+three mutual friends or three mutual enemies.
+29. Show that in a group of 10 people (where any two people
+are either friends or enemies), there are either three mutual friends or four mutual enemies, and there are either
+three mutual enemies or four mutual friends.
+30. Use Exercise 29 to show that among any group of 20 people (where any two people are either friends or enemies),
+there are either four mutual friends or four mutual enemies.
+31. Show that if n is an integer with n ≥ 2, then the Ramsey
+number R(2, n) equals n. (Recall that Ramsey numbers
+were discussed after Example 13 in Section 6.2.)
+32. Show that if m and n are integers with m ≥ 2 and n ≥ 2,
+then the Ramsey numbers R(m, n) and R(n, m) are equal.
+(Recall that Ramsey numbers were discussed after Example 13 in Section 6.2.)
+33. Show that there are at least six people in California (population: 39 million) with the same three initials who were
+born on the same day of the year (but not necessarily in
+the same year). Assume that everyone has three initials.
+34. Show that if there are 100,000,000 wage earners in the
+United States who earn less than 1,000,000 dollars (but
+at least a penny), then there are two who earned exactly
+the same amount of money, to the penny, last year.
+35. In the 17th century, there were more than 800,000 inhabitants of Paris. At the time, it was believed that no one had
+more than 200,000 hairs on their head. Assuming these
+numbers are correct and that everyone has at least one
+hair on their head (that is, no one is completely bald), use
+the pigeonhole principle to show, as the French writer
+Pierre Nicole did, that there had to be two Parisians with
+the same number of hairs on their heads. Then use the
+generalized pigeonhole principle to show that there had
+to be at least ﬁve Parisians at that time with the same
+number of hairs on their heads.
+36. Assuming that no one has more than 1,000,000 hairs on
+their head and that the population of New York City was
+8,537,673 in 2016, show there had to be at least nine people in New York City in 2016 with the same number of
+hairs on their heads.
+37. There are 38 diﬀerent time periods during which classes
+at a university can be scheduled. If there are 677 diﬀerent
+classes, how many diﬀerent rooms will be needed?
+38. A computer network consists of six computers. Each
+computer is directly connected to at least one of the other
+computers. Show that there are at least two computers in
+the network that are directly connected to the same number of other computers.
+
+

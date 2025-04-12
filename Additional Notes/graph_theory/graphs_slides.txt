@@ -1,0 +1,1834 @@
+Appetizer
+
+Graph theory started with Euler who was asked to find a
+nice path across the seven Köningsberg bridges
+
+The (Eulerian) path
+should cross over
+each of the seven
+bridges exactly once
+
+Appetizer
+
+Another early bird was Sir William Rowan Hamilton (1805-1865)
+
+In 1859 he developed a toy based on finding a path visiting all
+cities in a graph exactly once and sold it to a toy maker in Dublin.
+It never was a big success.
+
+Appetizer
+
+But now graph theory is used for finding communities in networks
+
+where we want to detect hierarchies of substructures
+
+Appetizer
+
+and their sizes can become quite big ...
+
+Appetizer
+
+It is also used for ranking (ordering) hyperlinks
+
+Appetizer
+
+or by your GPS to find the shortest path home ...
+
+Appetizer
+
+or by your GPS to find the shortest path home ...
+
+Contents
+
+What we will cover in this course
+I
+
+Basic theory about graphs
+Connectivity
+Paths
+I Trees
+I Networks and flows
+I Eulerian and Hamiltonian graphs
+I Coloring problems
+I Complexity issues
+I
+I
+
+I
+
+A number of applications (in large graphs)
+Large scale problems in graphs
+Similarity of nodes in large graphs
+I Telephony problems and graphs
+I Ranking in large graphs
+I Clustering of large graphs
+I
+I
+
+What are
+graphs
+
+A graph G = (V , E) is a pair of vertices (or nodes) V and
+a set of edges E, assumed finite i.e. |V | = n and |E| = m.
+
+Here V (G) = {v1 , v2 , . . . , v5 } and E(G) = {e1 , e2 , . . . , e6 }.
+An edge ek = (vi , vj ) is incident with the vertices vi and vj .
+A simple graph has no self-loops or multiple edges like below
+
+What are
+graphs
+
+Some properties
+The degree d(v ) of a vertex V is its number of incident edges
+A self-loop counts for 2 in the degree function.
+An isolated vertex has degree 0.
+Proposition The sum of the degrees of a graph G = (V , E)
+equals 2|E| = 2m (trivial)
+Corollary The number of vertices of odd degree is even (trivial)
+
+What are
+graphs
+
+Special graphs
+A complete graph Kn is a simple graph with all B(n, 2) := n(n−1)
+2
+possible edges, like the matrices below for n = 2, 3, 4, 5.
+
+A k -regular graph is a simple graph with vertices of equal degree k
+
+Corollary The complete graph Kn is (n − 1)-regular
+
+What are
+graphs
+
+A bipartite graph is one where V = V1 ∪ V2 such that there are no
+edges between V1 and V2 (the black and white nodes below)
+
+A complete bipartite graph is one where all edges between V1 and
+V2 are present (i.e. |E| = |V1 |.|V2 |). It is noted as Kn1 ,n2 .
+
+When is complete bipartite graph regular ?
+
+What are
+graphs
+
+When is G bipartite ?
+Which graph is bipartite ?
+
+It suffices to find 2 colors that separate the edges as below
+
+What are
+graphs
+
+When is G bipartite ?
+Which graph is bipartite ?
+
+It suffices to find 2 colors that separate the edges as below
+
+The second example is not bipartite because it has a triangle
+(to be continued)
+
+Cycles
+
+Walking in a graph
+A walk of length k from node v0 to node vk is a non-empty graph
+P = (V , E) of the form
+V = {v0 , v1 , . . . , vk }
+
+E = {(v0 , v1 ), . . . , (vk −1 , vk )}
+
+where edge j connects nodes j − 1 and j (i.e. |V | = |E| + 1).
+A trail is a walk with all different edges.
+A path is a walk with all different nodes (and hence edges).
+
+A walk or trail is closed when v0 = vk .
+A cycle is a walk with different nodes except for v0 = vk .
+
+Cycles
+
+Try to prove the following wo (useful) lemmas
+Proposition A walk from u to v 6= u contains a path from u to v
+Hint : eliminate subcycles
+Proposition A closed walk of odd length contains a cycle of odd
+length
+Hint : decompose recursively into distinct subgraphs and use
+induction
+
+Question Is this only for simple graphs ?
+
+Cycles
+
+Directed graphs
+
+In a directed graph or digraph, each edge has a direction.
+
+For e = (vs , vt ), vs is the source node and vt is the terminal node.
+Each node v has an in-degree din (v ) and an out-degree dout (v ).
+A graph is balanced if din (v ) = dout (v ) for all nodes.
+
+Cycles
+
+Topological order
+Let us now try to order the nodes in a digraph.
+
+Define a bijection ford : V → {1, 2, . . . , n}, then ford (·) is a
+topological order for the graph G = (V , E) iff
+ford (i) < ford (j),
+
+∀(i, j) ∈ E
+
+This is apparently possible for the above graph.
+It is easy to see that such a graph should have no cycles.
+But is this also sufficient ?
+
+Cycles
+
+An acyclic graph is a graph without cycles.
+Proposition
+Every acyclic graph contains at least one node with zero in-degree
+Proof By contradiction.
+Assume din (v ) > 0 for all nodes, then each node i has a
+predecessor p(i) such that (vp(i) , vi ) ∈ E.
+Start from an arbitrary v0 to form a list of predecessors as below
+
+Since |V | is bounded, one must eventually return to a node that
+was already visited; hence there is a cycle.
+
+Cycles
+
+Let us use this to find a topological order
+Algorithm FindTopOrd(G)
+t := 0; G0 := G;
+while ∃v ∈ Gt : din (v ) = 0 do
+Gt+1 := Gt /{v }; order (v ) := t + 1; t := t + 1;
+end while
+if t = n then G is acyclic;
+else if t < n then G has a cycle; end if
+end if
+Let us verify this algorithm on the above example.
+
+Cycles
+
+The only node of in-degree 0 is v4 . So for t = 1 we have
+
+After removing v4 there are two nodes of in-degree 0, v1 and v3 .
+If we pick v3 then we have for t = 2
+
+Further reductions yield the final order {v4 , v3 , v1 , v2 , v5 , v6 }.
+What is the complexity of this algorithm ?
+
+Isomorphism
+
+Isomorphic graphs
+
+Two graphs G1 and G2 are isomorphic iff there is a bijection
+between their respective nodes which make each edge of G1
+correspond to exactly one edge of G2 , and vice versa.
+
+One must find a label numbering that makes the graphs identical
+This problem is still believed to be NP hard
+
+Isomorphism
+
+Counting graphs
+How many different simple graphs are there with n nodes ?
+A graph with n nodes can have B(n, 2) := n(n − 1)/2 different
+edges and each of them can be present or not.
+
+Hence there can be at most 2n(n−1)/2 graphs with n nodes.
+For n = 3 only 4 of the graphs are different
+(omitting the isomorphic ones)
+
+With n = 4 one finds eventually 11
+different graphs after collapsing the
+isomorphic ones
+
+Isomorphism
+
+Let there be Tn non-isomorphic (simple) graphs with n nodes.
+Then
+2n(n−1)/2
+≤ Tn ≤ 2n(n−1)/2
+n!
+Exercise Explain the lower bound
+Ln :=
+
+Taking logarithms and using n! < nn yields the bounds
+B(n, 2) − n log n ≤ log Tn ≤ B(n, 2)
+which gives an idea of the growth of Tn
+n
+Tn
+dLn e
+
+2 3
+2 4
+2 2
+
+4
+11
+3
+
+5
+34
+9
+
+6
+156
+46
+
+7
+1044
+417
+
+8
+12346
+6658
+
+Isomorphism
+
+Bipartite revisited
+Let us look again at bipartite graphs
+Proposition A graph is bipartite iff it has no cycles of odd length
+Necessity Trivial : color the nodes of the cycle black and white.
+Sufficiency Pick u ∈ V and let f (v ) be the length of a shortest
+path from u to v (∞ if there is no such path)
+A = {v ∈ V |f (v ) = odd}
+
+B = {v ∈ V |f (v ) = even}
+
+Then A and B form a partition of the nodes of V connected to u.
+One then needs to show that there
+can be no links between any two
+nodes of A or any two nodes of B.
+If this would be the case, one could
+construct a cycle of odd length.
+Repeat on each subgraph.
+
+Representing
+graphs
+
+Representing graphs
+A graph G = (V , E) is often represented by its adjacency matrix.
+It is an n × n matrix A with A(i, j) = 1 iff (i, j) ∈ E. For the graphs
+
+the adjacency matrices are
+
+
+0
+ 0
+
+A1 = 
+ 0
+ 1
+0
+
+0
+0
+1
+0
+1
+
+0
+1
+0
+1
+1
+
+1
+0
+1
+0
+1
+
+
+0
+1 
+
+1 
+
+1 
+0
+
+
+
+0
+ 1
+A2 = 
+ 0
+0
+
+0
+0
+1
+1
+
+1
+0
+0
+1
+
+
+0
+0 
+
+0 
+0
+
+Representing
+graphs
+
+A graph can also be represented by its n × m incidence matrix T .
+For an undirected graph T (i, k ) = T (j, k ) = 1 iff ek = (vi , vj ).
+For a directed graph T (i, k ) = −1; T (j, k ) = 1 iff ek = (vi , vj ).
+For the graphs
+
+the incidence matrices are
+
+
+
+1 0 0 0 0 0
+−1
+ 0 1 1 0 0 0 
+
+
+ 0
+
+
+T1 = 
+ 0 0 1 1 1 0  T2 =  1
+ 1 0 0 0 1 1 
+0
+0 1 0 1 0 1
+
+
+0
+0
+0
+1
+1
+0
+1 −1 
+
+0
+1 −1
+0 
+−1 −1
+0
+0
+
+Representing
+graphs
+
+One can also use a sparse matrix representation of A and T .
+This is in fact nothing but a list of edges, organized e.g. by nodes.
+
+Notice that the size of the representation of a graph is thus linear
+in the number of edges in the graph (i.e. in m = |E|).
+To be more precise, one should count the number of bits needed
+to represent all entries :
+L = (n + m) log n
+since one needs log n bits to represent the vertex pointers.
+
+Representing
+graphs
+
+Counting degrees
+Let 1 be the vector of all ones, then din = AT 1 and dout = A1
+are the vectors of in-degrees and out-degrees of the nodes of A
+and dout = din = d for undirected graphs.
+How should we then take self-loops into account ?
+In an adjacency matrix of an undirected graph A(i, i) = 2
+In an adjacency matrix of a directed graph A(i, i) = 1
+For an undirected graph, we have d = T 1.
+For a directed graph one can define Tt and Ts as the matrices
+containing the terminal and source nodes : T = Tt − Ts with
+
+
+
+
+0 0 0 0 1
+1 0 0 0 0
+ 0 1 0 1 0 
+ 0 0 0 0 1 
+
+
+
+Tt := 
+ 1 0 1 0 0  , Ts :=  0 0 0 1 0 
+0 0 0 0 0
+0 1 1 0 0
+Then also we have din = Tt 1 and dout = Ts 1.
+
+Representing
+graphs
+
+Powers of A
+
+Proposition (Ak )ij is the number of walks of length k from i to j
+Proof Trivial for k =1; by induction for larger k .
+The element (i, j) of Ak +1 = Ak · A is the sum of the walks of length
+k to nodes that are linked to node j via the adjacency matrix A.
+One verifies this in the following little example
+
+
+
+0 1 0
+0
+A =  0 0 1  , A2 =  1
+1 1 0
+0
+
+0
+1
+1
+
+
+1
+0 
+1
+
+Corollary In a simple undirected graph one has the identities
+tr (A) = 0, tr (A2 )/2 = |E| and
+tr (A3 )/6 equals the number of triangles in G.
+
+Connectivity
+
+Connected components
+
+In a directed graph G = (V , E), u and v are strongly connected
+if there exists a walk from u to v and from v to u.
+This is an equivalence relation and hence leads to equivalence
+classes, which are called th connected components of the graph
+G.
+
+The graph reduced to its connected components is acyclic (why ?)
+This shows up in many applications, e.g. in the dictionary graph.
+The connected components are the groups of words that use each
+other in their definition (see later).
+
+Connectivity
+
+After the reduction one has an acyclic graph, which can be
+ordered topologically.
+What do you obtain then ? Class orderings
+
+An initial class has din (c) = 0. A final class has dout (c) = 0.
+The other ones are intermediate.
+
+Connectivity
+
+Verify (strong) connectivity of a graph based on its adjacency list
+Idea : start from node s, explore the graph, mark what you visit
+
+Algorithm GenericSearch(G,s)
+mark(s); L := {s}
+while L 6= ∅ do
+choose u ∈ L;
+if ∃(u, v ) such that v is unmarked then
+mark(v ); L := L ∪ {v };
+else
+L := L\{u};
+end if
+end while
+
+Connectivity
+
+Below we marked the chosen nodes and the discovered nodes
+L
+{2}
+{2, 1}
+{2, 1, 5}
+{2, 1, 5, 6}
+{1, 5, 6}
+{1, 5, 6, 4}
+{5, 6, 4}
+{5, 4}
+{5, 4, 3}
+{5, 3}
+{5, 3, 7}
+{5, 3}
+{3}
+{3, 8}
+{3}
+{}
+
+mark
+2
+1
+5
+6
+4
+
+3
+7
+
+8
+
+This algorithm has 2n steps : each node is added once and
+removed once. Its complexity is therefore linear in n.
+
+Connectivity
+
+Because of the choices, this algorithm allows for different versions
+Let us use a LIFO list for L (Last In First Out) and choose for u the
+last element added to L. This is a depth first search (DFS).
+Algorithm DeptFirstSearch(G,s)
+mark(s); L := {s};
+while L 6= ∅ do
+u := last(L)
+if ∃(u, v ) such that v is unmarked then
+choose (u, v ) with v of smallest index;
+mark(v ); L := L ∪ {v };
+else
+L := L\{u}
+end if
+end while
+
+Connectivity
+
+Below we marked the chosen nodes and the discovered nodes
+L
+{2}
+{2, 1}
+{2, 1, 4}
+{2, 1, 4, 3}
+{2, 1, 4, 3, 7}
+{2, 1, 4, 3}
+{2, 1, 4, 3, 8}
+{2, 1, 4, 3}
+{2, 1, 4}
+{2, 1, 4, 6}
+{2, 1, 4, 6, 5}
+{2, 1, 4, 6}
+{2, 1, 4}
+{2, 1}
+{2}
+{}
+
+mark
+2
+1
+4
+3
+7
+8
+
+6
+5
+
+This algorithm builds longer paths than the generic one (depth
+first).
+
+Connectivity
+
+We now use a FIFO list for L (First In First Out) and choose for u
+the first element added to L. This is a breadth first search (BFS).
+Algorithm BreadthFirstSearch(G,s)
+mark(s); L := {s};
+while L 6= ∅ do
+u := first(L)
+if ∃(u, v ) such that v is unmarked then
+choose (u, v ) with v of smallest index;
+mark(v ); L := L ∪ {v };
+else
+L := L\{u}
+end if
+end while
+
+Connectivity
+
+Below we marked the chosen nodes and the discovered nodes
+L
+{2}
+{2, 1}
+{2, 1, 5}
+{1, 5}
+{1, 5, 4}
+{1, 5, 4, 6}
+{5, 4, 6}
+{4, 6}
+{4, 6, 3}
+{6, 3}
+{3}
+{3, 7}
+{3, 7, 8}
+{7, 8}
+{8}
+{}
+
+mark
+2
+1
+5
+4
+6
+
+3
+
+8
+
+This algorithm builds a wider tree (breadth first).
+
+Connectivity
+
+Testing connectivity
+
+The exploration algorithm finds the set of all nodes that can be
+reached by a path from a given node u ∈ V .
+If the graph is undirected, each node in that set can follow a path
+back to u. They thus form the connected component C(u) of u.
+
+To find all connected components, repeat this exploration on a
+node of V \C(u), etc.
+
+Connectivity
+
+Testing strong connectivity
+Proposition Let G = (V , E) be a digraph and let u ∈ V .
+If ∀v ∈ V there exists a path from u to v and a path from v to u,
+then G is strongly connected.
+The exploration algorithm finds the set of all nodes that can be
+reached by a path from a given node u ∈ V .
+How can one find the nodes from which u can be reached ?
+Construct for that the inverse graph by reversing all arrows
+
+Show that the adjacency matrix of this graph is just AT .
+
+Connectivity
+
+Proposition Let G = (V , E) be a digraph and let u ∈ V .
+Let R+ (u) be the nodes that can be reached from u
+and let R− (u) be the nodes that can reach u,
+then the strongly connected component of u is
+C(u) = R+ (u) ∩ R− (u)
+The exploration algorithm applied to the inverse graph, starting
+from u finds the set R− (u)
+
+Here R+ (v6 ) = {4, 6} while R− (v6 ) = V hence C(v6 ) = {4, 6}
+Find the other connected components.
+
+Shortest path
+
+Shortest path problems
+Find the shortest total length of a path between two nodes of a
+directed graph with lengths associated with each edge.
+E.g. Find the best piecewise linear approximation of a function
+
+Pj
+A cost cij = α + β k =i (f (xk ) − g(xk ))2 is associated with each
+linear section. This amounts to finding the shortest path in
+
+Shortest path
+
+Other example : Find the best production policy for a plant with a
+monthly demand di , a launching cost fi , a storage cost hi and a
+unit price pi , for each period i = 1, . . . , n.
+In the path below, we are e.g. producing in stages 1, 4 and 5.
+
+A cost is associated with each section. For the path (1,4) it is e.g.
+c14 = f1 + p1 (d1 + d2 + d3 ) + h1 (d2 + d3 ) + h2 (d3 ) which is the
+fixed cost + the production cost in periods 1, 2 and 3 + storage
+costs at the end of periods 1 and 2.
+The minimization of the total cost amounts to a shortest path
+problem in a graph combining paths as above.
+
+Shortest path
+
+Proposition If there is a shortest walk from s to t, there is also a
+shortest path from s to t
+Proof
+Assume the walk is not a path;
+hence there is a recurring node.
+Eliminate the cycle between the
+first and last occurrence of this
+node. Repeat this procedure.
+In the above graph the path (7, 8, 6, 3, 1, 5, 6, 10, 4, 6, 9) has a
+cycle (6, 3, 1, 5, 6, 10, 4, 6). After its elimination we have a path
+(7, 8, 6, 9).
+Corollary If G does not contain cycles of negative length, the
+resulting path is one of lower cost.
+Proof Trivial
+
+Shortest path
+
+Dijkstra’s algorithm
+This method is for a digraph G that has positive edge lengths.
+For undirected graphs one can duplicate each edge as follows
+
+Below, V + (u) denotes the set of children of u.
+Algorithm Dijkstra(G,u)
+S := {u}; d(u) := 0; d(v ) := c(u, v ) ∀v 6= u;
+while S 6= V do
+choose v 0 ∈
+/ S : d(v 0 ) ≤ d(v ) ∀v ∈
+/ S;
+S := S ∪ {v 0 };
+for each v ∈ V + (v 0 ) do
+d(v ) = min{d(v ), d(v 0 ) + c(v 0 , v )}
+end for
+end while
+
+Shortest path
+
+Idea : Update a set S for which we know all shortest paths from u
+Let us see the behavior of this
+algorithm on an example.
+The table below indicates the
+steps and the distances
+computed for each node
+Iter
+0
+1
+2
+3
+4
+
+S
+{u}
+{u, 1}
+{u, 1, 2}
+{u, 1, 2, 3}
+{u, 1, 2, 3, 4}
+
+d(u) d(1) d(2)
+0
+1
+3
+0
+1
+2
+0
+1
+2
+0
+1
+2
+0
+1
+2
+
+d(3) d(4)
+∞
+6
+4
+6
+3
+6
+3
+5
+3
+5
+
+We indicate in more detail the exploration of the graph
+
+Shortest path
+
+S
+{u}
+{u, 1}
+{u, 1, 2}
+{u, 1, 2, 3}
+{u, 1, 2, 3, 4}
+
+d(u)
+0
+0
+0
+0
+0
+
+d(1)
+1
+1
+1
+1
+1
+
+d(2)
+3
+2
+2
+2
+2
+
+d(3)
+∞
+4
+3
+3
+3
+
+d(4)
+6
+6
+6
+5
+5
+
+Below, the node u is blue and the explored nodes are red
+
+Shortest path
+
+Proposition Dijkstra’s algorithm finds in O(n2 ) time the shortest
+path from u to all other nodes of V .
+Proof By induction on the size of S, we show that
+1. ∀v ∈ S, d(v ) is the length of the shortest path from u to v
+2. ∀v ∈ S + (children of nodes of S), d(v ) is the length of the
+shortest path from u to v not passing exclusively via nodes of S
+Trivial for S = {u}, d(u) = 0, d(v ) = c(u, v ).
+Let v 0 ∈
+/ S : d(v 0 ) = minv ∈S
+/ d(v ) then the
+shortest path to v 0 must lie completely in S.
+If not, ∃v 00 outside S at a shorter distance.
+We can update S := S ∪ {v 0 } and compute the shortest path
+from u to children of v 0 as d(v ) = min{d(v ), d(v 0 ) + c(v 0 , v ))}.
+This gives the length of the shortest path to all v ∈ S + .
+The other distances are unknown as yet and hence set to ∞.
+
+Shortest path
+
+Variants
+
+For a graph with edge lengths 1 it suffices to do a BFSearch and
+to keep track of the path lengths by incrementing them with 1
+during the exploration phase. This is thus an O(m) time algorithm.
+Algorithm ShortestPathBFS(G,v)
+mark(v ); S := {v }; d(v ) = 0;
+while not S = ∅ do
+v := first(S)
+if ∃(v , v 0 ) such that v 0 is unmarked then
+choose (v , v 0 ) with v 0 of smallest index;
+mark(v 0 ); S := S ∪ {v 0 }; d(v 0 ) = d(v ) + 1;
+else
+S := S\{v }
+end if
+end while
+
+Shortest path
+
+Proposition All nodes at distance exactly k are correctly
+identified before proceeding further.
+Proof For k = 0 this is trivial (S is the original node u).
+Induction step : suppose the statement is correct up to k .
+After all nodes at distance k have been found, one finds nodes
+that are at a distance larger than k but since they are all
+neighboring nodes, they must be at distance exactly k + 1.
+
+Shortest path
+
+For an acyclic graph, one can just compute the topological order in
+O(m) time (see earlier).
+To solve the shortest path problem one then uses the algorithm
+Algorithm ShortestPathAcyclic(G,v)
+d(1) = 0; d(i) := ∞ for i = 2, . . . , n;
+for i = 1 : n − 1 do
+for j ∈ V + (i) do
+d(j) := minj {d(j), d(i) + c(i, j)};
+end for
+end for
+What is the complexity of this second step ?
+One can also see the shortest path problem as a flow problem or
+as a linear programming problem.
+This leads to other algorithms like the Bellman-Ford Algorithm.
+
+Trees
+
+Trees and forests
+A tree is an acyclic and
+connected graph
+
+A forest is an acyclic
+graph (and hence a union
+of trees)
+
+Proposition For a graph G = (V , E) of order n = |V |, the
+following are equivalent
+1. G is connected and has n − 1 edges
+2. G is acyclic and has n − 1 edges
+3. G is connected and acyclic
+4. ∀u, v ∈ V there is one and only one path from u to v
+5. G is acyclic and adding an edge creates one and only one cycle
+6. G is connected and removing an arbitrary edge disconnects it
+Proofs ?
+
+Trees
+
+The following definitions are especially relevant for trees.
+The eccentricity ε(u) = maxv ∈V d(u, v ) of a node is the maximum
+distance to any node v ∈ V . The eccentricity of each node is
+indicated in the graph below
+
+The radius rad(G) = minu∈V ε(u) of a graph G is the minimal
+eccentricity of all nodes in V
+The diameter diam(G) = maxu∈V ε(u) of a graph G is the maximal
+eccentricity of all nodes in V . It is also the maximal distance
+between any two nodes in V
+The center of a graph G is the set of nodes in V of minimal
+eccentricity (the black node)
+
+Trees
+
+A leaf of a tree T is a node of degree 1
+Proposition Let T be a tree and let T 0 be the tree obtained by
+removing all its leafs, then ε(T 0 ) = ε(T ) − 1 for all nodes of T 0 .
+Proof ?
+Proposition The center of a tree is a single node or a pair of
+adjacent nodes.
+
+Proof By induction using the previous proposition.
+Show that the center does not change.
+
+Trees
+
+Counting trees
+How many different (labeled) trees are there with n nodes ?
+The following table gives the count for small n
+
+The following theorem of Cayley gives the exact formula.
+Proposition
+The number of distinct labeled trees of order n equals nn−2
+
+Trees
+
+We construct a bijection of Tn with a sequence via the algorithm
+Algorithm PrüferSequence(T)
+s := (); t := ();
+while |E| > 1 do
+choose the leaf of smallest index i;
+T := T \{i}; s := (s, i); t := (t, neighbour (i));
+end while
+On the graph below, it yields the table next to it
+
+One shows that the graph can be reconstructed from the
+sequence ti which are n − 2 numbers from {1, . . . , n}
+and there are exactly nn−2 such sequences.
+
+Trees
+
+Spanning tree
+Remove from a connected graph as many edges as possible while
+remainig connected; this should yield a tree with n − 1 edges.
+This is the minimal spanning tree problem solved by the following
+algorithm, of time complexity O(m log m)
+Algorithm KruskalMST(G)
+Eord := sort(E); E 0 := ∅; Erest := Eord ;
+while |E 0 | > n − 1 do
+α := first(Erest ); Erest := Erest \{α};
+if (V , E 0 ∪ {α}) is acyclic then
+E 0 := E 0 ∪ {α};
+end if
+end while
+The sorting is done efficiently
+in O(m log m) time as well.
+Let us look at an example
+
+Trees
+
+The different steps of the algorithm are
+
+This constructs a tree which is a subgraph with n − 1 edges.
+
+Trees
+
+Now we look at an alternative algorithm of time complexity
+O((m + n) log n)
+The idea is to pick a random node and then grow a minimal tree
+from there
+Algorithm PrimMST(G)
+Choose u ∈ V ; V 0 := {u}; E 0 := ∅;
+for i = 1 : n − 1 do
+E 00 := edges linking V to V 0 ;
+choose e = (u, v ) ∈ E 00 of minimal weight and such that
+(V 0 ∪ {v }, E 0 {e} is acyclic;
+V 0 := V 0 ∪ {v }; E 0 := E 0 ∪ {e};
+end for
+
+Let us look at the same example
+
+Trees
+
+The different steps of the algorithm are
+
+The graph (V , E 0 ) is a minimal spanning tree with n − 1 edges
+
+Planar graphs
+
+Planar graphs
+When drawing connected graphs one is naturally lead to the
+question of crossing edges. One says that a graph is planar if it
+can be drawn (or represented) without crossing edges
+
+The above graphs represent K3,3 (not planar) and K4 (planar)
+Proposition (Fary, 1948)
+Every planar graph can be
+represented in the plane using
+straight edges only
+
+Planar graphs
+
+For such graphs, one can now define
+faces. These are the regions encircled
+by edges that form a cycle. One has to
+identify also an exterior face as shown
+in this figure with 6 faces
+
+Proposition A planar representation of a graph can be
+transformed to another one where any face becomes the exterior
+face (a proof comes later)
+
+Planar graphs
+
+Proposition A graph can be
+represented in a plane if and
+only if it can be represented on
+a sphere (immersion)
+Proof
+Use a stereographic projection
+Every face of the plane is mapped to a sector on the sphere. No
+point on the sphere can therefore belong to two different sectors.
+The external face is mapped to a sector containing the north pole.
+
+For the external face result, notice that by rotating the sphere, one
+can move any point (and hence sector) to the north pole
+
+Planar graphs
+
+Characterisation
+
+Proposition (Euler formula) Let G be planar, and let n(G) be its
+number of vertices, e(G) its number of edges, and f (G) its number
+of faces. Then f = e − n + 2.
+In the example shown here
+n = 8; e = 10; f = 4
+
+Proof Use induction on the number of faces f .
+For f = 1 there are no cycles and hence the connected graph is a
+three, for which we know e = n − 1 and hence f = e − n + 2.
+For f ≥ 2, remove an edge (u, v ) between two faces to construct
+G0 := G\(u, v ). Then f (G0 ) = f (G) − 1; e(G0 ) = e(G) − 1 and
+n(G0 ) = n(G). Use the result for smaller f to prove it for f .
+
+Planar graphs
+
+Some exercices
+
+Proposition Let G be planar with f > 1, then 3f ≤ 2e
+Proposition Let G be planar with f > 1 and G have no triangles,
+then 2f ≤ e
+Proposition Let G be a planar (connected) graph.
+If n ≥ 3 then e ≤ 3n − 6
+Proposition Let G be a planar (connected) graph.
+If G has no triangles or is bipartite, then e ≤ 2n − 4
+These help to prove the following lemma
+Proposition K5 and K3,3 are not planar.
+
+Planar graphs
+
+Corollary The average degree of the vertices of a planar
+connected graph G is smaller than 6 − 12
+n
+Corollary In a planar (connected) graph there always exists a
+vertex such that d(v ) ≤ 5
+Corollary A planar graph can be colored with 6 colors (see later)
+Proposition (Platonic solid) There are only 5 regular polyhedra
+These so-called Platonic solids are shown below
+
+Planar graphs
+
+The Platonic solids are characterized by three equations
+nk = 2e, fl = 2e for k , l integers, and n + f = e + 2
+Explain why
+It then follows that 2e/k + 2e/l − e = 2 hence 2/k + 2/l > 1
+or (k − 2)(l − 2) < 4. The integer solutions are given by
+
+Name
+Tetrahedron
+Cube
+Dodecahedron
+Octahedron
+Icosahedron
+
+k
+3
+3
+3
+4
+5
+
+l
+3
+4
+5
+3
+3
+
+e
+6
+12
+30
+12
+30
+
+n
+4
+8
+20
+6
+12
+
+f
+4
+6
+12
+8
+20
+
+Planar graphs
+
+Test for planar graphs
+We first need to introduce subdivisions and subgraphs.
+Let us expand a graph G = (V , E) by a subdivision of one of its
+edges e = (u, v ) ∈ E. We put a new node w on e and replace it
+by two new edges e1 = (u, w) and e2 = (w, v ). The new graph is
+thus given by G0 = (V ∪ {w}, E ∪ {e1 , e2 }\{e}).
+Two graphs are said to be homeomorphic to each other iff one can
+be derived from the other via a sequence of subdivisions.
+
+Corollary Homeomorphism is an equivalence relation.
+
+Planar graphs
+
+A graph G0 = (V 0 , E 0 ) is a subgraph of a graph G = (V , E) if
+V 0 ⊆ V and E 0 ⊆ E (edges must disappear along with nodes)
+
+Proposition (Kuratowsky, 1930) A graph is planar iff it does not
+contain a subgraph homeomorphic to K3,3 or K5 .
+Example : the Petersen graph (subgraph + homeomorphism)
+
+Planar graphs
+
+Minors
+Let e = (u, v ) be an edge of a graph G = (V , E). A contraction of
+the edge e consists of eliminating e and merging the nodes u and
+v into a new node w. The new graph G0 is thus
+G0 = (V \{u, v } ∪ {w}, E\{e})
+
+Proposition (Wagner, 1937) A graph is planar iff it does not have
+K3,3 or K5 as a minor.
+Example :
+the Petersen
+graph again
+
+Planar graphs
+
+Proposition (Robertson-Seymour)
+For a graph G, determining if a given graph H is a minor of H, can
+be solved in polynomial time (with respect to n(G) and m(G)).
+A dual graph G∗ of a planar graph is obtained as follows
+1. G∗ has a vertex in each face of G
+2. G∗ has an edge between two vertices if G has an edge
+between the corresponding faces
+This is again a planar graph
+but it might be a multigraph
+(with more than one edge
+betwee two vertices)
+Exercise Show that Euler’s formula is preserved
+Exercise Show that G = (G∗ )∗
+
+Flows
+
+Networks and flows
+A network is a directed graph N = (V , E) with a source node s
+(with dout (s) > 0) and a terminal node t (with din (t) > 0).
+Moreover each edge has a strictly positive capacity c(e) > 0.
+
+A flow f : V 2 → R+ is associated with each edge e = (u, v ) s.t.
+1. for each edge e ∈ E we have 0 ≤ f (e) ≤ c(e)
+2. for eachPintermediate nodeP
+v ∈ V \{s, t} the in- and out-flow at
+that node u∈V − (v ) f (u, v ) = u∈V + (v ) f (v , u) match
+The total flow F of the network is then what leaves s or reaches t
+X
+X
+X
+X
+F (N) :=
+f (s, u) −
+f (u, s) =
+f (u, t) −
+f (t, u)
+u∈V
+
+u∈V
+
+u∈V
+
+u∈V
+
+Flows
+
+Here is an example of a flow
+
+It has a value of F (N) = 7 and the conservation law is verified
+inside.
+But the flow is not maximal, while the next one is (F (N) = 9) as
+we will show later. Notice that one edge is not being used (f = 0)
+
+Flows
+
+Cut of a network
+A cut of a network is a partition of the vertex set V = P ∪ P into
+two disjoint sets P (containing s ) and P (containing t)
+
+The capacity of a cut is the sum of the capacities of the edges
+(u, v ) between P and P
+X
+κ(P, P) =
+c(u, v )
+u∈P;v∈P
+
+which in the above example equals 5 + 3 + 1 = 9.
+We now derive important properties of this capacity.
+
+Flows
+
+Proposition Let (P, P) be any cut of a network N = (V , E)
+then the associated flow is given by
+X
+X
+F (N) =
+f (u, v ) −
+f (v , u)
+u∈P;v ∈P
+
+Proof First show that F (N) =
+
+u∈P;v ∈P
+
+P
+
+P
+P
+u∈P (
+v f (u, v ) −
+v f (v , u))
+
+by summing all contributions in P and using conservation.
+For all v ∈ P the term between brackets is zero (conservation).
+Hence we only need to keep the edges across the partition.
+Corollary A flow is bounded by the capacity of any cut
+F (N) ≤ κ(P, P)
+A minimal cut (with minimal capacity) also bounds F (N)
+(we will construct one and will see it is in fact equal to F (N))
+
+Flows
+
+Applications
+The dining problem
+Can we seat 4 families with number of members (3,4,3,2) at 4
+tables with number of seats (5,2,3,2) so that no two members of a
+same family sit at the same table ?
+
+The central edges are the table assignments (a capacity of 1).
+The cut shown has a capacity 11 which upper bounds F (N).
+We can therefore not seat all 12 members of the four families.
+
+Flows
+
+The marriage problem
+One wants to find a maximimum number of couplings between
+men and women where each couple has expressed whether or
+not this coupling was acceptable (central edges that exist or not)
+
+One wants to find a maximum number of disjoint paths in this
+directed graph. All the capacities of the existing edges are 1.
+
+Flows
+
+Given a network N(V , E) and a flow f then its residual network Nf
+is a network with the same nodes V but with new capacities
+
+ c(u, v ) − f (u, v )
+f (v , u)
+cf (u, v ) =
+
+0
+
+if (u, v ) ∈ E;
+if (v , u) ∈ E
+otherwise.
+
+An augmenting path is a directed path v0 , . . . , vk from S = v0 to
+t = vk for which
+∆i = c(vi , vi+1 ) − f (vi , vi+1 ) > 0 ∀(vi , vi+1 ) ∈ E or
+∆i = c(vi , vi+1 ) − f (vi+1 , vi ) > 0 ∀(vi+1 , vi ) ∈ E
+This path is not optimal since the original flow can be increased.
+
+Flows
+
+Max-flow Min-cut
+
+Proposition
+The flow is optimal if there exists no augmentation path from s to t
+Proof Construct a cut (P, P) where u ∈ P if there is an
+augmentation path from s to u and u ∈ P otherwise.
+Show that (P, P) is a valid cut for which F (N) = κ(P, P).
+Proposition In a network N the following are equivalent
+1. A flow is optimal
+2. The residual graph does not contain an augmenting path
+3. F (N) = κ(P, P) for some cut (P, P)
+The value of the optimal flow thus equals F (N) = min κ(P, P)
+Proof Left to the reader (combine earlier results)
+Thisbecomes an LP problem
+in the flows xij on the edges (i, j)
+
+max
+
+P
+
+i:(s,i) xsi =
+
+P
+
+i:(i,s) xis
+
+subject to
+
+P
+
+i xij =
+
+P
+
+i xji and 0 ≤ xij ≤ cij
+
+Flows
+
+The Ford-Fulkerson algorithm (1956) calculates this optimal flow
+using augmentation paths.
+Algorithm MaxFlowFF(N,s,t)
+f (u, v ) := 0 ∀(u, v ) ∈ E;
+while Nf contains a path from s to t do
+choose an augmentation path Ap from s to t
+∆ := min(u,v )∈Ap ∆i
+Augment the flow by ∆ along Ap
+Update Nf
+end while
+Finding a path in the residual graph can be implemented with a
+BFS or DFS exploration as shown below
+At each step we show the graph (left) and the residual graph (right)
+Augmentation paths are in red. In 5 steps we find F (N) = 14
+
+Flows
+
+Euler
+
+Eulerian tour (1756)
+An Eulerian cycle (path) is a subgraph Ge = (V , Ee ) of G = (V , E)
+which passes exactly once through each edge of G.
+G must thus be connected and all vertices V are visited
+(perhaps more than once). One then says that G is Eulerian
+
+Proposition A graph G has an Eulerian cycle iff it is connected
+and has no vertices of odd degree
+A graph G has an Eulerian path (i.e. not closed) iff it is connected
+and has 2 or no vertices of odd degree
+This would prove that the above graph is not Eulerian.
+
+Euler
+
+Proof (of the first part regarding cycles)
+Necessity Since G is Eulerian there is a cycle visiting all nodes.
+Each time we visit v ∈ V , we leave it again, hence d(v ) is even.
+Sufficiency For a single isolated node, it is trivial. For |V | > 1
+there must be a cycle φ in the graph. Consider the subgraph H
+with the same nodes but with the edges of φ removed.
+
+Each of its components Hi satisfy the even degree condition and
+again have an Eulerian cycle φi . By recurrence we then reduce G
+to its isolated vertices.
+To reconstruct the Eulerian cycle, start from a basic cycle φ.
+Each time a node of another cycle φi is encountered, substitute
+that cycle to the node (and do this recursively).
+
+Euler
+
+Proof (of the second part regarding paths) Left as an exercise
+The path problem says if you can draw a graph without lifting your
+pen. Apply this to the following examples.
+
+Proposition A directed graph G = V , Ed has an Eulerian tour Ge
+iff it is connected and balanced, i.e. all its nodes have
+din (v ) = dout (v ).
+Proof Left as an exercise
+
+Euler
+
+The following algorithm of Fleury (1883) reconstructs a cycle C if it
+exists. E 0 is the set of edges already visited by the algorithm.
+Algorithm FindEulerianCycle(G)
+Choose v0 ∈ V ; E 0 := ∅; C := hi;
+for i = 1 : m do
+choose e = (vi−1 , vi ) s.t. G0 = (V , E\E 0 ) has 1 conn. comp.;
+E 0 := E 0 ∪ {e}; C := hC, ei; vi := vi−1 ;
+end for
+Exercise
+Propose a modification addressing the Eulerian Path Problem
+But what if the graph is not Eulerian ? Can we find a mininimum
+cost modification of the problem ?
+
+Euler
+
+Chinese postman (1962)
+We consider a minimum cost modification of the Eulerian cycle
+problem. A chinese postman needs to find a tour passing along all
+edges of a graph and minimize the length of the path.
+
+The edges have a cost and we need to make the graph Eulerian
+Exercise
+1. Give a simple lower bound. 2. When can this bound be met ?
+3. Is there another solution (or a better one) ?
+
+Euler
+
+Solution : find all odd degree vertices and find the shortest paths
+between them
+
+Now find a perfect matching of the nodes in this graph.
+A perfect matching in a graph is a set of disjoint edges of a graph
+to which all vertices are incident.
+
+This can be solved in 0(n3 ) time with the Hungarian algorithm.
+
+Hamilton
+
+Hamiltonian cycle (1859)
+Was a game sold by Hamilton in 1859 to a toy maker in Dublin.
+A Hamiltonian cycle is a cyclic subgraph Gh = (V , Eh ) of
+G = (V , E) which passes exactly once through all nodes
+
+It is a so-called hard problem and there is no general condition
+for its existence (in contrast with the Eulerian path problem).
+It exists for Platonic solids and complete graphs,
+but not for the Petersen graph
+
+Hamilton
+
+Proposition (Dirac, 1951) A graph G with n ≥ 3 nodes and
+d(v ) ≥ n/2, ∀v ∈ V , is Hamiltonian
+Proof
+G is connected, otherwise its smallest component would have all
+edges with d(v ) < n/2
+Then consider a longest path v1 v2 ...vn (with maybe n < |V |)
+
+Because d(v1 ), d(vn ) ≥ n/2, it must also be covered by a cycle
+(because all the neigbors of v1 and vn are on that path)
+
+Because of connectedness n = |V | and it is a Hamiltonian cycle.
+
+Hamilton
+
+Exercise Construct a graph with d(v ) < n/2 and yet has a
+Hamiltonian cycle
+Proposition
+If G = (V , E) has a Hamiltonian cycle, then G − V 0 has at most
+|V 0 | connected components for any subset of vertices V 0 ⊂ V .
+Proof Let H be a Hamiltonian subgraph of G, then H − V 0 has
+less than |V 0 | connected components. But G − V 0 has the same
+vertices as H − V 0 and it has additional edges.
+Exercise Does this graph have a Hamiltonian cycle ?
+
+Exercise Prove that a complete bipartite graph Km,n is
+Hamiltonian iff m = n
+
+Hamilton
+
+Traveling Salemen Problem
+A traveling salesman is supposed to visit a number of cities
+(nodes in a graph) and minimize the travel time (or total length)
+This is NP-hard but can often be solved approximately in
+reasonable time. Consider a distance graphs with triangle
+inequality d(u, v ) + d(v , w) ≥ d(u, w) ∀u, v , w ∈ V
+Construct a minimal weight spanning
+tree T and visit the nodes using BFS.
+For this example we would have a
+cycle (a,b,c,b,h,b,a,d,e,f,e,g,e,a)
+Notice that all edges are visited twice.
+The optimal path P ∗ satisfies the inequalities
+cost(T ) < cost(P ∗ ) ≤ 2.cost(T )
+Exercise Explain why
+
+Hamilton
+
+Test for planar graph
+There is a simple way to test if a Hamiltonian graph is planar
+1. Draw G with the Hamiltonian graph H at the outside
+The following graph is already drawn
+with H = (a, b, c, d, e, f , a) outside
+2. Define K as the graph whose nodes are the edges e1 , . . . , er
+not in H and with an edge between ei and ej if they cross in G.
+The following graph has the vertices
+(a, d), (b, f ), b, e), c, e), (d, f ) and
+five edges, corresponding to the
+crossings in G
+Then G is planar iff K is bipartite
+Exercise Explain why
+
+Coloring
+
+Four color problem
+In 1852 it was conjectured that a country map (like the USA map)
+could always be colored with only four colors. There is an
+underlying assumption for point borders.
+
+This was proven in 1976 by K. Appel and W. Haken but their proof
+used a computer search over 1200 so-called critical cases.
+Exercise What property does the underlying graph have ?
+
+Coloring
+
+Coloring nodes
+A k -coloring of a graph G = (V , E) is a mapping f : V → 1, . . . , k
+such that f (vi ) 6= f (vj ) if (vi , vj ) ∈ E.
+The chromatic number of a graph is the smallest number k for
+which there exists a k -coloring.
+Some examples of known chromatic numbers are :
+Bipartite graph
+χ(G) = 2
+
+Even cycle
+χ(G) = 2
+Odd cycle
+χ(G) = 3
+
+Clique
+χ(Kn ) = n
+Petersen Graph
+χ(G) = 3
+Planar graph
+χ(G) = 4
+
+Coloring
+
+The coloring problem for general graphs is NP-complete but
+such problems often lead to more interesting applications
+Exam scheduling problem
+
+The table on the left gives the exams each student takes
+The chromatic number χ(G) of the corresponding graph
+gives the minimum numbers of time slots for the exams
+Exercise Can you formulate such a slot problem with students
+choosing out of k pre-set programs ?
+
+Coloring
+
+Bounds
+
+Proposition
+Let G be connected and m = |E|, then χ(G) ≤ 21 +
+
+q
+
+2m + 14
+
+Proof Let C = {C1 , . . . , Ck } be the partition of V according to
+colors. There is at least one edge between two colors, which
+implies m > B(k , 2) and hence k 2 − k − 2m ≤ 0.
+Proposition
+Let ∆(G) = max{d(v )|v ∈ V }, then χ(G) ≤ ∆(G) + 1 (trivial)
+Proposition (Brooks, 1941)
+χ(G) ≤ ∆(G) for any graph different from Kn or an odd cycle
+Proposition
+χ(G) ≤ 1 + maxi {min(di , i − 1)} when ordering d1 ≥ . . . ≥ dn .
+Proof Order the nodes like the di ’s and use the greedy algorithm
+
+Coloring
+
+Greedy algorithm
+Algorithm GreedyColor(G)
+L := sort(V ); c := sort(colors)
+for v ∈ V do
+choose smallest ci not used by colored neigbors
+end for
+On a bipartite graph this greedy algorithm is optimal when
+numbering the nodes per part but it can be bad for other
+numberings, such as {u1 , v1 , u2 , v2 , u3 , v3 , u4 , v4 }
+
+Exercise
+Does each graph have a good numbering for the greedy algorithm
+
+Coloring
+
+Let us come back to the map coloring problem
+
+and try to prove the following (simpler) result
+Exercise Every planar graph can be colored with 6 colors
+Show that e ≤ 3n − 6
+Show then that for planar graphs average(d(v )) ≤ 6 − 12/n
+Finally prove that there exists a v such that d(v ) ≤ 5
+Now use induction to prove the proposition (remove nodes)
+
+Coloring
+
+Chromatic polynomial (Birkhoff-Lewis 1918)
+The chromatic polynomial of a graph pG (k ) indicates how many
+different ways a graph can be colored with k colors. E.g.
+
+Exercise Prove the above formulas
+Notice that χ(G) = min{p(G)(k ) > 0}. Does this help ?
+There is a powerful induction theorem using the simpler graphs
+G − (u, v ) (remove an edge) and G ◦ (u, v ) (contract an edge)
+Proposition If (u, v ) ∈ E then pG (k ) = pG−(u,v ) (k ) − pG◦(u,v ) (k )
+Proof u and v have different colors in G and the same in G ◦ (u, v )
+
+Coloring
+
+This can be used to compute the chromatic polynomial of more
+complex networks
+
+but the problem remains combinatorial and thus hard
+Exercise Derive this quicker using the result for a tree
+
+Coloring
+
+Stable sets
+An independent or stable set S in a graph G = (V , E) is a
+subgraph of G without any edges, i.e. ∀u, v ∈ S : (u, v ) ∈ E
+The two sets of black nodes are stable sets of the left graph
+
+Such sets can clearly be colored with only one color, which proves
+Proposition If a graph is k -colorable then V can be partitioned as
+k stable sets
+The independence number α(G) is the size of the largest possible
+stable set.
+Proposition One has χ(G) · α(G) ≥ n (trivial)
+
+Coloring
+
+The following example requires finding a maximal stable set.
+Find the maximum number of projects one can realize when
+the table indicates which students are needed for each project.
+
+Notice that it is equivalent
+to finding a maximal clique
+(or complete subgraph) in
+the complementary graph
+Gc = (V , Ec ), where Ec is
+the complement of E
+
+Complexity
+
+Algorithm complexity
+We distinguish problems from algorithms used to solve them.
+There is also the issue of time complexity and space complexity.
+The function CA (s) of an algorithm is the number of time steps
+needed to solve a problem of size s with that algorithm.
+A problem is called polynomial if there exists an algorithm with
+CA (s) = O(p(n)) for some polynomial p(·), meaning
+∃n0 : CA (s) ≤ p(n) ∀n ≥ n0 .
+The relative times needed to solve problems of different complexity
+
+This shows the importance of having a polynomial problem
+
+Complexity
+
+Better is to look at the size of
+the problems one can solve
+when the machines speed up
+100 or 1000 times
+Here are a number of polynomial time problems
+Finding the shortest path between 2 vertices
+Testing if a graph is planar
+Testing if a graph is Eulerian
+Finding a spanning tree
+Solving the perfect marriage problem
+Here are a number of problems that are not polynomial
+Finding the chromatic number of a graph
+Finding a Hamiltonian cycle in a graph
+Finding the largest stable set in a graph
+Solving the travelling salesman problem
+Testing if two graphs are isomorphic (not known)
+
+Complexity
+
+Comparing problems
+
+A problem Y is reducible (in polynomial time) to a problem X if
+X is at least as difficult to solve as Y , denoted as X ≥p Y . Then
+X ≥p Y and X ∈ P implies Y ∈ P
+X ≥p Y and Y ∈
+/ P implies X ∈
+/P
+Define the problem [LongestPath(u, v , w, N)] of finding a path
+of length ≥ any N from u to v in a graph with integer weights w
+Proposition [HamiltonianCycle] ≤p [LongestPath(u, v , w, N)]
+Proof Choose unit weights w. Pick an edge e = (u, v ).
+If there is a longest path of length N = n − 1 in G0 = G\e,
+then G is Hamiltonian. Try out all m < n2 /2 edges.
+Since we know that the Hamiltonian cycle problem in not in P
+the longest path problem is also not in P.
+
+Complexity
+
+A Boolean clause is a disjunction of Boolean terms Xi ∈ {0, 1} and
+their negation X i ∈ {0, 1}, e.g. X1 ∨ X 2 ∨ X4 ∨ X 7 is a 4-term.
+Define the problem [SAT] as checking if a set of Boolean clauses
+can be simultaneously satisfied ([3SAT] involves only 3-terms).
+E.g. {X 2 ∨ X2 , X 2 ∨ X3 ∨ X 4 , X 1 ∨ X4 } can be satisfied by choosing
+X1 = 1, X2 = 0, X3 = 1, X4 = 0.
+Proposition [SAT ] ≤p [3SAT ] and [3SAT ] ≤p [StableSet]
+Proof We do not prove the first part involving only 3-terms.
+Construct a triangle for
+each 3-term and then
+connect the negations
+across triangles
+For a stable set, I can choose only one node in each triangle.
+Then there is a stable set of size n/3 iff [3SAT] is satisfiable.
+
+Complexity
+
+N P and N P-complete
+
+A problem is Non-deterministic Polynomial (N P) if the validity of a
+solution can be checked in polynomial time.
+Checking if a given cycle is Hamiltonian can be solved in
+polynomial time, but finding it is difficult.
+In P the problem can be solved in polynomial time,
+in N P a solution can be checked in polynomial time.
+It is still an open question of P = N P (Cray prize = 1 million dollar)
+A problem X is N P-complete if X ∈ N P and ∀Y ∈ N P, Y ≤p X .
+Corollary If one N P-complete problem is in P then P = N P
+Corollary If one N P-complete problem is not in P then P =
+6 NP
+
+Complexity
+
+[3SAT] is known to be N P-complete.
+We now prove that also the [CLIQUE] problem is N P-complete
+The [CLIQUE] problem is checking if there exists a clique
+(complete subgraph) of size k in a graph G = (V , E)
+Proof Consider {X1 ∨ X 2 ∨ X 3 , X 1 ∨ X2 ∨ X3 , X1 ∨ X2 ∨ X3 }.
+Construct a graph with the terms of each clause as nodes.
+Then connect all pairs of variable except their negation (partially
+done below)
+
+If this graph contains a clique of size 3, the clause is satisfiable.
+
+References
+
+Some useful literature
+J.A. Bondy and U.S.R. Murty, Graph Theory with Applications,
+(2nd Edition), North Holland, 1976.
+Reinhard Diestel, Graph Theory, Graduate Texts in Mathematics,
+Vol. 173, Springer Verlag, Berlin, 1991.
+Douglas West, Introduction to Graph Theory, (2nd Edition),
+Prentice Hall, 2000.
+B. Bollobas, Modern Graph Theory, Springer-Verlag.
+Fan Cheung and Linyuan Lu, Complex Graphs and Networks,
+Regional Conference Series in Mathematics, Vol. 107, AMS, 2004
+Dieter Jungnickel, Graphs, Networks and Algorithms, Algorithms
+and Computation in Mathematics, Vol. 5, Springer Verlag, Berlin,
+2005.
+
+

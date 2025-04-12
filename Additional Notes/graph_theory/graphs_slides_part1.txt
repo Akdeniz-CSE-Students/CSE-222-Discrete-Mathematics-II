@@ -1,0 +1,210 @@
+Appetizer
+
+Graph theory started with Euler who was asked to find a
+nice path across the seven Köningsberg bridges
+
+The (Eulerian) path
+should cross over
+each of the seven
+bridges exactly once
+
+Appetizer
+
+Another early bird was Sir William Rowan Hamilton (1805-1865)
+
+In 1859 he developed a toy based on finding a path visiting all
+cities in a graph exactly once and sold it to a toy maker in Dublin.
+It never was a big success.
+
+Appetizer
+
+But now graph theory is used for finding communities in networks
+
+where we want to detect hierarchies of substructures
+
+Appetizer
+
+and their sizes can become quite big ...
+
+Appetizer
+
+It is also used for ranking (ordering) hyperlinks
+
+Appetizer
+
+or by your GPS to find the shortest path home ...
+
+Appetizer
+
+or by your GPS to find the shortest path home ...
+
+Contents
+
+What we will cover in this course
+I
+
+Basic theory about graphs
+Connectivity
+Paths
+I Trees
+I Networks and flows
+I Eulerian and Hamiltonian graphs
+I Coloring problems
+I Complexity issues
+I
+I
+
+I
+
+A number of applications (in large graphs)
+Large scale problems in graphs
+Similarity of nodes in large graphs
+I Telephony problems and graphs
+I Ranking in large graphs
+I Clustering of large graphs
+I
+I
+
+What are
+graphs
+
+A graph G = (V , E) is a pair of vertices (or nodes) V and
+a set of edges E, assumed finite i.e. |V | = n and |E| = m.
+
+Here V (G) = {v1 , v2 , . . . , v5 } and E(G) = {e1 , e2 , . . . , e6 }.
+An edge ek = (vi , vj ) is incident with the vertices vi and vj .
+A simple graph has no self-loops or multiple edges like below
+
+What are
+graphs
+
+Some properties
+The degree d(v ) of a vertex V is its number of incident edges
+A self-loop counts for 2 in the degree function.
+An isolated vertex has degree 0.
+Proposition The sum of the degrees of a graph G = (V , E)
+equals 2|E| = 2m (trivial)
+Corollary The number of vertices of odd degree is even (trivial)
+
+What are
+graphs
+
+Special graphs
+A complete graph Kn is a simple graph with all B(n, 2) := n(n−1)
+2
+possible edges, like the matrices below for n = 2, 3, 4, 5.
+
+A k -regular graph is a simple graph with vertices of equal degree k
+
+Corollary The complete graph Kn is (n − 1)-regular
+
+What are
+graphs
+
+A bipartite graph is one where V = V1 ∪ V2 such that there are no
+edges between V1 and V2 (the black and white nodes below)
+
+A complete bipartite graph is one where all edges between V1 and
+V2 are present (i.e. |E| = |V1 |.|V2 |). It is noted as Kn1 ,n2 .
+
+When is complete bipartite graph regular ?
+
+What are
+graphs
+
+When is G bipartite ?
+Which graph is bipartite ?
+
+It suffices to find 2 colors that separate the edges as below
+
+What are
+graphs
+
+When is G bipartite ?
+Which graph is bipartite ?
+
+It suffices to find 2 colors that separate the edges as below
+
+The second example is not bipartite because it has a triangle
+(to be continued)
+
+Cycles
+
+Walking in a graph
+A walk of length k from node v0 to node vk is a non-empty graph
+P = (V , E) of the form
+V = {v0 , v1 , . . . , vk }
+
+E = {(v0 , v1 ), . . . , (vk −1 , vk )}
+
+where edge j connects nodes j − 1 and j (i.e. |V | = |E| + 1).
+A trail is a walk with all different edges.
+A path is a walk with all different nodes (and hence edges).
+
+A walk or trail is closed when v0 = vk .
+A cycle is a walk with different nodes except for v0 = vk .
+
+Cycles
+
+Try to prove the following wo (useful) lemmas
+Proposition A walk from u to v 6= u contains a path from u to v
+Hint : eliminate subcycles
+Proposition A closed walk of odd length contains a cycle of odd
+length
+Hint : decompose recursively into distinct subgraphs and use
+induction
+
+Question Is this only for simple graphs ?
+
+Cycles
+
+Directed graphs
+
+In a directed graph or digraph, each edge has a direction.
+
+For e = (vs , vt ), vs is the source node and vt is the terminal node.
+Each node v has an in-degree din (v ) and an out-degree dout (v ).
+A graph is balanced if din (v ) = dout (v ) for all nodes.
+
+Cycles
+
+Topological order
+Let us now try to order the nodes in a digraph.
+
+Define a bijection ford : V → {1, 2, . . . , n}, then ford (·) is a
+topological order for the graph G = (V , E) iff
+ford (i) < ford (j),
+
+∀(i, j) ∈ E
+
+This is apparently possible for the above graph.
+It is easy to see that such a graph should have no cycles.
+But is this also sufficient ?
+
+Cycles
+
+An acyclic graph is a graph without cycles.
+Proposition
+Every acyclic graph contains at least one node with zero in-degree
+Proof By contradiction.
+Assume din (v ) > 0 for all nodes, then each node i has a
+predecessor p(i) such that (vp(i) , vi ) ∈ E.
+Start from an arbitrary v0 to form a list of predecessors as below
+
+Since |V | is bounded, one must eventually return to a node that
+was already visited; hence there is a cycle.
+
+Cycles
+
+Let us use this to find a topological order
+Algorithm FindTopOrd(G)
+t := 0; G0 := G;
+while ∃v ∈ Gt : din (v ) = 0 do
+Gt+1 := Gt /{v }; order (v ) := t + 1; t := t + 1;
+end while
+if t = n then G is acyclic;
+else if t < n then G has a cycle; end if
+end if
+Let us verify this algorithm on the above example.
+
+

@@ -1,0 +1,4547 @@
+9.3 Representing Relations 627
+
+9. How many nonzero entries does the matrix representing
+the relation R on A = {1, 2, 3, … , 100} consisting of the
+ﬁrst 100 positive integers have if R is
+a) {(a, b) ∣ a > b}?
+b) {(a, b) ∣ a ≠ b}?
+c) {(a, b) ∣ a = b + 1}?
+d) {(a, b) ∣ a = 1}?
+e) {(a, b) ∣ ab = 1}?
+10. How many nonzero entries does the matrix representing
+the relation R on A = {1, 2, 3, … , 1000} consisting of the
+ﬁrst 1000 positive integers have if R is
+a) {(a, b) ∣ a ≤ b}?
+b) {(a, b) ∣ a = b ± 1}?
+c) {(a, b) ∣ a + b = 1000}?
+d) {(a, b) ∣ a + b ≤ 1001}?
+e) {(a, b) ∣ a ≠ 0}?
+11. How can the matrix for R, the complement of the
+relation R, be found from the matrix representing R,
+when R is a relation on a ﬁnite set A?
+12. How can the matrix for R−1 , the inverse of the
+relation R, be found from the matrix representing R,
+when R is a relation on a ﬁnite set A?
+13. Let R be the relation represented by the matrix
+⎡0
+MR = ⎢1
+⎢1
+⎣
+
+1
+1
+0
+
+1⎤
+0⎥ .
+1⎥⎦
+
+19. Draw the directed graphs representing each of the relations from Exercise 2.
+20. Draw the directed graph representing each of the relations from Exercise 3.
+21. Draw the directed graph representing each of the relations from Exercise 4.
+22. Draw the directed graph that represents the relation
+{(a, a), (a, b), (b, c), (c, b), (c, d), (d, a), (d, b)}.
+In Exercises 23–28 list the ordered pairs in the relations represented by the directed graphs.
+23.
+24.
+a
+
+a
+
+c
+
+b
+
+b
+
+25.
+a
+
+b
+
+c
+
+d
+
+27.
+
+a
+
+b
+
+c
+
+d
+
+28.
+a
+
+b
+
+Find the matrix representing
+R−1 .
+
+c
+
+26.
+
+a
+
+b
+
+c
+
+d
+
+R2 .
+
+a)
+b) R.
+c)
+14. Let R1 and R2 be relations on a set A represented by the
+matrices
+⎡0 1 0⎤
+MR1 = ⎢1 1 1⎥
+⎢1 0 0⎥
+⎦
+⎣
+
+⎡0
+and MR2 = ⎢0
+⎢1
+⎣
+
+1
+1
+1
+
+0⎤
+1⎥ .
+1⎥⎦
+
+Find the matrices that represent
+a) R1 ∪ R2 .
+b) R1 ∩ R2 .
+c) R2 ◦ R1 .
+d) R1 ◦ R1 .
+e) R1 ⊕ R2 .
+15. Let R be the relation represented by the matrix
+⎡0
+MR = ⎢0
+⎢1
+⎣
+
+1
+0
+1
+
+0⎤
+1⎥ .
+0⎥⎦
+
+Find the matrices that represent
+a) R2 .
+b) R3 .
+c) R4 .
+16. Let R be a relation on a set A with n elements. If there
+are k nonzero entries in MR , the matrix representing R,
+how many nonzero entries are there in MR−1 , the matrix
+representing R−1 , the inverse of R?
+17. Let R be a relation on a set A with n elements. If there
+are k nonzero entries in MR , the matrix representing R,
+how many nonzero entries are there in MR , the matrix
+representing R, the complement of R?
+18. Draw the directed graphs representing each of the relations from Exercise 1.
+
+c
+
+d
+
+29. How can the directed graph of a relation R on a ﬁnite
+set A be used to determine whether a relation is asymmetric?
+30. How can the directed graph of a relation R on a ﬁnite
+set A be used to determine whether a relation is irreﬂexive?
+31. Determine whether the relations represented by the directed graphs shown in Exercises 23–25 are reﬂexive, irreﬂexive, symmetric, antisymmetric, and/or transitive.
+32. Determine whether the relations represented by the directed graphs shown in Exercises 26–28 are reﬂexive, irreﬂexive, symmetric, antisymmetric, asymmetric, and/or
+transitive.
+33. Let R be a relation on a set A. Explain how to use the directed graph representing R to obtain the directed graph
+representing the inverse relation R−1 .
+34. Let R be a relation on a set A. Explain how to use the directed graph representing R to obtain the directed graph
+representing the complementary relation R.
+35. Show that if MR is the matrix representing the relation R,
+then M[n]
+is the matrix representing the relation Rn .
+R
+36. Given the directed graphs representing two relations,
+how can the directed graph of the union, intersection,
+symmetric diﬀerence, diﬀerence, and composition of
+these relations be found?
+
+628
+
+9 / Relations
+
+9.4
+
+Closures of Relations
+9.4.1 Introduction
+A computer network has data centers in Boston, Chicago, Denver, Detroit, New York, and San
+Diego. There are direct, one-way telephone lines from Boston to Chicago, from Boston to Detroit, from Chicago to Detroit, from Detroit to Denver, and from New York to San Diego. Let
+R be the relation containing (a, b) if there is a telephone line from the data center in a to that
+in b. How can we determine if there is some (possibly indirect) link composed of one or more
+telephone lines from one center to another? Because not all links are direct, such as the link from
+Boston to Denver that goes through Detroit, R cannot be used directly to answer this. In the language of relations, R is not transitive, so it does not contain all the pairs that can be linked. As
+we will show in this section, we can ﬁnd all pairs of data centers that have a link by constructing
+a transitive relation S containing R such that S is a subset of every transitive relation containing
+R. Here, S is the smallest transitive relation that contains R. This relation is called the transitive
+closure of R.
+
+9.4.2 Diﬀerent Types of Closures
+If R is a relation on a set A, it may or may not have some property P, such as reﬂexivity, symmetry, or transitivity. When R does not enjoy property P, we would like to ﬁnd the smallest relation
+S on A with property P that contains R.
+
+Deﬁnition 1
+
+If R is a relation on a set A, then the closure of R with respect to P, if it exists, is the relation
+S on A with property P that contains R and is a subset of every subset of A × A containing R
+with property P.
+If there is a relation S that is a subset of every relation containing R with property P, it must
+be unique. To see this, suppose that relations S and T both have property P and are subsets of
+every relation with property P that contains R. Then, S and T are subsets of each other, and so
+are equal. Such a relation, if it exists, is the smallest relation with property P that contains R
+because it is a subset of every relation with property P that contains R.
+We will show how reﬂexive, symmetric, and transitive closures of relations can be found.
+In Exercises 15 and 35 we give properties P for which the closure of a relation with respect to
+P may not exist.
+The relation R = {(1, 1), (1, 2), (2, 1), (3, 2)} on the set A = {1, 2, 3} is not reﬂexive. How
+can we produce a reﬂexive relation containing R that is as small as possible? This can be done
+by adding (2, 2) and (3, 3) to R, because these are the only pairs of the form (a, a) that are not in
+R. This new relation contains R. Furthermore, any reﬂexive relation that contains R must also
+contain (2, 2) and (3, 3). Because this relation contains R, is reﬂexive, and is contained within
+every reﬂexive relation that contains R, it is called the reﬂexive closure of R.
+As this example illustrates, given a relation R on a set A, the reﬂexive closure of R can be
+formed by adding to R all pairs of the form (a, a) with a ∈ A, not already in R. The addition
+of these pairs produces a new relation that is reﬂexive, contains R, and is contained within
+any reﬂexive relation containing R. We see that the reﬂexive closure of R equals R ∪ Δ, where
+Δ = {(a, a) ∣ a ∈ A} is the diagonal relation on A. (The reader should verify this.)
+
+EXAMPLE 1
+
+What is the reﬂexive closure of the relation R = {(a, b) ∣ a < b} on the set of integers?
+Solution: The reﬂexive closure of R is
+R ∪ Δ = {(a, b) ∣ a < b} ∪ {(a, a) ∣ a ∈ Z} = {(a, b) ∣ a ≤ b}.
+
+◂
+
+9.4 Closures of Relations
+
+629
+
+The relation {(1, 1), (1, 2), (2, 2), (2, 3), (3, 1), (3, 2)} on {1, 2, 3} is not symmetric. How can
+we produce a symmetric relation that is as small as possible and contains R? To do this, we need
+only add (2, 1) and (1, 3), because these are the only pairs of the form (b, a) with (a, b) ∈ R that
+are not in R. This new relation is symmetric and contains R. Furthermore, any symmetric relation
+that contains R must contain this new relation, because a symmetric relation that contains R must
+contain (2, 1) and (1, 3). Consequently, this new relation is called the symmetric closure of R.
+As this example illustrates, the symmetric closure of a relation R can be constructed by
+adding all ordered pairs of the form (b, a), where (a, b) is in the relation, that are not already
+present in R. Adding these pairs produces a relation that is symmetric, that contains R, and
+that is contained in any symmetric relation that contains R. The symmetric closure of a relation can be constructed by taking the union of a relation with its inverse (deﬁned in the
+preamble of Exercise 26 in Section 9.1); that is, R ∪ R−1 is the symmetric closure of R, where
+R−1 = {(b, a) ∣ (a, b) ∈ R}. The reader should verify this statement.
+
+EXAMPLE 2
+Extra
+Examples
+
+What is the symmetric closure of the relation R = {(a, b) ∣ a > b} on the set of positive integers?
+Solution: The symmetric closure of R is the relation
+R ∪ R−1 = {(a, b) ∣ a > b} ∪ {(b, a) ∣ a > b} = {(a, b) ∣ a ≠ b}.
+This last equality follows because R contains all ordered pairs of positive integers, where the
+ﬁrst element is greater than the second element, and R−1 contains all ordered pairs of positive
+integers, where the ﬁrst element is less than the second.
+◂
+Suppose that a relation R is not transitive. How can we produce a transitive relation that contains R such that this new relation is contained within any transitive relation that contains R? Can
+the transitive closure of a relation R be produced by adding all the pairs of the form (a, c), where
+(a, b) and (b, c) are already in the relation? Consider the relation R = {(1, 3), (1, 4), (2, 1), (3, 2)}
+on the set {1, 2, 3, 4}. This relation is not transitive because it does not contain all pairs of the
+form (a, c) where (a, b) and (b, c) are in R. The pairs of this form not in R are (1, 2), (2, 3),
+(2, 4), and (3, 1). Adding these pairs does not produce a transitive relation, because the resulting relation contains (3, 1) and (1, 4) but does not contain (3, 4). This shows that constructing
+the transitive closure of a relation is more complicated than constructing either the reﬂexive
+or symmetric closure. The rest of this section develops algorithms for constructing transitive
+closures. As will be shown later in this section, the transitive closure of a relation can be found
+by adding new ordered pairs that must be present and then repeating this process until no new
+ordered pairs are needed.
+
+9.4.3 Paths in Directed Graphs
+We will see that representing relations by directed graphs helps in the construction of transitive
+closures. We now introduce some terminology that we will use for this purpose.
+A path in a directed graph is obtained by traversing along edges (in the same direction as
+indicated by the arrow on the edge).
+
+Deﬁnition 2
+
+A path from a to b in the directed graph G is a sequence of edges (x0 , x1 ), (x1 , x2 ),
+(x2 , x3 ), … , (xn−1 , xn ) in G, where n is a nonnegative integer, and x0 = a and xn = b, that
+is, a sequence of edges where the terminal vertex of an edge is the same as the initial vertex
+in the next edge in the path. This path is denoted by x0 , x1 , x2 , … , xn−1 , xn and has length n.
+We view the empty set of edges as a path of length zero from a to a. A path of length n ≥ 1
+that begins and ends at the same vertex is called a circuit or cycle.
+
+630
+
+9 / Relations
+
+a
+
+b
+
+d
+
+e
+
+FIGURE 1
+
+c
+
+A directed graph.
+
+A path in a directed graph can pass through a vertex more than once. Moreover, an edge in
+a directed graph can occur more than once in a path.
+
+EXAMPLE 3
+
+Which of the following are paths in the directed graph shown in Figure 1: a, b, e, d; a, e, c, d, b;
+b, a, c, b, a, a, b; d, c; c, b, a; e, b, a, b, a, b, e? What are the lengths of those that are paths? Which
+of the paths in this list are circuits?
+Solution: Because each of (a, b), (b, e), and (e, d) is an edge, a, b, e, d is a path of length three.
+Because (c, d) is not an edge, a, e, c, d, b is not a path. Also, b, a, c, b, a, a, b is a path of length
+six because (b, a), (a, c), (c, b), (b, a), (a, a), and (a, b) are all edges. We see that d, c is a path
+of length one, because (d, c) is an edge. Also c, b, a is a path of length two, because (c, b) and
+(b, a) are edges. All of (e, b), (b, a), (a, b), (b, a), (a, b), and (b, e) are edges, so e, b, a, b, a, b, e
+is a path of length six.
+The two paths b, a, c, b, a, a, b and e, b, a, b, a, b, e are circuits because they begin and end
+◂
+at the same vertex. The paths a, b, e, d; c, b, a; and d, c are not circuits.
+The term path also applies to relations. Carrying over the deﬁnition from directed graphs to
+relations, there is a path from a to b in R if there is a sequence of elements a, x1 , x2 , … , xn−1 , b
+with (a, x1 ) ∈ R, (x1 , x2 ) ∈ R, … , and (xn−1 , b) ∈ R. Theorem 1 can be obtained from the deﬁnition of a path in a relation.
+
+THEOREM 1
+
+Let R be a relation on a set A. There is a path of length n, where n is a positive integer, from
+a to b if and only if (a, b) ∈ Rn .
+
+Proof: We will use mathematical induction. By deﬁnition, there is a path from a to b of length
+one if and only if (a, b) ∈ R, so the theorem is true when n = 1.
+Assume that the theorem is true for the positive integer n. This is the inductive hypothesis.
+There is a path of length n + 1 from a to b if and only if there is an element c ∈ A such that
+there is a path of length one from a to c, so (a, c) ∈ R, and a path of length n from c to b, that
+is, (c, b) ∈ Rn . Consequently, by the inductive hypothesis, there is a path of length n + 1 from
+a to b if and only if there is an element c with (a, c) ∈ R and (c, b) ∈ Rn . But there is such an
+element if and only if (a, b) ∈ Rn+1 . Therefore, there is a path of length n + 1 from a to b if and
+only if (a, b) ∈ Rn+1 . This completes the proof.
+
+9.4.4 Transitive Closures
+We now show that ﬁnding the transitive closure of a relation is equivalent to determining which
+pairs of vertices in the associated directed graph are connected by a path. With this in mind, we
+deﬁne a new relation.
+
+9.4 Closures of Relations
+
+Deﬁnition 3
+
+631
+
+Let R be a relation on a set A. The connectivity relation R∗ consists of the pairs (a, b) such
+that there is a path of length at least one from a to b in R.
+
+Because Rn consists of the pairs (a, b) such that there is a path of length n from a to b, it follows
+that R∗ is the union of all the sets Rn . In other words,
+∗
+
+R =
+
+∞
+⋃
+
+Rn .
+
+n=1
+
+The connectivity relation is useful in many models.
+
+EXAMPLE 4
+
+Let R be the relation on the set of all people in the world that contains (a, b) if a has met b. What
+is Rn , where n is a positive integer greater than one? What is R∗ ?
+Solution: The relation R2 contains (a, b) if there is a person c such that (a, c) ∈ R and (c, b) ∈ R,
+that is, if there is a person c such that a has met c and c has met b. Similarly, Rn consists
+of those pairs (a, b) such that there are people x1 , x2 , … , xn−1 such that a has met x1 , x1 has
+met x2 , … , and xn−1 has met b.
+The relation R∗ contains (a, b) if there is a sequence of people, starting with a and ending
+with b, such that each person in the sequence has met the next person in the sequence. (There
+are many interesting conjectures about R∗ . Do you think that this connectivity relation includes
+the pair with you as the ﬁrst element and the president of Mongolia as the second element? We
+◂
+will use graphs to model this application in Chapter 10.)
+
+EXAMPLE 5
+
+Let R be the relation on the set of all subway stops in New York City that contains (a, b) if it is
+possible to travel from stop a to stop b without changing trains. What is Rn when n is a positive
+integer? What is R∗ ?
+Solution: The relation Rn contains (a, b) if it is possible to travel from stop a to stop b by making
+at most n − 1 changes of trains. The relation R∗ consists of the ordered pairs (a, b) where it is
+possible to travel from stop a to stop b making as many changes of trains as necessary. (The
+◂
+reader should verify these statements.)
+
+EXAMPLE 6
+
+Let R be the relation on the set of all states in the United States that contains (a, b) if state a and
+state b have a common border. What is Rn , where n is a positive integer? What is R∗ ?
+Solution: The relation Rn consists of the pairs (a, b), where it is possible to go from state a
+to state b by crossing exactly n state borders. R∗ consists of the ordered pairs (a, b), where it
+is possible to go from state a to state b crossing as many borders as necessary. (The reader
+should verify these statements.) The only ordered pairs not in R∗ are those containing states
+that are not connected to the continental United States (that is, those pairs containing Alaska or
+◂
+Hawaii).
+Theorem 2 shows that the transitive closure of a relation and the associated connectivity
+relation are the same.
+
+632
+
+9 / Relations
+
+THEOREM 2
+
+The transitive closure of a relation R equals the connectivity relation R∗ .
+Proof: Note that R∗ contains R by deﬁnition. To show that R∗ is the transitive closure of R
+we must also show that R∗ is transitive and that R∗ ⊆ S whenever S is a transitive relation that
+contains R.
+First, we show that R∗ is transitive. If (a, b) ∈ R∗ and (b, c) ∈ R∗ , then there are paths from
+a to b and from b to c in R. We obtain a path from a to c by starting with the path from a to b
+and following it with the path from b to c. Hence, (a, c) ∈ R∗ . It follows that R∗ is transitive.
+Now suppose that S is a transitive relation containing R. Because S is transitive, Sn also is
+transitive (the reader should verify this) and Sn ⊆ S (by Theorem 1 of Section 9.1). Furthermore,
+because
+S∗ =
+
+∞
+⋃
+
+Sk
+
+k=1
+
+and Sk ⊆ S, it follows that S∗ ⊆ S. Now note that if R ⊆ S, then R∗ ⊆ S ∗ , because any
+path in R is also a path in S. Consequently, R∗ ⊆ S∗ ⊆ S. Thus, any transitive relation that
+contains R must also contain R∗ . Therefore, R∗ is the transitive closure of R.
+Now that we know that the transitive closure equals the connectivity relation, we turn our
+attention to the problem of computing this relation. We do not need to examine arbitrarily long
+paths to determine whether there is a path between two vertices in a ﬁnite directed graph. As
+Lemma 1 shows, it is suﬃcient to examine paths containing no more than n edges, where n is
+the number of elements in the set.
+
+LEMMA 1
+
+Let A be a set with n elements, and let R be a relation on A. If there is a path of length at least
+one in R from a to b, then there is such a path with length not exceeding n. Moreover, when
+a ≠ b, if there is a path of length at least one in R from a to b, then there is such a path with
+length not exceeding n − 1.
+
+Proof: Suppose there is a path from a to b in R. Let m be the length of the shortest such path.
+Suppose that x0 , x1 , x2 , … , xm−1 , xm , where x0 = a and xm = b, is such a path.
+Suppose that a = b and that m > n, so that m ≥ n + 1. By the pigeonhole principle, because there are n vertices in A, among the m vertices x0 , x1 , … , xm−1 , at least two are equal (see
+Figure 2).
+xi+2
+xj–2
+
+xi+1
+
+xj–1
+a = x0
+
+x1
+
+FIGURE 2
+
+x2
+
+xi – 1 xi = xj
+
+xj+1
+
+xm = b
+
+Producing a path with length not exceeding n.
+
+9.4 Closures of Relations
+
+633
+
+Suppose that xi = xj with 0 ≤ i < j ≤ m − 1. Then the path contains a circuit from xi
+to itself. This circuit can be deleted from the path from a to b, leaving a path, namely,
+x0 , x1 , … , xi , xj+1 , … , xm−1 , xm , from a to b of shorter length. Hence, the path of shortest length
+must have length less than or equal to n.
+The case where a ≠ b is left as an exercise for the reader.
+From Lemma 1, we see that the transitive closure of R is the union of R, R2 , R3 , … , and Rn .
+This follows because there is a path in R∗ between two vertices if and only if there is a path
+between these vertices in Ri , for some positive integer i with i ≤ n. Because
+R∗ = R ∪ R2 ∪ R3 ∪ ⋯ ∪ Rn
+and the zero–one matrix representing a union of relations is the join of the zero–one matrices of
+these relations, the zero–one matrix for the transitive closure is the join of the zero–one matrices
+of the ﬁrst n powers of the zero–one matrix of R.
+
+THEOREM 3
+
+Let MR be the zero–one matrix of the relation R on a set with n elements. Then the zero–one
+matrix of the transitive closure R∗ is
+MR∗ = MR ∨ M[2]
+∨ M[3]
+∨ ⋯ ∨ M[n]
+.
+R
+R
+R
+
+EXAMPLE 7
+
+Find the zero–one matrix of the transitive closure of the relation R where
+⎡1
+MR = ⎢0
+⎢1
+⎣
+
+0
+1
+1
+
+1⎤
+0⎥ .
+0⎥⎦
+
+Solution: By Theorem 3, it follows that the zero–one matrix of R∗ is
+∨ M[3]
+.
+MR∗ = MR ∨ M[2]
+R
+R
+Because
+⎡1
+
+= ⎢0
+M[2]
+R
+⎢
+⎣1
+
+1
+1
+1
+
+1⎤
+0⎥
+1⎥⎦
+
+0
+1
+1
+
+1⎤ ⎡1
+0⎥ ∨ ⎢0
+0⎥⎦ ⎢⎣1
+
+⎡1
+
+and
+
+1⎤
+0⎥ ,
+1⎥⎦
+
+⎣1
+
+1
+1
+1
+
+1
+1
+1
+
+1⎤ ⎡1
+0⎥ = ⎢0
+1⎥⎦ ⎢⎣1
+
+M[3]
+= ⎢0
+R
+⎢
+
+it follows that
+⎡1
+MR∗ = ⎢0
+⎢1
+⎣
+
+Links
+
+1
+1
+1
+
+1⎤ ⎡1
+0⎥ ∨ ⎢0
+1⎥⎦ ⎢⎣1
+
+1
+1
+1
+
+1⎤
+0⎥ .
+1⎥⎦
+
+◂
+
+Theorem 3 can be used as a basis for an algorithm for computing the matrix of the
+relation R∗ . To ﬁnd this matrix, the successive Boolean powers of MR , up to the nth power, are
+computed. As each power is calculated, its join with the join of all smaller powers is formed.
+When this is done with the nth power, the matrix for R∗ has been found. This procedure is
+displayed as Algorithm 1.
+
+634
+
+9 / Relations
+
+ALGORITHM 1 A Procedure for Computing the Transitive Closure.
+
+procedure transitive closure (MR : zero–one n × n matrix)
+A := MR
+B := A
+for i := 2 to n
+A := A ⊙ MR
+B := B ∨ A
+return B{B is the zero–one matrix for R∗ }
+
+We can easily ﬁnd the number of bit operations used by Algorithm 1 to determine the
+, … , M[n]
+requires that
+transitive closure of a relation. Computing the Boolean powers MR , M[2]
+R
+R
+n − 1 Boolean products of n × n zero–one matrices be found. Each of these Boolean products
+can be found using n2 (2n − 1) bit operations. Hence, these products can be computed using
+n2 (2n − 1)(n − 1) bit operations.
+To ﬁnd MR∗ from the n Boolean powers of MR , n − 1 joins of zero–one matrices need
+to be found. Computing each of these joins uses n2 bit operations. Hence, (n − 1)n2 bit operations are used in this part of the computation. Therefore, when Algorithm 1 is used, the
+matrix of the transitive closure of a relation on a set with n elements can be found using
+n2 (2n − 1)(n − 1) + (n − 1)n2 = 2n3 (n − 1), which is O(n4 ) bit operations. The remainder of this
+section describes a more eﬃcient algorithm for ﬁnding transitive closures.
+
+9.4.5 Warshall’s Algorithm
+Links
+
+Warshall’s algorithm, named after Stephen Warshall, who described this algorithm in 1960,
+is an eﬃcient method for computing the transitive closure of a relation. Algorithm 1 can
+ﬁnd the transitive closure of a relation on a set with n elements using 2n3 (n − 1) bit operations. However, the transitive closure can be found by Warshall’s algorithm using only 2n3 bit
+operations.
+Remark: Warshall’s algorithm is sometimes called the Roy–Warshall algorithm, because
+Bernard Roy described this algorithm in 1959.
+Suppose that R is a relation on a set with n elements. Let v1 , v2 , … , vn be an arbitrary listing of these n elements. The concept of the interior vertices of a path is used in Warshall’s
+algorithm. If a, x1 , x2 , … , xm−1 , b is a path, its interior vertices are x1 , x2 , … , xm−1 , that is,
+all the vertices of the path that occur somewhere other than as the ﬁrst and last vertices
+in the path. For instance, the interior vertices of a path a, c, d, f, g, h, b, j in a directed graph
+are c, d, f, g, h, and b. The interior vertices of a, c, d, a, f, b are c, d, a, and f . (Note that the ﬁrst
+vertex in the path is not an interior vertex unless it is visited again by the path, except as the
+last vertex. Similarly, the last vertex in the path is not an interior vertex unless it was visited
+previously by the path, except as the ﬁrst vertex.)
+Warshall’s algorithm is based on the construction of a sequence of zero–one matrices. These
+matrices are W0 , W1 , … , Wn , where W0 = MR is the zero–one matrix of this relation, and Wk =
+[w(k)
+], where w(k)
+= 1 if there is a path from vi to vj such that all the interior vertices of this path
+ij
+ij
+are in the set {v1 , v2 , … , vk } (the ﬁrst k vertices in the list) and is 0 otherwise. (The ﬁrst and last
+vertices in the path may be outside the set of the ﬁrst k vertices in the list.) Note that Wn = MR∗ ,
+because the (i, j)th entry of MR∗ is 1 if and only if there is a path from vi to vj , with all interior
+
+9.4 Closures of Relations
+
+635
+
+vertices in the set {v1 , v2 , … , vn } (but these are the only vertices in the directed graph). Example
+8 illustrates what the matrix Wk represents.
+
+EXAMPLE 8
+
+a
+
+d
+
+FIGURE 3
+The directed
+graph of the
+relation R.
+
+b
+
+c
+
+Let R be the relation with directed graph shown in Figure 3. Let a, b, c, d be a listing of the
+elements of the set. Find the matrices W0 , W1 , W2 , W3 , and W4 . The matrix W4 is the transitive
+closure of R.
+Solution: Let v1 = a, v2 = b, v3 = c, and v4 = d. W0 is the matrix of the relation. Hence,
+⎡0
+⎢1
+W0 = ⎢
+1
+⎢
+⎣0
+
+0
+0
+0
+0
+
+0
+1
+0
+1
+
+1⎤
+0⎥
+.
+1⎥
+⎥
+0⎦
+
+W1 has 1 as its (i, j)th entry if there is a path from vi to vj that has only v1 = a as an interior
+vertex. Note that all paths of length one can still be used because they have no interior vertices.
+Also, there is now an allowable path from b to d, namely, b, a, d. Hence,
+⎡0
+⎢1
+W1 = ⎢
+1
+⎢
+⎣0
+
+0
+0
+0
+0
+
+0
+1
+0
+1
+
+1⎤
+1⎥
+.
+1⎥
+⎥
+0⎦
+
+W2 has 1 as its (i, j)th entry if there is a path from vi to vj that has only v1 = a and/or v2 = b as
+its interior vertices, if any. Because there are no edges that have b as a terminal vertex, no new
+paths are obtained when we permit b to be an interior vertex. Hence, W2 = W1 .
+W3 has 1 as its (i, j)th entry if there is a path from vi to vj that has only v1 = a, v2 = b, and/or
+v3 = c as its interior vertices, if any. We now have paths from d to a, namely, d, c, a, and from
+d to d, namely, d, c, d. Hence,
+⎡0
+⎢1
+W3 = ⎢
+1
+⎢
+⎣1
+
+0
+0
+0
+0
+
+0
+1
+0
+1
+
+1⎤
+1⎥
+.
+1⎥
+⎥
+1⎦
+
+Finally, W4 has 1 as its (i, j)th entry if there is a path from vi to vj that has v1 = a, v2 = b,
+v3 = c, and/or v4 = d as interior vertices, if any. Because these are all the vertices of the graph,
+this entry is 1 if and only if there is a path from vi to vj . Hence,
+⎡1
+⎢1
+W4 = ⎢
+1
+⎢
+⎣1
+
+0
+0
+0
+0
+
+1
+1
+1
+1
+
+1⎤
+1⎥
+.
+1⎥
+⎥
+1⎦
+
+This last matrix, W4 , is the matrix of the transitive closure.
+
+◂
+
+Warshall’s algorithm computes MR∗ by eﬃciently computing W1 , W2 , … , Wn = MR∗ . This
+observation shows that we can compute Wk directly from Wk−1 : There is a path from vi to vj
+with no vertices other than v1 , v2 , … , vk as interior vertices if and only if either there is a path
+from vi to vj with its interior vertices among the ﬁrst k − 1 vertices in the list, or there are paths
+from vi to vk and from vk to vj that have interior vertices only among the ﬁrst k − 1 vertices in
+the list. That is, either a path from vi to vj already existed before vk was permitted as an interior
+vertex, or allowing vk as an interior vertex produces a path that goes from vi to vk and then from
+vk to vj . These two cases are shown in Figure 4.
+
+636
+
+9 / Relations
+Case 1
+vi
+
+vj
+All interior vertices
+in {v1,v2 , . . . , vk–1}
+vk
+
+Case 2
+
+vi
+
+All interior vertices
+in {v1,v2 , . . . , vk –1}
+
+FIGURE 4
+
+vj
+
+Adding vk to the set of allowable interior vertices.
+
+= 1, and the second type of path exists if
+The ﬁrst type of path exists if and only if w[k−1]
+ij
+and only if both w[k−1]
+and w[k−1]
+are 1. Hence, w[k]
+is 1 if and only if either w[k−1]
+is 1 or both
+ij
+ij
+ik
+kj
+w[k−1]
+and w[k−1]
+are 1. This gives us Lemma 2.
+ik
+kj
+
+LEMMA 2
+
+Let Wk = [w[k]
+] be the zero–one matrix that has a 1 in its (i, j)th position if and only if there
+ij
+is a path from vi to vj with interior vertices from the set {v1 , v2 , … , vk }. Then
+w[k]
+= w[k−1]
+∨ (w[k−1]
+∧ w[k−1]
+),
+ij
+ij
+ik
+kj
+whenever i, j, and k are positive integers not exceeding n.
+
+Lemma 2 gives us the means to compute eﬃciently the matrices Wk , k = 1, 2, … , n. We
+display the pseudocode for Warshall’s algorithm, using Lemma 2, as Algorithm 2.
+
+Links
+STEPHEN WARSHALL (1935–2006) Stephen Warshall, born in New York City, went to public school in
+Brooklyn. He attended Harvard University, receiving his degree in mathematics in 1956. He never received an
+advanced degree, because at that time no programs were available in his areas of interest. However, he took
+graduate courses at several diﬀerent universities and contributed to the development of computer science and
+software engineering.
+After graduating from Harvard, Warshall worked at ORO (Operation Research Oﬃce), which was set up
+by Johns Hopkins to do research and development for the U.S. Army. In 1958 he left ORO to take a position
+at a company called Technical Operations, where he helped build a research and development laboratory for
+Courtesy of Stephen Warshall military software projects. In 1961 he left Technical Operations to found Massachusetts Computer Associates.
+Later, this company became part of Applied Data Research (ADR). After the merger, Warshall sat on the board
+of directors of ADR and managed a variety of projects and organizations. He retired from ADR in 1982.
+During his career Warshall carried out research and development in operating systems, compiler design, language design, and
+operations research. In the 1971–1972 academic year he presented lectures on software engineering at French universities. There is
+an interesting anecdote about his proof that the transitive closure algorithm, now known as Warshall’s algorithm, is correct. He and
+a colleague at Technical Operations bet a bottle of rum on who ﬁrst could determine whether this algorithm always works. Warshall
+came up with his proof overnight, winning the bet and the rum, which he shared with the loser of the bet. Because Warshall did not
+like sitting at a desk, he did much of his creative work in unconventional places, such as on a sailboat in the Indian Ocean or in a
+Greek lemon orchard.
+
+9.4 Closures of Relations
+
+637
+
+ALGORITHM 2 Warshall Algorithm.
+
+procedure Warshall (MR : n × n zero–one matrix)
+W := MR
+for k := 1 to n
+for i := 1 to n
+for j := 1 to n
+wij := wij ∨ (wik ∧ wkj )
+return W{W = [wij ] is MR∗ }
+
+The computational complexity of Warshall’s algorithm can easily be computed in terms of
+from the entries w[k−1]
+, w[k−1]
+, and w[k−1]
+using Lemma
+bit operations. To ﬁnd the entry w[k]
+ij
+ij
+ik
+kj
+2
+2 requires two bit operations. To ﬁnd all n entries of Wk from those of Wk−1 requires 2n2
+bit operations. Because Warshall’s algorithm begins with W0 = MR and computes the sequence of n zero–one matrices W1 , W2 , … , Wn = MR∗ , the total number of bit operations used
+is n ⋅ 2n2 = 2n3 .
+
+Exercises
+1. Let R be the relation on the set {0, 1, 2, 3} containing the
+ordered pairs (0, 1), (1, 1), (1, 2), (2, 0), (2, 2), and (3, 0).
+Find the
+a) reﬂexive closure of R. b) symmetric closure of R.
+2. Let R be the relation {(a, b) ∣ a ≠ b} on the set of integers. What is the reﬂexive closure of R?
+3. Let R be the relation {(a, b) ∣ a divides b} on the set of
+integers. What is the symmetric closure of R?
+4. How can the directed graph representing the reﬂexive
+closure of a relation on a ﬁnite set be constructed from
+the directed graph of the relation?
+In Exercises 5–7 draw the directed graph of the reﬂexive closure of the relations with the directed graph shown.
+5.
+6.
+a
+
+b
+
+c
+
+d
+
+a
+
+c
+
+b
+
+d
+
+7.
+a
+
+c
+
+b
+
+d
+
+8. How can the directed graph representing the symmetric
+closure of a relation on a ﬁnite set be constructed from
+the directed graph for this relation?
+9. Find the directed graphs of the symmetric closures of the
+relations with directed graphs shown in Exercises 5–7.
+
+10. Find the smallest relation containing the relation in Example 2 that is both reﬂexive and symmetric.
+11. Find the directed graph of the smallest relation that is
+both reﬂexive and symmetric that contains each of the
+relations with directed graphs shown in Exercises 5–7.
+12. Suppose that the relation R on the ﬁnite set A is represented by the matrix MR . Show that the matrix that represents the reﬂexive closure of R is MR ∨ In .
+13. Suppose that the relation R on the ﬁnite set A is represented by the matrix MR . Show that the matrix that represents the symmetric closure of R is MR ∨ MtR .
+14. Show that the closure of a relation R with respect to a
+property P, if it exists, is the intersection of all the relations with property P that contain R.
+15. When is it possible to deﬁne the “irreﬂexive closure”
+of a relation R, that is, a relation that contains R, is irreﬂexive, and is contained in every irreﬂexive relation
+that contains R?
+16. Determine whether these sequences of vertices are paths
+in this directed graph.
+a) a, b, c, e
+c
+a
+b
+b) b, e, c, b, e
+c) a, a, b, e, d, e
+d) b, c, e, d, a, a, b
+e) b, c, c, b, e, d, e, d
+e
+d
+f ) a, a, b, b, c, c, b, e, d
+17. Find all circuits of length three in the directed graph in
+Exercise 16.
+18. Determine whether there is a path in the directed graph
+in Exercise 16 beginning at the ﬁrst vertex given and
+ending at the second vertex given.
+a) a, b
+b) b, a
+c) b, b
+d) a, e
+e) b, d
+f ) c, d
+g) d, d
+h) e, a
+i) e, c
+
+638
+
+9 / Relations
+
+19. Let R be the relation on the set {1, 2, 3, 4, 5} containing
+the ordered pairs (1, 3), (2, 4), (3, 1), (3, 5), (4, 3), (5, 1),
+(5, 2), and (5, 4). Find
+a) R2 .
+b) R3 .
+c) R4 .
+d) R5 .
+e) R6 .
+f ) R∗ .
+20. Let R be the relation that contains the pair (a, b) if a and b
+are cities such that there is a direct nonstop airline ﬂight
+from a to b. When is (a, b) in
+a) R2 ?
+b) R3 ?
+c) R∗ ?
+21. Let R be the relation on the set of all students containing the ordered pair (a, b) if a and b are in at least one
+common class and a ≠ b. When is (a, b) in
+a) R2 ?
+b) R3 ?
+c) R∗ ?
+22. Suppose that the relation R is reﬂexive. Show that R∗ is
+reﬂexive.
+23. Suppose that the relation R is symmetric. Show that R∗
+is symmetric.
+24. Suppose that the relation R is irreﬂexive. Is the
+relation R2 necessarily irreﬂexive?
+25. Use Algorithm 1 to ﬁnd the transitive closures of these
+relations on {1, 2, 3, 4}.
+a) {(1, 2), (2, 1), (2, 3), (3, 4), (4, 1)}
+b) {(2, 1), (2, 3), (3, 1), (3, 4), (4, 1), (4, 3)}
+c) {(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)}
+d) {(1, 1), (1, 4), (2, 1), (2, 3), (3, 1), (3, 2), (3, 4), (4, 2)}
+26. Use Algorithm 1 to ﬁnd the transitive closures of these
+relations on {a, b, c, d, e}.
+a) {(a, c), (b, d), (c, a), (d, b), (e, d)}
+b) {(b, c), (b, e), (c, e), (d, a), (e, b), (e, c)}
+c) {(a, b), (a, c), (a, e), (b, a), (b, c), (c, a), (c, b), (d, a),
+(e, d)}
+d) {(a, e), (b, a), (b, d), (c, d), (d, a), (d, c), (e, a), (e, b),
+(e, c), (e, e)}
+
+9.5
+
+27. Use Warshall’s algorithm to ﬁnd the transitive closures
+of the relations in Exercise 25.
+28. Use Warshall’s algorithm to ﬁnd the transitive closures
+of the relations in Exercise 26.
+29. Find the smallest relation containing the relation
+{(1, 2), (1, 4), (3, 3), (4, 1)} that is
+a) reﬂexive and transitive.
+b) symmetric and transitive.
+c) reﬂexive, symmetric, and transitive.
+30. Finish the proof of the case when a ≠ b in Lemma 1.
+31. Algorithms have been devised that use O(n2.8 ) bit operations to compute the Boolean product of two n × n
+zero–one matrices. Assuming that these algorithms can
+be used, give big-O estimates for the number of bit operations using Algorithm 1 and using Warshall’s algorithm
+to ﬁnd the transitive closure of a relation on a set with n
+elements.
+∗ 32. Devise an algorithm using the concept of interior vertices
+in a path to ﬁnd the length of the shortest path between
+two vertices in a directed graph, if such a path exists.
+33. Adapt Algorithm 1 to ﬁnd the reﬂexive closure of the
+transitive closure of a relation on a set with n elements.
+34. Adapt Warshall’s algorithm to ﬁnd the reﬂexive closure
+of the transitive closure of a relation on a set with n
+elements.
+35. Show that the closure with respect to the property P of
+the relation R = {(0, 0), (0, 1), (1, 1), (2, 2)} on the set
+{0, 1, 2} does not exist if P is the property
+a) “is not reﬂexive.”
+b) “has an odd number of elements.”
+36. Give an example of a relation R on the set {a, b, c} such
+that the symmetric closure of the reﬂexive closure of the
+transitive closure of R is not transitive.
+
+Equivalence Relations
+9.5.1 Introduction
+In some programming languages the names of variables can contain an unlimited number of
+characters. However, there is a limit on the number of characters that are checked when a compiler determines whether two variables are equal. For instance, in traditional C, only the ﬁrst
+eight characters of a variable name are checked by the compiler. (These characters are uppercase
+or lowercase letters, digits, or underscores.) Consequently, the compiler considers strings longer
+than eight characters that agree in their ﬁrst eight characters the same. Let R be the relation on
+the set of strings of characters such that sRt, where s and t are two strings, if s and t are at least
+eight characters long and the ﬁrst eight characters of s and t agree, or s = t. It is easy to see that
+R is reﬂexive, symmetric, and transitive. Moreover, R divides the set of all strings into classes,
+where all strings in a particular class are considered the same by a compiler for traditional C.
+The integers a and b are related by the “congruence modulo 4” relation when 4
+divides a − b. We will show later that this relation is reﬂexive, symmetric, and transitive. It
+is not hard to see that a is related to b if and only if a and b have the same remainder when
+divided by 4. It follows that this relation splits the set of integers into four diﬀerent classes.
+
+9.5 Equivalence Relations
+
+639
+
+When we care only what remainder an integer leaves when it is divided by 4, we need only
+know which class it is in, not its particular value.
+These two relations, R and congruence modulo 4, are examples of equivalence relations,
+namely, relations that are reﬂexive, symmetric, and transitive. In this section we will show that
+such relations split sets into disjoint classes of equivalent elements. Equivalence relations arise
+whenever we care only whether an element of a set is in a certain class of elements, instead of
+caring about its particular identity.
+
+9.5.2 Equivalence Relations
+Links
+
+Deﬁnition 1
+Equivalence relations
+are important in every
+branch of mathematics!
+
+Deﬁnition 2
+
+In this section we will study relations with a particular combination of properties that allows
+them to be used to relate objects that are similar in some way.
+
+A relation on a set A is called an equivalence relation if it is reﬂexive, symmetric, and
+transitive.
+Equivalence relations are important throughout mathematics and computer science. One
+reason for this is that in an equivalence relation, when two elements are related it makes sense
+to say they are equivalent.
+
+Two elements a and b that are related by an equivalence relation are called equivalent. The
+notation a ∼ b is often used to denote that a and b are equivalent elements with respect to a
+particular equivalence relation.
+For the notion of equivalent elements to make sense, every element should be equivalent to
+itself, as the reﬂexive property guarantees for an equivalence relation. It makes sense to say
+that a and b are related (not just that a is related to b) by an equivalence relation, because
+when a is related to b, by the symmetric property, b is related to a. Furthermore, because an
+equivalence relation is transitive, if a and b are equivalent and b and c are equivalent, it follows
+that a and c are equivalent.
+Examples 1–5 illustrate the notion of an equivalence relation.
+
+EXAMPLE 1
+
+Let R be the relation on the set of integers such that aRb if and only if a = b or a = −b. In
+Section 9.1 we showed that R is reﬂexive, symmetric, and transitive. It follows that R is an
+◂
+equivalence relation.
+
+EXAMPLE 2
+
+Let R be the relation on the set of real numbers such that aRb if and only if a − b is an integer.
+Is R an equivalence relation?
+
+Extra
+Examples
+
+Solution: Because a − a = 0 is an integer for all real numbers a, aRa for all real numbers a.
+Hence, R is reﬂexive. Now suppose that aRb. Then a − b is an integer, so b − a is also an integer. Hence, bRa. It follows that R is symmetric. If aRb and bRc, then a − b and b − c are integers.
+Therefore, a − c = (a − b) + (b − c) is also an integer. Hence, aRc. Thus, R is transitive. Conse◂
+quently, R is an equivalence relation.
+One of the most widely used equivalence relations is congruence modulo m, where m is an
+integer greater than 1.
+
+640
+
+9 / Relations
+
+EXAMPLE 3
+
+Congruence Modulo m Let m be an integer with m > 1. Show that the relation
+R = {(a, b) ∣ a ≡ b (mod m)}
+is an equivalence relation on the set of integers.
+Solution: Recall from Section 4.1 that a ≡ b (mod m) if and only if m divides a − b. Note that
+a − a = 0 is divisible by m, because 0 = 0 ⋅ m. Hence, a ≡ a (mod m), so congruence modulo
+m is reﬂexive. Now suppose that a ≡ b (mod m). Then a − b is divisible by m, so a − b = km,
+where k is an integer. It follows that b − a = (−k)m, so b ≡ a (mod m). Hence, congruence
+modulo m is symmetric. Next, suppose that a ≡ b (mod m) and b ≡ c (mod m). Then m divides
+both a − b and b − c. Therefore, there are integers k and l with a − b = km and b − c = lm.
+Adding these two equations shows that a − c = (a − b) + (b − c) = km + lm = (k + l)m. Thus,
+a ≡ c (mod m). Therefore, congruence modulo m is transitive. It follows that congruence modulo
+◂
+m is an equivalence relation.
+
+EXAMPLE 4
+
+Suppose that R is the relation on the set of strings of English letters such that aRb if and only if
+l(a) = l(b), where l(x) is the length of the string x. Is R an equivalence relation?
+Solution: Because l(a) = l(a), it follows that aRa whenever a is a string, so that R is reﬂexive. Next, suppose that aRb, so that l(a) = l(b). Then bRa, because l(b) = l(a). Hence,
+R is symmetric. Finally, suppose that aRb and bRc. Then l(a) = l(b) and l(b) = l(c). Hence,
+l(a) = l(c), so aRc. Consequently, R is transitive. Because R is reﬂexive, symmetric, and tran◂
+sitive, it is an equivalence relation.
+
+EXAMPLE 5
+
+Let n be a positive integer and S a set of strings. Suppose that Rn is the relation on S such
+that sRn t if and only if s = t, or both s and t have at least n characters and the ﬁrst n characters
+of s and t are the same. That is, a string of fewer than n characters is related only to itself; a
+string s with at least n characters is related to a string t if and only if t has at least n characters
+and t begins with the n characters at the start of s. For example, let n = 3 and let S be the set
+of all bit strings. Then sR3 t either when s = t or both s and t are bit strings of length 3 or more
+that begin with the same three bits. For instance, 01R3 01 and 00111R3 00101, but 01 ̸R 3 010 and
+01011 ̸R 3 01110.
+Show that for every set S of strings and every positive integer n, Rn is an equivalence relation
+on S.
+Solution: The relation Rn is reﬂexive because s = s, so that sRn s whenever s is a string in S.
+If sRn t, then either s = t or s and t are both at least n characters long that begin with the
+same n characters. This means that tRn s. We conclude that Rn is symmetric.
+Now suppose that sRn t and tRn u. Then either s = t or s and t are at least n characters long
+and s and t begin with the same n characters, and either t = u or t and u are at least n characters
+long and t and u begin with the same n characters. From this, we can deduce that either s = u or
+both s and u are n characters long and s and u begin with the same n characters (because in this
+case we know that s, t, and u are all at least n characters long and both s and u begin with the
+same n characters as t does). Consequently, Rn is transitive. It follows that Rn is an equivalence
+◂
+relation.
+In Examples 6 and 7 we look at two relations that are not equivalence relations.
+
+EXAMPLE 6
+
+Show that the “divides” relation on the set of positive integers in not an equivalence relation.
+Solution: By Examples 9 and 15 in Section 9.1, we know that the “divides” relation is reﬂexive and transitive. However, by Example 12 in Section 9.1, we know that this relation is not
+
+9.5 Equivalence Relations
+
+641
+
+symmetric (for instance, 2 ∣ 4 but 4 ̸ | 2). We conclude that the “divides” relation on the set of
+◂
+positive integers is not an equivalence relation.
+
+EXAMPLE 7
+
+Let R be the relation on the set of real numbers such that xRy if and only if x and y are real
+numbers that diﬀer by less than 1, that is, |x − y| < 1. Show that R is not an equivalence relation.
+Solution: R is reﬂexive because |x − x| = 0 < 1 whenever x ∈ R. R is symmetric, for if xRy,
+where x and y are real numbers, then |x − y| < 1, which tells us that |y − x| = |x − y| < 1, so
+that yRx. However, R is not an equivalence relation because it is not transitive. Take x = 2.8,
+y = 1.9, and z = 1.1, so that |x − y| = |2.8 − 1.9| = 0.9 < 1, |y − z| = |1.9 − 1.1| = 0.8 < 1,
+◂
+but |x − z| = |2.8 − 1.1| = 1.7 > 1. That is, 2.8 R 1.9, 1.9 R 1.1, but 2.8 ̸R 1.1.
+
+9.5.3 Equivalence Classes
+Let A be the set of all students in your school who graduated from high school. Consider the
+relation R on A that consists of all pairs (x, y), where x and y graduated from the same high
+school. Given a student x, we can form the set of all students equivalent to x with respect to R.
+This set consists of all students who graduated from the same high school as x did. This subset
+of A is called an equivalence class of the relation.
+
+Deﬁnition 3
+
+Let R be an equivalence relation on a set A. The set of all elements that are related to an
+element a of A is called the equivalence class of a. The equivalence class of a with respect
+to R is denoted by [a]R . When only one relation is under consideration, we can delete the
+subscript R and write [a] for this equivalence class.
+In other words, if R is an equivalence relation on a set A, the equivalence class of the element
+a is
+[a]R = {s ∣ (a, s) ∈ R}.
+If b ∈ [a]R , then b is called a representative of this equivalence class. Any element of a class
+can be used as a representative of this class. That is, there is nothing special about the particular
+element chosen as the representative of the class.
+
+EXAMPLE 8
+
+What is the equivalence class of an integer for the equivalence relation of Example 1?
+Solution: Because an integer is equivalent to itself and its negative in this equivalence relation,
+it follows that [a] = {−a, a}. This set contains two distinct integers unless a = 0. For instance,
+◂
+[7] = {−7, 7}, [−5] = {−5, 5}, and [0] = {0}.
+
+EXAMPLE 9
+Extra
+Examples
+
+What are the equivalence classes of 0, 1, 2, and 3 for congruence modulo 4?
+Solution: The equivalence class of 0 contains all integers a such that a ≡ 0 (mod 4). The integers
+in this class are those divisible by 4. Hence, the equivalence class of 0 for this relation is
+[0] = {… , −8, −4, 0, 4, 8, … }.
+
+642
+
+9 / Relations
+
+The equivalence class of 1 contains all the integers a such that a ≡ 1 (mod 4). The integers in
+this class are those that have a remainder of 1 when divided by 4. Hence, the equivalence class
+of 1 for this relation is
+[1] = {… , −7, −3, 1, 5, 9, … }.
+The equivalence class of 2 contains all the integers a such that a ≡ 2 (mod 4). The integers in
+this class are those that have a remainder of 2 when divided by 4. Hence, the equivalence class
+of 2 for this relation is
+[2] = {… , −6, −2, 2, 6, 10, … }.
+The equivalence class of 3 contains all the integers a such that a ≡ 3 (mod 4). The integers in
+this class are those that have a remainder of 3 when divided by 4. Hence, the equivalence class
+of 3 for this relation is
+[3] = {… , −5, −1, 3, 7, 11, … }.
+Note that every integer is in exactly one of the four equivalence classes and that the integer
+◂
+n is in the class containing n mod 4.
+In Example 9 the equivalence classes of 0, 1, 2, and 3 with respect to congruence modulo 4 were found. Example 9 can easily be generalized, replacing 4 with any positive integer
+m. The equivalence classes of the relation congruence modulo m are called the congruence
+classes modulo m. The congruence class of an integer a modulo m is denoted by [a]m , so
+[a]m = {… , a − 2m, a − m, a, a + m, a + 2m, …}. For instance, from Example 9 we have [0]4 =
+{… , −8, −4, 0, 4, 8, … }, [1]4 = {… , −7, −3, 1, 5, 9, …}, [2]4 = {… , −6, −2, 2, 6, 10, …}, and
+[3]4 = {… , −5, −1, 3, 7, 11, …}.
+
+EXAMPLE 10
+
+What is the equivalence class of the string 0111 with respect to the equivalence relation R3 from
+Example 5 on the set of all bit strings? (Recall that sR3 t if and only if s and t are bit strings with
+s = t or s and t are strings of at least three bits that start with the same three bits.)
+Solution: The bit strings equivalent to 0111 are the bit strings with at least three bits that begin
+with 011. These are the bit strings 011, 0110, 0111, 01100, 01101, 01110, 01111, and so on.
+Consequently,
+[011]R3 = {011, 0110, 0111, 01100, 01101, 01110, 01111, …}.
+
+EXAMPLE 11
+
+◂
+
+Identiﬁers in the C Programming Language In the C programming language, an identiﬁer
+is the name of a variable, a function, or another type of entity. Each identiﬁer is a nonempty
+string of characters where each character is a lowercase or an uppercase English letter, a digit,
+or an underscore, and the ﬁrst character is a lowercase or an uppercase English letter. Identiﬁers
+can be any length. This allows developers to use as many characters as they want to name an
+entity, such as a variable. However, for compilers for some versions of C, there is a limit on the
+number of characters checked when two names are compared to see whether they refer to the
+same thing. For example, Standard C compilers consider two identiﬁers the same when they
+agree in their ﬁrst 31 characters. Consequently, developers must be careful not to use identiﬁers
+with the same initial 31 characters for diﬀerent things. We see that two identiﬁers are considered
+the same when they are related by the relation R31 in Example 5. Using Example 5, we know
+that R31 , on the set of all identiﬁers in Standard C, is an equivalence relation.
+
+9.5 Equivalence Relations
+
+643
+
+What are the equivalence classes of each of the identiﬁers Number of tropical
+storms, Number of named tropical storms, and Number of named tropical storms in the
+Atlantic in 2017?
+Solution: Note that when an identiﬁer is less than 31 characters long, by the deﬁnition of R31 ,
+its equivalence class contains only itself. Because the identiﬁer Number of tropical storms is
+25 characters long, its equivalence class contains exactly one element, namely, itself.
+The identiﬁer Number of named tropical storms is exactly 31 characters long. An identiﬁer is equivalent to it when it starts with these same 31 characters. Consequently, every identiﬁer
+at least 31 characters long that starts with Number of named tropical storms is equivalent to
+this identiﬁer. It follows that the equivalence class of Number of named tropical storms is the
+set of all identiﬁers that begin with the 31 characters Number of named tropical storms.
+An identiﬁer is equivalent to the Number of named tropical storms in the Atlantic in
+2017 if and only if it begins with its ﬁrst 31 characters. Because these characters
+are Number of named tropical storms, we see that an identiﬁer is equivalent to Number of named tropical storms in the Atlantic in 2017 if and only if it is equivalent to Number of named tropical storms. It follows that these last two identiﬁers have the same equivalence class.
+◂
+
+9.5.4 Equivalence Classes and Partitions
+Let A be the set of students at your school who are majoring in exactly one subject, and let R
+be the relation on A consisting of pairs (x, y), where x and y are students with the same major.
+Then R is an equivalence relation, as the reader should verify. We can see that R splits all students in A into a collection of disjoint subsets, where each subset contains students with a speciﬁed major. For instance, one subset contains all students majoring (just) in computer science,
+and a second subset contains all students majoring in history. Furthermore, these subsets are
+equivalence classes of R. This example illustrates how the equivalence classes of an equivalence relation partition a set into disjoint, nonempty subsets. We will make these notions more
+precise in the following discussion.
+Let R be a relation on the set A. Theorem 1 shows that the equivalence classes of two
+elements of A are either identical or disjoint.
+
+THEOREM 1
+
+Let R be an equivalence relation on a set A. These statements for elements a and b of A are
+equivalent:
+(i) aRb
+
+(ii) [a] = [b]
+
+(iii) [a] ∩ [b] ≠ ∅
+
+Proof: We ﬁrst show that (i) implies (ii). Assume that aRb. We will prove that [a] = [b] by
+showing [a] ⊆ [b] and [b] ⊆ [a]. Suppose c ∈ [a]. Then aRc. Because aRb and R is symmetric,
+we know that bRa. Furthermore, because R is transitive and bRa and aRc, it follows that bRc.
+Hence, c ∈ [b]. This shows that [a] ⊆ [b]. The proof that [b] ⊆ [a] is similar; it is left as an
+exercise for the reader.
+Second, we will show that (ii) implies (iii). Assume that [a] = [b]. It follows that
+[a] ∩ [b] ≠ ∅ because [a] is nonempty (because a ∈ [a] because R is reﬂexive).
+Next, we will show that (iii) implies (i). Suppose that [a] ∩ [b] ≠ ∅. Then there is an
+element c with c ∈ [a] and c ∈ [b]. In other words, aRc and bRc. By the symmetric
+property, cRb. Then by transitivity, because aRc and cRb, we have aRb.
+Because (i) implies (ii), (ii) implies (iii), and (iii) implies (i), the three statements, (i), (ii),
+and (iii), are equivalent.
+
+644
+
+9 / Relations
+
+A2
+A1
+
+A3
+A4
+
+A7
+
+A6
+
+A8
+
+FIGURE 1
+
+A5
+
+A9
+
+A partition of a set.
+
+We are now in a position to show how an equivalence relation partitions a set. Let R be an
+equivalence relation on a set A. The union of the equivalence classes of R is all of A, because
+an element a of A is in its own equivalence class, namely, [a]R . In other words,
+⋃
+
+[a]R = A.
+
+a∈A
+
+In addition, from Theorem 1, it follows that these equivalence classes are either equal or disjoint,
+so
+[a]R ∩ [b]R = ∅,
+
+Recall that an index set
+is a set whose members
+label, or index, the
+elements of a set.
+
+when [a]R ≠ [b]R .
+These two observations show that the equivalence classes form a partition of A, because
+they split A into disjoint subsets. More precisely, a partition of a set S is a collection of disjoint
+nonempty subsets of S that have S as their union. In other words, the collection of subsets Ai ,
+i ∈ I (where I is an index set) forms a partition of S if and only if
+Ai ≠ ∅ for i ∈ I,
+Ai ∩ Aj = ∅ when i ≠ j,
+and
+⋃
+
+Ai = S.
+
+i∈I
+
+⋃
+(Here the notation i∈I Ai represents the union of the sets Ai for all i ∈ I.) Figure 1 illustrates
+the concept of a partition of a set.
+
+EXAMPLE 12
+
+Suppose that S = {1, 2, 3, 4, 5, 6}. The collection of sets A1 = {1, 2, 3}, A2 = {4, 5}, and
+A3 = {6} forms a partition of S, because these sets are disjoint and their union is S.
+◂
+We have seen that the equivalence classes of an equivalence relation on a set form a partition of the set. The subsets of S in this partition are the equivalence classes. Conversely, every
+partition of a set can be used to form an equivalence relation. Two elements are equivalent with
+respect to this relation if and only if they are in the same subset of S in the partition.
+To see this, assume that {Ai ∣ i ∈ I} is a partition on S. Let R be the relation on S consisting
+of the pairs (x, y), where x and y belong to the same subset Ai in the partition. To show that R is
+an equivalence relation we must show that R is reﬂexive, symmetric, and transitive.
+We see that (a, a) ∈ R for every a ∈ S, because a is in the same subset of S as itself. Hence,
+R is reﬂexive. If (a, b) ∈ R, then b and a are in the same subset of S in the partition, so that
+
+9.5 Equivalence Relations
+
+645
+
+(b, a) ∈ R as well. Hence, R is symmetric. If (a, b) ∈ R and (b, c) ∈ R, then a and b are in the
+same subset X of S in the partition, and b and c are in the same subset Y of S of the partition.
+Because the subsets of S in the partition are disjoint and b belongs to X and Y, it follows that
+X = Y. Consequently, a and c belong to the same subset of S in the partition, so (a, c) ∈ R. Thus,
+R is transitive.
+It follows that R is an equivalence relation. The equivalence classes of R consist of subsets
+of S containing related elements, and by the deﬁnition of R, these are the subsets of S in the
+partition. Theorem 2 summarizes the connections we have established between equivalence
+relations and partitions.
+
+THEOREM 2
+
+Let R be an equivalence relation on a set S. Then the equivalence classes of R form a partition
+of S. Conversely, given a partition {Ai ∣ i ∈ I} of the set S, there is an equivalence relation R
+that has the sets Ai , i ∈ I, as its equivalence classes.
+
+Example 13 shows how to construct an equivalence relation from a partition.
+
+EXAMPLE 13
+
+List the ordered pairs in the equivalence relation R produced by the partition A1 = {1, 2, 3},
+A2 = {4, 5}, and A3 = {6} of S = {1, 2, 3, 4, 5, 6}, given in Example 12.
+Solution: The subsets of S in the partition are the equivalence classes of R. The pair (a, b) ∈ R if
+and only if a and b are in the same subset of the S in the partition. The pairs (1, 1), (1, 2), (1, 3),
+(2, 1), (2, 2), (2, 3), (3, 1), (3, 2), and (3, 3) belong to R because A1 = {1, 2, 3} is an equivalence
+class; the pairs (4, 4), (4, 5), (5, 4), and (5, 5) belong to R because A2 = {4, 5} is an equivalence
+class; and ﬁnally the pair (6, 6) belongs to R because {6} is an equivalence class. No pair other
+◂
+than those listed belongs to R.
+The congruence classes modulo m provide a useful illustration of Theorem 2. There are m
+diﬀerent congruence classes modulo m, corresponding to the m diﬀerent remainders possible
+when an integer is divided by m. These m congruence classes are denoted by [0]m , [1]m , … ,
+[m − 1]m . They form a partition of the set of integers.
+
+EXAMPLE 14
+
+What are the sets in the partition of the integers arising from congruence modulo 4?
+Solution: In Example 9 we found the four congruence classes, [0]4 , [1]4 , [2]4 , and [3]4 . They
+are the sets
+[0]4 = {… , −8, −4, 0, 4, 8, … },
+[1]4 = {… , −7, −3, 1, 5, 9, … },
+[2]4 = {… , −6, −2, 2, 6, 10, … },
+[3]4 = {… , −5, −1, 3, 7, 11, … }.
+These congruence classes are disjoint, and every integer is in exactly one of them. In other
+words, as Theorem 2 says, these congruence classes form a partition.
+◂
+We now provide an example of a partition of the set of all strings arising from an equivalence
+relation on this set.
+
+EXAMPLE 15
+
+Let R3 be the relation from Example 5. What are the sets in the partition of the set of all bit strings
+arising from the relation R3 on the set of all bit strings? (Recall that sR3 t, where s and t are bit
+strings, if s = t or s and t are bit strings with at least three bits that agree in their ﬁrst three bits.)
+
+646
+
+9 / Relations
+
+Solution: Note that every bit string of length less than three is equivalent only to itself.
+Hence [𝜆]R3 = {𝜆}, [0]R3 = {0}, [1]R3 = {1}, [00]R3 = {00}, [01]R3 = {01}, [10]R3 = {10}, and
+[11]R3 = {11}. Note that every bit string of length three or more is equivalent to one of the eight
+bit strings 000, 001, 010, 011, 100, 101, 110, and 111. We have
+[000]R3 = {000, 0000, 0001, 00000, 00001, 00010, 00011, …},
+[001]R3 = {001, 0010, 0011, 00100, 00101, 00110, 00111, …},
+[010]R3 = {010, 0100, 0101, 01000, 01001, 01010, 01011, …},
+[011]R3 = {011, 0110, 0111, 01100, 01101, 01110, 01111, …},
+[100]R3 = {100, 1000, 1001, 10000, 10001, 10010, 10011, …},
+[101]R3 = {101, 1010, 1011, 10100, 10101, 10110, 10111, …},
+[110]R3 = {110, 1100, 1101, 11000, 11001, 11010, 11011, …},
+[111]R3 = {111, 1110, 1111, 11100, 11101, 11110, 11111, …}.
+These 15 equivalence classes are disjoint and every bit string is in exactly one of them. As
+Theorem 2 tells us, these equivalence classes partition the set of all bit strings.
+◂
+
+Exercises
+1. Which of these relations on {0, 1, 2, 3} are equivalence
+relations? Determine the properties of an equivalence relation that the others lack.
+a) {(0, 0), (1, 1), (2, 2), (3, 3)}
+b) {(0, 0), (0, 2), (2, 0), (2, 2), (2, 3), (3, 2), (3, 3)}
+c) {(0, 0), (1, 1), (1, 2), (2, 1), (2, 2), (3, 3)}
+d) {(0, 0), (1, 1), (1, 3), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)}
+e) {(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0),
+(2, 2), (3, 3)}
+2. Which of these relations on the set of all people are equivalence relations? Determine the properties of an equivalence relation that the others lack.
+a) {(a, b) ∣ a and b are the same age}
+b) {(a, b) ∣ a and b have the same parents}
+c) {(a, b) ∣ a and b share a common parent}
+d) {(a, b) ∣ a and b have met}
+e) {(a, b) ∣ a and b speak a common language}
+3. Which of these relations on the set of all functions from Z
+to Z are equivalence relations? Determine the properties
+of an equivalence relation that the others lack.
+a) {(f, g) ∣ f (1) = g(1)}
+b) {(f, g) ∣ f (0) = g(0) or f (1) = g(1)}
+c) {(f, g) ∣ f (x) − g(x) = 1 for all x ∈ Z}
+d) {(f, g) ∣ for some C ∈ Z, for all x ∈ Z, f (x) −
+g(x) = C}
+e) {(f, g) ∣ f (0) = g(1) and f (1) = g(0)}
+
+4. Deﬁne three equivalence relations on the set of students
+in your discrete mathematics class diﬀerent from the relations discussed in the text. Determine the equivalence
+classes for each of these equivalence relations.
+5. Deﬁne three equivalence relations on the set of buildings
+on a college campus. Determine the equivalence classes
+for each of these equivalence relations.
+6. Deﬁne three equivalence relations on the set of classes offered at your school. Determine the equivalence classes
+for each of these equivalence relations.
+7. Show that the relation of logical equivalence on the set
+of all compound propositions is an equivalence relation.
+What are the equivalence classes of F and of T?
+8. Let R be the relation on the set of all sets of real numbers
+such that S R T if and only if S and T have the same cardinality. Show that R is an equivalence relation. What are
+the equivalence classes of the sets {0, 1, 2} and Z?
+9. Suppose that A is a nonempty set, and f is a function that
+has A as its domain. Let R be the relation on A consisting
+of all ordered pairs (x, y) such that f (x) = f (y).
+a) Show that R is an equivalence relation on A.
+b) What are the equivalence classes of R?
+10. Suppose that A is a nonempty set and R is an equivalence
+relation on A. Show that there is a function f with A as its
+domain such that (x, y) ∈ R if and only if f (x) = f (y).
+
+9.5 Equivalence Relations
+
+11. Show that the relation R consisting of all pairs (x, y) such
+that x and y are bit strings of length three or more that
+agree in their ﬁrst three bits is an equivalence relation on
+the set of all bit strings of length three or more.
+
+In Exercises 21–23 determine whether the relation with the
+directed graph shown is an equivalence relation.
+21.
+22.
+b
+
+a
+
+12. Show that the relation R consisting of all pairs (x, y) such
+that x and y are bit strings of length three or more that
+agree except perhaps in their ﬁrst three bits is an equivalence relation on the set of all bit strings of length three
+or more.
+13. Show that the relation R consisting of all pairs (x, y) such
+that x and y are bit strings that agree in their ﬁrst and third
+bits is an equivalence relation on the set of all bit strings
+of length three or more.
+14. Let R be the relation consisting of all pairs (x, y) such
+that x and y are strings of uppercase and lowercase English letters with the property that for every positive integer n, the nth characters in x and y are the same letter,
+either uppercase or lowercase. Show that R is an equivalence relation.
+15. Let R be the relation on the set of ordered pairs
+of positive integers such that ((a, b), (c, d)) ∈ R if and
+only if a + d = b + c. Show that R is an equivalence
+relation.
+16. Let R be the relation on the set of ordered pairs of positive integers such that ((a, b), (c, d)) ∈ R if and only if
+ad = bc. Show that R is an equivalence relation.
+17. (Requires calculus)
+a) Show that the relation R on the set of all diﬀerentiable
+functions from R to R consisting of all pairs (f, g) such
+that f ′ (x) = g′ (x) for all real numbers x is an equivalence relation.
+b) Which functions are in the same equivalence class as
+the function f (x) = x2 ?
+18. (Requires calculus)
+a) Let n be a positive integer. Show that the relation R on
+the set of all polynomials with real-valued coeﬃcients
+consisting of all pairs (f, g) such that f (n) (x) = g(n) (x)
+is an equivalence relation. [Here f (n) (x) is the nth
+derivative of f (x).]
+b) Which functions are in the same equivalence class as
+the function f (x) = x4 , where n = 3?
+19. Let R be the relation on the set of all URLs (or Web addresses) such that x R y if and only if the Web page at x is
+the same as the Web page at y. Show that R is an equivalence relation.
+20. Let R be the relation on the set of all people who have
+visited a particular Web page such that x R y if and only
+if person x and person y have followed the same set of
+links starting at this Web page (going from Web page to
+Web page until they stop using the Web). Show that R is
+an equivalence relation.
+
+647
+
+c
+
+d
+
+a
+
+b
+
+d
+
+c
+
+23.
+a
+
+b
+
+d
+
+c
+
+24. Determine whether the relations represented by these
+zero–one matrices are equivalence relations.
+⎡1 1 1 0⎤
+⎡1 0 1 0⎤
+⎡1 1 1⎤
+⎢1 1 1 0⎥
+⎢0 1 0 1⎥
+⎥
+⎢
+c) ⎢
+b) ⎢
+a) 0 1 1
+⎥
+⎥
+1
+0
+1
+0
+⎢1 1 1⎥
+⎥
+⎢1 1 1 0⎥
+⎢
+⎦
+⎣
+⎣0 0 0 1⎦
+⎣0 1 0 1⎦
+25. Show that the relation R on the set of all bit strings such
+that s R t if and only if s and t contain the same number
+of 1s is an equivalence relation.
+26. What are the equivalence classes of the equivalence relations in Exercise 1?
+27. What are the equivalence classes of the equivalence relations in Exercise 2?
+28. What are the equivalence classes of the equivalence relations in Exercise 3?
+29. What is the equivalence class of the bit string 011 for the
+equivalence relation in Exercise 25?
+30. What are the equivalence classes of these bit strings for
+the equivalence relation in Exercise 11?
+a) 010
+b) 1011
+c) 11111
+d) 01010101
+31. What are the equivalence classes of the bit strings
+in Exercise 30 for the equivalence relation from
+Exercise 12?
+32. What are the equivalence classes of the bit strings
+in Exercise 30 for the equivalence relation from
+Exercise 13?
+33. What are the equivalence classes of the bit strings in
+Exercise 30 for the equivalence relation R4 from Example 5 on the set of all bit strings? (Recall that bit strings s
+and t are equivalent under R4 if and only if they are equal
+or they are both at least four bits long and agree in their
+ﬁrst four bits.)
+34. What are the equivalence classes of the bit strings in Exercise 30 for the equivalence relation R5 from Example 5
+on the set of all bit strings? (Recall that bit strings s and
+t are equivalent under R5 if and only if they are equal or
+they are both at least ﬁve bits long and agree in their ﬁrst
+ﬁve bits.)
+
+648
+
+9 / Relations
+
+35. What is the congruence class [n]5 (that is, the equivalence class of n with respect to congruence modulo 5)
+when n is
+a) 2?
+b) 3?
+c) 6?
+d) −3?
+36. What is the congruence class [4]m when m is
+a) 2?
+b) 3?
+c) 6?
+d) 8?
+37. Give a description of each of the congruence classes
+modulo 6.
+38. What is the equivalence class of each of these strings with
+respect to the equivalence relation in Exercise 14?
+a) No
+b) Yes
+c) Help
+39. a) What is the equivalence class of (1, 2) with respect to
+the equivalence relation in Exercise 15?
+b) Give an interpretation of the equivalence classes for
+the equivalence relation R in Exercise 15. [Hint: Look
+at the diﬀerence a − b corresponding to (a, b).]
+40. a) What is the equivalence class of (1, 2) with respect
+to the equivalence relation in Exercise 16?
+b) Give an interpretation of the equivalence classes for
+the equivalence relation R in Exercise 16. [Hint: Look
+at the ratio a∕b corresponding to (a, b).]
+41. Which of these collections of subsets are partitions of
+{1, 2, 3, 4, 5, 6}?
+a) {1, 2}, {2, 3, 4}, {4, 5, 6}
+b) {1}, {2, 3, 6}, {4}, {5}
+c) {2, 4, 6}, {1, 3, 5}
+d) {1, 4, 5}, {2, 6}
+42. Which of these collections of subsets are partitions of
+{−3, −2, −1, 0, 1, 2, 3}?
+a) {−3, −1, 1, 3}, {−2, 0, 2}
+b) {−3, −2, −1, 0}, {0, 1, 2, 3}
+c) {−3, 3}, {−2, 2}, {−1, 1}, {0}
+d) {−3, −2, 2, 3}, {−1, 1}
+43. Which of these collections of subsets are partitions of the
+set of bit strings of length 8?
+a) the set of bit strings that begin with 1, the set of bit
+strings that begin with 00, and the set of bit strings
+that begin with 01
+b) the set of bit strings that contain the string 00, the set
+of bit strings that contain the string 01, the set of bit
+strings that contain the string 10, and the set of bit
+strings that contain the string 11
+c) the set of bit strings that end with 00, the set of bit
+strings that end with 01, the set of bit strings that end
+with 10, and the set of bit strings that end with 11
+d) the set of bit strings that end with 111, the set of bit
+strings that end with 011, and the set of bit strings that
+end with 00
+e) the set of bit strings that contain 3k ones for some
+nonnegative integer k, the set of bit strings that contain 3k + 1 ones for some nonnegative integer k, and
+the set of bit strings that contain 3k + 2 ones for some
+nonnegative integer k.
+
+44. Which of these collections of subsets are partitions of the
+set of integers?
+a) the set of even integers and the set of odd integers
+b) the set of positive integers and the set of negative integers
+c) the set of integers divisible by 3, the set of integers
+leaving a remainder of 1 when divided by 3, and the
+set of integers leaving a remainder of 2 when divided
+by 3
+d) the set of integers less than −100, the set of integers
+with absolute value not exceeding 100, and the set of
+integers greater than 100
+e) the set of integers not divisible by 3, the set of even
+integers, and the set of integers that leave a remainder
+of 3 when divided by 6
+45. Which of these are partitions of the set Z × Z of ordered
+pairs of integers?
+a) the set of pairs (x, y), where x or y is odd; the set of
+pairs (x, y), where x is even; and the set of pairs (x, y),
+where y is even
+b) the set of pairs (x, y), where both x and y are odd; the
+set of pairs (x, y), where exactly one of x and y is odd;
+and the set of pairs (x, y), where both x and y are even
+c) the set of pairs (x, y), where x is positive; the set of
+pairs (x, y), where y is positive; and the set of pairs
+(x, y), where both x and y are negative
+d) the set of pairs (x, y), where 3 ∣ x and 3 ∣ y; the set
+of pairs (x, y), where 3 ∣ x and 3 ̸ ∣ y; the set of pairs
+(x, y), where 3 ̸ ∣ x and 3 ∣ y; and the set of pairs (x, y),
+where 3 ̸ ∣ x and 3 ̸ ∣ y
+e) the set of pairs (x, y), where x > 0 and y > 0; the set
+of pairs (x, y), where x > 0 and y ≤ 0; the set of pairs
+(x, y), where x ≤ 0 and y > 0; and the set of pairs
+(x, y), where x ≤ 0 and y ≤ 0
+f ) the set of pairs (x, y), where x ≠ 0 and y ≠ 0; the set
+of pairs (x, y), where x = 0 and y ≠ 0; and the set of
+pairs (x, y), where x ≠ 0 and y = 0
+46. Which of these are partitions of the set of real numbers?
+a) the negative real numbers, {0}, the positive real
+numbers
+b) the set of irrational numbers, the set of rational
+numbers
+c) the set of intervals [k, k + 1], k = … , −2, −1, 0,
+1, 2, …
+d) the set of intervals (k, k + 1), k = … , −2, −1, 0,
+1, 2, …
+e) the set of intervals (k, k + 1], k = … , −2, −1, 0,
+1, 2, …
+f ) the sets {x + n ∣ n ∈ Z} for all x ∈ [0, 1)
+47. List the ordered pairs in the equivalence relations produced by these partitions of {0, 1, 2, 3, 4, 5}.
+a) {0}, {1, 2}, {3, 4, 5}
+b) {0, 1}, {2, 3}, {4, 5}
+c) {0, 1, 2}, {3, 4, 5}
+d) {0}, {1}, {2}, {3}, {4}, {5}
+
+9.5 Equivalence Relations
+
+48. List the ordered pairs in the equivalence relations produced by these partitions of {a, b, c, d, e, f, g}.
+a) {a, b}, {c, d}, {e, f, g}
+b) {a}, {b}, {c, d}, {e, f }, {g}
+c) {a, b, c, d}, {e, f, g}
+d) {a, c, e, g}, {b, d}, {f }
+A partition P1 is called a reﬁnement of the partition P2 if
+every set in P1 is a subset of one of the sets in P2 .
+49. Show that the partition formed from congruence classes
+modulo 6 is a reﬁnement of the partition formed from
+congruence classes modulo 3.
+50. Show that the partition of the set of people living in the
+United States consisting of subsets of people living in the
+same county (or parish) and same state is a reﬁnement of
+the partition consisting of subsets of people living in the
+same state.
+51. Show that the partition of the set of bit strings of length 16
+formed by equivalence classes of bit strings that agree on
+the last eight bits is a reﬁnement of the partition formed
+from the equivalence classes of bit strings that agree on
+the last four bits.
+In Exercises 52 and 53, Rn refers to the family of equivalence
+relations deﬁned in Example 5. Recall that s Rn t, where s
+and t are two strings if s = t or s and t are strings with at least
+n characters that agree in their ﬁrst n characters.
+52. Show that the partition of the set of all bit strings formed
+by equivalence classes of bit strings with respect to the
+equivalence relation R4 is a reﬁnement of the partition
+formed by equivalence classes of bit strings with respect
+to the equivalence relation R3 .
+53. Show that the partition of the set of all identiﬁers in C
+formed by the equivalence classes of identiﬁers with respect to the equivalence relation R31 is a reﬁnement of
+the partition formed by equivalence classes of identiﬁers with respect to the equivalence relation R8 . (Compilers for “old” C consider identiﬁers the same when their
+names agree in their ﬁrst eight characters, while compilers in standard C consider identiﬁers the same when their
+names agree in their ﬁrst 31 characters.)
+54. Suppose that R1 and R2 are equivalence relations on a
+set A. Let P1 and P2 be the partitions that correspond to
+R1 and R2 , respectively. Show that R1 ⊆ R2 if and only if
+P1 is a reﬁnement of P2 .
+55. Find the smallest equivalence relation on the set
+{a, b, c, d, e} containing the relation {(a, b), (a, c), (d, e)}.
+56. Suppose that R1 and R2 are equivalence relations on the
+set S. Determine whether each of these combinations
+of R1 and R2 must be an equivalence relation.
+a) R1 ∪ R2
+b) R1 ∩ R2
+c) R1 ⊕ R2
+57. Consider the equivalence relation from Example 2,
+namely, R = {(x, y) ∣ x − y is an integer}.
+a) What is the equivalence class of 1 for this equivalence
+relation?
+b) What is the equivalence class of 1/2 for this equivalence relation?
+
+649
+
+∗ 58. Each bead on a bracelet with three beads is either red,
+white, or blue, as illustrated in the ﬁgure shown.
+Bead 1
+Red
+
+Bead 3
+Blue
+
+Bead 2
+White
+
+Deﬁne the relation R between bracelets as: (B1 , B2 ),
+where B1 and B2 are bracelets, belongs to R if and only
+if B2 can be obtained from B1 by rotating it or rotating it
+and then reﬂecting it.
+a) Show that R is an equivalence relation.
+b) What are the equivalence classes of R?
+∗ 59. Let R be the relation on the set of all colorings of the
+2 × 2 checkerboard where each of the four squares is colored either red or blue so that (C1 , C2 ), where C1 and C2
+are 2 × 2 checkerboards with each of their four squares
+colored blue or red, belongs to R if and only if C2 can be
+obtained from C1 either by rotating the checkerboard or
+by rotating it and then reﬂecting it.
+a) Show that R is an equivalence relation.
+b) What are the equivalence classes of R?
+60. a) Let R be the relation on the set of functions from Z+
+to Z+ such that (f, g) belongs to R if and only if f
+is Θ(g) (see Section 3.2). Show that R is an equivalence relation.
+b) Describe the equivalence class containing f (n) = n2
+for the equivalence relation of part (a).
+61. Determine the number of diﬀerent equivalence relations
+on a set with three elements by listing them.
+62. Determine the number of diﬀerent equivalence relations
+on a set with four elements by listing them.
+∗ 63. Do we necessarily get an equivalence relation when we
+form the transitive closure of the symmetric closure of
+the reﬂexive closure of a relation?
+∗ 64. Do we necessarily get an equivalence relation when we
+form the symmetric closure of the reﬂexive closure of the
+transitive closure of a relation?
+65. Suppose we use Theorem 2 to form a partition P from
+an equivalence relation R. What is the equivalence relation R′ that results if we use Theorem 2 again to form an
+equivalence relation from P?
+66. Suppose we use Theorem 2 to form an equivalence relation R from a partition P. What is the partition P′ that
+results if we use Theorem 2 again to form a partition
+from R?
+67. Devise an algorithm to ﬁnd the smallest equivalence relation containing a given relation.
+
+650
+
+9 / Relations
+
+∗ 68. Let p(n) denote the number of diﬀerent equivalence
+relations on a set with n elements (and by Theorem 2 the number of partitions of a set with n elements). Show that p(n) satisﬁes the recurrence relation
+∑n−1
+p(n) = j=0 C(n − 1, j)p(n − j − 1) and the initial
+condition p(0) = 1. (Note: The numbers p(n) are called
+
+9.6
+
+Bell numbers after the American mathematician E. T.
+Bell.)
+69. Use Exercise 68 to ﬁnd the number of diﬀerent equivalence relations on a set with n elements, where n is a
+positive integer not exceeding 10.
+
+Partial Orderings
+9.6.1 Introduction
+
+Links
+
+Deﬁnition 1
+
+We often use relations to order some or all of the elements of sets. For instance, we order words
+using the relation containing pairs of words (x, y), where x comes before y in the dictionary. We
+schedule projects using the relation consisting of pairs (x, y), where x and y are tasks in a project
+such that x must be completed before y begins. We order the set of integers using the relation
+containing the pairs (x, y), where x is less than y. When we add all of the pairs of the form (x, x)
+to these relations, we obtain a relation that is reﬂexive, antisymmetric, and transitive. These are
+properties that characterize relations used to order the elements of sets.
+
+A relation R on a set S is called a partial ordering or partial order if it is reﬂexive, antisymmetric, and transitive. A set S together with a partial ordering R is called a partially ordered
+set, or poset, and is denoted by (S, R). Members of S are called elements of the poset.
+We give examples of posets in Examples 1–3.
+
+EXAMPLE 1
+
+Show that the greater than or equal to relation (≥) is a partial ordering on the set of integers.
+
+Extra
+Examples
+
+Solution: Because a ≥ a for every integer a, ≥ is reﬂexive. If a ≥ b and b ≥ a, then a = b.
+Hence, ≥ is antisymmetric. Finally, ≥ is transitive because a ≥ b and b ≥ c imply that a ≥ c. It
+◂
+follows that ≥ is a partial ordering on the set of integers and (Z, ≥) is a poset.
+
+EXAMPLE 2
+
+The divisibility relation ∣ is a partial ordering on the set of positive integers, because it is
+reﬂexive, antisymmetric, and transitive, as was shown in Section 9.1. We see that (Z+ , ∣) is a
+◂
+poset. Recall that (Z+ denotes the set of positive integers.)
+
+EXAMPLE 3
+
+Show that the inclusion relation ⊆ is a partial ordering on the power set of a set S.
+Solution: Because A ⊆ A whenever A is a subset of S, ⊆ is reﬂexive. It is antisymmetric because
+A ⊆ B and B ⊆ A imply that A = B. Finally, ⊆ is transitive, because A ⊆ B and B ⊆ C imply that
+◂
+A ⊆ C. Hence, ⊆ is a partial ordering on P(S), and (P(S), ⊆) is a poset.
+Example 4 illustrates a relation that is not a partial ordering.
+
+EXAMPLE 4
+Extra
+Examples
+
+Let R be the relation on the set of people such that xRy if x and y are people and x is older than
+y. Show that R is not a partial ordering.
+Solution: Note that R is antisymmetric because if a person x is older than a person y, then
+y is not older than x. That is, if xRy, then y ̸R x. The relation R is transitive because if person x is older than person y and y is older than person z, then x is older than z. That is, if xRy
+
+9.6 Partial Orderings
+
+651
+
+and yRz, then xRz. However, R is not reﬂexive, because no person is older than himself or
+◂
+herself. That is, x ̸R x for all people x. It follows that R is not a partial ordering.
+In diﬀerent posets diﬀerent symbols such as ≤, ⊆, and |, are used for a partial ordering.
+However, we need a symbol that we can use when we discuss the ordering relation in an arbitrary poset. Customarily, the notation a  b is used to denote that (a, b) ∈ R in an arbitrary
+poset (S, R). This notation is used because the less than or equal to relation on the set of real
+numbers is the most familiar example of a partial ordering and the symbol  is similar to the
+≤ symbol. (Note that the symbol  is used to denote the relation in any poset, not just the less
+than or equal to relation.) The notation a ≺ b denotes that a  b, but a ≠ b. Also, we say “a is
+less than b” or “b is greater than a” if a ≺ b.
+When a and b are elements of the poset (S,  ), it is not necessary that either a  b
+or b  a. For instance, in (P(Z), ⊆), {1, 2} is not related to {1, 3}, and vice versa, because
+neither set is contained within the other. Similarly, in (Z+ , ∣), 2 is not related to 3 and 3 is not
+related to 2, because 2 ̸ | 3 and 3 ̸ | 2. This leads to Deﬁnition 2.
+
+Deﬁnition 2
+
+The elements a and b of a poset (S,  ) are called comparable if either a  b or b  a. When
+a and b are elements of S such that neither a  b nor b  a, a and b are called incomparable.
+
+EXAMPLE 5
+
+In the poset (Z+ , ∣), are the integers 3 and 9 comparable? Are 5 and 7 comparable?
+Solution: The integers 3 and 9 are comparable, because 3 ∣ 9. The integers 5 and 7 are incom◂
+parable, because 5 ̸ | 7 and 7 ̸ | 5.
+The adjective “partial” is used to describe partial orderings because pairs of elements may
+be incomparable. When every two elements in the set are comparable, the relation is called a
+total ordering.
+
+Deﬁnition 3
+
+If (S, ) is a poset and every two elements of S are comparable, S is called a totally ordered
+or linearly ordered set, and  is called a total order or a linear order. A totally ordered set
+is also called a chain.
+
+EXAMPLE 6
+
+The poset (Z, ≤) is totally ordered, because a ≤ b or b ≤ a whenever a and b are integers.
+
+EXAMPLE 7
+
+The poset (Z+ , ∣ ) is not totally ordered because it contains elements that are incomparable, such
+◂
+as 5 and 7.
+
+◂
+
+In Chapter 6 we noted that (Z+ , ≤) is well-ordered, where ≤ is the usual less than or equal
+to relation. We now deﬁne well-ordered sets.
+
+Deﬁnition 4
+
+(S,  ) is a well-ordered set if it is a poset such that  is a total ordering and every nonempty
+subset of S has a least element.
+
+652
+
+9 / Relations
+
+EXAMPLE 8
+
+The set of ordered pairs of positive integers, Z+ × Z+ , with (a1 , a2 )  (b1 , b2 ) if a1 < b1 , or if
+a1 = b1 and a2 ≤ b2 (the lexicographic ordering), is a well-ordered set. The veriﬁcation of this
+is left as Exercise 53. The set Z, with the usual ≤ ordering, is not well-ordered because the set
+◂
+of negative integers, which is a subset of Z, has no least element.
+
+At the end of Section 5.3 we showed how to use the principle of well-ordered induction
+(there called generalized induction) to prove results about a well-ordered set. We now state and
+prove that this proof technique is valid.
+
+THEOREM 1
+
+THE PRINCIPLE OF WELL-ORDERED INDUCTION
+ordered set. Then P(x) is true for all x ∈ S, if
+INDUCTIVE STEP:
+true.
+
+Suppose that S is a well-
+
+For every y ∈ S, if P(x) is true for all x ∈ S with x ≺ y, then P(y) is
+
+Proof: Suppose it is not the case that P(x) is true for all x ∈ S. Then there is an element y ∈ S
+such that P(y) is false. Consequently, the set A = {x ∈ S ∣ P(x) is false} is nonempty. Because S
+is well-ordered, A has a least element a. By the choice of a as a least element of A, we know
+that P(x) is true for all x ∈ S with x ≺ a. This implies by the inductive step P(a) is true. This
+contradiction shows that P(x) must be true for all x ∈ S.
+Remark: We do not need a basis step in a proof using the principle of well-ordered induction
+because if x0 is the least element of a well-ordered set, the inductive step tells us that P(x0 ) is
+true. This follows because there are no elements x ∈ S with x ≺ x0 , so we know (using a vacuous
+proof) that P(x) is true for all x ∈ S with x ≺ x0 .
+The principle of well-ordered induction is a versatile technique for proving results about
+well-ordered sets. Even when it is possible to use mathematical induction for the set of positive
+integers to prove a theorem, it may be simpler to use the principle of well-ordered induction, as
+we saw in Examples 5 and 6 in Section 6.2, where we proved a result about the well-ordered set
+(N × N,  ) where  is lexicographic ordering on N × N.
+
+9.6.2 Lexicographic Order
+The words in a dictionary are listed in alphabetic, or lexicographic, order, which is based on the
+ordering of the letters in the alphabet. This is a special case of an ordering of strings on a set
+constructed from a partial ordering on the set. We will show how this construction works in any
+poset.
+First, we will show how to construct a partial ordering on the Cartesian product of two
+posets, (A1 ,  1 ) and (A2 ,  2 ). The lexicographic ordering  on A1 × A2 is deﬁned by specifying that one pair is less than a second pair if the ﬁrst entry of the ﬁrst pair is less than
+(in A1 ) the ﬁrst entry of the second pair, or if the ﬁrst entries are equal, but the second entry of this pair is less than (in A2 ) the second entry of the second pair. In other words, (a1 , a2 ) is
+less than (b1 , b2 ), that is,
+(a1 , a2 ) ≺ (b1 , b2 ),
+either if a1 ≺1 b1 or if both a1 = b1 and a2 ≺2 b2 .
+We obtain a partial ordering  by adding equality to the ordering ≺ on A1 × A2 . The veriﬁcation of this is left as an exercise.
+
+. . .
+
+. . .
+
+. . .
+
+. . .
+
+. . .
+
+. . .
+
+. . .
+
+9.6 Partial Orderings
+
+(1, 7)
+
+(2, 7)
+
+(3, 7)
+
+(4, 7)
+
+(5, 7)
+
+(6, 7)
+
+(7, 7)
+
+(1, 6)
+
+(2, 6)
+
+(3, 6)
+
+(4, 6)
+
+(5, 6)
+
+(6, 6)
+
+(7, 6)
+
+(1, 5)
+
+(2, 5)
+
+(3, 5)
+
+(4, 5)
+
+(5, 5)
+
+(6, 5)
+
+(7, 5)
+
+(1, 4)
+
+(2, 4)
+
+(3, 4)
+
+(4, 4)
+
+(5, 4)
+
+(6, 4)
+
+(7, 4)
+
+(1, 3)
+
+(2, 3)
+
+(3, 3)
+
+(4, 3)
+
+(5, 3)
+
+(6, 3)
+
+(7, 3)
+
+(1, 2)
+
+(2, 2)
+
+(3, 2)
+
+(4, 2)
+
+(5, 2)
+
+(6, 2)
+
+(7, 2)
+
+(1, 1)
+
+(2, 1)
+
+(3, 1)
+
+(4, 1)
+
+(5, 1)
+
+(6, 1)
+
+(7, 1)
+
+653
+
+. . .
+. . .
+. . .
+. . .
+. . .
+. . .
+. . .
+
+FIGURE 1
+
+EXAMPLE 9
+
+The ordered pairs less than (3, 4) in lexicographic order.
+
+Determine whether (3, 5) ≺ (4, 8), whether (3, 8) ≺ (4, 5), and whether (4, 9) ≺ (4, 11) in the
+poset (Z × Z,  ), where  is the lexicographic ordering constructed from the usual ≤ relation
+on Z.
+Solution: Because 3 < 4, it follows that (3, 5) ≺ (4, 8) and that (3, 8) ≺ (4, 5). We have
+(4, 9) ≺ (4, 11), because the ﬁrst entries of (4, 9) and (4, 11) are the same but 9 < 11.
+◂
+In Figure 1 the ordered pairs in Z+ × Z+ that are less than (3, 4) are highlighted.
+A lexicographic ordering can be deﬁned on the Cartesian product of n posets (A1 ,  1 ),
+(A2 ,  2 ), … , (An ,  n ). Deﬁne the partial ordering  on A1 × A2 × ⋯ × An by
+(a1 , a2 , … , an ) ≺ (b1 , b2 , … , bn )
+if a1 ≺1 b1 , or if there is an integer i > 0 such that a1 = b1 , … , ai = bi , and ai+1 ≺i+1 bi+1 . In
+other words, one n-tuple is less than a second n-tuple if the entry of the ﬁrst n-tuple in the ﬁrst
+position where the two n-tuples disagree is less than the entry in that position in the second
+n-tuple.
+
+EXAMPLE 10
+
+Note that (1, 2, 3, 5) ≺ (1, 2, 4, 3), because the entries in the ﬁrst two positions of these 4-tuples
+agree, but in the third position the entry in the ﬁrst 4-tuple, 3, is less than that in the second 4tuple, 4. (Here the ordering on 4-tuples is the lexicographic ordering that comes from the usual
+less than or equal to relation on the set of integers.)
+◂
+We can now deﬁne lexicographic ordering of strings. Consider the strings a1 a2 … am and
+b1 b2 … bn on a partially ordered set S. Suppose these strings are not equal. Let t be the minimum
+of m and n. The deﬁnition of lexicographic ordering is that the string a1 a2 … am is less than
+b1 b2 … bn if and only if
+(a1 , a2 , … , at ) ≺ (b1 , b2 , … , bt ), or
+(a1 , a2 , … , at ) = (b1 , b2 , … , bt ) and m < n,
+where ≺ in this inequality represents the lexicographic ordering of St . In other words, to determine the ordering of two diﬀerent strings, the longer string is truncated to the length of the
+
+654
+
+9 / Relations
+
+shorter string, namely, to t = min(m, n) terms. Then the t-tuples made up of the ﬁrst t terms of
+each string are compared using the lexicographic ordering on St . One string is less than another
+string if the t-tuple corresponding to the ﬁrst string is less than the t-tuple of the second string,
+or if these two t-tuples are the same, but the second string is longer. The veriﬁcation that this is
+a partial ordering is left as Exercise 38 for the reader.
+
+EXAMPLE 11
+
+Consider the set of strings of lowercase English letters. Using the ordering of letters in the
+alphabet, a lexicographic ordering on the set of strings can be constructed. A string is less than
+a second string if the letter in the ﬁrst string in the ﬁrst position where the strings diﬀer comes
+before the letter in the second string in this position, or if the ﬁrst string and the second string
+agree in all positions, but the second string has more letters. This ordering is the same as that
+used in dictionaries. For example,
+discreet ≺ discrete,
+because these strings diﬀer ﬁrst in the seventh position, and e ≺ t. Also,
+discreet ≺ discreetness,
+because the ﬁrst eight letters agree, but the second string is longer. Furthermore,
+discrete ≺ discretion,
+because
+◂
+discrete ≺ discreti.
+
+9.6.3 Hasse Diagrams
+Many edges in the directed graph for a ﬁnite poset do not have to be shown because they must be
+present. For instance, consider the directed graph for the partial ordering {(a, b) ∣ a ≤ b} on the
+set {1, 2, 3, 4}, shown in Figure 2(a). Because this relation is a partial ordering, it is reﬂexive,
+and its directed graph has loops at all vertices. Consequently, we do not have to show these loops
+because they must be present; in Figure 2(b) loops are not shown. Because a partial ordering is
+transitive, we do not have to show those edges that must be present because of transitivity. For
+example, in Figure 2(c) the edges (1, 3), (1, 4), and (2, 4) are not shown because they must be
+present. If we assume that all edges are pointed “upward” (as they are drawn in the ﬁgure), we
+do not have to show the directions of the edges; Figure 2(c) does not show directions.
+In general, we can represent a ﬁnite poset (S,  ) using this procedure: Start with the directed
+graph for this relation. Because a partial ordering is reﬂexive, a loop (a, a) is present at every
+vertex a. Remove these loops. Next, remove all edges that must be in the partial ordering because
+4
+
+4
+
+4
+
+3
+
+3
+
+3
+
+2
+
+2
+
+2
+
+1
+(a)
+
+1
+
+1
+
+(b)
+
+(c)
+
+FIGURE 2 Constructing the Hasse diagram
+for ({1, 2, 3, 4}, ≤).
+
+9.6 Partial Orderings
+
+8
+
+12
+
+655
+
+8
+
+12
+
+8
+
+12
+
+4
+
+6
+
+4
+
+6
+
+2
+
+3
+
+2
+
+3
+
+6
+
+4
+
+2
+
+3
+
+1
+
+1
+
+1
+
+(a)
+
+(b)
+
+(c)
+
+FIGURE 3
+
+Constructing the Hasse diagram of ({1, 2, 3, 4, 6, 8, 12}, |).
+
+of the presence of other edges and transitivity. That is, remove all edges (x, y) for which there is
+an element z ∈ S such that x ≺ z and z ≺ x. Finally, arrange each edge so that its initial vertex is
+below its terminal vertex (as it is drawn on paper). Remove all the arrows on the directed edges,
+because all edges point “upward” toward their terminal vertex.
+These steps are well deﬁned, and only a ﬁnite number of steps need to be carried out for a
+ﬁnite poset. When all the steps have been taken, the resulting diagram contains suﬃcient information to ﬁnd the partial ordering, as we will explain later. The resulting diagram is called the
+Hasse diagram of (S,  ), named after the twentieth-century German mathematician Helmut
+Hasse who made extensive use of them.
+Let (S,  ) be a poset. We say that an element y ∈ S covers an element x ∈ S if x ≺
+y and there is no element z ∈ S such that x ≺ z ≺ y. The set of pairs (x, y) such that y
+covers x is called the covering relation of (S,  ). From the description of the Hasse diagram of
+a poset, we see that the edges in the Hasse diagram of (S,  ) are upwardly pointing edges corresponding to the pairs in the covering relation of (S,  ). Furthermore, we can recover a poset
+from its covering relation, because it is the reﬂexive transitive closure of its covering relation.
+(Exercise 31 asks for a proof of this fact.) This tells us that we can construct a partial ordering
+from its Hasse diagram.
+
+EXAMPLE 12
+
+Draw the Hasse diagram representing the partial ordering {(a, b) ∣ a divides b} on
+{1, 2, 3, 4, 6, 8, 12}.
+Solution: Begin with the digraph for this partial order, as shown in Figure 3(a). Remove all loops,
+as shown in Figure 3(b). Then delete all the edges implied by the transitive property. These
+
+Links
+
+c
+ullstein
+bild/ullstein bild
+Dtl./Getty Images
+
+HELMUT HASSE (1898–1979) Helmut Hasse was born in Kassel, Germany. He served in the German navy
+after high school. He began his university studies at Göttingen University in 1918, moving in 1920 to Marburg
+University to study under the number theorist Kurt Hensel. During this time, Hasse made fundamental contributions to algebraic number theory. He became Hensel’s successor at Marburg, later becoming director of
+the renowned mathematical institute at Göttingen in 1934, and took a position at Hamburg University in 1950.
+Hasse served for 50 years as an editor of Crelle’s Journal, an illustrious German mathematics periodical, taking
+over the job of chief editor in 1936 when the Nazis forced Hensel to resign. During World War II Hasse worked
+on applied mathematics research for the German navy. He was noted for the clarity and personal style of his lectures and was devoted both to number theory and to his students. (Hasse has been controversial for connections
+with the Nazi party. Investigations have shown he was a strong German nationalist but not an ardent Nazi.)
+
+656
+
+9 / Relations
+
+are (1, 4), (1, 6), (1, 8), (1, 12), (2, 8), (2, 12), and (3, 12). Arrange all edges to point upward,
+and delete all arrows to obtain the Hasse diagram. The resulting Hasse diagram is shown in
+◂
+Figure 3(c).
+
+EXAMPLE 13
+
+Draw the Hasse diagram for the partial ordering {(A, B) ∣ A ⊆ B} on the power set P(S), where
+S = {a, b, c}.
+Solution: The Hasse diagram for this partial ordering is obtained from the associated
+( digraph
+)
+by deleting all the loops and all the edges that occur from transitivity, namely, ∅, {a, b} ,
+(
+) (
+) (
+)
+∅, {a, c} , ∅, {b, c} , ∅, {a, b, c} , ({a}, {a, b, c}), ({b}, {a, b, c}), and ({c}, {a, b, c}). Finally, all edges point upward, and arrows are deleted. The resulting Hasse diagram is illustrated
+in Figure 4.
+◂
+
+9.6.4 Maximal and Minimal Elements
+Elements of posets that have certain extremal properties are important for many applications.
+An element of a poset is called maximal if it is not less than any element of the poset. That is, a
+is maximal in the poset (S,  ) if there is no b ∈ S such that a ≺ b. Similarly, an element of a
+poset is called minimal if it is not greater than any element of the poset. That is, a is minimal
+if there is no element b ∈ S such that b ≺ a. Maximal and minimal elements are easy to spot
+using a Hasse diagram. They are the “top” and “bottom” elements in the diagram.
+
+EXAMPLE 14
+
+Which elements of the poset ({2, 4, 5, 10, 12, 20, 25}, ∣) are maximal, and which are minimal?
+Solution: The Hasse diagram in Figure 5 for this poset shows that the maximal elements
+are 12, 20, and 25, and the minimal elements are 2 and 5. As this example shows, a poset
+can have more than one maximal element and more than one minimal element.
+◂
+Sometimes there is an element in a poset that is greater than every other element. Such an
+element is called the greatest element. That is, a is the greatest element of the poset (S,  )
+if b  a for all b ∈ S. The greatest element is unique when it exists [see Exercise 40(a)]. Likewise, an element is called the least element if it is less than all the other elements in the poset.
+That is, a is the least element of (S,  ) if a  b for all b ∈ S. The least element is unique when
+it exists [see Exercise 40(b)].
+
+EXAMPLE 15
+
+Determine whether the posets represented by each of the Hasse diagrams in Figure 6 have a
+greatest element and a least element.
+{a, b, c}
+
+{a, c}
+
+{a}
+
+{a, b}
+{c}
+
+12
+
+20
+
+4
+
+10
+
+{b, c}
+
+{b}
+
+∅
+
+FIGURE 4 The Hasse diagram
+of (P({a, b, c}), ⊆).
+
+2
+
+5
+
+FIGURE 5 The Hasse
+diagram of a poset.
+
+25
+
+9.6 Partial Orderings
+
+b
+
+c
+
+d
+
+d
+
+d
+
+e
+
+a
+(a)
+
+FIGURE 6
+
+a
+
+b
+(b)
+
+d
+
+c
+
+c
+
+657
+
+a
+
+b
+
+b
+(c)
+
+c
+
+a
+(d)
+
+Hasse diagrams of four posets.
+
+Solution: The least element of the poset with Hasse diagram (a) is a. This poset has no greatest
+element. The poset with Hasse diagram (b) has neither a least nor a greatest element. The poset
+with Hasse diagram (c) has no least element. Its greatest element is d. The poset with Hasse
+◂
+diagram (d) has least element a and greatest element d.
+
+EXAMPLE 16
+
+Let S be a set. Determine whether there is a greatest element and a least element in the poset
+(P(S), ⊆).
+Solution: The least element is the empty set, because ∅ ⊆ T for any subset T of S. The set S is
+◂
+the greatest element in this poset, because T ⊆ S whenever T is a subset of S.
+Is there a greatest element and a least element in the poset (Z+ , ∣)?
+
+EXAMPLE 17
+
+Solution: The integer 1 is the least element because 1|n whenever n is a positive integer.
+Because there is no integer that is divisible by all positive integers, there is no greatest
+◂
+element.
+Sometimes it is possible to ﬁnd an element that is greater than or equal to all the elements
+in a subset A of a poset (S,  ). If u is an element of S such that a  u for all elements a ∈ A,
+then u is called an upper bound of A. Likewise, there may be an element less than or equal
+to all the elements in A. If l is an element of S such that l  a for all elements a ∈ A, then l is
+called a lower bound of A.
+
+EXAMPLE 18
+h
+
+Find the lower and upper bounds of the subsets {a, b, c}, {j, h}, and {a, c, d, f } in the poset with
+the Hasse diagram shown in Figure 7.
+j
+
+g
+
+f
+
+d
+
+e
+
+b
+
+c
+a
+
+FIGURE 7 The
+Hasse diagram of
+a poset.
+EXAMPLE 19
+
+Solution: The upper bounds of {a, b, c} are e, f, j, and h, and its only lower bound is a. There
+are no upper bounds of {j, h}, and its lower bounds are a, b, c, d, e, and f . The upper bounds of
+◂
+{a, c, d, f } are f , h, and j, and its lower bound is a.
+The element x is called the least upper bound of the subset A if x is an upper bound that
+is less than every other upper bound of A. Because there is only one such element, if it exists,
+it makes sense to call this element the least upper bound [see Exercise 42(a)]. That is, x is the
+least upper bound of A if a  x whenever a ∈ A, and x  z whenever z is an upper bound of A.
+Similarly, the element y is called the greatest lower bound of A if y is a lower bound of A and
+z  y whenever z is a lower bound of A. The greatest lower bound of A is unique if it exists [see
+Exercise 42(b)]. The greatest lower bound and least upper bound of a subset A are denoted by
+glb(A) and lub(A), respectively.
+Find the greatest lower bound and the least upper bound of {b, d, g}, if they exist, in the poset
+shown in Figure 7.
+
+658
+
+9 / Relations
+
+Solution: The upper bounds of {b, d, g} are g and h. Because g ≺ h, g is the least upper bound.
+◂
+The lower bounds of {b, d, g} are a and b. Because a ≺ b, b is the greatest lower bound.
+
+EXAMPLE 20
+Extra
+Examples
+
+Find the greatest lower bound and the least upper bound of the sets {3, 9, 12} and {1, 2, 4, 5, 10},
+if they exist, in the poset (Z+ , ∣).
+Solution: An integer is a lower bound of {3, 9, 12} if 3, 9, and 12 are divisible by this integer.
+The only such integers are 1 and 3. Because 1 ∣ 3, 3 is the greatest lower bound of {3, 9, 12}.
+The only lower bound for the set {1, 2, 4, 5, 10} with respect to ∣ is the element 1. Hence, 1 is
+the greatest lower bound for {1, 2, 4, 5, 10}.
+An integer is an upper bound for {3, 9, 12} if and only if it is divisible by 3, 9, and 12.
+The integers with this property are those divisible by the least common multiple of 3, 9, and
+12, which is 36. Hence, 36 is the least upper bound of {3, 9, 12}. A positive integer is an upper
+bound for the set {1, 2, 4, 5, 10} if and only if it is divisible by 1, 2, 4, 5, and 10. The integers
+with this property are those integers divisible by the least common multiple of these integers,
+◂
+which is 20. Hence, 20 is the least upper bound of {1, 2, 4, 5, 10}.
+
+9.6.5 Lattices
+A partially ordered set in which every pair of elements has both a least upper bound and a
+greatest lower bound is called a lattice. Lattices have many special properties. Furthermore,
+lattices are used in many diﬀerent applications such as models of information ﬂow and play an
+important role in Boolean algebra.
+
+EXAMPLE 21
+
+Determine whether the posets represented by each of the Hasse diagrams in Figure 8 are lattices.
+Solution: The posets represented by the Hasse diagrams in (a) and (c) are both lattices because
+in each poset every pair of elements has both a least upper bound and a greatest lower bound,
+as the reader should verify. On the other hand, the poset with the Hasse diagram shown in (b)
+is not a lattice, because the elements b and c have no least upper bound. To see this, note that
+each of the elements d, e, and f is an upper bound, but none of these three elements precedes
+◂
+the other two with respect to the ordering of this poset.
+
+EXAMPLE 22
+
+Is the poset (Z+ , ∣) a lattice?
+Solution: Let a and b be two positive integers. The least upper bound and greatest lower bound
+of these two integers are the least common multiple and the greatest common divisor of these
+◂
+integers, respectively, as the reader should verify. It follows that this poset is a lattice.
+f
+
+f
+e
+
+h
+
+d
+
+e
+
+e
+
+g
+
+g
+
+b
+
+c
+
+b
+
+d
+
+d
+
+d
+
+c
+b
+a
+
+a
+
+a
+
+(a)
+
+(b)
+
+(c)
+
+FIGURE 8
+
+Hasse diagrams of three posets.
+
+9.6 Partial Orderings
+
+EXAMPLE 23
+
+659
+
+Determine whether the posets ({1, 2, 3, 4, 5}, ∣) and ({1, 2, 4, 8, 16}, ∣) are lattices.
+Solution: Because 2 and 3 have no upper bounds in ({1, 2, 3, 4, 5}, ∣), they certainly do not have
+a least upper bound. Hence, the ﬁrst poset is not a lattice.
+Every two elements of the second poset have both a least upper bound and a greatest lower
+bound. The least upper bound of two elements in this poset is the larger of the elements and the
+greatest lower bound of two elements is the smaller of the elements, as the reader should verify.
+◂
+Hence, this second poset is a lattice.
+
+EXAMPLE 24
+
+Determine whether (P(S), ⊆) is a lattice where S is a set.
+Solution: Let A and B be two subsets of S. The least upper bound and the greatest lower bound
+of A and B are A ∪ B and A ∩ B, respectively, as the reader can show. Hence, (P(S), ⊆) is a
+lattice.
+◂
+
+EXAMPLE 25
+
+Links
+There are billions of
+pages of classiﬁed U.S.
+government documents.
+
+The Lattice Model of Information Flow In many settings the ﬂow of information from one
+person or computer program to another is restricted via security clearances. We can use a lattice
+model to represent diﬀerent information ﬂow policies. For example, one common information
+ﬂow policy is the multilevel security policy used in government and military systems. Each
+piece of information is assigned to a security class, and each security class is represented by a
+pair (A, C) where A is an authority level and C is a category. People and computer programs are then allowed access to information from a speciﬁc restricted set of security
+classes.
+The typical authority levels used in the U.S. government are unclassiﬁed (0), conﬁdential (1), secret (2), and top secret (3). (Information is said to be classiﬁed if it is conﬁdential,
+secret, or top secret.) Categories used in security classes are the subsets of a set of all compartments relevant to a particular area of interest. Each compartment represents a particular subject
+area. For example, if the set of compartments is {spies, moles, double agents}, then there are
+eight diﬀerent categories, one for each of the eight subsets of the set of compartments, such as
+{spies, moles}.
+We can order security classes by specifying that (A1 , C1 )  (A2 , C2 ) if and only if
+A1 ≤ A2 and C1 ⊆ C2 . Information is permitted to ﬂow from security class (A1 , C1 ) into
+security class (A2 , C2 ) if and only if (A1 , C1 )  (A2 , C2 ). For example, information is
+permitted to ﬂow from the security class (secret, {spies, moles}) into the security class
+(top secret, {spies, moles, double agents}), whereas information is not allowed to ﬂow from
+the security class (top secret, {spies, moles}) into either of the security classes (secret, {spies,
+moles, double agents}) or (top secret, {spies}).
+We leave it to the reader (see Exercise 48) to show that the set of all security classes with
+◂
+the ordering deﬁned in this example forms a lattice.
+
+9.6.6 Topological Sorting
+
+Links
+
+Suppose that a project is made up of 20 diﬀerent tasks. Some tasks can be completed only after
+others have been ﬁnished. How can an order be found for these tasks? To model this problem
+we set up a partial order on the set of tasks so that a ≺ b if and only if a and b are tasks where b
+cannot be started until a has been completed. To produce a schedule for the project, we need to
+produce an order for all 20 tasks that is compatible with this partial order. We will show how
+this can be done.
+
+660
+
+9 / Relations
+
+We begin with a deﬁnition. A total ordering  is said to be compatible with the partial
+ordering R if a  b whenever aRb. Constructing a compatible total ordering from a partial
+ordering is called topological sorting.∗ We will need to use Lemma 1.
+
+LEMMA 1
+
+Every ﬁnite nonempty poset (S,  ) has at least one minimal element.
+Proof: Choose an element a0 of S. If a0 is not minimal, then there is an element a1 with a1 ≺ a0 .
+If a1 is not minimal, there is an element a2 with a2 ≺ a1 . Continue this process, so that if an is
+not minimal, there is an element an+1 with an+1 ≺ an . Because there are only a ﬁnite number of
+elements in the poset, this process must end with a minimal element an .
+The topological sorting algorithm we will describe works for any ﬁnite nonempty poset.
+To deﬁne a total ordering on the poset (A,  ), ﬁrst choose a minimal element a1 ; such an element exists by Lemma 1. Next, note that (A − {a1 },  ) is also a poset, as the reader should
+verify. (Here by  we mean the restriction of the original relation  on A to A − {a1 }.) If it is
+nonempty, choose a minimal element a2 of this poset. Then remove a2 as well, and if there are
+additional elements left, choose a minimal element a3 in A − {a1 , a2 }. Continue this process by
+choosing ak+1 to be a minimal element in A − {a1 , a2 , … , ak }, as long as elements remain.
+Because A is a ﬁnite set, this process must terminate. The end product is a sequence of
+elements a1 , a2 , … , an . The desired total ordering t is deﬁned by
+a1 ≺t a2 ≺t ⋯ ≺t an .
+This total ordering is compatible with the original partial ordering. To see this, note that if b ≺ c
+in the original partial ordering, c is chosen as the minimal element at a phase of the algorithm
+where b has already been removed, for otherwise c would not be a minimal element. Pseudocode
+for this topological sorting algorithm is shown in Algorithm 1.
+
+ALGORITHM 1 Topological Sorting.
+
+procedure topological sort ((S, ): ﬁnite poset)
+k := 1
+while S ≠ ∅
+ak := a minimal element of S {such an element exists by Lemma 1}
+S := S − {ak }
+k := k + 1
+return a1 , a2 , … , an {a1 , a2 , … , an is a compatible total ordering of S}
+
+EXAMPLE 26
+
+Find a compatible total ordering for the poset ({1, 2, 4, 5, 12, 20}, ∣).
+Solution: The ﬁrst step is to choose a minimal element. This must be 1, because it is the only
+minimal element. Next, select a minimal element of ({2, 4, 5, 12, 20}, ∣). There are two minimal
+elements in this poset, namely, 2 and 5. We select 5. The remaining elements are {2, 4, 12, 20}.
+The only minimal element at this stage is 2. Next, 4 is chosen because it is the only minimal
+∗ “Topological sorting” is terminology used by computer scientists; mathematicians use the terminology “linearization of a
+partial ordering” for the same thing. In mathematics, topology is the branch of geometry dealing with properties of geometric
+ﬁgures that hold for all ﬁgures that can be transformed into one another by continuous bijections. In computer science, a
+topology is any arrangement of objects that can be connected with edges.
+
+9.6 Partial Orderings
+
+12
+
+20
+
+4
+
+12
+
+20
+
+4
+
+2
+
+5
+
+12
+
+20
+
+4
+2
+
+5
+
+12
+
+20
+
+12
+
+20
+
+661
+
+12
+
+4
+2
+
+1
+Minimal
+element
+chosen
+
+1
+
+5
+
+2
+
+4
+
+12
+
+20
+
+A topological sort of ({1, 2, 4, 5, 12, 20}, |).
+
+FIGURE 9
+
+element of ({4, 12, 20}, ∣). Because both 12 and 20 are minimal elements of ({12, 20}, ∣), either
+can be chosen next. We select 20, which leaves 12 as the last element left. This produces the
+total ordering
+1 ≺ 5 ≺ 2 ≺ 4 ≺ 20 ≺ 12.
+
+◂
+
+The steps used by this sorting algorithm are displayed in Figure 9.
+
+Topological sorting has an application to the scheduling of projects.
+
+EXAMPLE 27
+
+G
+D
+
+F
+
+B
+
+A
+
+C
+
+A development project at a computer company requires the completion of seven tasks. Some of
+these tasks can be started only after other tasks are ﬁnished. A partial ordering on tasks is set up
+by considering task X ≺ task Y if task Y cannot be started until task X has been completed. The
+Hasse diagram for the seven tasks, with respect to this partial ordering, is shown in Figure 10.
+Find an order in which these tasks can be carried out to complete the project.
+Solution: An ordering of the seven tasks can be obtained by performing a topological sort. The steps of a sort are illustrated in Figure 11. The result of this sort,
+◂
+A ≺ C ≺ B ≺ E ≺ F ≺ D ≺ G, gives one possible order for the tasks.
+
+E
+G
+
+FIGURE 10 The
+Hasse diagram for
+seven tasks.
+
+G
+
+D
+
+B
+A
+
+D
+
+F
+
+G
+
+B
+C
+
+Minimal
+element
+chosen
+
+E
+
+A
+
+FIGURE 11
+
+D
+
+F
+
+G
+F
+
+D
+
+G
+
+G
+F
+
+D
+
+F
+
+G
+
+D
+
+B
+C
+
+E
+
+C
+
+E
+
+E
+
+B
+
+A topological sort of the tasks.
+
+E
+
+F
+
+D
+
+G
+
+662
+
+9 / Relations
+
+Exercises
+
+⎡1
+⎢0
+c) ⎢
+⎢0
+⎣1
+
+b) {(0, 0), (1, 1), (2, 0), (2, 2), (2, 3), (3, 2), (3, 3)}
+c) {(0, 0), (1, 1), (1, 2), (2, 2), (3, 3)}
+d) {(0, 0), (1, 1), (1, 2), (1, 3), (2, 2), (2, 3), (3, 3)}
+e) {(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0),
+(2, 2), (3, 3)}
+2. Which of these relations on {0, 1, 2, 3} are partial orderings? Determine the properties of a partial ordering that
+the others lack.
+a) {(0, 0), (2, 2), (3, 3)}
+
+b) a is not taller than b?
+c) a = b or a is an ancestor of b?
+d) a and b have a common friend?
+4. Is (S, R) a poset if S is the set of all people in the world
+and (a, b) ∈ R, where a and b are people, if
+a) a is no shorter than b?
+b) a weighs more than b?
+c) a = b or a is a descendant of b?
+d) a and b do not have a common friend?
+5. Which of these are posets?
+a) (Z, =)
+b) (Z, ≠)
+c) (Z, ≥)
+d) (Z, ̸ ∣ )
+6. Which of these are posets?
+a) (R, =)
+b) (R, <)
+c) (R, ≤)
+d) (R, ≠)
+7. Determine whether the relations represented by these
+zero–one matrices are partial orders.
+⎡1
+a) ⎢1
+⎢0
+⎣
+
+1
+1
+0
+
+1⎤
+0⎥
+1⎥⎦
+
+⎡1 1 1⎤
+b) ⎢0 1 0⎥
+⎢0 0 1⎥
+⎦
+⎣
+
+⎡1 1 1 0 ⎤
+⎢0 1 1 0 ⎥
+c) ⎢
+⎥
+⎢0 0 1 1 ⎥
+⎣1 1 0 1 ⎦
+8. Determine whether the relations represented by these
+zero–one matrices are partial orders.
+
+0⎤
+0⎥
+1⎥⎦
+
+0⎤
+0⎥
+1⎥⎥
+1⎦
+
+1
+1
+1
+0
+
+9.
+
+c) {(0, 0), (1, 1), (1, 2), (2, 2), (3, 1), (3, 3)}
+
+e) {(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (1, 1), (1, 2),
+(1, 3), (2, 0), (2, 2), (3, 3)}
+3. Is (S, R) a poset if S is the set of all people in the world
+and (a, b) ∈ R, where a and b are people, if
+a) a is taller than b?
+
+0
+1
+0
+1
+
+0
+1
+0
+
+In Exercises 9–11 determine whether the relation with the directed graph shown is a partial order.
+
+b) {(0, 0), (1, 1), (2, 0), (2, 2), (2, 3), (3, 3)}
+d) {(0, 0), (1, 1), (1, 2), (1, 3), (2, 0), (2, 2), (2, 3),
+(3, 0), (3, 3)}
+
+⎡1
+b) ⎢0
+⎢1
+⎣
+
+⎡1 0 1⎤
+a) ⎢1 1 0⎥
+⎢0 0 1⎥
+⎦
+⎣
+
+1. Which of these relations on {0, 1, 2, 3} are partial orderings? Determine the properties of a partial ordering that
+the others lack.
+a) {(0, 0), (1, 1), (2, 2), (3, 3)}
+
+10.
+a
+
+b
+
+c
+
+d
+
+a
+
+b
+
+c
+
+d
+
+11.
+a
+
+b
+c
+
+d
+
+12. Let (S, R) be a poset. Show that (S, R−1 ) is also a poset,
+where R−1 is the inverse of R. The poset (S, R−1 ) is called
+the dual of (S, R).
+13. Find the duals of these posets.
+a) ({0, 1, 2}, ≤)
+b) (Z, ≥)
+c) (P(Z), ⊇)
+d) (Z+ , ∣)
+14. Which of these pairs of elements are comparable in the
+poset (Z+ , ∣)?
+a) 5, 15
+b) 6, 9
+c) 8, 16
+d) 7, 7
+15. Find two incomparable elements in these posets.
+a) (P({0, 1, 2}), ⊆)
+b) ({1, 2, 4, 6, 8}, ∣)
+16. Let S = {1, 2, 3, 4}. With respect to the lexicographic order based on the usual less than elation,
+a) ﬁnd all pairs in S × S less than (2, 3).
+b) ﬁnd all pairs in S × S greater than (3, 1).
+c) draw the Hasse diagram of the poset (S × S,  ).
+17. Find the lexicographic ordering of these n-tuples:
+a) (1, 1, 2), (1, 2, 1)
+b) (0, 1, 2, 3), (0, 1, 3, 2)
+c) (1, 0, 1, 0, 1), (0, 1, 1, 1, 0)
+18. Find the lexicographic ordering of these strings of lowercase English letters:
+a) quack, quick, quicksilver, quicksand, quacking
+b) open, opener, opera, operand, opened
+c) zoo, zero, zoom, zoology, zoological
+19. Find the lexicographic ordering of the bit strings 0, 01,
+11, 001, 010, 011, 0001, and 0101 based on the ordering
+0 < 1.
+20. Draw the Hasse diagram for the greater than or equal to
+relation on {0, 1, 2, 3, 4, 5}.
+21. Draw the Hasse diagram for the less than or equal to relation on {0, 2, 5, 10, 11, 15}.
+
+9.6 Partial Orderings
+
+22. Draw the Hasse diagram for divisibility on the set
+a) {1, 2, 3, 4, 5, 6}.
+b) {3, 5, 7, 11, 13, 16, 17}.
+c) {2, 3, 5, 10, 11, 15, 25}. d) {1, 3, 9, 27, 81, 243}.
+23. Draw the Hasse diagram for divisibility on the set
+a) {1, 2, 3, 4, 5, 6, 7, 8}.
+b) {1, 2, 3, 5, 7, 11, 13}.
+c) {1, 2, 3, 6, 12, 24, 36, 48}.
+d) {1, 2, 4, 8, 16, 32, 64}.
+24. Draw the Hasse diagram for inclusion on the set P(S),
+where S = {a, b, c, d}.
+In Exercises 25–27 list all ordered pairs in the partial ordering
+with the accompanying Hasse diagram.
+25.
+26.
+c
+
+e
+
+d
+
+d
+
+b
+b
+
+c
+
+a
+a
+
+27.
+f
+
+e
+
+d
+
+g
+a
+
+b
+
+c
+
+28. What is the covering relation of the partial ordering
+{(a, b) ∣ a divides b} on {1, 2, 3, 4, 6, 12}?
+29. What is the covering relation of the partial ordering {(A, B) ∣ A ⊆ B} on the power set of S, where
+S = {a, b, c}?
+30. What is the covering relation of the partial ordering for
+the poset of security classes deﬁned in Example 25?
+31. Show that a ﬁnite poset can be reconstructed from its covering relation. [Hint: Show that the poset is the reﬂexive
+transitive closure of its covering relation.]
+32. Answer these questions for the partial order represented
+by this Hasse diagram.
+m
+
+l
+j
+
+k
+
+i
+
+h
+
+g
+
+d
+
+e
+
+f
+
+a
+
+b
+
+c
+
+a) Find the maximal elements.
+b) Find the minimal elements.
+c) Is there a greatest element?
+d) Is there a least element?
+e) Find all upper bounds of {a, b, c}.
+f ) Find the least upper bound of {a, b, c}, if it exists.
+g) Find all lower bounds of {f, g, h}.
+h) Find the greatest lower bound of {f, g, h}, if it exists.
+
+663
+
+33. Answer these questions for the poset ({3, 5, 9, 15,
+24, 45}, ∣).
+a) Find the maximal elements.
+b) Find the minimal elements.
+c) Is there a greatest element?
+d) Is there a least element?
+e) Find all upper bounds of {3, 5}.
+f ) Find the least upper bound of {3, 5}, if it exists.
+g) Find all lower bounds of {15, 45}.
+h) Find the greatest lower bound of {15, 45}, if it exists.
+34. Answer these questions for the poset ({2, 4, 6, 9, 12,
+18, 27, 36, 48, 60, 72}, ∣).
+a) Find the maximal elements.
+b) Find the minimal elements.
+c) Is there a greatest element?
+d) Is there a least element?
+e) Find all upper bounds of {2, 9}.
+f ) Find the least upper bound of {2, 9}, if it exists.
+g) Find all lower bounds of {60, 72}.
+h) Find the greatest lower bound of {60, 72}, if it exists.
+35. Answer these questions for the poset ({{1}, {2}, {4},
+{1, 2}, {1, 4}, {2, 4}, {3, 4}, {1, 3, 4}, {2, 3, 4}}, ⊆).
+a) Find the maximal elements.
+b) Find the minimal elements.
+c) Is there a greatest element?
+d) Is there a least element?
+e) Find all upper bounds of {{2}, {4}}.
+f ) Find the least upper bound of {{2}, {4}}, if it exists.
+g) Find all lower bounds of {{1, 3, 4}, {2, 3, 4}}.
+h) Find the greatest lower bound of {{1, 3, 4}, {2, 3, 4}},
+if it exists.
+36. Give a poset that has
+a) a minimal element but no maximal element.
+b) a maximal element but no minimal element.
+c) neither a maximal nor a minimal element.
+37. Show that lexicographic order is a partial ordering on the
+Cartesian product of two posets.
+38. Show that lexicographic order is a partial ordering on the
+set of strings from a poset.
+39. Suppose that (S,  1 ) and (T,  2 ) are posets. Show that
+(S × T,  ) is a poset where (s, t)  (u, v) if and only if
+s  1 u and t  2 v.
+40. a) Show that there is exactly one greatest element of a
+poset, if such an element exists.
+b) Show that there is exactly one least element of a poset,
+if such an element exists.
+41. a) Show that there is exactly one maximal element in a
+poset with a greatest element.
+b) Show that there is exactly one minimal element in a
+poset with a least element.
+42. a) Show that the least upper bound of a set in a poset is
+unique if it exists.
+b) Show that the greatest lower bound of a set in a poset
+is unique if it exists.
+
+664
+
+9 / Relations
+
+43. Determine whether the posets with these Hasse diagrams
+are lattices.
+a)
+b)
+c)
+
+d
+b
+a
+
+g
+
+h
+
+f
+
+f
+
+e
+c
+
+i
+
+h
+
+g
+
+d
+
+c
+
+g
+
+d
+
+e
+
+b
+
+c
+
+a
+
+b) a least but not a greatest element.
+c) a greatest but not a least element.
+
+f
+e
+
+b
+
+52. Give an example of an inﬁnite lattice with
+a) neither a least nor a greatest element.
+
+a
+
+44. Determine whether these posets are lattices.
+a) ({1, 3, 6, 9, 12}, ∣)
+b) ({1, 5, 25, 125}, ∣)
+c) (Z, ≥)
+
+d) both a least and a greatest element.
+53. Verify that (Z+ × Z+ ,  ) is a well-ordered set, where 
+is lexicographic order, as claimed in Example 8.
+54. Determine whether each of these posets is well-ordered.
+a) (S, ≤), where S = {10, 11, 12, …}
+
+d) (P(S), ⊇), where P(S) is the power set of a set S
+
+b) (Q ∩ [0, 1], ≤) (the set of rational numbers between 0
+and 1 inclusive)
+
+45. Show that every nonempty ﬁnite subset of a lattice has a
+least upper bound and a greatest lower bound.
+
+c) (S, ≤), where S is the set of positive rational numbers
+with denominators not exceeding 3
+
+46. Show that if the poset (S, R) is a lattice then the dual poset
+(S, R−1 ) is also a lattice.
+47. In a company, the lattice model of information ﬂow
+is used to control sensitive information with security
+classes represented by ordered pairs (A, C). Here A is an
+authority level, which may be nonproprietary (0), proprietary (1), restricted (2), or registered (3). A category C
+is a subset of the set of all projects {Cheetah, Impala,
+Puma}. (Names of animals are often used as code names
+for projects in companies.)
+a) Is information permitted to ﬂow from (Proprietary,
+{Cheetah, Puma}) into (Restricted, {Puma})?
+b) Is information permitted to ﬂow from (Restricted,
+{Cheetah}) into (Registered, {Cheetah, Impala})?
+c) Into which classes is information from (Proprietary,
+{Cheetah, Puma}) permitted to ﬂow?
+d) From which classes is information permitted to ﬂow
+into the security class (Restricted, {Impala, Puma})?
+48. Show that the set S of security classes (A, C) is a lattice, where A is a positive integer representing an authority class and C is a subset of a ﬁnite set of compartments, with (A1 , C1 )  (A2 , C2 ) if and only if A1 ≤ A2
+and C1 ⊆ C2 . [Hint: First show that (S,  ) is a poset and
+then show that the least upper bound and greatest lower
+bound of (A1 , C1 ) and (A2 , C2 ) are (max(A1 , A2 ), C1 ∪ C2 )
+and (min(A1 , A2 ), C1 ∩ C2 ), respectively.]
+∗ 49. Show that the set of all partitions of a set S with the relation P1  P2 if the partition P1 is a reﬁnement of the
+partition P2 is a lattice. (See the preamble to Exercise 49
+of Section 9.5.)
+
+d) (Z− , ≥), where Z− is the set of negative integers
+A poset (R,  ) is well-founded if there is no inﬁnite decreasing sequence of elements in the poset, that is, elements x1 , x2 , … , xn such that ⋯ ≺ xn ≺ ⋯ ≺ x2 ≺ x1 . A poset
+(R,  ) is dense if for all x ∈ S and y ∈ S with x ≺ y, there is
+an element z ∈ R such that x ≺ z ≺ y.
+55. Show that the poset (Z,  ), where x ≺ y if and only if
+|x| < |y| is well-founded but is not a totally ordered set.
+56. Show that a dense poset with at least two elements that
+are comparable is not well-founded.
+57. Show that the poset of rational numbers with the usual
+less than or equal to relation, (Q, ≤), is a dense poset.
+∗ 58. Show that the set of strings of lowercase English letters with lexicographic order is neither well-founded nor
+dense.
+59. Show that a poset is well-ordered if and only if it is totally
+ordered and well-founded.
+60. Show that a ﬁnite nonempty poset has a maximal element.
+61. Find a compatible total order for the poset with the Hasse
+diagram shown in Exercise 32.
+62. Find a compatible total order for the divisibility relation
+on the set {1, 2, 3, 6, 8, 12, 24, 36}.
+63. Find all compatible total orderings for the poset
+({1, 2, 4, 5, 12, 20}, |} from Example 26.
+
+50. Show that every totally ordered set is a lattice.
+
+64. Find all compatible total orderings for the poset with the
+Hasse diagram in Exercise 27.
+
+51. Show that every ﬁnite lattice has a least element and a
+greatest element.
+
+65. Find all possible orders for completing the tasks in the
+development project in Example 27.
+
+Key Terms and Results 665
+
+66. Schedule the tasks needed to build a house, by specifying
+their order, if the Hasse diagram representing these tasks
+is as shown in the ﬁgure.
+
+67. Find an ordering of the tasks of a software project if the
+Hasse diagram for the tasks of the project is as shown.
+Completion
+
+Completion
+
+βb test
+
+Interior fixtures
+Exterior fixtures
+
+α
+b test
+
+Carpeting
+
+Interior painting
+
+Develop module A
+
+Flooring
+
+Exterior painting
+Wall-board
+Wiring
+
+Write
+documentation
+
+Plumbing
+
+Exterior siding
+Roof
+Framing
+Foundation
+
+Integrate modules
+Develop module B
+Develop module C
+Set up
+test sites
+
+Develop system
+requirements
+
+Write functional requirements
+Determine user needs
+
+Key Terms and Results
+TERMS
+binary relation from A to B: a subset of A × B
+relation on A: a binary relation from A to itself (that is, a subset of A × A)
+S ◦ R: composite of R and S
+R−1 : inverse relation of R
+Rn : nth power of R
+reﬂexive: a relation R on A is reﬂexive if (a, a) ∈ R for all
+a∈A
+symmetric: a relation R on A is symmetric if (b, a) ∈ R whenever (a, b) ∈ R
+antisymmetric: a relation R on A is antisymmetric if a = b
+whenever (a, b) ∈ R and (b, a) ∈ R
+transitive: a relation R on A is transitive if (a, b) ∈ R and
+(b, c) ∈ R implies that (a, c) ∈ R
+n-ary relation on A1 , A2 , … , An : a subset of A1 × A2 × ⋯ × An
+relational data model: a model for representing databases using n-ary relations
+primary key: a domain of an n-ary relation such that an ntuple is uniquely determined by its value for this domain
+composite key: the Cartesian product of domains of an n-ary
+relation such that an n-tuple is uniquely determined by its
+values in these domains
+selection operator: a function that selects the n-tuples in an
+n-ary relation that satisfy a speciﬁed condition
+projection: a function that produces relations of smaller degree from an n-ary relation by deleting ﬁelds
+join: a function that combines n-ary relations that agree on
+certain ﬁelds
+itemset: a collection of items
+
+count of an itemset: the number of transactions that are supersets of the itemset
+frequent itemset: an itemset with frequency greater than or
+equal to the support threshold
+support of an itemset: the frequency of transactions that contain the itemset
+association rule: an implication of the form I → J, where I
+and J are itemsets
+support of the association rule I → J: the fraction of transactions that contain both the itemsets I and J
+conﬁdence of an association rule: the conditional probability
+that J is a subset of a transaction given that I is
+directed graph or digraph: a set of elements called vertices
+and ordered pairs of these elements, called edges
+loop: an edge of the form (a, a)
+closure of a relation R with respect to a property P: the relation S (if it exists) that contains R, has property P, and
+is contained within any relation that contains R and has
+property P
+path in a digraph: a sequence of edges (a, x1 ), (x1 , x2 ), … ,
+(xn−2 , xn−1 ), (xn−1 , b) such that the terminal vertex of each
+edge is the initial vertex of the succeeding edge in the sequence
+circuit (or cycle) in a digraph: a path that begins and ends at
+the same vertex
+R∗ (connectivity relation): the relation consisting of those ordered pairs (a, b) such that there is a path from a to b
+equivalence relation: a reﬂexive, symmetric, and transitive
+relation
+equivalent: if R is an equivalence relation, a is equivalent to
+b if aRb
+
+666
+
+9 / Relations
+
+[a]R (equivalence class of a with respect to R): the set of all
+elements of A that are equivalent to a
+[a]m (congruence class modulo m): the set of integers congruent to a modulo m
+partition of a set S: a collection of pairwise disjoint nonempty
+subsets that have S as their union
+partial ordering: a relation that is reﬂexive, antisymmetric,
+and transitive
+poset (S, R): a set S and a partial ordering R on this set
+comparable: the elements a and b in the poset (A,  ) are
+comparable if a  b or b  a
+incomparable: elements in a poset that are not comparable
+total (or linear) ordering: a partial ordering for which every
+pair of elements are comparable
+totally (or linearly) ordered set: a poset with a total (or linear) ordering
+well-ordered set: a poset (S,  ), where  is a total order and
+every nonempty subset of S has a least element
+lexicographic order: a partial ordering of Cartesian products
+or strings
+Hasse diagram: a graphical representation of a poset where
+loops and all edges resulting from the transitive property
+are not shown, and the direction of the edges is indicated
+by the position of the vertices
+maximal element: an element of a poset that is not less than
+any other element of the poset
+minimal element: an element of a poset that is not greater than
+any other element of the poset
+greatest element: an element of a poset greater than all other
+elements in this set
+least element: an element of a poset less than all other elements in this set
+
+upper bound of a set: an element in a poset greater than all
+other elements in the set
+lower bound of a set: an element in a poset less than all other
+elements in the set
+least upper bound of a set: an upper bound of the set that is
+less than all other upper bounds
+greatest lower bound of a set: a lower bound of the set that
+is greater than all other lower bounds
+lattice: a partially ordered set in which every two elements
+have a greatest lower bound and a least upper bound
+compatible total ordering for a partial ordering: a total ordering that contains the given partial ordering
+topological sort: the construction of a total ordering compatible with a given partial ordering
+
+RESULTS
+The reﬂexive closure of a relation R on the set A equals R ∪ Δ,
+where Δ = {(a, a) ∣ a ∈ A}.
+The symmetric closure of a relation R on the set A equals
+R ∪ R−1 , where R−1 = {(b, a) ∣ (a, b) ∈ R}.
+The transitive closure of a relation equals the connectivity relation formed from this relation.
+Warshall’s algorithm for ﬁnding the transitive closure of a relation
+Let R be an equivalence relation. Then the following three
+statements are equivalent: (1) a R b; (2) [a]R ∩ [b]R ≠ ∅;
+(3) [a]R = [b]R .
+The equivalence classes of an equivalence relation on a set A
+form a partition of A. Conversely, an equivalence relation
+can be constructed from any partition so that the equivalence classes are the subsets in the partition.
+The principle of well-ordered induction
+The topological sorting algorithm
+
+Review Questions
+1. a) What is a relation on a set?
+b) How many relations are there on a set with n elements?
+2. a) What is a reﬂexive relation?
+b) What is a symmetric relation?
+c) What is an antisymmetric relation?
+d) What is a transitive relation?
+3. Give an example of a relation on the set {1, 2, 3, 4} that is
+a) reﬂexive, symmetric, and not transitive.
+b) not reﬂexive, symmetric, and transitive.
+c) reﬂexive, antisymmetric, and not transitive.
+d) reﬂexive, symmetric, and transitive.
+e) reﬂexive, antisymmetric, and transitive.
+4. a) How many reﬂexive relations are there on a set with n
+elements?
+b) How many symmetric relations are there on a set with
+n elements?
+
+c) How many antisymmetric relations are there on a set
+with n elements?
+5. a) Explain how an n-ary relation can be used to represent
+information about students at a university.
+b) How can the 5-ary relation containing names of students, their addresses, telephone numbers, majors, and
+grade point averages be used to form a 3-ary relation
+containing the names of students, their majors, and
+their grade point averages?
+c) How can the 4-ary relation containing names of students, their addresses, telephone numbers, and majors
+and the 4-ary relation containing names of students,
+their student numbers, majors, and numbers of credit
+hours be combined into a single n-ary relation?
+6. a) Explain how to use a zero–one matrix to represent a
+relation on a ﬁnite set.
+
+Supplementary Exercises
+
+b) Explain how to use the zero–one matrix representing a
+relation to determine whether the relation is reﬂexive,
+symmetric, and/or antisymmetric.
+7. a) Explain how to use a directed graph to represent a relation on a ﬁnite set.
+b) Explain how to use the directed graph representing a
+relation to determine whether a relation is reﬂexive,
+symmetric, and/or antisymmetric.
+8. a) Deﬁne the reﬂexive closure and the symmetric closure
+of a relation.
+b) How can you construct the reﬂexive closure of a relation?
+c) How can you construct the symmetric closure of a relation?
+d) Find the reﬂexive closure and the symmetric closure
+of the relation {(1, 2), (2, 3), (2, 4), (3, 1)} on the set
+{1, 2, 3, 4}.
+9. a) Deﬁne the transitive closure of a relation.
+b) Can the transitive closure of a relation be obtained
+by including all pairs (a, c) such that (a, b) and (b, c)
+belong to the relation?
+c) Describe two algorithms for ﬁnding the transitive
+closure of a relation.
+d) Find the transitive closure of the relation
+{(1,1), (1,3), (2,1), (2,3), (2,4), (3,2), (3,4), (4,1)}.
+10. a) Deﬁne an equivalence relation.
+b) Which relations on the set {a, b, c, d} are equivalence
+relations and contain (a, b) and (b, d)?
+11. a) Show that congruence modulo m is an equivalence relation whenever m is a positive integer.
+b) Show that the relation {(a, b) ∣ a ≡ ±b (mod 7)} is an
+equivalence relation on the set of integers.
+12. a) What are the equivalence classes of an equivalence relation?
+
+667
+
+b) What are the equivalence classes of the “congruent
+modulo 5” relation?
+c) What are the equivalence classes of the equivalence
+relation in Question 11(b)?
+13. Explain the relationship between equivalence relations on
+a set and partitions of this set.
+14. a) Deﬁne a partial ordering.
+b) Show that the divisibility relation on the set of positive
+integers is a partial order.
+15. Explain how partial orderings on the sets A1 and A2 can
+be used to deﬁne a partial ordering on the set A1 × A2 .
+16. a) Explain how to construct the Hasse diagram of a partial order on a ﬁnite set.
+b) Draw the Hasse diagram of the divisibility relation on
+the set {2, 3, 5, 9, 12, 15, 18}.
+17. a) Deﬁne a maximal element of a poset and the greatest
+element of a poset.
+b) Give an example of a poset that has three maximal elements.
+c) Give an example of a poset with a greatest element.
+18. a) Deﬁne a lattice.
+b) Give an example of a poset with ﬁve elements that is
+a lattice and an example of a poset with ﬁve elements
+that is not a lattice.
+19. a) Show that every ﬁnite subset of a lattice has a greatest
+lower bound and a least upper bound.
+b) Show that every lattice with a ﬁnite number of elements has a least element and a greatest element.
+20. a) Deﬁne a well-ordered set.
+b) Describe an algorithm for producing a totally ordered
+set compatible with a given partially ordered set.
+c) Explain how the algorithm from (b) can be used to order the tasks in a project if tasks are done one at a time
+and each task can be done only after one or more of
+the other tasks have been completed.
+
+Supplementary Exercises
+1. Let S be the set of all strings of English letters. Determine
+whether these relations are reﬂexive, irreﬂexive, symmetric, antisymmetric, and/or transitive.
+a) R1 = {(a, b) ∣ a and b have no letters in common}
+b) R2 = {(a, b) ∣ a and b are not the same length}
+c) R3 = {(a, b) ∣ a is longer than b}
+2. Construct a relation on the set {a, b, c, d} that is
+a) reﬂexive, symmetric, but not transitive.
+b) irreﬂexive, symmetric, and transitive.
+c) irreﬂexive, antisymmetric, and not transitive.
+d) reﬂexive, neither symmetric nor antisymmetric, and
+transitive.
+e) neither reﬂexive, irreﬂexive, symmetric, antisymmetric, nor transitive.
+3. Show that the relation R on Z × Z deﬁned by (a, b) R (c, d)
+if and only if a + d = b + c is an equivalence relation.
+
+4. Show that a subset of an antisymmetric relation is also
+antisymmetric.
+5. Let R be a reﬂexive relation on a set A. Show that R ⊆ R2 .
+6. Suppose that R1 and R2 are reﬂexive relations on a set A.
+Show that R1 ⊕ R2 is irreﬂexive.
+7. Suppose that R1 and R2 are reﬂexive relations on a set A.
+Is R1 ∩ R2 also reﬂexive? Is R1 ∪ R2 also reﬂexive?
+8. Suppose that R is a symmetric relation on a set A. Is R
+also symmetric?
+9. Let R1 and R2 be symmetric relations. Is R1 ∩ R2 also
+symmetric? Is R1 ∪ R2 also symmetric?
+10. A relation R is called circular if aRb and bRc imply that
+cRa. Show that R is reﬂexive and circular if and only if it
+is an equivalence relation.
+
+668
+
+9 / Relations
+
+11. Show that a primary key in an n-ary relation is a primary
+key in any projection of this relation that contains this key
+as one of its ﬁelds.
+12. Is the primary key in an n-ary relation also a primary key
+in a larger relation obtained by taking the join of this relation with a second relation?
+13. Show that the reﬂexive closure of the symmetric closure
+of a relation is the same as the symmetric closure of its
+reﬂexive closure.
+14. Let R be the relation on the set of all mathematicians that
+contains the ordered pair (a, b) if and only if a and b have
+written a published mathematical paper together.
+a) Describe the relation R2 .
+b) Describe the relation R∗ .
+c) The Erdős number of a mathematician is 1 if this
+mathematician wrote a paper with the proliﬁc Hungarian mathematician Paul Erdős, it is 2 if this mathematician did not write a joint paper with Erdős but
+wrote a joint paper with someone who wrote a joint
+paper with Erdős, and so on (except that the Erdős
+number of Erdős himself is 0). Give a deﬁnition of
+the Erdős number in terms of paths in R.
+15. a) Give an example to show that the transitive closure
+of the symmetric closure of a relation is not necessarily the same as the symmetric closure of the transitive
+closure of this relation.
+b) Show, however, that the transitive closure of the symmetric closure of a relation must contain the symmetric closure of the transitive closure of this relation.
+
+16. a) Let S be the set of subroutines of a computer program.
+Deﬁne the relation R by P R Q if subroutine P calls
+subroutine Q during its execution. Describe the transitive closure of R.
+b) For which subroutines P does (P, P) belong to the
+transitive closure of R?
+c) Describe the reﬂexive closure of the transitive closure
+of R.
+17. Suppose that R and S are relations on a set A with R ⊆ S
+such that the closures of R and S with respect to a property P both exist. Show that the closure of R with respect
+to P is a subset of the closure of S with respect to P.
+18. Show that the symmetric closure of the union of two relations is the union of their symmetric closures.
+∗ 19. Devise an algorithm, based on the concept of interior vertices, that ﬁnds the length of the longest path between two
+vertices in a directed graph, or determines that there are
+arbitrarily long paths between these vertices.
+20. Which of these are equivalence relations on the set of all
+people?
+a) {(x, y) ∣ x and y have the same sign of the zodiac}
+b) {(x, y) ∣ x and y were born in the same year}
+c) {(x, y) ∣ x and y have been in the same city}
+∗ 21. How many diﬀerent equivalence relations with exactly
+three diﬀerent equivalence classes are there on a set with
+ﬁve elements?
+22. Show that {(x, y) ∣ x − y ∈ Q} is an equivalence relation
+on the set of real numbers, where Q denotes the set of
+rational numbers. What are [1], [ 12 ], and [𝜋]?
+
+Links
+PAUL ERDŐS (1913–1996) Paul Erdős, born in Budapest, Hungary, was the son of two high school mathematics teachers. He was a child prodigy; at age 3 he could multiply three-digit numbers in his head, and at 4 he
+discovered negative numbers on his own. Because his mother did not want to expose him to contagious diseases,
+he was mostly home-schooled. At 17 Erdős entered Eőtvős University, graduating four years later with a Ph.D.
+in mathematics. After graduating he spent four years at Manchester, England, on a postdoctoral fellowship. In
+1938 he went to the United States because of the diﬃcult political situation in Hungary, especially for Jews.
+He spent much of his time in the United States, except for 1954 to 1962, when he was banned as part of the
+paranoia of the McCarthy era. He also spent considerable time in Israel.
+Erdős made many signiﬁcant contributions to combinatorics and to number theory. One of the discoveries
+Courtesy of George Csicsery
+of which he was most proud is his elementary proof (in the sense that it does not use any complex analysis)
+of the prime number theorem, which provides an estimate for the number of primes not exceeding a ﬁxed positive integer. He also
+participated in the modern development of the Ramsey theory.
+Erdős traveled extensively throughout the world to work with other mathematicians, visiting conferences, universities, and
+research laboratories. He had no permanent home. He devoted himself almost entirely to mathematics, traveling from one mathematician to the next, proclaiming “My brain is open.” Erdős was the author or coauthor of more than 1500 papers and had more
+than 500 coauthors. Copies of his articles are kept by Ron Graham, a famous discrete mathematician with whom he collaborated
+extensively and who took care of many of his worldly needs.
+Erdős oﬀered rewards, ranging from $10 to $10,000, for the solution of problems that he found particularly interesting, with the
+size of the reward depending on the diﬃculty of the problem. He paid out close to $4000. Erdős had his own special language, using
+such terms as “epsilon” (child), “boss” (woman), “slave” (man), “captured” (married), “liberated” (divorced), “Supreme Fascist”
+(God), “Sam” (United States), and “Joe” (Soviet Union). Although he was curious about many things, he concentrated almost all
+his energy on mathematical research. He had no hobbies and no full-time job. He never married and apparently remained celibate.
+Erdős was extremely generous, donating much of the money he collected from prizes, awards, and stipends for scholarships and to
+worthwhile causes. He traveled extremely lightly and did not like having many material possessions.
+
+Supplementary Exercises
+
+23. Suppose that P1 = {A1 , A2 , … , Am } and P2 =
+{B1 , B2 , … , Bn } are both partitions of the set S. Show that
+the collection of nonempty subsets of the form Ai ∩ Bj is
+a partition of S that is a reﬁnement of both P1 and P2 (see
+the preamble to Exercise 49 of Section 9.5).
+∗ 24. Show that the transitive closure of the symmetric closure of the reﬂexive closure of a relation R is the smallest
+equivalence relation that contains R.
+25. Let R(S) be the set of all relations on a set S. Deﬁne the
+relation  on R(S) by R1  R2 if R1 ⊆ R2 , where R1 and
+R2 are relations on S. Show that (R(S),  ) is a poset.
+26. Let P(S) be the set of all partitions of the set S. Deﬁne the
+relation  on P(S) by P1  P2 if P1 is a reﬁnement of
+P2 (see Exercise 49 of Section 9.5). Show that (P(S),  )
+is a poset.
+27. Schedule the tasks needed to cook a Chinese meal by
+specifying their order, if the Hasse diagram representing
+these tasks is as shown here.
+
+669
+
+∗∗ 32. Show that every ﬁnite poset can be partitioned into k
+chains, where k is the largest number of elements in an
+antichain in this poset.
+∗ 33. Show that in any group of mn + 1 people there is either a
+list of m + 1 people where a person in the list (except for
+the ﬁrst person listed) is a descendant of the previous person on the list, or there are n + 1 people such that none of
+these people is a descendant of any of the other n people.
+[Hint: Use Exercise 32.]
+Suppose that (S,  ) is a well-founded partially ordered set.
+The principle of well-founded induction states that P(x) is true
+for all x ∈ S if ∀x(∀y(y ≺ x → P(y)) → P(x)).
+34. Show that no separate basis case is needed for the principle of well-founded induction. That is, P(u) is true for all
+minimal elements u in S if ∀x(∀y(y ≺ x → P(y)) → P(x)).
+∗ 35. Show that the principle of well-founded induction is
+valid.
+
+Serve
+
+A relation R on a set A is a quasi-ordering on A if R is reﬂexive and transitive.
+
+Arrange on platters
+
+36. Let R be the relation on the set of all functions from
+Z+ to Z+ such that (f, g) belongs to R if and only if f
+is O(g). Show that R is a quasi-ordering.
+37. Let R be a quasi-ordering on a set A. Show that R ∩ R−1
+is an equivalence relation.
+
+Cook in wok
+
+Steam
+rice
+
+Make
+garnishes
+Chop
+water
+chestnuts
+Wash
+vegetables
+Cut ginger
+and garlic
+
+Buy groceries
+
+Cut
+fish
+Wash
+shellfish
+
+Clean
+fish
+
+Buy seafood
+Find recipe
+
+A subset of a poset such that every two elements of this subset are comparable is called a chain. A subset of a poset is
+called an antichain if every two elements of this subset are
+incomparable.
+28. Find all chains in the posets with the Hasse diagrams
+shown in Exercises 25–27 in Section 9.6.
+29. Find all antichains in the posets with the Hasse diagrams
+shown in Exercises 25–27 in Section 9.6.
+30. Find an antichain with the greatest number of elements
+in the poset with the Hasse diagram of Exercise 32 in
+Section 9.6.
+31. Show that every maximal chain in a ﬁnite poset (S,  )
+contains a minimal element of S. (A maximal chain is a
+chain that is not a subset of a larger chain.)
+
+∗ 38. Let R be a quasi-ordering and let S be the relation on
+the set of equivalence classes of R ∩ R−1 such that (C, D)
+belongs to S, where C and D are equivalence classes
+of R, if and only if there are elements c of C and d of
+D such that (c, d) belongs to R. Show that S is a partial
+ordering.
+Let L be a lattice. Deﬁne the meet (∧) and join (∨) operations
+by x ∧ y = glb(x, y) and x ∨ y = lub(x, y).
+39. Show that the following properties hold for all elements
+x, y, and z of a lattice L.
+a) x ∧ y = y ∧ x and x ∨ y = y ∨ x (commutative laws)
+b) (x ∧ y) ∧ z = x ∧ (y ∧ z) and (x ∨ y) ∨ z = x ∨ (y ∨ z)
+(associative laws)
+c) x ∧ (x ∨ y) = x and x ∨ (x ∧ y) = x (absorption laws)
+d) x ∧ x = x and x ∨ x = x (idempotent laws)
+40. Show that if x and y are elements of a lattice L, then
+x ∨ y = y if and only if x ∧ y = x.
+A lattice L is bounded if it has both an upper bound, denoted by 1, such that x  1 for all x ∈ L and a lower bound,
+denoted by 0, such that 0  x for all x ∈ L.
+41. Show that if L is a bounded lattice with upper bound
+1 and lower bound 0 then these properties hold for all
+elements x ∈ L.
+a) x ∨ 1 = 1
+b) x ∧ 1 = x
+c) x ∨ 0 = x
+d) x ∧ 0 = 0
+42. Show that every ﬁnite lattice is bounded.
+A lattice is called distributive if x ∨ (y ∧ z) = (x ∨ y) ∧ (x ∨ z)
+and x ∧ (y ∨ z) = (x ∧ y) ∨ (x ∧ z) for all x, y, and z in L.
+∗ 43. Give an example of a lattice that is not distributive.
+
+670
+
+9 / Relations
+
+44. Show that the lattice (P(S), ⊆) where P(S) is the power
+set of a ﬁnite set S is distributive.
+45. Is the lattice (Z+ , ∣) distributive?
+The complement of an element a of a bounded lattice L with
+upper bound 1 and lower bound 0 is an element b such that
+a ∨ b = 1 and a ∧ b = 0. Such a lattice is complemented if
+every element of the lattice has a complement.
+46. Give an example of a ﬁnite lattice where at least one element has more than one complement and at least one
+element has no complement.
+47. Show that the lattice (P(S), ⊆) where P(S) is the power
+set of a ﬁnite set S is complemented.
+∗ 48. Show that if L is a ﬁnite distributive lattice, then an element of L has at most one complement.
+
+The game of Chomp, introduced in Example 12 in Section
+1.8, can be generalized for play on any ﬁnite partially ordered
+set (S, ⪯) with a least element a. In this game, a move consists
+of selecting an element x in S and removing x and all elements
+larger than it from S. The loser is the player who is forced to
+select the least element a.
+49. Show that the game of Chomp with cookies arranged in
+an m × n rectangular grid, described in Example 12 in
+Section 1.8, is the same as the game of Chomp on the
+poset (S, |), where S is the set of all positive integers that
+divide pm−1 qn−1 , where p and q are distinct primes.
+50. Show that if (S, ⪯) has a greatest element b, then a winning strategy for Chomp on this poset exists. [Hint: Generalize the argument in Example 12 in Section 1.8.]
+
+Computer Projects
+Write programs with these input and output.
+1. Given the matrix representing a relation on a ﬁnite
+set, determine whether the relation is reﬂexive and/or
+irreﬂexive.
+2. Given the matrix representing a relation on a ﬁnite set,
+determine whether the relation is symmetric and/or antisymmetric.
+3. Given the matrix representing a relation on a ﬁnite set,
+determine whether the relation is transitive.
+4. Given a positive integer n, display all the relations on a
+set with n elements.
+∗ 5. Given a positive integer n, determine the number of transitive relations on a set with n elements.
+∗ 6. Given a positive integer n, determine the number of
+equivalence relations on a set with n elements.
+∗ 7. Given a positive integer n, display all the equivalence relations on the set of the n smallest positive integers.
+8. Given an n-ary relation, ﬁnd the projection of this relation
+when speciﬁed ﬁelds are deleted.
+
+9. Given an m-ary relation and an n-ary relation, and a set
+of common ﬁelds, ﬁnd the join of these relations with respect to these common ﬁelds.
+10. Given the matrix representing a relation on a ﬁnite set,
+ﬁnd the matrix representing the reﬂexive closure of this
+relation.
+11. Given the matrix representing a relation on a ﬁnite set,
+ﬁnd the matrix representing the symmetric closure of this
+relation.
+12. Given the matrix representing a relation on a ﬁnite set,
+ﬁnd the matrix representing the transitive closure of this
+relation by computing the join of the Boolean powers of
+the matrix representing the relation.
+13. Given the matrix representing a relation on a ﬁnite set,
+ﬁnd the matrix representing the transitive closure of this
+relation using Warshall’s algorithm.
+14. Given the matrix representing a relation on a ﬁnite set,
+ﬁnd the matrix representing the smallest equivalence relation containing this relation.
+15. Given a partial ordering on a ﬁnite set, ﬁnd a total ordering compatible with it using topological sorting.
+
+Computations and Explorations
+Use a computational program or programs you have written to do these exercises.
+1. Display all the diﬀerent relations on a set with four elements.
+2. Display all the diﬀerent reﬂexive and symmetric relations
+on a set with six elements.
+3. Display all the reﬂexive and transitive relations on a set
+with ﬁve elements.
+
+∗ 4. Determine how many transitive relations there are on a set
+with n elements for all positive integers n with n ≤ 7.
+5. Find the transitive closure of a relation of your choice on
+a set with at least 20 elements. Either use a relation that
+corresponds to direct links in a particular transportation or
+communications network or use a randomly generated relation.
+
+Writing Projects
+
+6. Compute the number of diﬀerent equivalence relations
+on a set with n elements for all positive integers n not
+exceeding 20.
+7. Display all the equivalence relations on a set with seven
+elements.
+
+671
+
+∗ 8. Display all the partial orders on a set with ﬁve elements.
+∗ 9. Display all the lattices on a set with ﬁve elements.
+
+Writing Projects
+Respond to these with essays using outside sources.
+1. Discuss the concept of a fuzzy relation. How are fuzzy
+relations used?
+2. Describe the basic principles of relational databases, going beyond what was covered in Section 9.2. How widely
+used are relational databases as compared with other
+types of databases?
+3. Explain how the Apriori algorithm is used to ﬁnd frequent itemsets and strong association rules.
+4. Describe some applications of association rules in detail.
+5. Look up the original papers by Warshall and by Roy
+(in French) in which they develop algorithms for ﬁnding
+transitive closures. Discuss their approaches. Why do you
+suppose that what we call Warshall’s algorithm was discovered independently by more than one person?
+6. Describe how equivalence classes can be used to deﬁne
+the rational numbers as classes of pairs of integers and
+how the basic arithmetic operations on rational numbers
+
+can be deﬁned following this approach. (See Exercise 40
+in Section 9.5.)
+7. Explain how Helmut Hasse used what we now call Hasse
+diagrams.
+8. Describe some of the mechanisms used to enforce information ﬂow policies in computer operating systems.
+9. Discuss the use of the Program Evaluation and Review
+Technique (PERT) to schedule the tasks of a large complicated project. How widely is PERT used?
+10. Discuss the use of the Critical Path Method (CPM) to ﬁnd
+the shortest time for the completion of a project. How
+widely is CPM used?
+11. Discuss the concept of duality in a lattice. Explain how
+duality can be used to establish new results.
+12. Explain what is meant by a modular lattice. Describe
+some of the properties of modular lattices and describe
+how modular lattices arise in the study of projective
+geometry.
+
+C H A P T E R
+
+10
+10.1 Graphs and
+Graph Models
+10.2 Graph Terminology and
+Special Types
+of Graphs
+10.3 Representing
+Graphs and
+Graph Isomorphism
+10.4 Connectivity
+10.5 Euler and
+Hamilton
+Paths
+10.6 Shortest-Path
+Problems
+10.7 Planar Graphs
+10.8 Graph Coloring
+
+10.1
+
+Graphs
+
+G
+
+raphs are discrete structures consisting of vertices and edges that connect these vertices.
+There are diﬀerent kinds of graphs, depending on whether edges have directions, whether
+multiple edges can connect the same pair of vertices, and whether loops are allowed. Problems
+in almost every conceivable discipline can be solved using graph models. We will give examples
+to illustrate how graphs are used as models in a variety of areas. For instance, we will show how
+graphs are used to represent the competition of diﬀerent species in an ecological niche, how
+graphs are used to represent who inﬂuences whom in an organization, and how graphs are used
+to represent the outcomes of round-robin tournaments. We will describe how graphs can be
+used to model acquaintanceships between people, collaboration between researchers, telephone
+calls between telephone numbers, and links between websites. We will show how graphs can
+be used to model roadmaps and the assignment of jobs to employees of an organization.
+Using graph models, we can determine whether it is possible to walk down all the streets
+in a city without going down a street twice, and we can ﬁnd the number of colors needed to
+color the regions of a map. Graphs can be used to determine whether a circuit can be implemented on a planar circuit board. We can distinguish between two chemical compounds with the
+same molecular formula but diﬀerent structures using graphs. We can determine whether two
+computers are connected by a communications link using graph models of computer networks.
+Graphs with weights assigned to their edges can be used to solve problems such as ﬁnding the
+shortest path between two cities in a transportation network. We can also use graphs to schedule
+exams and assign channels to television stations. This chapter will introduce the basic concepts
+of graph theory and present many diﬀerent graph models. To solve the wide variety of problems
+that can be studied using graphs, we will introduce many diﬀerent graph algorithms. We will
+also study the complexity of these algorithms.
+
+Graphs and Graph Models
+We begin with the deﬁnition of a graph.
+
+Deﬁnition 1
+
+A graph G = (V, E) consists of V, a nonempty set of vertices (or nodes) and E, a set of edges.
+Each edge has either one or two vertices associated with it, called its endpoints. An edge is
+said to connect its endpoints.
+
+Remark: The set of vertices V of a graph G may be inﬁnite. A graph with an inﬁnite vertex
+set or an inﬁnite number of edges is called an inﬁnite graph, and in comparison, a graph with
+a ﬁnite vertex set and a ﬁnite edge set is called a ﬁnite graph. In this book we will usually
+consider only ﬁnite graphs.
+Now suppose that a network is made up of data centers and communication links between
+computers. We can represent the location of each data center by a point and each communications link by a line segment, as shown in Figure 1.
+This computer network can be modeled using a graph in which the vertices of the graph
+represent the data centers and the edges represent communication links. In general, we visualize
+graphs by using points to represent vertices and line segments, possibly curved, to represent
+673
+
+674
+
+10 / Graphs
+
+Detroit
+New York
+San Francisco
+
+Chicago
+Washington
+
+Denver
+Los Angeles
+
+FIGURE 1
+
+A computer network.
+
+edges, where the endpoints of a line segment representing an edge are the points representing
+the endpoints of the edge. When we draw a graph, we generally try to draw edges so that they do
+not cross. However, this is not necessary because any depiction using points to represent vertices
+and any form of connection between vertices can be used. Indeed, there are some graphs that
+cannot be drawn in the plane without edges crossing (see Section 10.7). The key point is that
+the way we draw a graph is arbitrary, as long as the correct connections between vertices are
+depicted.
+Note that each edge of the graph representing this computer network connects two diﬀerent
+vertices. That is, no edge connects a vertex to itself. Furthermore, no two diﬀerent edges connect
+the same pair of vertices. A graph in which each edge connects two diﬀerent vertices and where
+no two edges connect the same pair of vertices is called a simple graph. Note that in a simple
+graph, each edge is associated to an unordered pair of vertices, and no other edge is associated
+to this same edge. Consequently, when there is an edge of a simple graph associated to {u, v},
+we can also say, without possible confusion, that {u, v} is an edge of the graph.
+A computer network may contain multiple links between data centers, as shown in Figure 2.
+To model such networks we need graphs that have more than one edge connecting the same
+pair of vertices. Graphs that may have multiple edges connecting the same vertices are called
+multigraphs. When there are m diﬀerent edges associated to the same unordered pair of vertices
+{u, v}, we also say that {u, v} is an edge of multiplicity m. That is, we can think of this set of
+edges as m diﬀerent copies of an edge {u, v}.
+Detroit
+Chicago
+
+New York
+
+San Francisco
+Washington
+
+Denver
+Los Angeles
+
+FIGURE 2
+
+A computer network with multiple links between data centers.
+
+Sometimes a communications link connects a data center with itself, perhaps a feedback
+loop for diagnostic purposes. Such a network is illustrated in Figure 3. To model this network we
+need to include edges that connect a vertex to itself. Such edges are called loops, and sometimes
+Detroit
+Chicago
+
+New York
+
+San Francisco
+Denver
+
+Washington
+
+Los Angeles
+
+FIGURE 3
+
+A computer network with diagnostic links.
+
+10.1 Graphs and Graph Models 675
+
+Detroit
+Chicago
+
+New York
+
+San Francisco
+Washington
+
+Denver
+Los Angeles
+
+FIGURE 4
+
+A communications network with one-way communications links.
+
+we may even have more than one loop at a vertex. Graphs that may include loops, and possibly
+multiple edges connecting the same pair of vertices or a vertex to itself, are sometimes called
+pseudographs.
+So far the graphs we have introduced are undirected graphs. Their edges are also said
+to be undirected. However, to construct a graph model, we may ﬁnd it necessary to assign
+directions to the edges of a graph. For example, in a computer network, some links may operate
+in only one direction (such links are called single duplex lines). This may be the case if there is
+a large amount of traﬃc sent to some data centers, with little or no traﬃc going in the opposite
+direction. Such a network is shown in Figure 4.
+To model such a computer network we use a directed graph. Each edge of a directed graph
+is associated to an ordered pair. The deﬁnition of directed graph we give here is more general
+than the one we used in Chapter 9, where we used directed graphs to represent relations.
+
+Deﬁnition 2
+
+A directed graph (or digraph) (V, E) consists of a nonempty set of vertices V and a set of
+directed edges (or arcs) E. Each directed edge is associated with an ordered pair of vertices.
+The directed edge associated with the ordered pair (u, v) is said to start at u and end at v.
+When we depict a directed graph with a line drawing, we use an arrow pointing from u to v to
+indicate the direction of an edge that starts at u and ends at v. A directed graph may contain loops
+and it may contain multiple directed edges that start and end at the same vertices. A directed
+graph may also contain directed edges that connect vertices u and v in both directions; that is,
+when a digraph contains an edge from u to v, it may also contain one or more edges from v to u.
+Note that we obtain a directed graph when we assign a direction to each edge in an undirected
+graph. When a directed graph has no loops and has no multiple directed edges, it is called a
+simple directed graph. Because a simple directed graph has at most one edge associated to each
+ordered pair of vertices (u, v), we call (u, v) an edge if there is an edge associated to it in the graph.
+In some computer networks, multiple communication links between two data centers may
+be present, as illustrated in Figure 5. Directed graphs that may have multiple directed edges
+from a vertex to a second (possibly the same) vertex are used to model such networks. We
+called such graphs directed multigraphs. When there are m directed edges, each associated to
+an ordered pair of vertices (u, v), we say that (u, v) is an edge of multiplicity m.
+For some models we may need a graph where some edges are undirected, while others are
+directed. A graph with both directed and undirected edges is called a mixed graph. For example,
+Detroit
+Chicago
+
+New York
+
+San Francisco
+Denver
+
+Washington
+
+Los Angeles
+
+FIGURE 5
+
+A computer network with multiple one-way links.
+
+676
+
+10 / Graphs
+
+TABLE 1 Graph Terminology.
+
+Links
+
+Type
+
+Edges
+
+Multiple Edges Allowed?
+
+Loops Allowed?
+
+Simple graph
+Multigraph
+Pseudograph
+Simple directed graph
+Directed multigraph
+Mixed graph
+
+Undirected
+Undirected
+Undirected
+Directed
+Directed
+Directed and undirected
+
+No
+Yes
+Yes
+No
+Yes
+Yes
+
+No
+No
+Yes
+No
+Yes
+Yes
+
+a mixed graph might be used to model a computer network containing links that operate in both
+directions and other links that operate only in one direction.
+This terminology for the various types of graphs is summarized in Table 1. We will sometimes use the term graph as a general term to describe graphs with directed or undirected edges
+(or both), with or without loops, and with or without multiple edges. At other times, when the
+context is clear, we will use the term graph to refer only to undirected graphs.
+Because of the relatively modern interest in graph theory, and because it has applications
+to a wide variety of disciplines, many diﬀerent terminologies of graph theory have been introduced. The reader should determine how such terms are being used whenever they are encountered. The terminology used by mathematicians to describe graphs has been increasingly
+standardized, but the terminology used to discuss graphs when they are used in other disciplines is still quite varied. Although the terminology used to describe graphs may vary, three
+key questions can help us understand the structure of a graph:
+▶
+
+Are the edges of the graph undirected or directed (or both)?
+If the graph is undirected, are multiple edges present that connect the same pair of vertices? If the graph is directed, are multiple directed edges present?
+▶ Are loops present?
+▶
+
+Answering such questions helps us understand graphs. It is less important to remember the
+particular terminology used.
+
+10.1.1 Graph Models
+Links
+
+Can you ﬁnd a subject
+to which graph theory
+has not been applied?
+
+Graphs are used in a wide variety of models. We began this section by describing how to construct graph models of communications networks linking data centers. We will complete this
+section by describing some diverse graph models for some interesting applications. We will
+return to many of these applications later in this chapter and in Chapter 11. We will introduce
+additional graph models in subsequent sections of this and later chapters. Also, recall that directed graph models for some applications were introduced in Chapter 9. When we build a graph
+model, we need to make sure that we have correctly answered the three key questions we posed
+about the structure of a graph.
+SOCIAL NETWORKS Graphs are extensively used to model social structures based on dif-
+
+ferent kinds of relationships between people or groups of people. These social structures, and the
+graphs that represent them, are known as social networks. In these graph models, individuals
+or organizations are represented by vertices; relationships between individuals or organizations
+are represented by edges. The study of social networks is an extremely active multidisciplinary
+area, and many diﬀerent types of relationships between people have been studied using them.
+We will introduce some of the most commonly studied social networks here. More information
+about social networks can be found in [Ne10] and [EaKl10].
+
+10.1 Graphs and Graph Models 677
+
+Eduardo
+
+Jan
+
+Paula
+
+Todd
+
+Kamlesh
+
+Amy
+Kamini
+
+Ching
+Lila
+Liz
+
+Joel
+
+Gail
+
+Deborah
+
+Fred
+
+FIGURE 7
+
+An inﬂuence graph.
+
+Koko
+Shaquira
+
+FIGURE 6
+
+An acquaintanceship graph.
+
+Links
+
+Brian
+
+Steve
+
+Kari
+
+EXAMPLE 1
+
+Linda
+
+Yvonne
+
+Acquaintanceship and Friendship Graphs We can use a simple graph to represent whether
+two people know each other, that is, whether they are acquainted, or whether they are friends
+(either in the real world or in the virtual world via a social networking site such as Facebook).
+Each person in a particular group of people is represented by a vertex. An undirected edge is
+used to connect two people when these people know each other, when we are concerned only
+with acquaintanceship, or whether they are friends. No multiple edges and usually no loops are
+used. (If we want to include the notion of self-knowledge, we would include loops.) A small
+acquaintanceship graph is shown in Figure 6. The acquaintanceship graph of all people in the
+world has more than six billion vertices and probably more than one trillion edges! We will
+◂
+discuss this graph further in Section 10.4.
+
+EXAMPLE 2
+
+Inﬂuence Graphs In studies of group behavior it is observed that certain people can inﬂuence
+the thinking of others. A directed graph called an inﬂuence graph can be used to model this
+behavior. Each person of the group is represented by a vertex. There is a directed edge from
+vertex a to vertex b when the person represented by vertex a can inﬂuence the person represented
+by vertex b. This graph does not contain loops and it does not contain multiple directed edges.
+An example of an inﬂuence graph for members of a group is shown in Figure 7. In the group
+modeled by this inﬂuence graph, Deborah cannot be inﬂuenced, but she can inﬂuence Brian,
+◂
+Fred, and Linda. Also, Yvonne and Brian can inﬂuence each other.
+
+EXAMPLE 3
+
+Collaboration Graphs A collaboration graph is used to model social networks where two
+people are related by working together in a particular way. Collaboration graphs are simple
+graphs, as edges in these graphs are undirected and there are no multiple edges or loops. Vertices
+in these graphs represent people; two people are connected by an undirected edge when the
+people have collaborated. There are no loops nor multiple edges in these graphs. The Hollywood
+graph is a collaborator graph that represents actors by vertices and connects two actors with
+an edge if they have worked together on a movie or television show. The Hollywood graph is a
+huge graph with more than 2.9 million vertices (as of early 2018). We will discuss some aspects
+of the Hollywood graph later in Section 10.4.
+In an academic collaboration graph, vertices represent people (perhaps restricted to
+members of a certain academic community), and edges link two people if they have jointly
+published a paper. The collaboration graph for people who have published research papers in
+mathematics was found in 2004 to have more than 400,000 vertices and 675,000 edges, and
+these numbers have grown considerably since then. We will have more to say about this graph
+in Section 10.4. Collaboration graphs have also been used in sports, where two professional
+athletes are considered to have collaborated if they have ever played on the same team during
+◂
+a regular season of their sport.
+
+Links
+
+
